@@ -1,0 +1,50 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", "Plus Jakarta Sans", "Segoe UI", sans-serif;
+
+  --color-ht-navy: #0b223f;
+  --color-ht-navy-700: #16466a;
+  --color-ht-cyan: #0caec8;
+  --color-ht-cyan-700: #0b8aa1;
+  --color-ht-teal: #1e8fa0;
+  --color-ht-light: #f5fbff;
+  --color-ht-soft-blue: #e5f4ff;
+  --color-ht-silver: #d6e4ef;
+  --color-ht-gray: #546b82;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(circle at top right, #dff7ff 0%, transparent 45%),
+    radial-gradient(circle at bottom left, #ecf9ff 0%, transparent 42%),
+    var(--color-ht-light);
+  color: var(--color-ht-navy);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: #b9f2ff;
+  color: #0b223f;
+}
+
