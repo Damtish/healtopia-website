@@ -79,20 +79,28 @@ function About() {
       <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="overflow-hidden rounded-3xl border border-ht-silver shadow-[0_22px_48px_-28px_rgba(5,42,74,0.35)]"
+            className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-ht-silver bg-cover bg-center shadow-[0_22px_48px_-28px_rgba(5,42,74,0.35)]"
+            style={{ backgroundImage: "url('/images/clinic/hallway.jpg')" }}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.45 }}
           >
-            <img
-              src="/images/clinic/hallway.jpg"
-              alt="Healtopia clinic hallway"
-              className="h-56 w-full object-cover object-center sm:h-64 lg:h-72"
-            />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/72 to-cyan-50/55" />
+            <div className="relative flex min-h-[280px] items-center p-5 sm:p-8 md:min-h-[340px] lg:min-h-[430px] lg:p-10">
+              <div className="max-w-xl rounded-2xl border border-white/80 bg-white/88 p-5 shadow-lg backdrop-blur-[1px] sm:p-6 md:p-7">
+                <h3 className="text-2xl font-bold tracking-tight text-ht-navy md:text-3xl">
+                  A calm, welcoming clinic environment
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ht-gray md:text-base">
+                  Healtopia&rsquo;s clinic space is designed to feel clean, comfortable, and easy to navigate from
+                  the moment patients arrive.
+                </p>
+              </div>
+            </div>
           </motion.div>
 
-          <div className="mt-8 grid gap-8 lg:grid-cols-2">
+          <div className="mx-auto mt-10 grid max-w-6xl gap-8 lg:grid-cols-2">
             <motion.div
               className="rounded-2xl border border-ht-silver bg-ht-soft-blue/40 p-7"
               initial={{ opacity: 0, y: 24 }}
