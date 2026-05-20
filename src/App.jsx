@@ -4,6 +4,7 @@ import { Phone } from 'lucide-react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Button from './components/Button'
+import PageTransition from './components/PageTransition'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
@@ -29,7 +30,9 @@ function AppLayout() {
     <div className="min-h-screen bg-ht-light text-ht-navy antialiased">
       <Header />
       <main className="pb-24 md:pb-0">
-        <Outlet />
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </main>
       <Footer />
 

@@ -1,5 +1,6 @@
-﻿import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import Button from './Button'
+import { getCardHover, getRevealProps } from '../lib/motion'
 
 function PricingCard({
   name,
@@ -11,7 +12,10 @@ function PricingCard({
   featured = false,
   ctaLabel = 'Get Started',
   ctaTo = '/contact',
+  delay = 0,
 }) {
+  const reduceMotion = useReducedMotion()
+
   return (
     <motion.article
       className={`flex h-full flex-col rounded-3xl border p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl md:p-7 ${
@@ -19,10 +23,8 @@ function PricingCard({
           ? 'border-cyan-300 bg-gradient-to-b from-cyan-50 via-white to-white'
           : 'border-ht-silver bg-white'
       }`}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.45 }}
+      {...getRevealProps(reduceMotion, { y: 24, duration: 0.45, amount: 0.25, delay })}
+      {...getCardHover(reduceMotion)}
     >
       <h3 className="text-2xl font-bold text-ht-navy">{name}</h3>
 

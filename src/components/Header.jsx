@@ -1,9 +1,10 @@
 import { NavLink, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import Button from './Button'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
+import { getEntranceProps } from '../lib/motion'
 
 const primaryNavLinks = [
   { label: 'Home', to: '/' },
@@ -23,6 +24,7 @@ const serviceActivePaths = ['/services', '/medical-weight-loss', '/concierge-car
 
 function Header() {
   const { pathname } = useLocation()
+  const reduceMotion = useReducedMotion()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
@@ -44,7 +46,7 @@ function Header() {
   const navDesktopClass = ({ isActive }) =>
     `relative rounded-full px-1 py-1 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 ${
       isActive
-        ? 'text-ht-navy after:absolute after:-bottom-1 after:left-0 after:right-0 after:mx-auto after:h-0.5 after:w-full after:rounded-full after:bg-cyan-300'
+        ? 'text-ht-navy after:absolute after:-bottom-1 after:left-0 after:right-0 after:mx-auto after:h-0.5 after:w-full after:rounded-full after:bg-cyan-300 after:transition-all'
         : 'text-ht-navy hover:text-ht-cyan-700'
     }`
 
@@ -54,7 +56,10 @@ function Header() {
     }`
 
   return (
-    <header className="sticky top-0 z-40 border-b border-ht-silver bg-white/90 backdrop-blur">
+    <motion.header
+      className="sticky top-0 z-40 border-b border-ht-silver bg-white/90 backdrop-blur"
+      {...getEntranceProps(reduceMotion, { y: -14, duration: 0.45 })}
+    >
       <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <NavLink to="/" className="flex items-center gap-3 sm:gap-4" aria-label="Healtopia home">
           <img
@@ -264,7 +269,7 @@ function Header() {
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </header>
+    </motion.header>
   )
 }
 

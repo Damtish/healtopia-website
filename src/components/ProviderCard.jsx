@@ -1,14 +1,15 @@
-﻿import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { CheckCircle2 } from 'lucide-react'
+import { getCardHover, getRevealProps } from '../lib/motion'
 
-function ProviderCard({ name, title, bio, specialties = [] }) {
+function ProviderCard({ name, title, bio, specialties = [], delay = 0 }) {
+  const reduceMotion = useReducedMotion()
+
   return (
     <motion.article
       className="rounded-3xl border border-ht-silver bg-white p-6 shadow-sm md:p-8"
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5 }}
+      {...getRevealProps(reduceMotion, { y: 24, duration: 0.5, amount: 0.2, delay })}
+      {...getCardHover(reduceMotion)}
     >
       <div className="flex flex-col gap-6 md:flex-row md:items-start">
         <div className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-cyan-200 via-cyan-100 to-white px-3 text-center text-xs font-semibold text-ht-navy-700">
@@ -36,4 +37,3 @@ function ProviderCard({ name, title, bio, specialties = [] }) {
 }
 
 export default ProviderCard
-

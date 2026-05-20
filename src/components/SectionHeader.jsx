@@ -1,25 +1,12 @@
-﻿import { motion } from 'framer-motion'
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' },
-  },
-}
+import { motion, useReducedMotion } from 'framer-motion'
+import { getRevealProps } from '../lib/motion'
 
 function SectionHeader({ eyebrow, title, description, align = 'left' }) {
+  const reduceMotion = useReducedMotion()
   const alignment = align === 'center' ? 'text-center mx-auto' : 'text-left'
 
   return (
-    <motion.div
-      className={`max-w-2xl ${alignment}`}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={fadeUp}
-    >
+    <motion.div className={`max-w-2xl ${alignment}`} {...getRevealProps(reduceMotion, { y: 22, amount: 0.2 })}>
       {eyebrow ? (
         <p className="mb-3 inline-flex rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-ht-navy-700">
           {eyebrow}

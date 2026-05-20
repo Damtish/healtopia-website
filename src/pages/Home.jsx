@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import {
   BadgeCheck,
   CalendarClock,
@@ -18,6 +19,7 @@ import services, { serviceIconMap } from '../data/services'
 import pricingPlans from '../data/pricing'
 import { testimonials } from '../data/testimonials'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
+import { getCardHover, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
 const trustItems = ['Primary Care', 'Medical Weight Loss', 'Telehealth Available', 'Insurance Accepted']
 
@@ -40,60 +42,128 @@ const whyChoose = [
 ]
 
 function Home() {
+  const reduceMotion = useReducedMotion()
+  const [isDesktopFloat, setIsDesktopFloat] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 1024px)')
+    const updateFloatMode = () => setIsDesktopFloat(mediaQuery.matches)
+    updateFloatMode()
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', updateFloatMode)
+      return () => mediaQuery.removeEventListener('change', updateFloatMode)
+    }
+
+    mediaQuery.addListener(updateFloatMode)
+    return () => mediaQuery.removeListener(updateFloatMode)
+  }, [])
+
   return (
     <div>
       <section className="border-b border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50">
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-          >
-            <p className="mb-4 inline-flex rounded-full bg-cyan-100 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-ht-navy-700">
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 pb-16 pt-20 sm:px-6 sm:pb-20 sm:pt-16 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
+          <div>
+            <motion.p
+              className="mb-4 inline-flex rounded-full bg-cyan-100 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-ht-navy-700"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: 'easeOut', delay: 0.03 }}
+            >
               Gambrills, Maryland
-            </p>
-            <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-ht-navy md:text-5xl">
+            </motion.p>
+            <motion.h1
+              className="text-4xl font-extrabold leading-tight tracking-tight text-ht-navy md:text-5xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.12 }}
+            >
               Compassionate Primary Care & Medical Weight Loss in Gambrills, MD
-            </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-ht-gray md:text-lg">
+            </motion.h1>
+            <motion.p
+              className="mt-5 max-w-xl text-base leading-relaxed text-ht-gray md:text-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.22 }}
+            >
               Personalized, accessible care designed around your health, lifestyle, and long-term wellness.
-            </p>
+            </motion.p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" size="lg">
+            <motion.div
+              className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: 'easeOut', delay: 0.32 }}
+            >
+              <Button
+                href={BOOK_APPOINTMENT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                size="md"
+                className="w-full sm:h-12 sm:w-auto sm:px-6"
+              >
                 Book Appointment
               </Button>
-              <Button to="/services" variant="secondary" size="lg">
+              <Button
+                to="/services"
+                variant="secondary"
+                size="md"
+                className="w-full sm:h-12 sm:w-auto sm:px-6"
+              >
                 Explore Services
               </Button>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
           <motion.div
             className="relative"
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 28, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.08, ease: 'easeOut' }}
           >
-            <div className="overflow-hidden rounded-[2rem] border border-cyan-200/90 bg-gradient-to-br from-cyan-100 via-ht-soft-blue to-white p-3 shadow-[0_24px_60px_-26px_rgba(12,174,200,0.5)]">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.4rem] border border-cyan-100 bg-white">
+            <motion.div
+              className="overflow-hidden rounded-[2rem] border border-cyan-200/90 bg-gradient-to-br from-cyan-100 via-ht-soft-blue to-white p-3 shadow-[0_24px_60px_-26px_rgba(12,174,200,0.5)]"
+              animate={isDesktopFloat ? { y: [0, -6, 0] } : { y: 0 }}
+              transition={isDesktopFloat ? { duration: 6.5, repeat: Infinity, ease: 'easeInOut' } : { duration: 0 }}
+            >
+              <div className="relative h-[330px] overflow-hidden rounded-[1.4rem] border border-cyan-100 bg-white sm:h-[360px] md:h-auto md:aspect-[4/3]">
                 <img
                   src="/images/clinic/reception.jpg"
                   alt="Healtopia clinic reception area"
-                  className="h-full w-full object-cover object-[58%_44%] sm:object-[56%_44%]"
+                  className="h-full w-full object-cover object-center"
                 />
               </div>
-            </div>
+            </motion.div>
 
-            <div className="pointer-events-none absolute -bottom-5 -left-3 right-3 grid gap-2 sm:grid-cols-2">
-              {trustItems.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-2 rounded-xl border border-ht-silver bg-white/95 px-3 py-2 text-xs font-semibold text-ht-navy shadow-md"
+            <div className="mt-4 grid grid-cols-2 gap-2 md:hidden">
+              {trustItems.map((item, index) => (
+                <motion.div
+                  key={`mobile-${item}`}
+                  className="flex items-center gap-2 rounded-xl border border-cyan-100 bg-white px-3 py-2 text-xs font-semibold text-ht-navy shadow-[0_10px_22px_-16px_rgba(5,42,74,0.45)]"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.6 }}
+                  transition={{ duration: 0.28, delay: 0.08 + index * 0.08 }}
                 >
                   <BadgeCheck size={14} className="text-ht-cyan-700" />
                   {item}
-                </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="pointer-events-none absolute -bottom-3 left-3 right-3 hidden gap-2 md:grid md:grid-cols-2 lg:-bottom-4">
+              {trustItems.map((item, index) => (
+                <motion.div
+                  key={item}
+                  className="flex items-center gap-2 rounded-xl border border-ht-silver bg-white/95 px-3 py-2 text-xs font-semibold text-ht-navy shadow-md"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.3, delay: 0.1 + index * 0.08 }}
+                >
+                  <BadgeCheck size={14} className="text-ht-cyan-700" />
+                  {item}
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -130,13 +200,14 @@ function Home() {
           description="From preventive care to advanced weight management, we deliver practical and compassionate support in every visit."
         />
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {services.slice(0, 3).map((service) => (
+          {services.slice(0, 3).map((service, index) => (
             <ServiceCard
               key={service.id}
               title={service.title}
               description={service.description}
               icon={serviceIconMap[service.icon]}
               path={service.path}
+              delay={index * 0.08}
             />
           ))}
         </div>
@@ -149,22 +220,20 @@ function Home() {
             title="Trusted care that feels personal"
             description="We focus on relationship-driven care, modern convenience, and consistent communication so you always know what is next in your plan."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <motion.div className="mt-10 grid gap-5 md:grid-cols-3" {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08 })}>
             {whyChoose.map((item) => (
               <motion.article
                 key={item.title}
                 className="rounded-2xl border border-ht-silver bg-ht-soft-blue/30 p-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.4 }}
+                {...getStaggerItem(reduceMotion, { y: 20 })}
+                {...getCardHover(reduceMotion)}
               >
                 <item.icon size={20} className="text-ht-cyan-700" />
                 <h3 className="mt-4 text-xl font-bold text-ht-navy">{item.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ht-gray">{item.description}</p>
               </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -179,8 +248,9 @@ function Home() {
             name="Dr. Gashaw Adugna, MD"
             title="Internal Medicine & Obesity Medicine"
             specialties={['Internal Medicine', 'Obesity Medicine']}
+            delay={0.03}
           />
-          <ProviderCard name="Malefiya Kenea, FNP-C" title="Family Nurse Practitioner" />
+          <ProviderCard name="Malefiya Kenea, FNP-C" title="Family Nurse Practitioner" delay={0.1} />
         </div>
       </section>
 
@@ -254,8 +324,8 @@ function Home() {
           description="Review current care options and discuss the best fit during your visit."
         />
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
-          {pricingPlans.map((plan) => (
-            <PricingCard key={plan.id} {...plan} />
+          {pricingPlans.map((plan, index) => (
+            <PricingCard key={plan.id} {...plan} delay={index * 0.08} />
           ))}
         </div>
       </section>
@@ -267,7 +337,7 @@ function Home() {
             title="Patient Testimonials"
             description="Approved patient feedback can be managed from a single testimonials data file."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <motion.div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3" {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08 })}>
             {testimonials.map((testimonial, index) => {
               const showStars = testimonial.source === 'Google Review'
 
@@ -275,10 +345,8 @@ function Home() {
                 <motion.article
                   key={`${testimonial.name}-${testimonial.source}-${index}`}
                   className="rounded-2xl border border-ht-silver bg-ht-soft-blue/30 p-6 shadow-sm"
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.4 }}
+                  {...getStaggerItem(reduceMotion, { y: 24 })}
+                  {...getCardHover(reduceMotion)}
                 >
                   {showStars ? (
                     <div className="mb-3 flex items-center gap-1 text-ht-cyan-700" aria-label="5 star review">
@@ -288,13 +356,13 @@ function Home() {
                     </div>
                   ) : null}
 
-                  <blockquote className="text-sm leading-relaxed text-ht-gray">“{testimonial.quote}”</blockquote>
+                  <blockquote className="text-sm leading-relaxed text-ht-gray">&ldquo;{testimonial.quote}&rdquo;</blockquote>
                   <p className="mt-4 text-sm font-semibold text-ht-navy">{testimonial.name}</p>
                   <p className="mt-1 text-xs font-medium uppercase tracking-wide text-ht-gray">{testimonial.source}</p>
                 </motion.article>
               )
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 

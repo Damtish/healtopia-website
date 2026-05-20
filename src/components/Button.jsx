@@ -8,9 +8,10 @@ const baseStyles =
   'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ht-cyan focus-visible:ring-offset-2 ring-offset-white disabled:pointer-events-none disabled:opacity-60'
 
 const variantStyles = {
-  primary: 'bg-ht-cyan text-white shadow-lg shadow-cyan-200/60 hover:-translate-y-0.5 hover:bg-ht-cyan-700',
+  primary:
+    'bg-ht-cyan text-white shadow-lg shadow-cyan-200/60 hover:-translate-y-0.5 hover:bg-ht-cyan-700 hover:shadow-xl hover:shadow-cyan-200/70',
   secondary:
-    'border border-ht-silver bg-white text-ht-navy hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-ht-soft-blue',
+    'border border-ht-silver bg-white text-ht-navy shadow-sm hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-ht-soft-blue hover:shadow-md',
   ghost: 'text-ht-navy hover:bg-ht-soft-blue',
 }
 

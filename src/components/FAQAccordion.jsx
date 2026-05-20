@@ -1,8 +1,9 @@
-﻿import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
 function FAQAccordion({ items = [] }) {
+  const reduceMotion = useReducedMotion()
   const [openId, setOpenId] = useState(items[0]?.id ?? null)
 
   return (
@@ -33,7 +34,7 @@ function FAQAccordion({ items = [] }) {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                  transition={{ duration: reduceMotion ? 0 : 0.25, ease: 'easeOut' }}
                 >
                   <p className="px-5 pb-5 text-sm leading-relaxed text-ht-gray md:text-base">{item.answer}</p>
                 </motion.div>
