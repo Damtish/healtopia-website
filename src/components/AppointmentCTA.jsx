@@ -16,7 +16,13 @@ function AppointmentCTA({ className = '' }) {
         Use our secure booking page to choose an appointment type and a convenient time.
       </p>
       <div className="mt-6">
-        <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" size="lg">
+        <Button
+          href={BOOK_APPOINTMENT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          size="md"
+          className="w-full sm:h-12 sm:w-auto sm:px-6"
+        >
           Book Appointment
         </Button>
       </div>
@@ -25,4 +31,3 @@ function AppointmentCTA({ className = '' }) {
 }
 
 export default AppointmentCTA
-

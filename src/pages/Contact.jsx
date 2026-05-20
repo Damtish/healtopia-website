@@ -1,9 +1,10 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Mail, MapPin, Phone } from 'lucide-react'
+import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 import Button from '../components/Button'
 import SectionHeader from '../components/SectionHeader'
 import AppointmentCTA from '../components/AppointmentCTA'
-import { BOOK_APPOINTMENT_URL } from '../constants/links'
+import { BOOK_APPOINTMENT_URL, FACEBOOK_URL, INSTAGRAM_URL } from '../constants/links'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
 function Contact() {
@@ -82,6 +83,46 @@ function Contact() {
             </motion.article>
           ))}
         </motion.div>
+
+        <motion.div
+          className="mx-auto mt-8 w-full max-w-3xl rounded-2xl border border-cyan-100 bg-white p-5 text-center shadow-sm"
+          {...getRevealProps(reduceMotion, { y: 20, amount: 0.15 })}
+        >
+          <h3 className="text-lg font-bold text-ht-navy">Follow Healtopia</h3>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit Healtopia on Facebook"
+              className="inline-flex items-center gap-2 rounded-full border border-cyan-100 bg-white px-4 py-2 text-sm font-semibold text-ht-navy shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 hover:text-ht-cyan-700 hover:shadow-md"
+            >
+              <span
+                aria-hidden="true"
+                className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-cyan-50 text-ht-cyan-700"
+              >
+                <FaFacebookF size={12} />
+              </span>
+              Facebook
+            </a>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit Healtopia on Instagram"
+              className="inline-flex items-center gap-2 rounded-full border border-cyan-100 bg-white px-4 py-2 text-sm font-semibold text-ht-navy shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 hover:text-ht-cyan-700 hover:shadow-md"
+            >
+              <span
+                aria-hidden="true"
+                className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-cyan-50 text-ht-cyan-700"
+              >
+                <FaInstagram size={13} />
+              </span>
+              Instagram
+            </a>
+          </div>
+        </motion.div>
+
         <motion.div {...getRevealProps(reduceMotion, { y: 22, amount: 0.2 })}>
           <AppointmentCTA className="mt-10" />
         </motion.div>
