@@ -4,6 +4,7 @@ import {
   CalendarClock,
   CreditCard,
   ShieldCheck,
+  Star,
   Stethoscope,
   Video,
 } from 'lucide-react'
@@ -15,6 +16,7 @@ import ProviderCard from '../components/ProviderCard'
 import PricingCard from '../components/PricingCard'
 import services, { serviceIconMap } from '../data/services'
 import pricingPlans from '../data/pricing'
+import { testimonials } from '../data/testimonials'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 
 const trustItems = ['Primary Care', 'Medical Weight Loss', 'Telehealth Available', 'Insurance Accepted']
@@ -262,18 +264,37 @@ function Home() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Testimonials"
-            title="Patient testimonials coming soon"
-            description="Verified patient feedback will be published here when available."
+            title="Patient Testimonials"
+            description="Approved patient feedback can be managed from a single testimonials data file."
           />
-          <motion.div
-            className="mt-10 rounded-2xl border border-ht-silver bg-ht-soft-blue/30 p-6 text-sm text-ht-gray"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.4 }}
-          >
-            We do not publish unverified testimonials. This section will be updated with approved patient feedback.
-          </motion.div>
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {testimonials.map((testimonial, index) => {
+              const showStars = testimonial.source === 'Google Review'
+
+              return (
+                <motion.article
+                  key={`${testimonial.name}-${testimonial.source}-${index}`}
+                  className="rounded-2xl border border-ht-silver bg-ht-soft-blue/30 p-6 shadow-sm"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  {showStars ? (
+                    <div className="mb-3 flex items-center gap-1 text-ht-cyan-700" aria-label="5 star review">
+                      {Array.from({ length: 5 }).map((_, starIndex) => (
+                        <Star key={starIndex} size={14} fill="currentColor" />
+                      ))}
+                    </div>
+                  ) : null}
+
+                  <blockquote className="text-sm leading-relaxed text-ht-gray">“{testimonial.quote}”</blockquote>
+                  <p className="mt-4 text-sm font-semibold text-ht-navy">{testimonial.name}</p>
+                  <p className="mt-1 text-xs font-medium uppercase tracking-wide text-ht-gray">{testimonial.source}</p>
+                </motion.article>
+              )
+            })}
+          </div>
         </div>
       </section>
 
