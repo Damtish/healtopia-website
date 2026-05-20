@@ -53,6 +53,29 @@ function Services() {
             />
           ))}
         </div>
+
+        <motion.div
+          className="mx-auto mt-12 grid max-w-6xl items-center gap-7 overflow-hidden rounded-3xl border border-ht-silver bg-white p-4 shadow-[0_24px_54px_-32px_rgba(5,42,74,0.35)] md:p-5 lg:grid-cols-2"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.45 }}
+        >
+          <div className="overflow-hidden rounded-2xl">
+            <img
+              src="/images/clinic/exam-room-wide.jpg"
+              alt="Healtopia exam room"
+              className="h-56 w-full object-cover sm:h-64 lg:h-72"
+            />
+          </div>
+          <div className="px-2 pb-2 pt-1 md:px-3">
+            <h3 className="text-2xl font-bold tracking-tight text-ht-navy">Primary care in a calm clinical setting</h3>
+            <p className="mt-3 text-sm leading-relaxed text-ht-gray md:text-base">
+              Our exam spaces are designed for comfort, privacy, and focused care so every visit feels clear,
+              professional, and supportive.
+            </p>
+          </div>
+        </motion.div>
       </section>
 
       <section className="border-y border-ht-silver bg-white py-16 lg:py-20">

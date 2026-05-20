@@ -77,33 +77,49 @@ function About() {
       </section>
 
       <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
-        <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="rounded-2xl border border-ht-silver bg-ht-soft-blue/40 p-7"
+            className="overflow-hidden rounded-3xl border border-ht-silver shadow-[0_22px_48px_-28px_rgba(5,42,74,0.35)]"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.45 }}
           >
-            <h3 className="text-2xl font-bold text-ht-navy">Our Approach</h3>
-            <p className="mt-4 text-sm leading-relaxed text-ht-gray md:text-base">
-              Every plan begins with listening. We focus on your full story, then build care strategies that are
-              evidence-based, realistic, and designed for sustainable progress.
-            </p>
+            <img
+              src="/images/clinic/hallway.jpg"
+              alt="Healtopia clinic hallway"
+              className="h-64 w-full object-cover sm:h-72 lg:h-80"
+            />
           </motion.div>
-          <motion.div
-            className="rounded-2xl border border-ht-silver bg-white p-7"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.45, delay: 0.06 }}
-          >
-            <h3 className="text-2xl font-bold text-ht-navy">Our Promise</h3>
-            <p className="mt-4 text-sm leading-relaxed text-ht-gray md:text-base">
-              You will always receive clear communication, collaborative decision-making, and care that honors both
-              your clinical needs and your day-to-day life.
-            </p>
-          </motion.div>
+
+          <div className="mt-8 grid gap-8 lg:grid-cols-2">
+            <motion.div
+              className="rounded-2xl border border-ht-silver bg-ht-soft-blue/40 p-7"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.45 }}
+            >
+              <h3 className="text-2xl font-bold text-ht-navy">Our Approach</h3>
+              <p className="mt-4 text-sm leading-relaxed text-ht-gray md:text-base">
+                Every plan begins with listening. We focus on your full story, then build care strategies that are
+                evidence-based, realistic, and designed for sustainable progress.
+              </p>
+            </motion.div>
+            <motion.div
+              className="rounded-2xl border border-ht-silver bg-white p-7"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.45, delay: 0.06 }}
+            >
+              <h3 className="text-2xl font-bold text-ht-navy">Our Promise</h3>
+              <p className="mt-4 text-sm leading-relaxed text-ht-gray md:text-base">
+                You will always receive clear communication, collaborative decision-making, and care that honors both
+                your clinical needs and your day-to-day life.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
     </div>

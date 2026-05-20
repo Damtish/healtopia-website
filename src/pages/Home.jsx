@@ -1,8 +1,6 @@
-import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   BadgeCheck,
-  Building2,
   CalendarClock,
   CreditCard,
   ShieldCheck,
@@ -40,8 +38,6 @@ const whyChoose = [
 ]
 
 function Home() {
-  const [showClinicImage, setShowClinicImage] = useState(true)
-
   return (
     <div>
       <section className="border-b border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50">
@@ -79,30 +75,11 @@ function Home() {
           >
             <div className="overflow-hidden rounded-[2rem] border border-cyan-200/90 bg-gradient-to-br from-cyan-100 via-ht-soft-blue to-white p-3 shadow-[0_24px_60px_-26px_rgba(12,174,200,0.5)]">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[1.4rem] border border-cyan-100 bg-white">
-                {showClinicImage ? (
-                  <img
-                    src="/images/healtopia-clinic-hero.png"
-                    alt="Healtopia clinic hero area"
-                    className="h-full w-full object-cover"
-                    onError={() => setShowClinicImage(false)}
-                  />
-                ) : (
-                  <div className="relative h-full w-full overflow-hidden bg-gradient-to-br from-cyan-100 via-ht-soft-blue to-white">
-                    <div className="absolute -right-10 -top-8 h-44 w-44 rounded-full bg-cyan-200/60 blur-2xl" />
-                    <div className="absolute -bottom-10 -left-8 h-44 w-44 rounded-full bg-cyan-100/80 blur-2xl" />
-                    <div className="absolute left-6 top-6 h-16 w-16 rounded-2xl bg-white/80 shadow-sm backdrop-blur-sm" />
-                    <div className="absolute bottom-8 right-8 h-12 w-28 rounded-full bg-white/70 shadow-sm backdrop-blur-sm" />
-                    <div className="relative flex h-full flex-col items-center justify-center gap-3 px-8 text-center">
-                      <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan-200 bg-white/85 text-ht-cyan-700 shadow-sm">
-                        <Building2 size={26} />
-                      </div>
-                      <p className="text-base font-bold text-ht-navy md:text-lg">Clinic photo coming soon</p>
-                      <p className="max-w-xs text-xs text-ht-gray md:text-sm">
-                        A real clinic image will appear here once available.
-                      </p>
-                    </div>
-                  </div>
-                )}
+                <img
+                  src="/images/clinic/reception.jpg"
+                  alt="Healtopia clinic reception area"
+                  className="h-full w-full object-cover"
+                />
               </div>
             </div>
 
