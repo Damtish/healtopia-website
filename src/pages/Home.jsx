@@ -80,7 +80,7 @@ function Home() {
                 <img
                   src="/images/clinic/reception.jpg"
                   alt="Healtopia clinic reception area"
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover object-[58%_44%] sm:object-[56%_44%]"
                 />
               </div>
             </div>

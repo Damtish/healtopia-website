@@ -65,7 +65,7 @@ function Services() {
             <img
               src="/images/clinic/exam-room-wide.jpg"
               alt="Healtopia exam room"
-              className="h-56 w-full object-cover sm:h-64 lg:h-72"
+              className="h-56 w-full object-cover object-center sm:h-64 lg:h-72"
             />
           </div>
           <div className="px-2 pb-2 pt-1 md:px-3">

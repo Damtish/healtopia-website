@@ -88,7 +88,7 @@ function About() {
             <img
               src="/images/clinic/hallway.jpg"
               alt="Healtopia clinic hallway"
-              className="h-64 w-full object-cover sm:h-72 lg:h-80"
+              className="h-56 w-full object-cover object-center sm:h-64 lg:h-72"
             />
           </motion.div>
 
