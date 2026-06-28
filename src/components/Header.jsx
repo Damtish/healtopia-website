@@ -11,7 +11,6 @@ const primaryNavLinks = [
   { label: 'Home', to: '/' },
   { label: 'About Us', to: '/about' },
   { label: 'Pricing', to: '/pricing' },
-  { label: 'Insurance', to: '/insurance' },
   { label: 'Contact', to: '/contact' },
 ]
 
@@ -72,7 +71,9 @@ function Header() {
             <p className="text-lg font-extrabold leading-tight tracking-tight text-ht-navy sm:text-[1.4rem]">
               Healtopia
             </p>
-            <p className="text-[10px] font-medium leading-tight text-ht-gray sm:text-xs">Primary Care & Wellness</p>
+            <p className="text-[10px] font-medium leading-tight text-ht-gray sm:text-xs">
+              Primary Care & Medical Weight Loss
+            </p>
           </div>
         </NavLink>
 

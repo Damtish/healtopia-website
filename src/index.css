@@ -48,3 +48,45 @@ a {
   color: #0b223f;
 }
 
+@keyframes insurance-logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.insurance-logo-marquee {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+}
+
+.insurance-logo-marquee-track {
+  animation: insurance-logo-marquee 52s linear infinite;
+  will-change: transform;
+}
+
+.insurance-logo-marquee:hover .insurance-logo-marquee-track {
+  animation-play-state: paused;
+}
+
+.insurance-logo-image {
+  filter: grayscale(1);
+  opacity: 0.62;
+  transition: filter 220ms ease, opacity 220ms ease;
+}
+
+.insurance-logo-image:hover {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .insurance-logo-marquee-track {
+    animation-play-state: paused;
+    will-change: auto;
+  }
+}
+

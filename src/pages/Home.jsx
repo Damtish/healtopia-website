@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import {
+  ArrowRight,
   BadgeCheck,
   CalendarClock,
   CreditCard,
@@ -17,6 +19,7 @@ import ProviderCard from '../components/ProviderCard'
 import PricingCard from '../components/PricingCard'
 import services, { serviceIconMap } from '../data/services'
 import pricingPlans from '../data/pricing'
+import insuranceLogos from '../data/insurance'
 import { testimonials } from '../data/testimonials'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import { getCardHover, getStaggerContainer, getStaggerItem } from '../lib/motion'
@@ -327,6 +330,55 @@ function Home() {
           {pricingPlans.map((plan, index) => (
             <PricingCard key={plan.id} {...plan} delay={index * 0.08} />
           ))}
+        </div>
+      </section>
+
+      <section className="overflow-hidden border-y border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue/55 to-cyan-50 py-14 lg:py-16">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            title="Accepted by many major insurance plans"
+            description="Patients are encouraged to contact the office to confirm coverage before their visit."
+            align="center"
+          />
+
+          <div
+            className="insurance-logo-marquee relative mt-8 overflow-hidden"
+            aria-label="Accepted insurance plans"
+          >
+            <div className="insurance-logo-marquee-track flex w-max items-center">
+              {[0, 1].map((setIndex) => (
+                <div
+                  key={setIndex}
+                  className="flex shrink-0 items-center gap-8 pr-8 sm:gap-12 sm:pr-12"
+                  aria-hidden={setIndex === 1 ? 'true' : undefined}
+                >
+                  {insuranceLogos.map((plan) => (
+                    <div
+                      key={`${setIndex}-${plan.src}`}
+                      className="flex h-14 w-32 shrink-0 items-center justify-center px-2 sm:h-16 sm:w-40 sm:px-3"
+                    >
+                      <img
+                        src={plan.src}
+                        alt={plan.alt}
+                        className={`insurance-logo-image h-auto w-auto max-h-9 max-w-[136px] object-contain sm:max-h-10 sm:max-w-[150px] ${plan.sizeClass ?? ''}`}
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-7 text-center">
+            <Link
+              to="/insurance"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-ht-navy-700 transition-colors hover:text-ht-cyan-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ht-cyan focus-visible:ring-offset-4 focus-visible:ring-offset-ht-soft-blue"
+            >
+              View accepted insurance plans
+              <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
 
