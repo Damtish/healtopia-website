@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { FaFacebookF, FaInstagram } from 'react-icons/fa'
@@ -11,7 +11,7 @@ const desktopNavLinks = [
   { label: 'Home', to: '/' },
   { label: 'About Us', to: '/about' },
   { label: 'Direct Primary Care', to: '/direct-primary-care' },
-  { label: 'Insurance Primary Care', to: '/insurance-based-primary-care' },
+  { label: 'Insurance-Based Care', to: '/insurance-based-primary-care' },
   { label: 'Concierge', to: '/concierge-care' },
   { label: 'Weight Loss', to: '/medical-weight-loss' },
   { label: 'Pricing', to: '/pricing' },
@@ -33,11 +33,39 @@ function Header() {
   const { pathname } = useLocation()
   const reduceMotion = useReducedMotion()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const scrollPositionRef = useRef(0)
+  const mobileMenuRef = useRef(null)
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : ''
+    if (!mobileOpen) {
+      const previousScrollY = scrollPositionRef.current
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.left = ''
+      document.body.style.right = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
+      if (previousScrollY) {
+        window.scrollTo(0, previousScrollY)
+      }
+      return undefined
+    }
+
+    scrollPositionRef.current = window.scrollY || window.pageYOffset || 0
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollPositionRef.current}px`
+    document.body.style.left = '0'
+    document.body.style.right = '0'
+    document.body.style.width = '100%'
+    document.body.style.overflow = 'hidden'
+
     return () => {
       document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.left = ''
+      document.body.style.right = ''
+      document.body.style.width = ''
     }
   }, [mobileOpen])
 
@@ -45,8 +73,40 @@ function Header() {
     setMobileOpen(false)
   }, [pathname])
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setMobileOpen(false)
+      }
+    }
+
+    if (mobileOpen) {
+      window.addEventListener('keydown', handleKeyDown)
+    }
+
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [mobileOpen])
+
+  useEffect(() => {
+    const handlePointerDown = (event) => {
+      if (!mobileOpen) return
+      if (mobileMenuRef.current?.contains(event.target)) return
+
+      const toggleButton = event.target.closest?.('[data-mobile-menu-toggle]')
+      if (toggleButton) return
+
+      setMobileOpen(false)
+    }
+
+    if (mobileOpen) {
+      document.addEventListener('pointerdown', handlePointerDown, true)
+    }
+
+    return () => document.removeEventListener('pointerdown', handlePointerDown, true)
+  }, [mobileOpen])
+
   const navDesktopClass = ({ isActive }) =>
-    `relative whitespace-nowrap rounded-full px-1 py-1 text-[11px] font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:-bottom-0.5 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:rounded-full after:bg-cyan-300 after:transition-all after:duration-250 ${
+    `relative whitespace-nowrap rounded-full px-1 py-1 text-[10px] font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:-bottom-0.5 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:rounded-full after:bg-cyan-300 after:transition-all after:duration-250 ${
       isActive
         ? 'text-ht-navy after:w-7'
         : 'text-ht-navy/95 after:w-0 hover:text-ht-cyan-700 hover:after:w-5'
@@ -79,7 +139,7 @@ function Header() {
           </div>
         </NavLink>
 
-        <nav className="hidden items-center justify-center gap-2 xl:flex xl:gap-3" aria-label="Primary navigation">
+        <nav className="hidden items-center justify-center gap-1.5 xl:flex xl:gap-2" aria-label="Primary navigation">
           {desktopNavLinks.map((link) => (
             <NavLink key={link.to} to={link.to} end={link.to === '/'} className={navDesktopClass}>
               {link.label}
@@ -104,8 +164,9 @@ function Header() {
           type="button"
           onClick={() => setMobileOpen((prev) => !prev)}
           className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:border-cyan-300 hover:bg-cyan-50 xl:hidden"
-          aria-label="Toggle mobile menu"
+          aria-label={mobileOpen ? 'Close mobile menu' : 'Open mobile menu'}
           aria-expanded={mobileOpen}
+          data-mobile-menu-toggle="true"
         >
           {mobileOpen ? <X size={18} /> : <Menu size={18} />}
         </button>
@@ -114,62 +175,73 @@ function Header() {
       <AnimatePresence>
         {mobileOpen ? (
           <motion.div
-            initial={{ opacity: 0, y: -16 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.24, ease: 'easeOut' }}
-            className="border-t border-ht-silver bg-white shadow-[0_16px_34px_-30px_rgba(5,42,74,0.7)] xl:hidden"
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
+            className="fixed inset-x-0 top-[4.7rem] z-[60] h-[calc(100vh-4.7rem)] xl:hidden"
+            aria-hidden={!mobileOpen}
           >
-            <nav className="mx-auto flex max-w-7xl flex-col gap-1.5 px-4 py-4 sm:px-6" aria-label="Mobile navigation">
-              {mobileNavLinks.map((link) => (
-                <NavLink
-                  key={link.to}
-                  to={link.to}
-                  end={link.to === '/'}
+            <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-[1px]" onClick={() => setMobileOpen(false)} />
+            <motion.div
+              ref={mobileMenuRef}
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.24, ease: 'easeOut' }}
+              className="relative mx-3 overflow-hidden rounded-b-3xl border border-ht-silver bg-white shadow-[0_26px_46px_-28px_rgba(5,42,74,0.58)] sm:mx-6"
+            >
+              <nav className="mx-auto flex max-w-7xl flex-col gap-1.5 px-4 py-4 sm:px-6" aria-label="Mobile navigation">
+                {mobileNavLinks.map((link) => (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    end={link.to === '/'}
+                    onClick={() => setMobileOpen(false)}
+                    className={navMobileClass}
+                  >
+                    {link.label}
+                  </NavLink>
+                ))}
+
+                <Button
+                  href={BOOK_APPOINTMENT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  size="sm"
+                  className="mt-2 whitespace-nowrap"
                   onClick={() => setMobileOpen(false)}
-                  className={navMobileClass}
                 >
-                  {link.label}
-                </NavLink>
-              ))}
+                  Book Appointment
+                </Button>
 
-              <Button
-                href={BOOK_APPOINTMENT_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                size="sm"
-                className="mt-2 whitespace-nowrap"
-                onClick={() => setMobileOpen(false)}
-              >
-                Book Appointment
-              </Button>
-
-              <div className="mt-4 border-t border-ht-silver pt-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-ht-gray">Follow Healtopia</p>
-                <div className="mt-2 flex items-center gap-2.5">
-                  <a
-                    href={FACEBOOK_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Visit Healtopia on Facebook"
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 hover:text-ht-cyan-700 hover:shadow-md"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <FaFacebookF size={14} aria-hidden="true" />
-                  </a>
-                  <a
-                    href={INSTAGRAM_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Visit Healtopia on Instagram"
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 hover:text-ht-cyan-700 hover:shadow-md"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <FaInstagram size={14} aria-hidden="true" />
-                  </a>
+                <div className="mt-4 border-t border-ht-silver pt-4">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-ht-gray">Follow Healtopia</p>
+                  <div className="mt-2 flex items-center gap-2.5">
+                    <a
+                      href={FACEBOOK_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Visit Healtopia on Facebook"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 hover:text-ht-cyan-700 hover:shadow-md"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <FaFacebookF size={14} aria-hidden="true" />
+                    </a>
+                    <a
+                      href={INSTAGRAM_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Visit Healtopia on Instagram"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 hover:text-ht-cyan-700 hover:shadow-md"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <FaInstagram size={14} aria-hidden="true" />
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </nav>
+              </nav>
+            </motion.div>
           </motion.div>
         ) : null}
       </AnimatePresence>
