@@ -18,7 +18,7 @@ function Contact() {
             Contact
           </motion.p>
           <motion.h1 className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl" {...getEntranceProps(reduceMotion, { y: 20, delay: 0.1 })}>
-            Schedule care, ask questions, or connect with our team
+            Schedule care, ask questions, or connect with our <span className="text-ht-cyan-700">team</span>
           </motion.h1>
           <motion.p className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg" {...getEntranceProps(reduceMotion, { y: 20, delay: 0.2 })}>
             We are here to help with appointment scheduling, insurance verification, and care program questions.
@@ -34,7 +34,11 @@ function Contact() {
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <SectionHeader
           eyebrow="Get In Touch"
-          title="Reach us the way that works best for you"
+          title={
+            <>
+              Reach us the way that works best for <span className="text-ht-cyan-700">you</span>
+            </>
+          }
           description="Call, email, or visit us. For scheduling, use our secure online booking link."
         />
 

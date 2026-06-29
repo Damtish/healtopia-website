@@ -80,7 +80,7 @@ function InsuranceBasedPrimaryCare() {
               className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl"
               {...getEntranceProps(reduceMotion, { y: 20, delay: 0.1 })}
             >
-              Primary care using your accepted insurance plan
+              Primary care using your <span className="text-ht-cyan-700">accepted insurance</span> plan
             </motion.h1>
             <motion.p
               className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg"
@@ -160,11 +160,15 @@ function InsuranceBasedPrimaryCare() {
       <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
         <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <motion.div {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}>
-            <SectionHeader
-              eyebrow="Preventive Care"
-              title="Preventive Care & Wellness"
-              description="Preventive healthcare plays an important role in maintaining long-term wellness and identifying health concerns early."
-            />
+        <SectionHeader
+          eyebrow="Preventive Care"
+          title={
+            <>
+              Preventive Care & <span className="text-ht-cyan-700">Wellness</span>
+            </>
+          }
+          description="Preventive healthcare plays an important role in maintaining long-term wellness and identifying health concerns early."
+        />
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-ht-gray">
               Our preventive care services help patients stay proactive about their health through regular checkups,
               screenings, vaccinations, and personalized wellness guidance.
@@ -188,6 +192,7 @@ function InsuranceBasedPrimaryCare() {
                 src="/images/clinic/reception.jpg"
                 alt="Healtopia clinic reception area"
                 className="h-64 w-full object-cover object-center sm:h-72"
+                loading="lazy"
               />
             </div>
           </motion.div>
@@ -202,7 +207,11 @@ function InsuranceBasedPrimaryCare() {
           >
             <SectionHeader
               eyebrow="Chronic Care"
-              title="Chronic Disease Management"
+              title={
+                <>
+                  Chronic <span className="text-ht-cyan-700">Disease Management</span>
+                </>
+              }
               description="Managing chronic health conditions requires ongoing care, monitoring, and personalized treatment."
             />
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-ht-gray">

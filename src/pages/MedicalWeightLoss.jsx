@@ -145,7 +145,7 @@ function MedicalWeightLoss() {
               className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl"
               {...getEntranceProps(reduceMotion, { y: 20, delay: 0.1 })}
             >
-              Medically supervised weight loss for safe, sustainable results
+              Medically supervised weight loss for <span className="text-ht-cyan-700">safe, sustainable results</span>
             </motion.h1>
             <motion.p
               className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg"
@@ -204,7 +204,11 @@ function MedicalWeightLoss() {
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <SectionHeader
           eyebrow="Overview"
-          title="Comprehensive weight loss care"
+          title={
+            <>
+              Comprehensive <span className="text-ht-cyan-700">weight loss</span> care
+            </>
+          }
           description="Our program combines medical evaluation, lifestyle support, treatment options, and ongoing monitoring to help patients build a realistic path toward long-term health."
         />
 
@@ -291,7 +295,8 @@ function MedicalWeightLoss() {
               <img
                 src="/images/clinic/reception.jpg"
                 alt="Healtopia clinic reception area"
-                className="h-full min-h-[360px] w-full object-cover object-center"
+                className="h-[260px] w-full object-cover object-center sm:h-[320px] lg:h-full"
+                loading="lazy"
               />
             </div>
           </motion.div>
@@ -302,7 +307,11 @@ function MedicalWeightLoss() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="FAQ"
-            title="Medical Weight Loss FAQs"
+            title={
+              <>
+                Medical Weight Loss <span className="text-ht-cyan-700">FAQs</span>
+              </>
+            }
             description="Common questions about Healtopia’s physician-guided weight loss program."
           />
           <div className="mt-8">

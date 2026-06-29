@@ -2,7 +2,6 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Activity, Award, Heart, ShieldCheck, Star, Users } from 'lucide-react'
 import Button from '../components/Button'
 import AppointmentCTA from '../components/AppointmentCTA'
-import SectionHeader from '../components/SectionHeader'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
@@ -34,6 +33,20 @@ const values = [
   },
 ]
 
+function AboutSectionHeader({ eyebrow, title, description, align = 'left' }) {
+  const alignment = align === 'center' ? 'mx-auto text-center' : 'text-left'
+
+  return (
+    <div className={`max-w-3xl ${alignment}`}>
+      <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
+        {eyebrow}
+      </p>
+      <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">{title}</h2>
+      {description ? <p className="mt-4 max-w-2xl text-base leading-relaxed text-ht-gray md:text-lg">{description}</p> : null}
+    </div>
+  )
+}
+
 function About() {
   const reduceMotion = useReducedMotion()
 
@@ -49,7 +62,7 @@ function About() {
               ABOUT HEALTOPIA
             </p>
             <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl">
-              Healthcare built on time, trust, and lasting relationships
+              Healthcare built on time, <span className="text-ht-cyan-700">trust</span>, and lasting relationships
             </h1>
             <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg">
               Compassionate, personalized healthcare focused on building lasting relationships with every patient and
@@ -86,7 +99,7 @@ function About() {
             className="rounded-[2rem] border border-ht-silver bg-white p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)] md:p-8"
             {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}
           >
-            <SectionHeader
+            <AboutSectionHeader
               eyebrow="Our Story"
               title="Our Story"
               description="After years of caring for patients in traditional healthcare settings, we envisioned a practice where appointments were not rushed, prevention was prioritized, and patients could build lasting relationships with their healthcare team. Healtopia was created to make that vision a reality."
@@ -97,9 +110,13 @@ function About() {
             className="rounded-[2rem] border border-ht-silver bg-ht-soft-blue/20 p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)] md:p-8"
             {...getRevealProps(reduceMotion, { y: 24, amount: 0.2, delay: 0.05 })}
           >
-            <SectionHeader
+            <AboutSectionHeader
               eyebrow="Our Mission"
-              title="Our Mission"
+              title={
+                <>
+                  Our <span className="text-ht-cyan-700">Mission</span>
+                </>
+              }
               description="Our mission is to provide high-quality, affordable, evidence-based healthcare with compassion, integrity, and respect while helping our patients achieve healthier lives through preventive care and long-term partnerships."
             />
           </motion.div>
@@ -108,9 +125,13 @@ function About() {
 
       <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
+          <AboutSectionHeader
             eyebrow="Values"
-            title="Our Values"
+            title={
+              <>
+                Our <span className="text-ht-cyan-700">Values</span>
+              </>
+            }
             description="The principles that guide how we care for patients, families, and the community."
           />
           <motion.div
@@ -136,11 +157,11 @@ function About() {
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <SectionHeader
-          eyebrow="Providers"
-          title="Meet Our Providers"
-          description="A placeholder provider card is shown below until the real provider bio is approved by the Healtopia team."
-        />
+          <AboutSectionHeader
+            eyebrow="Providers"
+            title="Meet Our Providers"
+            description="A placeholder provider card is shown below until the real provider bio is approved by the Healtopia team."
+          />
         <motion.div
           className="mt-10 overflow-hidden rounded-[2rem] border border-ht-silver bg-white shadow-[0_22px_52px_-34px_rgba(5,42,74,0.45)]"
           {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}
@@ -171,14 +192,18 @@ function About() {
       </section>
 
       <section className="border-y border-ht-silver bg-ht-soft-blue/20 py-16 lg:py-20">
-        <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+        <div className="mx-auto grid w-full max-w-7xl items-start gap-8 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <motion.div
             className="rounded-[2rem] border border-ht-silver bg-white p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)] md:p-8"
             {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}
           >
-            <SectionHeader
+            <AboutSectionHeader
               eyebrow="Our Approach"
-              title="Our Approach to Care"
+              title={
+                <>
+                  Our Approach to <span className="text-ht-cyan-700">Care</span>
+                </>
+              }
               description="We believe the best healthcare begins with listening. We take the time to understand your concerns, explain treatment options clearly, and develop care plans tailored to your goals. Whether you are visiting for preventive care, chronic disease management, or an unexpected illness, our focus is on building a trusted, long-term relationship."
             />
           </motion.div>
@@ -187,11 +212,12 @@ function About() {
             className="overflow-hidden rounded-[2rem] border border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50 p-3 shadow-[0_22px_52px_-34px_rgba(5,42,74,0.45)]"
             {...getEntranceProps(reduceMotion, { y: 24, delay: 0.1, duration: 0.55 })}
           >
-            <div className="h-[280px] overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white sm:h-[340px] lg:h-[460px]">
+            <div className="h-[280px] overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white sm:h-[340px] lg:h-[420px]">
               <img
                 src="/images/clinic/hallway.jpg"
                 alt="Healtopia clinic hallway"
                 className="h-full w-full object-cover object-center"
+                loading="lazy"
               />
             </div>
           </motion.div>

@@ -114,7 +114,8 @@ function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: 'easeOut', delay: 0.12 }}
             >
-              Compassionate Primary Care & Medical Weight Loss in Gambrills, MD
+              Compassionate Primary Care & <span className="text-ht-cyan-700">Medical Weight Loss</span> in Gambrills,
+              MD
             </motion.h1>
             <motion.p
               className="mt-5 max-w-xl text-base leading-relaxed text-ht-gray md:text-lg"
@@ -231,7 +232,11 @@ function Home() {
 
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <SectionHeader
-          title="Choose the care option that fits you"
+          title={
+            <>
+              Choose the care option that <span className="text-ht-cyan-700">fits you</span>
+            </>
+          }
           description="Healtopia offers flexible primary care and wellness options designed around how patients prefer to access care."
         />
         <motion.div
@@ -334,7 +339,7 @@ function Home() {
               Medical Weight Loss
             </p>
             <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">
-              Structured, physician-guided support for sustainable results
+              Structured, physician-guided support for <span className="text-ht-cyan-700">sustainable results</span>
             </h2>
             <p className="mt-4 text-base leading-relaxed text-ht-gray">
               We combine clinical insight, behavior change, and ongoing accountability to help you lose weight safely
@@ -401,7 +406,11 @@ function Home() {
       <section className="overflow-hidden border-y border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue/55 to-cyan-50 py-14 lg:py-16">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            title="Accepted by many major insurance plans"
+            title={
+              <>
+                Accepted by many major <span className="text-ht-cyan-700">insurance plans</span>
+              </>
+            }
             description="Patients are encouraged to contact the office to confirm coverage before their visit."
             align="center"
           />

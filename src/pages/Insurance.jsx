@@ -19,7 +19,7 @@ function Insurance() {
             className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl"
             {...getEntranceProps(reduceMotion, { y: 20, delay: 0.1 })}
           >
-            Insurance-friendly care with transparent benefit support
+            Insurance-friendly care with transparent <span className="text-ht-cyan-700">benefit support</span>
           </motion.h1>
           <motion.p
             className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg"
@@ -33,7 +33,7 @@ function Insurance() {
       <section className="bg-ht-soft-blue/25">
         <div className="mx-auto w-full max-w-5xl px-4 pb-20 pt-12 text-center sm:px-6 lg:pb-24 lg:pt-14">
           <h2 className="text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">
-            Accepted Insurance Plans
+            Accepted <span className="text-ht-cyan-700">Insurance Plans</span>
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-ht-gray md:text-base">
             We currently accept many major insurance plans and also offer affordable cash payment options. Please

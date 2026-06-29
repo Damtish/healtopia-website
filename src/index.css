@@ -4,15 +4,15 @@
 @theme {
   --font-sans: "Manrope", "Plus Jakarta Sans", "Segoe UI", sans-serif;
 
-  --color-ht-navy: #0b223f;
-  --color-ht-navy-700: #16466a;
-  --color-ht-cyan: #0caec8;
-  --color-ht-cyan-700: #0b8aa1;
+  --color-ht-navy: #0b2545;
+  --color-ht-navy-700: #184165;
+  --color-ht-cyan: #16b6d4;
+  --color-ht-cyan-700: #0f8faa;
   --color-ht-teal: #1e8fa0;
   --color-ht-light: #f5fbff;
   --color-ht-soft-blue: #e5f4ff;
   --color-ht-silver: #d6e4ef;
-  --color-ht-gray: #546b82;
+  --color-ht-gray: #4f6b85;
 }
 
 * {
@@ -44,8 +44,8 @@ a {
 }
 
 ::selection {
-  background: #b9f2ff;
-  color: #0b223f;
+  background: #b5edf8;
+  color: #0b2545;
 }
 
 @keyframes insurance-logo-marquee {

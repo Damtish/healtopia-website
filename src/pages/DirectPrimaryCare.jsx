@@ -93,7 +93,7 @@ function DirectPrimaryCare() {
               DIRECT PRIMARY CARE
             </p>
             <h1 className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl">
-              Healthcare designed around you
+              Healthcare designed <span className="text-ht-cyan-700">around you</span>
             </h1>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg">
               At Healtopia, we believe healthcare should be simple, personal, and accessible. Our Direct Primary Care
@@ -141,7 +141,11 @@ function DirectPrimaryCare() {
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <SectionHeader
           eyebrow="Membership"
-          title="What’s included in your membership"
+          title={
+            <>
+              What’s included in your <span className="text-ht-cyan-700">membership</span>
+            </>
+          }
           description="Your Direct Primary Care membership includes a wide range of primary care services, including:"
         />
         <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -177,6 +181,7 @@ function DirectPrimaryCare() {
                 src="/images/clinic/reception.jpg"
                 alt="Healtopia clinic reception area"
                 className="h-64 w-full object-cover object-center sm:h-72"
+                loading="lazy"
               />
             </div>
           </div>
@@ -186,7 +191,11 @@ function DirectPrimaryCare() {
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <SectionHeader
           eyebrow="Benefits"
-          title="Why patients choose Direct Primary Care"
+          title={
+            <>
+              Why patients choose <span className="text-ht-cyan-700">Direct Primary Care</span>
+            </>
+          }
           description="A Direct Primary Care membership can create a calmer, more personal primary care experience."
         />
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">

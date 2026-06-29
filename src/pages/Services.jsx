@@ -16,7 +16,7 @@ function Services() {
             Services
           </motion.p>
           <motion.h1 className="mt-4 max-w-3xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl" {...getEntranceProps(reduceMotion, { y: 20, delay: 0.1 })}>
-            Comprehensive care designed for your full health journey
+            Comprehensive care designed for your full health <span className="text-ht-cyan-700">journey</span>
           </motion.h1>
           <motion.p className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg" {...getEntranceProps(reduceMotion, { y: 20, delay: 0.2 })}>
             Explore our core services for preventive care, chronic condition support, telehealth, and medically guided
@@ -28,7 +28,11 @@ function Services() {
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <SectionHeader
           eyebrow="Service Lines"
-          title="Clinical care that is accessible and coordinated"
+          title={
+            <>
+              Clinical care that is accessible and <span className="text-ht-cyan-700">coordinated</span>
+            </>
+          }
           description="Each service is delivered with thoughtful follow-up, transparent communication, and continuity across your care plan."
         />
         <motion.div className="mx-auto mt-10 grid max-w-6xl gap-5 md:grid-cols-2 lg:grid-cols-3" {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08 })}>
@@ -53,6 +57,7 @@ function Services() {
               src="/images/clinic/exam-room-wide.jpg"
               alt="Healtopia exam room"
               className="h-56 w-full object-cover object-center sm:h-64 lg:h-72"
+              loading="lazy"
             />
           </div>
           <div className="px-2 pb-2 pt-1 md:px-3">
@@ -69,7 +74,11 @@ function Services() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="What To Expect"
-            title="A clear, supportive process from first visit to follow-up"
+            title={
+              <>
+                A clear, supportive process from first visit to <span className="text-ht-cyan-700">follow-up</span>
+              </>
+            }
             description="Your care experience is designed to be easy to navigate and focused on practical outcomes."
           />
           <motion.div className="mt-10 grid gap-4 md:grid-cols-3" {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08, amount: 0.3 })}>

@@ -10,7 +10,7 @@ function PageTransition({ children }) {
     <AnimatePresence mode="wait">
       <motion.div
         key={location.pathname}
-        {...getEntranceProps(reduceMotion, { y: 12, duration: 0.35 })}
+        {...getEntranceProps(reduceMotion, { y: 8, duration: 0.3 })}
         exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
       >
         {children}

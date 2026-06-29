@@ -39,8 +39,30 @@ const benefits = [
   },
 ]
 
-const idealItems = [
-  'Patients looking for premium, highly personalized healthcare with convenient access and ongoing physician support',
+const idealCards = [
+  {
+    title: 'More time with your physician',
+    description: 'Longer visits allow more room for conversation, questions, and personalized care planning.',
+    icon: Clock3,
+  },
+  {
+    title: 'Proactive wellness support',
+    description:
+      'Preventive planning and ongoing monitoring help patients stay focused on long-term health goals.',
+    icon: HeartPulse,
+  },
+  {
+    title: 'Ongoing health management',
+    description:
+      'Closer follow-up and care coordination can support patients managing chronic or complex health needs.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Convenient access',
+    description:
+      'Designed for patients who want a more connected relationship with their physician and care team.',
+    icon: MessageSquareHeart,
+  },
 ]
 
 function ConciergeCare() {
@@ -61,7 +83,7 @@ function ConciergeCare() {
               className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl"
               {...getEntranceProps(reduceMotion, { y: 20, delay: 0.1 })}
             >
-              Concierge Medicine
+              A more <span className="text-ht-cyan-700">personalized</span> healthcare experience
             </motion.h1>
             <motion.p
               className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg"
@@ -115,7 +137,11 @@ function ConciergeCare() {
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <SectionHeader
           eyebrow="Included"
-          title="What is included?"
+          title={
+            <>
+              What’s included in <span className="text-ht-cyan-700">Concierge Medicine</span>?
+            </>
+          }
           description="Concierge care combines enhanced access, longer visits, and coordinated support for patients who want a more personalized healthcare experience."
         />
 
@@ -166,36 +192,57 @@ function ConciergeCare() {
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <motion.div
             className="rounded-[2rem] border border-ht-silver bg-white p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)] md:p-8"
             {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}
           >
-            <SectionHeader
-              eyebrow="Ideal For"
-              title="Ideal for..."
-              description="Patients looking for premium, highly personalized healthcare with convenient access and ongoing physician support."
-            />
-            <div className="mt-6 space-y-3">
-              {idealItems.map((item) => (
-                <div key={item} className="rounded-2xl border border-ht-silver bg-ht-soft-blue/20 px-4 py-3">
-                  <p className="text-sm leading-relaxed text-ht-navy">{item}</p>
-                </div>
+          <SectionHeader
+            eyebrow="Ideal For"
+            title={
+              <>
+                Who Concierge Medicine is <span className="text-ht-cyan-700">ideal for</span>
+              </>
+            }
+            description="Concierge Medicine may be a good fit for patients looking for premium, highly personalized healthcare with convenient access and ongoing physician support."
+          />
+            <motion.div
+              className="mt-8 grid gap-4 md:grid-cols-2"
+              {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08, amount: 0.2 })}
+            >
+              {idealCards.map((card) => (
+                <motion.article
+                  key={card.title}
+                  className="rounded-2xl border border-ht-silver bg-ht-soft-blue/20 p-5 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)]"
+                  {...getStaggerItem(reduceMotion, { y: 18 })}
+                  {...getCardHover(reduceMotion)}
+                >
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-ht-cyan-700 shadow-sm">
+                    <card.icon size={18} />
+                  </div>
+                  <h3 className="mt-4 text-lg font-bold text-ht-navy">{card.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ht-gray">{card.description}</p>
+                </motion.article>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
 
           <motion.div
-            className="rounded-[2rem] border border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50 p-3 shadow-[0_22px_52px_-34px_rgba(5,42,74,0.45)]"
+            className="overflow-hidden rounded-[2rem] border border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50 p-3 shadow-[0_22px_52px_-34px_rgba(5,42,74,0.45)]"
             {...getEntranceProps(reduceMotion, { y: 24, delay: 0.1, duration: 0.55 })}
           >
             <div className="overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white">
               <img
                 src="/images/clinic/reception.jpg"
                 alt="Healtopia clinic reception area"
-                className="h-full min-h-[360px] w-full object-cover object-center"
+                className="h-[240px] w-full object-cover object-center sm:h-[280px] lg:h-[360px]"
+                loading="lazy"
               />
             </div>
+            <p className="mt-3 px-1 text-sm leading-relaxed text-ht-gray">
+              A concierge model can support patients who value more consistent access, longer visits, and a highly
+              personalized care experience.
+            </p>
           </motion.div>
         </div>
       </section>
