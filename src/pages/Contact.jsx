@@ -18,10 +18,11 @@ function Contact() {
             Contact
           </motion.p>
           <motion.h1 className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl" {...getEntranceProps(reduceMotion, { y: 20, delay: 0.1 })}>
-            Schedule care, ask questions, or connect with our <span className="text-ht-cyan-700">team</span>
+            We&apos;re here to <span className="text-ht-cyan-700">help you</span>
           </motion.h1>
           <motion.p className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg" {...getEntranceProps(reduceMotion, { y: 20, delay: 0.2 })}>
-            We are here to help with appointment scheduling, insurance verification, and care program questions.
+            Schedule care, ask questions, or connect with our team. We are here to help with appointment scheduling,
+            insurance verification, and care program questions.
           </motion.p>
           <motion.div className="mt-7" {...getEntranceProps(reduceMotion, { y: 18, delay: 0.3, duration: 0.45 })}>
             <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer">
@@ -128,7 +129,14 @@ function Contact() {
         </motion.div>
 
         <motion.div {...getRevealProps(reduceMotion, { y: 22, amount: 0.2 })}>
-          <AppointmentCTA className="mt-10" />
+          <AppointmentCTA
+            className="mt-10"
+            title={
+              <>
+                Ready to <span className="text-cyan-100">schedule</span> your visit?
+              </>
+            }
+          />
         </motion.div>
       </section>
     </div>
