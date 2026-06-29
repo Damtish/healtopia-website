@@ -1,34 +1,38 @@
 import { NavLink, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { ChevronDown, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 import Button from './Button'
 import { BOOK_APPOINTMENT_URL, FACEBOOK_URL, INSTAGRAM_URL } from '../constants/links'
 import { getEntranceProps } from '../lib/motion'
 
-const primaryNavLinks = [
+const desktopNavLinks = [
   { label: 'Home', to: '/' },
   { label: 'About Us', to: '/about' },
+  { label: 'Direct Primary Care', to: '/direct-primary-care' },
+  { label: 'Insurance Primary Care', to: '/insurance-based-primary-care' },
+  { label: 'Concierge', to: '/concierge-care' },
+  { label: 'Weight Loss', to: '/medical-weight-loss' },
   { label: 'Pricing', to: '/pricing' },
   { label: 'Contact', to: '/contact' },
 ]
 
-const serviceLinks = [
-  { label: 'Primary Care', to: '/services' },
+const mobileNavLinks = [
+  { label: 'Home', to: '/' },
+  { label: 'About Us', to: '/about' },
+  { label: 'Direct Primary Care', to: '/direct-primary-care' },
+  { label: 'Insurance-based Primary Care', to: '/insurance-based-primary-care' },
+  { label: 'Concierge Medicine', to: '/concierge-care' },
   { label: 'Medical Weight Loss', to: '/medical-weight-loss' },
-  { label: 'Concierge Care', to: '/concierge-care' },
+  { label: 'Pricing', to: '/pricing' },
+  { label: 'Contact', to: '/contact' },
 ]
-
-const serviceActivePaths = ['/services', '/medical-weight-loss', '/concierge-care']
 
 function Header() {
   const { pathname } = useLocation()
   const reduceMotion = useReducedMotion()
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [servicesOpen, setServicesOpen] = useState(false)
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
-  const isServicesActive = serviceActivePaths.some((path) => pathname === path || pathname.startsWith(`${path}/`))
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
@@ -38,13 +42,11 @@ function Header() {
   }, [mobileOpen])
 
   useEffect(() => {
-    setServicesOpen(false)
-    setMobileServicesOpen(false)
     setMobileOpen(false)
   }, [pathname])
 
   const navDesktopClass = ({ isActive }) =>
-    `relative rounded-full px-1.5 py-1.5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:-bottom-0.5 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:rounded-full after:bg-cyan-300 after:transition-all after:duration-250 ${
+    `relative whitespace-nowrap rounded-full px-1 py-1 text-[11px] font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:-bottom-0.5 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:rounded-full after:bg-cyan-300 after:transition-all after:duration-250 ${
       isActive
         ? 'text-ht-navy after:w-7'
         : 'text-ht-navy/95 after:w-0 hover:text-ht-cyan-700 hover:after:w-5'
@@ -60,8 +62,8 @@ function Header() {
       className="sticky top-0 z-40 border-b border-ht-silver/90 bg-white/92 backdrop-blur"
       {...getEntranceProps(reduceMotion, { y: -14, duration: 0.45 })}
     >
-      <div className="mx-auto flex h-[4.7rem] w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:gap-6 lg:px-8">
-        <NavLink to="/" className="flex items-center gap-3 sm:gap-4" aria-label="Healtopia home">
+      <div className="mx-auto grid h-[4.7rem] w-full max-w-7xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 sm:px-6 lg:px-8">
+        <NavLink to="/" className="flex min-w-0 items-center gap-3 sm:gap-4" aria-label="Healtopia home">
           <img
             src="/images/healtopia-logo.webp"
             alt="Healtopia Primary Care and Medical Weight Loss logo"
@@ -71,93 +73,27 @@ function Header() {
             <p className="text-lg font-extrabold leading-tight tracking-tight text-ht-navy sm:text-[1.4rem]">
               Healtopia
             </p>
-            <p className="text-[10px] font-medium leading-tight text-ht-gray sm:text-xs">
+            <p className="whitespace-nowrap text-[9px] font-medium leading-tight text-ht-gray sm:text-[11px]">
               Primary Care & Medical Weight Loss
             </p>
           </div>
         </NavLink>
 
-        <nav className="hidden items-center gap-6 xl:flex" aria-label="Primary navigation">
-          {primaryNavLinks.slice(0, 2).map((link) => (
-            <NavLink key={link.to} to={link.to} end={link.to === '/'} className={navDesktopClass}>
-              {link.label}
-            </NavLink>
-          ))}
-
-          <div
-            className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
-            onBlur={(event) => {
-              if (!event.currentTarget.contains(event.relatedTarget)) {
-                setServicesOpen(false)
-              }
-            }}
-          >
-            <button
-              type="button"
-              className={`relative inline-flex items-center gap-1 rounded-full px-1.5 py-1.5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:-bottom-0.5 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:rounded-full after:bg-cyan-300 after:transition-all after:duration-250 ${
-                isServicesActive
-                  ? 'text-ht-navy after:w-7'
-                  : 'text-ht-navy/95 after:w-0 hover:text-ht-cyan-700 hover:after:w-5'
-              }`}
-              aria-haspopup="menu"
-              aria-expanded={servicesOpen}
-              onClick={() => setServicesOpen((prev) => !prev)}
-              onFocus={() => setServicesOpen(true)}
-              onKeyDown={(event) => {
-                if (event.key === 'Escape') {
-                  setServicesOpen(false)
-                }
-              }}
-            >
-              Services
-              <ChevronDown
-                size={16}
-                className={`transition-transform duration-200 ${servicesOpen ? 'rotate-180' : 'rotate-0'}`}
-              />
-            </button>
-
-            <AnimatePresence>
-              {servicesOpen ? (
-                <motion.div
-                  initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                  transition={{ duration: 0.18, ease: 'easeOut' }}
-                  className="absolute left-1/2 top-full mt-3 w-64 -translate-x-1/2 rounded-2xl border border-cyan-100/95 bg-white p-2.5 shadow-[0_20px_38px_-24px_rgba(5,42,74,0.6)]"
-                  role="menu"
-                  aria-label="Services menu"
-                >
-                  {serviceLinks.map((item) => (
-                    <NavLink
-                      key={`${item.label}-${item.to}`}
-                      to={item.to}
-                      onClick={() => setServicesOpen(false)}
-                      className="block rounded-xl px-3 py-2.5 text-sm font-medium text-ht-navy transition-colors duration-200 hover:bg-cyan-50 hover:text-ht-cyan-700 focus-visible:bg-cyan-50 focus-visible:text-ht-cyan-700 focus-visible:outline-none"
-                      role="menuitem"
-                    >
-                      {item.label}
-                    </NavLink>
-                  ))}
-                </motion.div>
-              ) : null}
-            </AnimatePresence>
-          </div>
-
-          {primaryNavLinks.slice(2).map((link) => (
+        <nav className="hidden items-center justify-center gap-2 xl:flex xl:gap-3" aria-label="Primary navigation">
+          {desktopNavLinks.map((link) => (
             <NavLink key={link.to} to={link.to} end={link.to === '/'} className={navDesktopClass}>
               {link.label}
             </NavLink>
           ))}
         </nav>
 
-        <div className="hidden xl:flex xl:items-center">
+        <div className="hidden xl:flex xl:items-center xl:justify-self-end">
           <Button
             href={BOOK_APPOINTMENT_URL}
             target="_blank"
             rel="noopener noreferrer"
             size="sm"
+            className="whitespace-nowrap px-4"
             ariaLabel="Book appointment from header"
           >
             Book Appointment
@@ -185,67 +121,7 @@ function Header() {
             className="border-t border-ht-silver bg-white shadow-[0_16px_34px_-30px_rgba(5,42,74,0.7)] xl:hidden"
           >
             <nav className="mx-auto flex max-w-7xl flex-col gap-1.5 px-4 py-4 sm:px-6" aria-label="Mobile navigation">
-              {primaryNavLinks.slice(0, 2).map((link) => (
-                <NavLink
-                  key={link.to}
-                  to={link.to}
-                  end={link.to === '/'}
-                  onClick={() => setMobileOpen(false)}
-                  className={navMobileClass}
-                >
-                  {link.label}
-                </NavLink>
-              ))}
-
-              <div className="overflow-hidden rounded-xl border border-ht-silver/90 bg-white">
-                <button
-                  type="button"
-                  className="flex w-full items-center justify-between px-3 py-3 text-left text-sm font-semibold text-ht-navy transition duration-200 hover:bg-ht-soft-blue hover:text-ht-cyan-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200"
-                  onClick={() => setMobileServicesOpen((prev) => !prev)}
-                  aria-expanded={mobileServicesOpen}
-                  aria-controls="mobile-services-menu"
-                >
-                  <span>Services</span>
-                  <ChevronDown
-                    size={16}
-                    className={`transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : 'rotate-0'}`}
-                  />
-                </button>
-                <AnimatePresence>
-                  {mobileServicesOpen ? (
-                    <motion.div
-                      id="mobile-services-menu"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="border-t border-ht-silver bg-white"
-                    >
-                      {serviceLinks.map((item) => (
-                        <NavLink
-                          key={`mobile-${item.label}-${item.to}`}
-                          to={item.to}
-                          onClick={() => {
-                            setMobileServicesOpen(false)
-                            setMobileOpen(false)
-                          }}
-                          className={({ isActive }) =>
-                            `block px-5 py-2.5 text-sm font-medium transition ${
-                              isActive
-                                ? 'bg-cyan-50 text-ht-cyan-700'
-                                : 'text-ht-navy hover:bg-cyan-50 hover:text-ht-cyan-700'
-                            }`
-                          }
-                        >
-                          {item.label}
-                        </NavLink>
-                      ))}
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
-              </div>
-
-              {primaryNavLinks.slice(2).map((link) => (
+              {mobileNavLinks.map((link) => (
                 <NavLink
                   key={link.to}
                   to={link.to}
@@ -262,7 +138,7 @@ function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 size="sm"
-                className="mt-2"
+                className="mt-2 whitespace-nowrap"
                 onClick={() => setMobileOpen(false)}
               >
                 Book Appointment

@@ -9,6 +9,8 @@ import {
   ShieldCheck,
   Star,
   Stethoscope,
+  Scale,
+  Users,
   Video,
 } from 'lucide-react'
 import Button from '../components/Button'
@@ -41,6 +43,37 @@ const whyChoose = [
     title: 'Trusted Clinical Guidance',
     description: 'Evidence-based medicine delivered with empathy, clear communication, and continuity.',
     icon: ShieldCheck,
+  },
+]
+
+const careOptions = [
+  {
+    title: 'Direct Primary Care',
+    text: 'A simple membership-based primary care option with transparent monthly pricing and easier access to routine care.',
+    link: '/direct-primary-care',
+    label: 'Learn about DPC',
+    icon: Stethoscope,
+  },
+  {
+    title: 'Insurance-based Primary Care',
+    text: 'Traditional primary care visits for patients using Medicare, Medicaid, or accepted commercial insurance plans.',
+    link: '/insurance-based-primary-care',
+    label: 'View insurance-based care',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Concierge Medicine',
+    text: 'Personalized membership care for patients who want more access, longer visits, and proactive health support.',
+    link: '/concierge-care',
+    label: 'Explore concierge care',
+    icon: Users,
+  },
+  {
+    title: 'Medical Weight Loss',
+    text: 'Physician-guided weight loss support with evaluation, follow-up visits, and treatment options when appropriate.',
+    link: '/medical-weight-loss',
+    label: 'Explore weight loss',
+    icon: Scale,
   },
 ]
 
@@ -198,6 +231,38 @@ function Home() {
 
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <SectionHeader
+          title="Choose the care option that fits you"
+          description="Healtopia offers flexible primary care and wellness options designed around how patients prefer to access care."
+        />
+        <motion.div
+          className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4"
+          {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08 })}
+        >
+          {careOptions.map((option) => (
+            <motion.article
+              key={option.title}
+              className="flex h-full flex-col rounded-2xl border border-ht-silver bg-white p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)]"
+              {...getStaggerItem(reduceMotion, { y: 22 })}
+              {...getCardHover(reduceMotion)}
+            >
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700">
+                <option.icon size={18} />
+              </div>
+              <h3 className="mt-4 text-xl font-bold text-ht-navy">{option.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-ht-gray">{option.text}</p>
+              <div className="mt-6">
+                <Button to={option.link} variant="secondary" size="sm" className="whitespace-nowrap">
+                  {option.label}
+                  <ArrowRight size={14} />
+                </Button>
+              </div>
+            </motion.article>
+          ))}
+        </motion.div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <SectionHeader
           eyebrow="Our Services"
           title="Whole-person healthcare for modern life"
           description="From preventive care to advanced weight management, we deliver practical and compassionate support in every visit."
@@ -342,7 +407,7 @@ function Home() {
           />
 
           <div
-            className="insurance-logo-marquee relative mt-8 overflow-hidden"
+            className="insurance-logo-marquee relative mt-6 overflow-hidden"
             aria-label="Accepted insurance plans"
           >
             <div className="insurance-logo-marquee-track flex w-max items-center">
@@ -370,7 +435,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="mt-7 text-center">
+          <div className="mt-5 text-center">
             <Link
               to="/insurance"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-ht-navy-700 transition-colors hover:text-ht-cyan-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ht-cyan focus-visible:ring-offset-4 focus-visible:ring-offset-ht-soft-blue"

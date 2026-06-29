@@ -8,6 +8,8 @@ import PageTransition from './components/PageTransition'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
+import DirectPrimaryCare from './pages/DirectPrimaryCare'
+import InsuranceBasedPrimaryCare from './pages/InsuranceBasedPrimaryCare'
 import MedicalWeightLoss from './pages/MedicalWeightLoss'
 import ConciergeCare from './pages/ConciergeCare'
 import Pricing from './pages/Pricing'
@@ -70,6 +72,8 @@ function App() {
         <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/direct-primary-care" element={<DirectPrimaryCare />} />
+          <Route path="/insurance-based-primary-care" element={<InsuranceBasedPrimaryCare />} />
           <Route path="/services" element={<Services />} />
           <Route path="/medical-weight-loss" element={<MedicalWeightLoss />} />
           <Route path="/concierge-care" element={<ConciergeCare />} />

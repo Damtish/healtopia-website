@@ -59,8 +59,8 @@ a {
 }
 
 .insurance-logo-marquee {
-  -webkit-mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
 }
 
 .insurance-logo-marquee-track {
@@ -73,14 +73,14 @@ a {
 }
 
 .insurance-logo-image {
-  filter: grayscale(1);
-  opacity: 0.62;
-  transition: filter 220ms ease, opacity 220ms ease;
+  opacity: 1;
+  transition: opacity 220ms ease, transform 220ms ease, filter 220ms ease;
 }
 
 .insurance-logo-image:hover {
-  filter: grayscale(0);
   opacity: 1;
+  filter: brightness(1.04);
+  transform: scale(1.03);
 }
 
 @media (prefers-reduced-motion: reduce) {
