@@ -1,23 +1,36 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { Award, HandHeart, Target } from 'lucide-react'
+import { Activity, Award, Heart, ShieldCheck, Star, Users } from 'lucide-react'
+import Button from '../components/Button'
+import AppointmentCTA from '../components/AppointmentCTA'
 import SectionHeader from '../components/SectionHeader'
+import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
 const values = [
   {
     title: 'Compassion',
-    description: 'We meet each patient with empathy, respect, and active listening in every encounter.',
-    icon: HandHeart,
+    description: 'We treat every patient with kindness, empathy, and respect.',
+    icon: Heart,
   },
   {
-    title: 'Clinical Excellence',
-    description: 'Our care plans are grounded in evidence-based medicine and clear, practical communication.',
+    title: 'Trust',
+    description: 'We believe strong healthcare begins with honest communication and lasting relationships.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Excellence',
+    description: 'We are committed to high-quality, evidence-based care.',
     icon: Award,
   },
   {
-    title: 'Long-Term Partnership',
-    description: 'We focus on sustained outcomes by helping patients build health habits that fit real life.',
-    icon: Target,
+    title: 'Prevention',
+    description: 'We focus on helping patients protect their long-term health.',
+    icon: Activity,
+  },
+  {
+    title: 'Patient-Centered Care',
+    description: "We design care around each patient's needs, goals, and life.",
+    icon: Users,
   },
 ]
 
@@ -27,88 +40,171 @@ function About() {
   return (
     <div>
       <section className="border-b border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50">
-        <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <motion.p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-ht-navy-700" {...getEntranceProps(reduceMotion, { y: 16, duration: 0.45, delay: 0.03 })}>
-            About Healtopia
-          </motion.p>
-          <motion.h1 className="mt-4 max-w-3xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl" {...getEntranceProps(reduceMotion, { y: 20, delay: 0.1 })}>
-            Patient-centered care built on trust, access, and lasting wellness
-          </motion.h1>
-          <motion.p className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg" {...getEntranceProps(reduceMotion, { y: 20, delay: 0.2 })}>
-            Healtopia was founded to make high-quality primary care and metabolic wellness more personal, more
-            responsive, and easier to access.
-          </motion.p>
+        <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-18">
+          <motion.div
+            className="mx-auto max-w-4xl text-center"
+            {...getEntranceProps(reduceMotion, { y: 18, duration: 0.45, delay: 0.03 })}
+          >
+            <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-ht-navy-700">
+              ABOUT HEALTOPIA
+            </p>
+            <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl">
+              Healthcare built on time, trust, and lasting relationships
+            </h1>
+            <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg">
+              Compassionate, personalized healthcare focused on building lasting relationships with every patient and
+              family we serve.
+            </p>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
+              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap">
+                Book Appointment
+              </Button>
+              <Button href="tel:+14105550199" variant="secondary" className="whitespace-nowrap">
+                Call Our Office
+              </Button>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="mx-auto mt-10 max-w-6xl overflow-hidden rounded-[2rem] border border-cyan-100 bg-white p-3 shadow-[0_24px_60px_-34px_rgba(5,42,74,0.45)]"
+            {...getEntranceProps(reduceMotion, { y: 24, delay: 0.12, duration: 0.55 })}
+          >
+            <div className="overflow-hidden rounded-[1.5rem] border border-ht-silver bg-ht-soft-blue/20">
+              <img
+                src="/images/clinic/reception.jpg"
+                alt="Healtopia clinic reception area"
+                className="h-64 w-full object-cover object-center sm:h-80 lg:h-[26rem]"
+              />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
+          <motion.div
+            className="rounded-[2rem] border border-ht-silver bg-white p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)] md:p-8"
+            {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}
+          >
+            <SectionHeader
+              eyebrow="Our Story"
+              title="Our Story"
+              description="After years of caring for patients in traditional healthcare settings, we envisioned a practice where appointments were not rushed, prevention was prioritized, and patients could build lasting relationships with their healthcare team. Healtopia was created to make that vision a reality."
+            />
+          </motion.div>
+
+          <motion.div
+            className="rounded-[2rem] border border-ht-silver bg-ht-soft-blue/20 p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)] md:p-8"
+            {...getRevealProps(reduceMotion, { y: 24, amount: 0.2, delay: 0.05 })}
+          >
+            <SectionHeader
+              eyebrow="Our Mission"
+              title="Our Mission"
+              description="Our mission is to provide high-quality, affordable, evidence-based healthcare with compassion, integrity, and respect while helping our patients achieve healthier lives through preventive care and long-term partnerships."
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            eyebrow="Values"
+            title="Our Values"
+            description="The principles that guide how we care for patients, families, and the community."
+          />
+          <motion.div
+            className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5"
+            {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08 })}
+          >
+            {values.map((value) => (
+              <motion.article
+                key={value.title}
+                className="rounded-2xl border border-ht-silver bg-ht-soft-blue/20 p-6 text-center shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)]"
+                {...getStaggerItem(reduceMotion, { y: 22 })}
+                {...getCardHover(reduceMotion)}
+              >
+                <div className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-ht-cyan-700 shadow-sm">
+                  <value.icon size={20} />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-ht-navy">{value.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ht-gray">{value.description}</p>
+              </motion.article>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <SectionHeader
-          eyebrow="Our Mission"
-          title="Empower healthier lives through personalized care"
-          description="We combine modern clinical tools with human-centered relationships so each patient feels seen, supported, and confident in their care journey."
+          eyebrow="Providers"
+          title="Meet Our Providers"
+          description="A placeholder provider card is shown below until the real provider bio is approved by the Healtopia team."
         />
-        <motion.div className="mt-10 grid gap-5 md:grid-cols-3" {...getStaggerContainer(reduceMotion, { staggerChildren: 0.1 })}>
-          {values.map((value) => (
-            <motion.article
-              key={value.title}
-              className="rounded-2xl border border-ht-silver bg-white p-6 shadow-sm"
-              {...getStaggerItem(reduceMotion, { y: 24 })}
-              {...getCardHover(reduceMotion)}
-            >
-              <value.icon size={20} className="text-ht-cyan-700" />
-              <h3 className="mt-4 text-xl font-bold text-ht-navy">{value.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ht-gray">{value.description}</p>
-            </motion.article>
-          ))}
-        </motion.div>
-      </section>
-
-      <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-ht-silver bg-cover bg-center shadow-[0_22px_48px_-28px_rgba(5,42,74,0.35)]"
-            style={{ backgroundImage: "url('/images/clinic/hallway.jpg')" }}
-            {...getRevealProps(reduceMotion, { y: 24, duration: 0.45, amount: 0.25 })}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/72 to-cyan-50/55" />
-            <div className="relative flex min-h-[280px] items-center p-5 sm:p-8 md:min-h-[340px] lg:min-h-[430px] lg:p-10">
-              <div className="max-w-xl rounded-2xl border border-white/80 bg-white/88 p-5 shadow-lg backdrop-blur-[1px] sm:p-6 md:p-7">
-                <h3 className="text-2xl font-bold tracking-tight text-ht-navy md:text-3xl">
-                  A calm, welcoming clinic environment
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ht-gray md:text-base">
-                  Healtopia&rsquo;s clinic space is designed to feel clean, comfortable, and easy to navigate from
-                  the moment patients arrive.
+        <motion.div
+          className="mt-10 overflow-hidden rounded-[2rem] border border-ht-silver bg-white shadow-[0_22px_52px_-34px_rgba(5,42,74,0.45)]"
+          {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}
+        >
+          <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="flex min-h-[240px] items-center justify-center bg-gradient-to-br from-cyan-100 via-ht-soft-blue to-white p-8 text-center">
+              <div className="max-w-xs rounded-[1.5rem] border border-white/80 bg-white/85 px-6 py-10 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-wider text-ht-navy-700">Provider Photo Coming Soon</p>
+                <p className="mt-3 text-sm leading-relaxed text-ht-gray">
+                  A provider photo will be added here once approved by the Healtopia team.
                 </p>
               </div>
             </div>
+            <div className="p-6 md:p-8">
+              <p className="text-sm font-semibold uppercase tracking-wide text-ht-navy-700">Provider Spotlight</p>
+              <h3 className="mt-2 text-3xl font-bold text-ht-navy">Provider Bio Coming Soon</h3>
+              <p className="mt-2 text-sm font-medium text-ht-gray">Healtopia Primary Care & Medical Weight Loss</p>
+              <p className="mt-5 text-sm leading-relaxed text-ht-gray md:text-base">
+                A full provider biography will be added here once approved by the Healtopia team.
+              </p>
+              <blockquote className="mt-6 border-l-4 border-ht-cyan-700 bg-ht-soft-blue/20 px-4 py-4 text-sm leading-relaxed text-ht-navy md:text-base">
+                “I believe every patient deserves the time to ask questions and fully understand their health. My goal
+                is to build lasting relationships and provide care that supports long-term wellness.”
+              </blockquote>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="border-y border-ht-silver bg-ht-soft-blue/20 py-16 lg:py-20">
+        <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+          <motion.div
+            className="rounded-[2rem] border border-ht-silver bg-white p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)] md:p-8"
+            {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}
+          >
+            <SectionHeader
+              eyebrow="Our Approach"
+              title="Our Approach to Care"
+              description="We believe the best healthcare begins with listening. We take the time to understand your concerns, explain treatment options clearly, and develop care plans tailored to your goals. Whether you are visiting for preventive care, chronic disease management, or an unexpected illness, our focus is on building a trusted, long-term relationship."
+            />
           </motion.div>
 
-          <motion.div className="mx-auto mt-10 grid max-w-6xl gap-8 lg:grid-cols-2" {...getStaggerContainer(reduceMotion, { staggerChildren: 0.1, amount: 0.15 })}>
-            <motion.div
-              className="rounded-2xl border border-ht-silver bg-ht-soft-blue/40 p-7"
-              {...getStaggerItem(reduceMotion, { y: 24 })}
-              {...getCardHover(reduceMotion)}
-            >
-              <h3 className="text-2xl font-bold text-ht-navy">Our Approach</h3>
-              <p className="mt-4 text-sm leading-relaxed text-ht-gray md:text-base">
-                Every plan begins with listening. We focus on your full story, then build care strategies that are
-                evidence-based, realistic, and designed for sustainable progress.
-              </p>
-            </motion.div>
-            <motion.div
-              className="rounded-2xl border border-ht-silver bg-white p-7"
-              {...getStaggerItem(reduceMotion, { y: 24 })}
-              {...getCardHover(reduceMotion)}
-            >
-              <h3 className="text-2xl font-bold text-ht-navy">Our Promise</h3>
-              <p className="mt-4 text-sm leading-relaxed text-ht-gray md:text-base">
-                You will always receive clear communication, collaborative decision-making, and care that honors both
-                your clinical needs and your day-to-day life.
-              </p>
-            </motion.div>
+          <motion.div
+            className="overflow-hidden rounded-[2rem] border border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50 p-3 shadow-[0_22px_52px_-34px_rgba(5,42,74,0.45)]"
+            {...getEntranceProps(reduceMotion, { y: 24, delay: 0.1, duration: 0.55 })}
+          >
+            <div className="h-[280px] overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white sm:h-[340px] lg:h-[460px]">
+              <img
+                src="/images/clinic/hallway.jpg"
+                alt="Healtopia clinic hallway"
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
           </motion.div>
         </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <AppointmentCTA
+          eyebrow="Next step"
+          title="Ready to experience personalized primary care?"
+          description="Use our secure booking page to choose an appointment type and a convenient time."
+          buttonLabel="Book Appointment"
+        />
       </section>
     </div>
   )

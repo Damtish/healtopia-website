@@ -34,20 +34,24 @@ function Header() {
   const reduceMotion = useReducedMotion()
   const [mobileOpen, setMobileOpen] = useState(false)
   const scrollPositionRef = useRef(0)
+  const skipScrollRestoreRef = useRef(false)
   const mobileMenuRef = useRef(null)
 
   useEffect(() => {
     if (!mobileOpen) {
-      const previousScrollY = scrollPositionRef.current
       document.body.style.position = ''
       document.body.style.top = ''
       document.body.style.left = ''
       document.body.style.right = ''
       document.body.style.width = ''
       document.body.style.overflow = ''
-      if (previousScrollY) {
-        window.scrollTo(0, previousScrollY)
+      if (!skipScrollRestoreRef.current) {
+        const previousScrollY = scrollPositionRef.current
+        if (previousScrollY) {
+          window.scrollTo(0, previousScrollY)
+        }
       }
+      skipScrollRestoreRef.current = false
       return undefined
     }
 
@@ -70,6 +74,7 @@ function Header() {
   }, [mobileOpen])
 
   useEffect(() => {
+    skipScrollRestoreRef.current = true
     setMobileOpen(false)
   }, [pathname])
 
@@ -122,8 +127,8 @@ function Header() {
       className="sticky top-0 z-40 border-b border-ht-silver/90 bg-white/92 backdrop-blur"
       {...getEntranceProps(reduceMotion, { y: -14, duration: 0.45 })}
     >
-      <div className="mx-auto grid h-[4.7rem] w-full max-w-7xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 sm:px-6 lg:px-8">
-        <NavLink to="/" className="flex min-w-0 items-center gap-3 sm:gap-4" aria-label="Healtopia home">
+      <div className="mx-auto flex h-[4.7rem] w-full max-w-7xl items-center justify-between gap-3 px-5 sm:px-6 lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:px-8">
+        <NavLink to="/" className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4 lg:flex-none" aria-label="Healtopia home">
           <img
             src="/images/healtopia-logo.webp"
             alt="Healtopia Primary Care and Medical Weight Loss logo"
@@ -163,7 +168,7 @@ function Header() {
         <button
           type="button"
           onClick={() => setMobileOpen((prev) => !prev)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:border-cyan-300 hover:bg-cyan-50 xl:hidden"
+          className="ml-auto inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:border-cyan-300 hover:bg-cyan-50 lg:hidden"
           aria-label={mobileOpen ? 'Close mobile menu' : 'Open mobile menu'}
           aria-expanded={mobileOpen}
           data-mobile-menu-toggle="true"
