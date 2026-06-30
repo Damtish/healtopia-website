@@ -1,4 +1,4 @@
-﻿import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import { Phone } from 'lucide-react'
 import Header from './components/Header'
@@ -28,9 +28,11 @@ function ScrollToTop() {
 }
 
 function AppLayout() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-ht-light text-ht-navy antialiased">
-      <Header />
+      <Header mobileOpen={mobileMenuOpen} setMobileOpen={setMobileMenuOpen} />
       <main className="pb-24 md:pb-0">
         <PageTransition>
           <Outlet />
@@ -38,7 +40,10 @@ function AppLayout() {
       </main>
       <Footer />
 
-      <div className="fixed inset-x-0 bottom-4 z-50 px-4 md:hidden" aria-label="Mobile quick actions">
+      <div
+        className={`fixed inset-x-0 bottom-4 z-40 px-4 md:hidden ${mobileMenuOpen ? 'hidden' : ''}`}
+        aria-label="Mobile quick actions"
+      >
         <div className="mx-auto flex max-w-md items-center gap-3 rounded-full border border-ht-silver bg-white/95 p-2 shadow-xl backdrop-blur-sm">
           <Button
             href={BOOK_APPOINTMENT_URL}
@@ -88,4 +93,3 @@ function App() {
 }
 
 export default App
-

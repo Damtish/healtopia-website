@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { FaFacebookF, FaInstagram } from 'react-icons/fa'
@@ -29,10 +29,9 @@ const mobileNavLinks = [
   { label: 'Contact', to: '/contact' },
 ]
 
-function Header() {
+function Header({ mobileOpen, setMobileOpen }) {
   const { pathname } = useLocation()
   const reduceMotion = useReducedMotion()
-  const [mobileOpen, setMobileOpen] = useState(false)
   const scrollPositionRef = useRef(0)
   const skipScrollRestoreRef = useRef(false)
   const mobileMenuRef = useRef(null)
@@ -124,7 +123,7 @@ function Header() {
 
   return (
     <motion.header
-      className="sticky top-0 z-40 border-b border-ht-silver/90 bg-white/92 backdrop-blur"
+      className="sticky top-0 z-50 border-b border-ht-silver/90 bg-white/92 backdrop-blur"
       {...getEntranceProps(reduceMotion, { y: -14, duration: 0.45 })}
     >
       <div className="mx-auto flex h-[4.7rem] w-full max-w-7xl items-center justify-between gap-3 px-5 sm:px-6 min-[1200px]:grid min-[1200px]:grid-cols-[auto_minmax(0,1fr)_auto] min-[1200px]:px-8">
@@ -184,7 +183,7 @@ function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="fixed inset-x-0 top-[4.7rem] z-[60] h-[calc(100vh-4.7rem)] min-[1200px]:hidden"
+            className="fixed inset-x-0 top-[4.7rem] z-[70] h-[calc(100vh-4.7rem)] min-[1200px]:hidden"
             aria-hidden={!mobileOpen}
           >
             <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-[1px]" onClick={() => setMobileOpen(false)} />
@@ -194,9 +193,9 @@ function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.24, ease: 'easeOut' }}
-              className="relative mx-3 overflow-hidden rounded-b-3xl border border-ht-silver bg-white shadow-[0_26px_46px_-28px_rgba(5,42,74,0.58)] sm:mx-6"
+              className="relative mx-3 max-h-[calc(100vh-4.7rem)] overflow-y-auto overscroll-contain rounded-b-3xl border border-ht-silver bg-white pb-[120px] shadow-[0_26px_46px_-28px_rgba(5,42,74,0.58)] sm:mx-6"
             >
-              <nav className="mx-auto flex max-w-7xl flex-col gap-1.5 px-4 py-4 sm:px-6" aria-label="Mobile navigation">
+              <nav className="mx-auto flex max-w-7xl flex-col gap-[0.35rem] px-4 py-4 sm:px-6" aria-label="Mobile navigation">
                 {mobileNavLinks.map((link) => (
                   <NavLink
                     key={link.to}
