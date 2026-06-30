@@ -142,12 +142,12 @@ function Home() {
                 Book Appointment
               </Button>
               <Button
-                to="/services"
+                to="/contact"
                 variant="secondary"
                 size="md"
                 className="w-full sm:h-12 sm:w-auto sm:px-6"
               >
-                Explore Services
+                Contact Us
               </Button>
             </motion.div>
           </div>
@@ -230,7 +230,10 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section
+        id="care-options"
+        className="scroll-mt-28 mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
+      >
         <SectionHeader
           title={
             <>

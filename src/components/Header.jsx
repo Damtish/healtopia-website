@@ -15,7 +15,6 @@ const desktopNavLinks = [
   { label: 'Concierge', to: '/concierge-care' },
   { label: 'Weight Loss', to: '/medical-weight-loss' },
   { label: 'Pricing', to: '/pricing' },
-  { label: 'Contact', to: '/contact' },
 ]
 
 const mobileNavLinks = [
@@ -26,7 +25,6 @@ const mobileNavLinks = [
   { label: 'Concierge Medicine', to: '/concierge-care' },
   { label: 'Medical Weight Loss', to: '/medical-weight-loss' },
   { label: 'Pricing', to: '/pricing' },
-  { label: 'Contact', to: '/contact' },
 ]
 
 function Header({ mobileOpen, setMobileOpen }) {
@@ -110,7 +108,7 @@ function Header({ mobileOpen, setMobileOpen }) {
   }, [mobileOpen])
 
   const navDesktopClass = ({ isActive }) =>
-    `relative whitespace-nowrap rounded-full px-1 py-1 text-[12px] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:-bottom-0.5 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:rounded-full after:bg-cyan-300 after:transition-all after:duration-250 ${
+    `relative whitespace-nowrap rounded-full px-1 py-1 text-[15px] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:-bottom-0.5 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:rounded-full after:bg-cyan-300 after:transition-all after:duration-250 ${
       isActive
         ? 'text-ht-navy after:w-7'
         : 'text-ht-navy/90 after:w-0 hover:text-ht-cyan-700 hover:after:w-5'
@@ -143,7 +141,7 @@ function Header({ mobileOpen, setMobileOpen }) {
           </div>
         </NavLink>
 
-        <nav className="hidden items-center justify-center gap-1.5 min-[1200px]:flex min-[1200px]:gap-1.5" aria-label="Primary navigation">
+        <nav className="hidden items-center justify-center gap-2.5 min-[1200px]:flex min-[1200px]:gap-3" aria-label="Primary navigation">
           {desktopNavLinks.map((link) => (
             <NavLink key={link.to} to={link.to} end={link.to === '/'} className={navDesktopClass}>
               {link.label}
