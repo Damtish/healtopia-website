@@ -4,12 +4,14 @@ import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 import { FACEBOOK_URL, INSTAGRAM_URL } from '../constants/links'
 
 const quickLinks = [
+  { label: 'Home', to: '/' },
   { label: 'About Us', to: '/about' },
-  { label: 'Services', to: '/services' },
+  { label: 'Direct Primary Care', to: '/direct-primary-care' },
+  { label: 'Insurance-Based Care', to: '/insurance-based-primary-care' },
+  { label: 'Concierge Medicine', to: '/concierge-care' },
   { label: 'Medical Weight Loss', to: '/medical-weight-loss' },
-  { label: 'Concierge Care', to: '/concierge-care' },
   { label: 'Pricing', to: '/pricing' },
-  { label: 'Insurance', to: '/insurance' },
+  { label: 'Accepted Insurance', to: '/insurance' },
   { label: 'Contact', to: '/contact' },
 ]
 
@@ -24,10 +26,12 @@ function Footer() {
             className="h-16 w-auto max-w-[220px] object-contain"
           />
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-ht-gray">
-            Compassionate primary care and medical weight loss designed around your life, your goals,
-            and your long-term health.
+            Compassionate primary care and medical weight loss designed around your health, lifestyle,
+            and long-term wellness.
           </p>
-          <p className="mt-4 text-sm font-semibold text-ht-navy">Serving Gambrills, MD and surrounding communities.</p>
+          <p className="mt-4 text-sm font-semibold text-ht-navy">
+            Serving Gambrills, Odenton, Crofton, Bowie, Millersville, and Anne Arundel County.
+          </p>
         </div>
 
         <div>
@@ -35,7 +39,7 @@ function Footer() {
           <ul className="mt-3 space-y-2 text-sm text-ht-gray">
             {quickLinks.map((link) => (
               <li key={link.to}>
-                <Link to={link.to} className="transition hover:text-ht-navy">
+                <Link to={link.to} className="transition hover:text-ht-cyan-700">
                   {link.label}
                 </Link>
               </li>

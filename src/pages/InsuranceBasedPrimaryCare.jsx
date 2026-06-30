@@ -160,15 +160,15 @@ function InsuranceBasedPrimaryCare() {
       <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
         <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <motion.div {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}>
-        <SectionHeader
-          eyebrow="Preventive Care"
-          title={
-            <>
-              Preventive Care & <span className="text-ht-cyan-700">Wellness</span>
-            </>
-          }
-          description="Preventive healthcare plays an important role in maintaining long-term wellness and identifying health concerns early."
-        />
+            <SectionHeader
+              eyebrow="Preventive Care"
+              title={
+                <>
+                  Preventive Care & <span className="text-ht-cyan-700">Wellness</span>
+                </>
+              }
+              description="Preventive healthcare plays an important role in maintaining long-term wellness and identifying health concerns early."
+            />
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-ht-gray">
               Our preventive care services help patients stay proactive about their health through regular checkups,
               screenings, vaccinations, and personalized wellness guidance.
@@ -187,11 +187,11 @@ function InsuranceBasedPrimaryCare() {
             className="overflow-hidden rounded-[2rem] border border-ht-silver bg-ht-soft-blue/25 p-3 shadow-[0_22px_52px_-34px_rgba(5,42,74,0.45)]"
             {...getEntranceProps(reduceMotion, { y: 24, delay: 0.08, duration: 0.55 })}
           >
-            <div className="overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white">
+            <div className="overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white h-[240px] sm:h-[300px] lg:h-[390px]">
               <img
                 src="/images/clinic/reception.jpg"
                 alt="Healtopia clinic reception area"
-                className="h-64 w-full object-cover object-center sm:h-72"
+                className="h-full w-full object-cover object-center"
                 loading="lazy"
               />
             </div>

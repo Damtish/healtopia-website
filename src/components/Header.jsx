@@ -111,10 +111,10 @@ function Header() {
   }, [mobileOpen])
 
   const navDesktopClass = ({ isActive }) =>
-    `relative whitespace-nowrap rounded-full px-1 py-1 text-[10px] font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:-bottom-0.5 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:rounded-full after:bg-cyan-300 after:transition-all after:duration-250 ${
+    `relative whitespace-nowrap rounded-full px-1 py-1 text-[12px] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:-bottom-0.5 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:rounded-full after:bg-cyan-300 after:transition-all after:duration-250 ${
       isActive
         ? 'text-ht-navy after:w-7'
-        : 'text-ht-navy/95 after:w-0 hover:text-ht-cyan-700 hover:after:w-5'
+        : 'text-ht-navy/90 after:w-0 hover:text-ht-cyan-700 hover:after:w-5'
     }`
 
   const navMobileClass = ({ isActive }) =>
@@ -127,24 +127,24 @@ function Header() {
       className="sticky top-0 z-40 border-b border-ht-silver/90 bg-white/92 backdrop-blur"
       {...getEntranceProps(reduceMotion, { y: -14, duration: 0.45 })}
     >
-      <div className="mx-auto flex h-[4.7rem] w-full max-w-7xl items-center justify-between gap-3 px-5 sm:px-6 lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:px-8">
+      <div className="mx-auto flex h-[4.7rem] w-full max-w-7xl items-center justify-between gap-3 px-5 sm:px-6 min-[1200px]:grid min-[1200px]:grid-cols-[auto_minmax(0,1fr)_auto] min-[1200px]:px-8">
         <NavLink to="/" className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4 lg:flex-none" aria-label="Healtopia home">
           <img
             src="/images/healtopia-logo.webp"
             alt="Healtopia Primary Care and Medical Weight Loss logo"
-            className="h-11 w-auto shrink-0 object-contain sm:h-[54px]"
+            className="h-11 w-auto shrink-0 object-contain sm:h-[52px]"
           />
           <div className="flex min-w-0 flex-col justify-center">
-            <p className="text-lg font-extrabold leading-tight tracking-tight text-ht-navy sm:text-[1.4rem]">
+            <p className="text-lg font-extrabold leading-tight tracking-tight text-ht-navy sm:text-[1.3rem]">
               Healtopia
             </p>
-            <p className="whitespace-nowrap text-[9px] font-medium leading-tight text-ht-gray sm:text-[11px]">
+            <p className="whitespace-nowrap text-[10px] font-medium leading-tight text-ht-gray sm:text-[11px]">
               Primary Care & Medical Weight Loss
             </p>
           </div>
         </NavLink>
 
-        <nav className="hidden items-center justify-center gap-1.5 xl:flex xl:gap-2" aria-label="Primary navigation">
+        <nav className="hidden items-center justify-center gap-1.5 min-[1200px]:flex min-[1200px]:gap-1.5" aria-label="Primary navigation">
           {desktopNavLinks.map((link) => (
             <NavLink key={link.to} to={link.to} end={link.to === '/'} className={navDesktopClass}>
               {link.label}
@@ -152,7 +152,7 @@ function Header() {
           ))}
         </nav>
 
-        <div className="hidden xl:flex xl:items-center xl:justify-self-end">
+        <div className="hidden min-[1200px]:flex min-[1200px]:items-center min-[1200px]:justify-self-end">
           <Button
             href={BOOK_APPOINTMENT_URL}
             target="_blank"
@@ -168,7 +168,7 @@ function Header() {
         <button
           type="button"
           onClick={() => setMobileOpen((prev) => !prev)}
-          className="ml-auto inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:border-cyan-300 hover:bg-cyan-50 lg:hidden"
+          className="ml-auto inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:border-cyan-300 hover:bg-cyan-50 min-[1200px]:hidden"
           aria-label={mobileOpen ? 'Close mobile menu' : 'Open mobile menu'}
           aria-expanded={mobileOpen}
           data-mobile-menu-toggle="true"
@@ -184,7 +184,7 @@ function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="fixed inset-x-0 top-[4.7rem] z-[60] h-[calc(100vh-4.7rem)] xl:hidden"
+            className="fixed inset-x-0 top-[4.7rem] z-[60] h-[calc(100vh-4.7rem)] min-[1200px]:hidden"
             aria-hidden={!mobileOpen}
           >
             <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-[1px]" onClick={() => setMobileOpen(false)} />
