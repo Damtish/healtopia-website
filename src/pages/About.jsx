@@ -33,6 +33,36 @@ const values = [
   },
 ]
 
+const providers = [
+  {
+    name: 'Gashaw Adugna, MD',
+    role: 'Internal Medicine & Obesity Medicine',
+    shortBio:
+      'Gashaw Adugna, MD, is a dual board-certified physician in Internal Medicine and Obesity Medicine with over a decade of clinical experience. He focuses on compassionate, evidence-based care, obesity management, preventive health, and long-term wellness.',
+    fullBio: [
+      'Gashaw Adugna, MD, is a dual board-certified physician in Internal Medicine and Obesity Medicine, known not just for his clinical excellence but for the deep compassion and personal connection he brings to every patient encounter.',
+      'Dr. Adugna completed his Internal Medicine residency in New York City, honing his expertise in one of the nation’s most diverse and demanding healthcare settings. Subsequently, he served as a Hospitalist at Anne Arundel Medical Center, where he established a reputation for effectively managing intricate medical cases with exceptional precision and compassion. With over a decade of clinical experience, Dr. Adugna is now implementing a personalized approach to patient care, providing evidence-based, tailored treatments with a strong emphasis on obesity management, preventive health initiatives, and long-term wellness.',
+      'Whether patients are looking to take control of their weight, prevent chronic illness, or simply feel their best, Dr. Adugna is committed to walking the journey with them every step of the way.',
+    ],
+    tags: ['Internal Medicine', 'Obesity Medicine', 'Preventive Care', 'Medical Weight Loss'],
+    image: '/images/clinic/reception.jpg',
+    imageAlt: 'Healtopia clinic reception area',
+  },
+  {
+    name: 'Malefiya Kenea, FNP-C',
+    role: 'Family Nurse Practitioner',
+    shortBio:
+      'Malefiya Kenea, FNP-C, is a dedicated Family Nurse Practitioner with over 10 years of nursing experience across medical-surgical, ICU, dialysis, urgent care, and primary care settings.',
+    fullBio: [
+      'Malefiya Kenea, FNP-C, is a dedicated Family Nurse Practitioner with over 10 years of nursing experience across different clinical settings, including medical-surgical, ICU, dialysis, and urgent care. In her current role in primary care, she provides comprehensive care for acute and chronic conditions.',
+      'She also emphasizes health promotion, disease prevention, and patient education to support long-term wellness. Malefiya is certified by the American Academy of Nurse Practitioners Certification Board (AANPCB) and is passionate about delivering holistic, patient-centered healthcare that empowers individuals to take an active role in their health.',
+    ],
+    tags: ['Family Nurse Practitioner', 'Primary Care', 'Chronic Care', 'Patient Education'],
+    image: '/images/clinic/reception.jpg',
+    imageAlt: 'Healtopia clinic reception area',
+  },
+]
+
 function AboutSectionHeader({ eyebrow, title, description, align = 'left' }) {
   const alignment = align === 'center' ? 'mx-auto text-center' : 'text-left'
 
@@ -93,104 +123,73 @@ function About() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
-          <motion.div
-            className="rounded-[2rem] border border-ht-silver bg-white p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)] md:p-8"
-            {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}
-          >
-            <AboutSectionHeader
-              eyebrow="Our Story"
-              title="Our Story"
-              description="After years of caring for patients in traditional healthcare settings, we envisioned a practice where appointments were not rushed, prevention was prioritized, and patients could build lasting relationships with their healthcare team. Healtopia was created to make that vision a reality."
-            />
-          </motion.div>
+      <section className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+        <AboutSectionHeader
+          eyebrow="Providers"
+          title="Meet Our Providers"
+          description="Care led by the Healtopia clinical team."
+        />
 
-          <motion.div
-            className="rounded-[2rem] border border-ht-silver bg-ht-soft-blue/20 p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)] md:p-8"
-            {...getRevealProps(reduceMotion, { y: 24, amount: 0.2, delay: 0.05 })}
-          >
-            <AboutSectionHeader
-              eyebrow="Our Mission"
-              title={
-                <>
-                  Our <span className="text-ht-cyan-700">Mission</span>
-                </>
-              }
-              description="Our mission is to provide high-quality, affordable, evidence-based healthcare with compassion, integrity, and respect while helping our patients achieve healthier lives through preventive care and long-term partnerships."
-            />
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AboutSectionHeader
-            eyebrow="Values"
-            title={
-              <>
-                Our <span className="text-ht-cyan-700">Values</span>
-              </>
-            }
-            description="The principles that guide how we care for patients, families, and the community."
-          />
-          <motion.div
-            className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5"
-            {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08 })}
-          >
-            {values.map((value) => (
-              <motion.article
-                key={value.title}
-                className="rounded-2xl border border-ht-silver bg-ht-soft-blue/20 p-6 text-center shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)]"
-                {...getStaggerItem(reduceMotion, { y: 22 })}
-                {...getCardHover(reduceMotion)}
-              >
-                <div className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-ht-cyan-700 shadow-sm">
-                  <value.icon size={20} />
-                </div>
-                <h3 className="mt-4 text-lg font-bold text-ht-navy">{value.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ht-gray">{value.description}</p>
-              </motion.article>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <AboutSectionHeader
-            eyebrow="Providers"
-            title="Meet Our Providers"
-            description="A placeholder provider card is shown below until the real provider bio is approved by the Healtopia team."
-          />
         <motion.div
-          className="mt-10 overflow-hidden rounded-[2rem] border border-ht-silver bg-white shadow-[0_22px_52px_-34px_rgba(5,42,74,0.45)]"
-          {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}
+          className="mt-8 grid gap-5 md:grid-cols-2"
+          {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08, amount: 0.2 })}
         >
-          <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="flex min-h-[240px] items-center justify-center bg-gradient-to-br from-cyan-100 via-ht-soft-blue to-white p-8 text-center">
-              <div className="max-w-xs rounded-[1.5rem] border border-white/80 bg-white/85 px-6 py-10 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wider text-ht-navy-700">Provider Photo Coming Soon</p>
-                <p className="mt-3 text-sm leading-relaxed text-ht-gray">
-                  A provider photo will be added here once approved by the Healtopia team.
-                </p>
+          {providers.map((provider) => (
+            <motion.article
+              key={provider.name}
+              className="overflow-hidden rounded-[1.75rem] border border-ht-silver bg-white shadow-[0_18px_42px_-34px_rgba(5,42,74,0.42)]"
+              {...getStaggerItem(reduceMotion, { y: 20 })}
+              {...getCardHover(reduceMotion)}
+            >
+              <div className="overflow-hidden border-b border-ht-silver bg-ht-soft-blue/15">
+                <img
+                  src={provider.image}
+                  alt={provider.imageAlt}
+                  className="h-[200px] w-full object-cover object-center sm:h-[210px] lg:h-[220px]"
+                  loading="lazy"
+                />
               </div>
-            </div>
-            <div className="p-6 md:p-8">
-              <p className="text-sm font-semibold uppercase tracking-wide text-ht-navy-700">Provider Spotlight</p>
-              <h3 className="mt-2 text-3xl font-bold text-ht-navy">Provider Bio Coming Soon</h3>
-              <p className="mt-2 text-sm font-medium text-ht-gray">Healtopia Primary Care & Medical Weight Loss</p>
-              <p className="mt-5 text-sm leading-relaxed text-ht-gray md:text-base">
-                A full provider biography will be added here once approved by the Healtopia team.
-              </p>
-              <blockquote className="mt-6 border-l-4 border-ht-cyan-700 bg-ht-soft-blue/20 px-4 py-4 text-sm leading-relaxed text-ht-navy md:text-base">
-                “I believe every patient deserves the time to ask questions and fully understand their health. My goal
-                is to build lasting relationships and provide care that supports long-term wellness.”
-              </blockquote>
-            </div>
-          </div>
+
+              <div className="p-5 sm:p-6">
+                <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
+                  Provider
+                </p>
+                <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-ht-navy">{provider.name}</h3>
+                <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-ht-cyan-700">{provider.role}</p>
+
+                <p className="mt-4 max-w-xl text-sm leading-relaxed text-ht-gray">{provider.shortBio}</p>
+
+                <details className="group mt-4">
+                  <summary className="cursor-pointer list-none text-sm font-semibold text-ht-cyan-700 transition hover:text-ht-cyan-800">
+                    <span className="inline-flex items-center gap-2">
+                      Read full bio
+                      <span className="transition-transform group-open:rotate-180" aria-hidden="true">
+                        ▾
+                      </span>
+                    </span>
+                  </summary>
+                  <div className="mt-4 space-y-4 text-sm leading-relaxed text-ht-gray">
+                    {provider.fullBio.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                </details>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {provider.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="inline-flex rounded-full border border-cyan-100 bg-ht-soft-blue/40 px-3 py-1 text-xs font-semibold text-ht-navy-700"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.article>
+          ))}
         </motion.div>
       </section>
-
       <section className="border-y border-ht-silver bg-ht-soft-blue/20 py-16 lg:py-20">
         <div className="mx-auto grid w-full max-w-7xl items-start gap-8 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <motion.div

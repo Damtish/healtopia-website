@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
   BadgeCheck,
   CalendarClock,
+  ChevronLeft,
+  ChevronRight,
   CreditCard,
   ShieldCheck,
   Star,
@@ -15,6 +17,7 @@ import {
 } from 'lucide-react'
 import Button from '../components/Button'
 import AppointmentCTA from '../components/AppointmentCTA'
+import ProgramHighlightSection from '../components/ProgramHighlightSection'
 import SectionHeader from '../components/SectionHeader'
 import ServiceCard from '../components/ServiceCard'
 import ProviderCard from '../components/ProviderCard'
@@ -26,22 +29,57 @@ import { testimonials } from '../data/testimonials'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import { getCardHover, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
-const trustItems = ['Primary Care', 'Medical Weight Loss', 'Telehealth Available', 'Insurance Accepted']
+const trustItems = [
+  'Direct Primary Care',
+  'Insurance-based Primary Care',
+  'Concierge Medicine',
+  'Medical Weight Loss',
+]
 
 const whyChoose = [
   {
-    title: 'Personalized Care Plans',
-    description: 'We tailor each care plan to your medical history, lifestyle, and long-term goals.',
+    title: 'Affordable healthcare option with Direct Primary Care',
+    description: 'A membership-based care option built to keep primary care more approachable and transparent.',
     icon: Stethoscope,
   },
   {
-    title: 'Convenient Access',
-    description: 'Flexible in-person and telehealth options make it easier to get care when you need it.',
+    title: 'Personalized care with attention to detail',
+    description: 'Care is tailored to your history, goals, and the details that matter most to your health.',
     icon: CalendarClock,
   },
   {
-    title: 'Trusted Clinical Guidance',
-    description: 'Evidence-based medicine delivered with empathy, clear communication, and continuity.',
+    title: 'Same-week appointments when available',
+    description: 'When availability allows, we aim to offer convenient access for timely primary care needs.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'After-hours appointments when available',
+    description: 'When available, additional appointment times can help patients with busy schedules.',
+    icon: CalendarClock,
+  },
+  {
+    title: 'Most insurance accepted',
+    description: 'Healtopia accepts many major insurance plans and also offers self-pay options.',
+    icon: CreditCard,
+  },
+  {
+    title: 'Preventive care focus',
+    description: 'Preventive care is a core part of our approach to helping patients stay ahead of problems.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Chronic disease management',
+    description: 'Ongoing support for common long-term conditions with careful monitoring and follow-up.',
+    icon: CalendarClock,
+  },
+  {
+    title: 'Medical weight loss services',
+    description: 'Physician-guided weight loss support with evaluation, follow-up visits, and treatment options.',
+    icon: Scale,
+  },
+  {
+    title: 'Concierge medicine services',
+    description: 'Enhanced access, longer visits, and a more personalized care experience for qualifying patients.',
     icon: ShieldCheck,
   },
 ]
@@ -74,6 +112,80 @@ const careOptions = [
     link: '/medical-weight-loss',
     label: 'Explore weight loss',
     icon: Scale,
+  },
+]
+
+const careHighlights = [
+  {
+    eyebrow: 'DIRECT PRIMARY CARE',
+    title: (
+      <>
+        Simple membership care with more time and <span className="text-ht-cyan-700">direct access</span>
+      </>
+    ),
+    description: 'Direct Primary Care is a membership-based option designed to make primary care more personal, accessible, and transparent.',
+    bullets: [
+      'Predictable monthly membership pricing',
+      'Longer visits focused on your full health story',
+      'Direct communication and easier follow-up',
+    ],
+    buttonLabel: 'View DPC Details',
+    buttonTo: '/direct-primary-care',
+    rightTitle: 'What DPC offers',
+    rightItems: [
+      { label: 'Start', text: 'Free initial consultation and membership review' },
+      { label: 'Ongoing', text: 'Preventive care, sick visits, and chronic care support' },
+      { label: 'Long term', text: 'A stronger relationship with your care team' },
+    ],
+    reverse: false,
+  },
+  {
+    eyebrow: 'INSURANCE-BASED CARE',
+    title: (
+      <>
+        Traditional primary care using your <span className="text-ht-cyan-700">accepted insurance</span>
+      </>
+    ),
+    description:
+      'Insurance-based primary care supports routine visits, preventive care, chronic disease management, and non-emergency concerns through accepted insurance plans.',
+    bullets: [
+      'Wellness visits, screenings, and preventive care',
+      'Chronic disease management and follow-up support',
+      'Acute visits for non-emergency medical concerns',
+    ],
+    buttonLabel: 'View Insurance-Based Care',
+    buttonTo: '/insurance-based-primary-care',
+    rightTitle: 'Care through insurance',
+    rightItems: [
+      { label: 'Routine care', text: 'Wellness visits and preventive screenings' },
+      { label: 'Ongoing care', text: 'Chronic condition management and follow-up' },
+      { label: 'When needed', text: 'Non-emergency sick visits and care coordination' },
+    ],
+    reverse: true,
+  },
+  {
+    eyebrow: 'CONCIERGE MEDICINE',
+    title: (
+      <>
+        Premium care with <span className="text-ht-cyan-700">personalized support</span>
+      </>
+    ),
+    description:
+      'Concierge Medicine is designed for patients who want a more connected, proactive, and personalized healthcare experience.',
+    bullets: [
+      'Longer, more personalized visits',
+      'Priority scheduling when available',
+      'Preventive wellness planning and care coordination',
+    ],
+    buttonLabel: 'View Concierge Details',
+    buttonTo: '/concierge-care',
+    rightTitle: 'Concierge care experience',
+    rightItems: [
+      { label: 'Access', text: 'Direct communication and priority scheduling when available' },
+      { label: 'Planning', text: 'Personalized wellness and prevention support' },
+      { label: 'Follow-up', text: 'Coordinated care and ongoing health guidance' },
+    ],
+    reverse: false,
   },
 ]
 
@@ -269,26 +381,6 @@ function Home() {
         </motion.div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <SectionHeader
-          eyebrow="Our Services"
-          title="Whole-person healthcare for modern life"
-          description="From preventive care to advanced weight management, we deliver practical and compassionate support in every visit."
-        />
-        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {services.slice(0, 3).map((service, index) => (
-            <ServiceCard
-              key={service.id}
-              title={service.title}
-              description={service.description}
-              icon={serviceIconMap[service.icon]}
-              path={service.path}
-              delay={index * 0.08}
-            />
-          ))}
-        </div>
-      </section>
-
       <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -296,17 +388,19 @@ function Home() {
             title="Trusted care that feels personal"
             description="We focus on relationship-driven care, modern convenience, and consistent communication so you always know what is next in your plan."
           />
-          <motion.div className="mt-10 grid gap-5 md:grid-cols-3" {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08 })}>
+          <motion.div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" {...getStaggerContainer(reduceMotion, { staggerChildren: 0.07 })}>
             {whyChoose.map((item) => (
               <motion.article
                 key={item.title}
-                className="rounded-2xl border border-ht-silver bg-ht-soft-blue/30 p-6"
-                {...getStaggerItem(reduceMotion, { y: 20 })}
+                className="flex items-start gap-3 rounded-2xl border border-ht-silver bg-ht-soft-blue/20 px-4 py-4 shadow-[0_16px_34px_-30px_rgba(5,42,74,0.45)]"
+                {...getStaggerItem(reduceMotion, { y: 18 })}
                 {...getCardHover(reduceMotion)}
               >
-                <item.icon size={20} className="text-ht-cyan-700" />
-                <h3 className="mt-4 text-xl font-bold text-ht-navy">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ht-gray">{item.description}</p>
+                <item.icon size={18} className="mt-0.5 shrink-0 text-ht-cyan-700" />
+                <div>
+                  <h3 className="text-sm font-semibold text-ht-navy">{item.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-ht-gray">{item.description}</p>
+                </div>
               </motion.article>
             ))}
           </motion.div>
@@ -329,6 +423,21 @@ function Home() {
           <ProviderCard name="Malefiya Kenea, FNP-C" title="Family Nurse Practitioner" delay={0.1} />
         </div>
       </section>
+
+      {careHighlights.map((section) => (
+        <ProgramHighlightSection
+          key={section.eyebrow}
+          eyebrow={section.eyebrow}
+          title={section.title}
+          description={section.description}
+          bullets={section.bullets}
+          buttonLabel={section.buttonLabel}
+          buttonTo={section.buttonTo}
+          rightTitle={section.rightTitle}
+          rightItems={section.rightItems}
+          reverse={section.reverse}
+        />
+      ))}
 
       <section className="border-y border-ht-silver bg-gradient-to-br from-cyan-50 via-white to-ht-soft-blue py-16 lg:py-20">
         <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
@@ -406,12 +515,18 @@ function Home() {
         </div>
       </section>
 
+      <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <TestimonialCarousel items={testimonials} reduceMotion={reduceMotion} />
+        </div>
+      </section>
+
       <section className="overflow-hidden border-y border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue/55 to-cyan-50 py-14 lg:py-16">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             title={
               <>
-                Accepted by many major <span className="text-ht-cyan-700">insurance plans</span>
+                Accepted <span className="text-ht-cyan-700">Insurance Plans</span>
               </>
             }
             description="Patients are encouraged to contact the office to confirm coverage before their visit."
@@ -459,45 +574,243 @@ function Home() {
         </div>
       </section>
 
-      <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            eyebrow="Testimonials"
-            title="Patient Testimonials"
-            description="Approved patient feedback can be managed from a single testimonials data file."
-          />
-          <motion.div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3" {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08 })}>
-            {testimonials.map((testimonial, index) => {
-              const showStars = testimonial.source === 'Google Review'
-
-              return (
-                <motion.article
-                  key={`${testimonial.name}-${testimonial.source}-${index}`}
-                  className="rounded-2xl border border-ht-silver bg-ht-soft-blue/30 p-6 shadow-sm"
-                  {...getStaggerItem(reduceMotion, { y: 24 })}
-                  {...getCardHover(reduceMotion)}
-                >
-                  {showStars ? (
-                    <div className="mb-3 flex items-center gap-1 text-ht-cyan-700" aria-label="5 star review">
-                      {Array.from({ length: 5 }).map((_, starIndex) => (
-                        <Star key={starIndex} size={14} fill="currentColor" />
-                      ))}
-                    </div>
-                  ) : null}
-
-                  <blockquote className="text-sm leading-relaxed text-ht-gray">&ldquo;{testimonial.quote}&rdquo;</blockquote>
-                  <p className="mt-4 text-sm font-semibold text-ht-navy">{testimonial.name}</p>
-                  <p className="mt-1 text-xs font-medium uppercase tracking-wide text-ht-gray">{testimonial.source}</p>
-                </motion.article>
-              )
-            })}
-          </motion.div>
-        </div>
-      </section>
-
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <AppointmentCTA />
       </section>
+    </div>
+  )
+}
+
+function TestimonialCarousel({ items, reduceMotion }) {
+  const [activePage, setActivePage] = useState(0)
+  const [visibleCount, setVisibleCount] = useState(1)
+  const [isPaused, setIsPaused] = useState(false)
+
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      if (window.matchMedia('(min-width: 1024px)').matches) {
+        setVisibleCount(3)
+        return
+      }
+
+      if (window.matchMedia('(min-width: 768px)').matches) {
+        setVisibleCount(2)
+        return
+      }
+
+      setVisibleCount(1)
+    }
+
+    updateVisibleCount()
+    window.addEventListener('resize', updateVisibleCount)
+    return () => window.removeEventListener('resize', updateVisibleCount)
+  }, [])
+
+  const pageCount = Math.max(1, Math.ceil(items.length / visibleCount))
+
+  useEffect(() => {
+    setActivePage((current) => Math.min(current, pageCount - 1))
+  }, [pageCount])
+
+  useEffect(() => {
+    if (reduceMotion || isPaused || pageCount <= 1) return undefined
+
+    const interval = window.setInterval(() => {
+      setActivePage((current) => (current + 1) % pageCount)
+    }, 6000)
+
+    return () => window.clearInterval(interval)
+  }, [isPaused, pageCount, reduceMotion])
+
+  const getInitials = (name) =>
+    name
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0])
+      .join('')
+      .toUpperCase()
+
+  return (
+    <div
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setIsPaused(false)
+        }
+      }}
+    >
+      <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div className="max-w-2xl">
+          <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
+            Testimonials
+          </p>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">Patient Testimonials</h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-ht-gray md:text-lg">
+            Hear what patients are saying about their experience with Healtopia.
+          </p>
+          <div className="mt-4 flex flex-wrap items-center gap-2 text-sm font-semibold text-ht-navy lg:hidden">
+            <span>5.0</span>
+            <span className="inline-flex items-center gap-0.5 text-amber-400" aria-hidden="true">
+              {Array.from({ length: 5 }).map((_, starIndex) => (
+                <Star key={starIndex} size={14} fill="currentColor" />
+              ))}
+            </span>
+            <span>Google Rating · 46 reviews</span>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-start gap-3 lg:items-end">
+          <div className="hidden items-center gap-2 text-sm font-semibold text-ht-navy lg:flex">
+            <span>5.0</span>
+            <span className="inline-flex items-center gap-0.5 text-amber-400" aria-hidden="true">
+              {Array.from({ length: 5 }).map((_, starIndex) => (
+                <Star key={starIndex} size={14} fill="currentColor" />
+              ))}
+            </span>
+            <span>Google Rating · 46 reviews</span>
+          </div>
+
+          <div className="hidden shrink-0 gap-2 sm:flex">
+            <button
+              type="button"
+              onClick={() => setActivePage((current) => (current - 1 + pageCount) % pageCount)}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ht-silver bg-white text-ht-navy shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-ht-soft-blue hover:text-ht-cyan-700"
+              aria-label="Previous testimonials"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              type="button"
+              onClick={() => setActivePage((current) => (current + 1) % pageCount)}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ht-silver bg-white text-ht-navy shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-ht-soft-blue hover:text-ht-cyan-700"
+              aria-label="Next testimonials"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative overflow-hidden">
+        <motion.div
+          className="flex"
+          animate={reduceMotion ? { x: 0 } : { x: `-${activePage * 100}%` }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeInOut' }}
+        >
+          {Array.from({ length: pageCount }).map((_, pageIndex) => {
+            const start = pageIndex * visibleCount
+            const pageItems = items.slice(start, start + visibleCount)
+
+            return (
+              <div key={pageIndex} className="w-full flex-none px-px">
+                <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                  {pageItems.map((testimonial, index) => (
+                    <motion.article
+                      key={`${testimonial.name}-${testimonial.source}-${pageIndex}-${index}`}
+                      className={`rounded-2xl border border-ht-silver bg-white p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)] ${
+                        index === 0 ? 'md:border-cyan-200 md:bg-gradient-to-b md:from-white md:to-ht-soft-blue/25 md:shadow-[0_22px_50px_-36px_rgba(5,42,74,0.5)]' : ''
+                      }`}
+                      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{ duration: 0.4, ease: 'easeOut' }}
+                    >
+                      <div className="mb-4 flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-cyan-100 text-sm font-bold uppercase tracking-wide text-ht-cyan-700">
+                            {getInitials(testimonial.name)}
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-1 text-amber-400" aria-label="5 star review">
+                              {Array.from({ length: 5 }).map((_, starIndex) => (
+                                <Star key={starIndex} size={14} fill="currentColor" />
+                              ))}
+                            </div>
+                            <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-ht-gray">Google Review</p>
+                          </div>
+                        </div>
+
+                        {index === 0 ? (
+                          <span className="hidden rounded-full bg-cyan-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-ht-cyan-700 md:inline-flex">
+                            Featured
+                          </span>
+                        ) : null}
+                      </div>
+
+                      <blockquote
+                        className="text-[15px] leading-relaxed text-ht-gray md:text-base"
+                        style={{
+                          display: '-webkit-box',
+                          WebkitLineClamp: 4,
+                          WebkitBoxOrient: 'vertical',
+                          overflow: 'hidden',
+                        }}
+                      >
+                        &ldquo;{testimonial.quote}&rdquo;
+                      </blockquote>
+
+                      <p className="mt-4 text-sm font-semibold text-ht-navy">{testimonial.name}</p>
+                      <div className="mt-1 flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-ht-gray">
+                        <span>{testimonial.source}</span>
+                        {testimonial.timeAgo ? <span>• {testimonial.timeAgo}</span> : null}
+                      </div>
+                    </motion.article>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
+        </motion.div>
+      </div>
+
+      <div className="mt-6 flex items-center justify-center gap-2 sm:hidden">
+        <button
+          type="button"
+          onClick={() => setActivePage((current) => (current - 1 + pageCount) % pageCount)}
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ht-silver bg-white text-ht-navy shadow-sm transition hover:border-cyan-300 hover:text-ht-cyan-700"
+          aria-label="Previous testimonials"
+        >
+          <ChevronLeft size={17} />
+        </button>
+        <button
+          type="button"
+          onClick={() => setActivePage((current) => (current + 1) % pageCount)}
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ht-silver bg-white text-ht-navy shadow-sm transition hover:border-cyan-300 hover:text-ht-cyan-700"
+          aria-label="Next testimonials"
+        >
+          <ChevronRight size={17} />
+        </button>
+      </div>
+
+      <div className="mt-5 flex justify-center gap-2">
+        {Array.from({ length: pageCount }).map((_, pageIndex) => (
+          <button
+            key={pageIndex}
+            type="button"
+            onClick={() => setActivePage(pageIndex)}
+            className={`h-2.5 rounded-full transition-all duration-300 ${
+              pageIndex === activePage ? 'w-7 bg-ht-cyan-700' : 'w-2.5 bg-cyan-200 hover:bg-cyan-300'
+            }`}
+            aria-label={`Go to testimonial group ${pageIndex + 1}`}
+            aria-pressed={pageIndex === activePage}
+          />
+        ))}
+      </div>
+
+      <div className="mt-7 text-center">
+        <a
+          href="https://share.google/JYuTIVEeq1YttWsWv"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-full border border-ht-silver bg-white px-5 py-2.5 text-sm font-semibold text-ht-navy shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-ht-soft-blue hover:text-ht-cyan-700"
+        >
+          View all Google reviews
+          <ArrowRight size={15} aria-hidden="true" />
+        </a>
+      </div>
     </div>
   )
 }

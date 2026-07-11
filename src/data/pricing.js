@@ -2,6 +2,8 @@
   {
     id: 'direct-primary-care',
     name: 'Direct Primary Care',
+    ctaLabel: 'View DPC Pricing',
+    ctaTo: '#dpc-pricing',
     priceLines: [
       'Individual: $75/month',
       'Individual + Spouse: $130/month',
@@ -13,6 +15,8 @@
   {
     id: 'concierge-medicine',
     name: 'Concierge Medicine',
+    ctaLabel: 'View Concierge Pricing',
+    ctaTo: '#concierge-pricing',
     priceLines: [
       'Monthly subscription: $200/month',
       'Six-month subscription: $1,100',
@@ -25,6 +29,7 @@
     description:
       'Pricing and medication coverage may vary. Patients can review options during their visit.',
     ctaLabel: 'Ask About Weight Loss Pricing',
+    ctaTo: '/contact',
   },
 ]
 

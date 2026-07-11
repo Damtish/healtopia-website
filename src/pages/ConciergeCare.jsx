@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { CheckCircle2, Clock3, HeartPulse, MessageSquareHeart, ShieldCheck } from 'lucide-react'
 import Button from '../components/Button'
 import AppointmentCTA from '../components/AppointmentCTA'
+import ProgramHighlightSection from '../components/ProgramHighlightSection'
 import SectionHeader from '../components/SectionHeader'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
@@ -62,6 +63,21 @@ const idealCards = [
     description:
       'Designed for patients who want a more connected relationship with their physician and care team.',
     icon: MessageSquareHeart,
+  },
+]
+
+const conciergeHighlightItems = [
+  {
+    label: 'Access',
+    text: 'Direct communication and priority scheduling when available',
+  },
+  {
+    label: 'Planning',
+    text: 'Personalized wellness and prevention support',
+  },
+  {
+    label: 'Follow-up',
+    text: 'Coordinated care and ongoing health guidance',
   },
 ]
 
@@ -133,6 +149,25 @@ function ConciergeCare() {
           </motion.div>
         </div>
       </section>
+
+      <ProgramHighlightSection
+        eyebrow="CONCIERGE MEDICINE"
+        title={
+          <>
+            Premium care with more access and <span className="text-ht-cyan-700">personalized support</span>
+          </>
+        }
+        description="Concierge Medicine is designed for patients who want a more connected, proactive, and personalized healthcare experience."
+        bullets={[
+          'Longer, more personalized visits',
+          'Priority scheduling when available',
+          'Preventive wellness planning and care coordination',
+        ]}
+        buttonLabel="View Concierge Pricing"
+        buttonTo="/pricing"
+        rightTitle="Concierge care experience"
+        rightItems={conciergeHighlightItems}
+      />
 
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <SectionHeader

@@ -103,7 +103,7 @@ function Pricing() {
         </motion.div>
       </section>
 
-      <section className="border-y border-ht-silver bg-ht-soft-blue/35">
+      <section id="dpc-pricing" className="border-y border-ht-silver bg-ht-soft-blue/35">
         <div className="mx-auto w-full max-w-[88rem] px-4 pb-12 pt-16 sm:px-6 lg:px-8 lg:pb-14 lg:pt-20">
           <h2 className="text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">
             DPC Memberships <span className="text-ht-cyan-700">Pricing</span>
@@ -174,6 +174,7 @@ function Pricing() {
           {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08, amount: 0.15 })}
         >
           <motion.article
+            id="concierge-pricing"
             className="flex h-full flex-col rounded-3xl border border-ht-silver bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-7"
             {...getStaggerItem(reduceMotion, { y: 22 })}
             {...getCardHover(reduceMotion)}

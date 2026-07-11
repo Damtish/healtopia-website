@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Activity, CheckCircle2, HeartPulse, ShieldCheck, Thermometer } from 'lucide-react'
 import Button from '../components/Button'
 import AppointmentCTA from '../components/AppointmentCTA'
+import ProgramHighlightSection from '../components/ProgramHighlightSection'
 import SectionHeader from '../components/SectionHeader'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
@@ -60,6 +61,21 @@ const followUpItems = [
   'Medication reconciliation and adjustments',
   'Monitoring recovery progress',
   'Coordinating additional care or specialist referrals if needed',
+]
+
+const insuranceHighlightItems = [
+  {
+    label: 'Routine care',
+    text: 'Wellness visits and preventive screenings',
+  },
+  {
+    label: 'Ongoing care',
+    text: 'Chronic condition management and follow-up',
+  },
+  {
+    label: 'When needed',
+    text: 'Non-emergency sick visits and care coordination',
+  },
 ]
 
 function InsuranceBasedPrimaryCare() {
@@ -129,6 +145,25 @@ function InsuranceBasedPrimaryCare() {
           </motion.div>
         </div>
       </section>
+
+      <ProgramHighlightSection
+        eyebrow="INSURANCE-BASED PRIMARY CARE"
+        title={
+          <>
+            Traditional primary care using your <span className="text-ht-cyan-700">accepted insurance</span> plan
+          </>
+        }
+        description="Insurance-based primary care supports routine visits, preventive care, chronic disease management, and non-emergency medical concerns through accepted insurance plans."
+        bullets={[
+          'Preventive exams, screenings, and wellness visits',
+          'Chronic disease management and follow-up care',
+          'Acute visits for non-emergency medical concerns',
+        ]}
+        buttonLabel="View Accepted Insurance"
+        buttonTo="/insurance"
+        rightTitle="Care through insurance"
+        rightItems={insuranceHighlightItems}
+      />
 
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <SectionHeader

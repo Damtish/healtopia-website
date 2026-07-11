@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import Button from '../components/Button'
 import FAQAccordion from '../components/FAQAccordion'
+import ProgramHighlightSection from '../components/ProgramHighlightSection'
 import SectionHeader from '../components/SectionHeader'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
@@ -58,6 +59,21 @@ const whoBenefits = [
   'Small business owners',
   'Self-employed professionals',
   'Patients who want a stronger relationship with their doctor',
+]
+
+const dpcHighlightItems = [
+  {
+    label: 'Start',
+    text: 'Free initial consultation and membership review',
+  },
+  {
+    label: 'Ongoing',
+    text: 'Preventive care, sick visits, and chronic care support',
+  },
+  {
+    label: 'Long term',
+    text: 'A stronger relationship with your care team',
+  },
 ]
 
 const faqs = [
@@ -137,6 +153,25 @@ function DirectPrimaryCare() {
           </div>
         </div>
       </section>
+
+      <ProgramHighlightSection
+        eyebrow="DIRECT PRIMARY CARE"
+        title={
+          <>
+            Simpler primary care with more time and <span className="text-ht-cyan-700">direct access</span>
+          </>
+        }
+        description="Direct Primary Care is a membership-based model designed to make routine primary care more personal, accessible, and transparent."
+        bullets={[
+          'Predictable monthly membership pricing',
+          'Longer visits focused on your full health story',
+          'Direct communication and easier follow-up',
+        ]}
+        buttonLabel="View DPC Pricing"
+        buttonTo="/pricing"
+        rightTitle="What patients can expect"
+        rightItems={dpcHighlightItems}
+      />
 
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <SectionHeader
