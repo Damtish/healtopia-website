@@ -13,7 +13,7 @@ import FAQAccordion from '../components/FAQAccordion'
 import ProgramHighlightSection from '../components/ProgramHighlightSection'
 import SectionHeader from '../components/SectionHeader'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
-import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
+import { getCardHover, getEntranceProps, getRevealProps } from '../lib/motion'
 
 const includedBenefits = [
   'Priority appointments usually within 24–48 hours',
@@ -184,7 +184,7 @@ function DirectPrimaryCare() {
           description="Your Direct Primary Care membership includes a wide range of primary care services, including:"
         />
         <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {includedBenefits.map((item, index) => (
+          {includedBenefits.map((item) => (
             <div
               key={item}
               className="flex items-start gap-3 rounded-2xl border border-ht-silver bg-white p-5 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)]"

@@ -19,15 +19,13 @@ import Button from '../components/Button'
 import AppointmentCTA from '../components/AppointmentCTA'
 import ProgramHighlightSection from '../components/ProgramHighlightSection'
 import SectionHeader from '../components/SectionHeader'
-import ServiceCard from '../components/ServiceCard'
 import ProviderCard from '../components/ProviderCard'
 import PricingCard from '../components/PricingCard'
-import services, { serviceIconMap } from '../data/services'
 import pricingPlans from '../data/pricing'
 import insuranceLogos from '../data/insurance'
 import { testimonials } from '../data/testimonials'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
-import { getCardHover, getStaggerContainer, getStaggerItem } from '../lib/motion'
+import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
 const trustItems = [
   'Direct Primary Care',
@@ -192,6 +190,7 @@ const careHighlights = [
 function Home() {
   const reduceMotion = useReducedMotion()
   const [isDesktopFloat, setIsDesktopFloat] = useState(false)
+  const shouldFloatHero = isDesktopFloat && !reduceMotion
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 1024px)')
@@ -209,40 +208,35 @@ function Home() {
 
   return (
     <div>
-      <section className="border-b border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50">
+      <motion.section
+        className="border-b border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50"
+        {...getRevealProps(reduceMotion, { y: 18, duration: 0.65, amount: 0.16 })}
+      >
         <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 pb-16 pt-20 sm:px-6 sm:pb-20 sm:pt-16 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
           <div>
             <motion.p
               className="mb-4 inline-flex rounded-full bg-cyan-100 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-ht-navy-700"
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease: 'easeOut', delay: 0.03 }}
+              {...getEntranceProps(reduceMotion, { y: 14, duration: 0.5, delay: 0.03 })}
             >
               Gambrills, Maryland
             </motion.p>
             <motion.h1
               className="text-4xl font-extrabold leading-tight tracking-tight text-ht-navy md:text-5xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.12 }}
+              {...getEntranceProps(reduceMotion, { y: 18, duration: 0.6, delay: 0.1 })}
             >
               Compassionate Primary Care & <span className="text-ht-cyan-700">Medical Weight Loss</span> in Gambrills,
               MD
             </motion.h1>
             <motion.p
               className="mt-5 max-w-xl text-base leading-relaxed text-ht-gray md:text-lg"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.22 }}
+              {...getEntranceProps(reduceMotion, { y: 18, duration: 0.55, delay: 0.18 })}
             >
               Personalized, accessible care designed around your health, lifestyle, and long-term wellness.
             </motion.p>
 
             <motion.div
               className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease: 'easeOut', delay: 0.32 }}
+              {...getEntranceProps(reduceMotion, { y: 16, duration: 0.5, delay: 0.26 })}
             >
               <Button
                 href={BOOK_APPOINTMENT_URL}
@@ -266,14 +260,27 @@ function Home() {
 
           <motion.div
             className="relative"
-            initial={{ opacity: 0, y: 28, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.08, ease: 'easeOut' }}
+            initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.98 }}
+            animate={
+              reduceMotion
+                ? { opacity: 1, y: 0, scale: 1 }
+                : shouldFloatHero
+                  ? { opacity: 1, y: [0, -5, 0], scale: 1 }
+                  : { opacity: 1, y: 0, scale: 1 }
+            }
+            transition={
+              reduceMotion
+                ? { duration: 0 }
+                : shouldFloatHero
+                  ? { duration: 7, repeat: Infinity, ease: 'easeInOut' }
+                  : { duration: 0.7, delay: 0.08, ease: 'easeOut' }
+            }
           >
             <motion.div
               className="overflow-hidden rounded-[2rem] border border-cyan-200/90 bg-gradient-to-br from-cyan-100 via-ht-soft-blue to-white p-3 shadow-[0_24px_60px_-26px_rgba(12,174,200,0.5)]"
-              animate={isDesktopFloat ? { y: [0, -6, 0] } : { y: 0 }}
-              transition={isDesktopFloat ? { duration: 6.5, repeat: Infinity, ease: 'easeInOut' } : { duration: 0 }}
+              initial={false}
+              animate={shouldFloatHero ? { y: [0, -6, 0] } : { y: 0 }}
+              transition={shouldFloatHero ? { duration: 6.5, repeat: Infinity, ease: 'easeInOut' } : { duration: 0 }}
             >
               <div className="relative h-[330px] overflow-hidden rounded-[1.4rem] border border-cyan-100 bg-white sm:h-[360px] md:h-auto md:aspect-[4/3]">
                 <img
@@ -289,10 +296,7 @@ function Home() {
                 <motion.div
                   key={`mobile-${item}`}
                   className="flex items-center gap-2 rounded-xl border border-cyan-100 bg-white px-3 py-2 text-xs font-semibold text-ht-navy shadow-[0_10px_22px_-16px_rgba(5,42,74,0.45)]"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.6 }}
-                  transition={{ duration: 0.28, delay: 0.08 + index * 0.08 }}
+                  {...getRevealProps(reduceMotion, { y: 12, duration: 0.35, delay: 0.06 + index * 0.06, amount: 0.25 })}
                 >
                   <BadgeCheck size={14} className="text-ht-cyan-700" />
                   {item}
@@ -305,10 +309,7 @@ function Home() {
                 <motion.div
                   key={item}
                   className="flex items-center gap-2 rounded-xl border border-ht-silver bg-white/95 px-3 py-2 text-xs font-semibold text-ht-navy shadow-md"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.3, delay: 0.1 + index * 0.08 }}
+                  {...getRevealProps(reduceMotion, { y: 12, duration: 0.35, delay: 0.08 + index * 0.06, amount: 0.2 })}
                 >
                   <BadgeCheck size={14} className="text-ht-cyan-700" />
                   {item}
@@ -317,9 +318,9 @@ function Home() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="border-b border-ht-silver bg-white">
+      <motion.section className="border-b border-ht-silver bg-white" {...getRevealProps(reduceMotion, { y: 16, duration: 0.5, amount: 0.2 })}>
         <div className="mx-auto grid w-full max-w-7xl gap-4 px-4 py-8 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
           {[
             { label: 'Compassion-first model', icon: HeartIcon },
@@ -340,11 +341,12 @@ function Home() {
             </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
-      <section
+      <motion.section
         id="care-options"
         className="scroll-mt-28 mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
+        {...getRevealProps(reduceMotion, { y: 18, duration: 0.6, amount: 0.18 })}
       >
         <SectionHeader
           title={
@@ -379,9 +381,12 @@ function Home() {
             </motion.article>
           ))}
         </motion.div>
-      </section>
+      </motion.section>
 
-      <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
+      <motion.section
+        className="border-y border-ht-silver bg-white py-16 lg:py-20"
+        {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}
+      >
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Why Healtopia"
@@ -405,9 +410,12 @@ function Home() {
             ))}
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <motion.section
+        className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
+        {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}
+      >
         <SectionHeader
           eyebrow="Meet Your Providers"
           title="Care led by the Healtopia clinical team"
@@ -422,7 +430,7 @@ function Home() {
           />
           <ProviderCard name="Malefiya Kenea, FNP-C" title="Family Nurse Practitioner" delay={0.1} />
         </div>
-      </section>
+      </motion.section>
 
       {careHighlights.map((section) => (
         <ProgramHighlightSection
@@ -439,14 +447,12 @@ function Home() {
         />
       ))}
 
-      <section className="border-y border-ht-silver bg-gradient-to-br from-cyan-50 via-white to-ht-soft-blue py-16 lg:py-20">
+      <motion.section
+        className="border-y border-ht-silver bg-gradient-to-br from-cyan-50 via-white to-ht-soft-blue py-16 lg:py-20"
+        {...getRevealProps(reduceMotion, { y: 18, duration: 0.58, amount: 0.16 })}
+      >
         <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5 }}
-          >
+          <motion.div {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.22 })}>
             <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ht-navy-700">
               Medical Weight Loss
             </p>
@@ -478,10 +484,7 @@ function Home() {
 
           <motion.div
             className="rounded-3xl border border-ht-silver bg-white p-8 shadow-lg"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.22, delay: 0.08 })}
           >
             <h3 className="text-lg font-bold text-ht-navy">Typical program milestones</h3>
             <div className="mt-5 space-y-4">
@@ -500,9 +503,12 @@ function Home() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <motion.section
+        className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
+        {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}
+      >
         <SectionHeader
           eyebrow="Simple Pricing"
           title="Transparent care options"
@@ -513,15 +519,21 @@ function Home() {
             <PricingCard key={plan.id} {...plan} delay={index * 0.08} />
           ))}
         </div>
-      </section>
+      </motion.section>
 
-      <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
+      <motion.section
+        className="border-y border-ht-silver bg-white py-16 lg:py-20"
+        {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}
+      >
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <TestimonialCarousel items={testimonials} reduceMotion={reduceMotion} />
         </div>
-      </section>
+      </motion.section>
 
-      <section className="overflow-hidden border-y border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue/55 to-cyan-50 py-14 lg:py-16">
+      <motion.section
+        className="overflow-hidden border-y border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue/55 to-cyan-50 py-14 lg:py-16"
+        {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}
+      >
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             title={
@@ -572,11 +584,14 @@ function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <motion.section
+        className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
+        {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.18 })}
+      >
         <AppointmentCTA />
-      </section>
+      </motion.section>
     </div>
   )
 }
@@ -607,10 +622,7 @@ function TestimonialCarousel({ items, reduceMotion }) {
   }, [])
 
   const pageCount = Math.max(1, Math.ceil(items.length / visibleCount))
-
-  useEffect(() => {
-    setActivePage((current) => Math.min(current, pageCount - 1))
-  }, [pageCount])
+  const safeActivePage = Math.min(activePage, pageCount - 1)
 
   useEffect(() => {
     if (reduceMotion || isPaused || pageCount <= 1) return undefined
@@ -697,7 +709,7 @@ function TestimonialCarousel({ items, reduceMotion }) {
       <div className="relative overflow-hidden">
         <motion.div
           className="flex"
-          animate={reduceMotion ? { x: 0 } : { x: `-${activePage * 100}%` }}
+          animate={reduceMotion ? { x: 0 } : { x: `-${safeActivePage * 100}%` }}
           transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeInOut' }}
         >
           {Array.from({ length: pageCount }).map((_, pageIndex) => {
@@ -792,10 +804,10 @@ function TestimonialCarousel({ items, reduceMotion }) {
             type="button"
             onClick={() => setActivePage(pageIndex)}
             className={`h-2.5 rounded-full transition-all duration-300 ${
-              pageIndex === activePage ? 'w-7 bg-ht-cyan-700' : 'w-2.5 bg-cyan-200 hover:bg-cyan-300'
+              pageIndex === safeActivePage ? 'w-7 bg-ht-cyan-700' : 'w-2.5 bg-cyan-200 hover:bg-cyan-300'
             }`}
             aria-label={`Go to testimonial group ${pageIndex + 1}`}
-            aria-pressed={pageIndex === activePage}
+            aria-pressed={pageIndex === safeActivePage}
           />
         ))}
       </div>

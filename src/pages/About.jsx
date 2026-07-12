@@ -1,34 +1,29 @@
-import { motion, useReducedMotion } from 'framer-motion'
-import { Activity, Award, Heart, ShieldCheck, Star, Users } from 'lucide-react'
+﻿import { motion, useReducedMotion } from 'framer-motion'
+import { Activity, Heart, ShieldCheck, Users } from 'lucide-react'
 import Button from '../components/Button'
 import AppointmentCTA from '../components/AppointmentCTA'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
-const values = [
+const expectations = [
   {
-    title: 'Compassion',
-    description: 'We treat every patient with kindness, empathy, and respect.',
+    title: 'Time to listen',
+    description: 'We take time to understand your concerns, answer questions, and explain your options clearly.',
     icon: Heart,
   },
   {
-    title: 'Trust',
-    description: 'We believe strong healthcare begins with honest communication and lasting relationships.',
+    title: 'Personalized care plans',
+    description: 'Your care plan is guided by your health history, goals, lifestyle, and ongoing needs.',
     icon: ShieldCheck,
   },
   {
-    title: 'Excellence',
-    description: 'We are committed to high-quality, evidence-based care.',
-    icon: Award,
-  },
-  {
-    title: 'Prevention',
-    description: 'We focus on helping patients protect their long-term health.',
+    title: 'Prevention-focused care',
+    description: 'We help patients stay proactive through wellness visits, screenings, chronic care support, and education.',
     icon: Activity,
   },
   {
-    title: 'Patient-Centered Care',
-    description: "We design care around each patient's needs, goals, and life.",
+    title: 'Support beyond the visit',
+    description: 'Our team focuses on follow-up, care coordination, and helping patients feel informed every step of the way.',
     icon: Users,
   },
 ]
@@ -123,6 +118,43 @@ function About() {
         </div>
       </section>
 
+      <motion.section
+        className="border-b border-ht-silver bg-white py-16 lg:py-20"
+        {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.18 })}
+      >
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AboutSectionHeader
+            eyebrow="WHAT TO EXPECT"
+            title={
+              <>
+                Care that feels <span className="text-ht-cyan-700">personal, clear, and connected</span>
+              </>
+            }
+            description="At Healtopia, every visit is designed around listening, communication, and long-term wellness."
+          />
+
+          <motion.div
+            className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
+            {...getStaggerContainer(reduceMotion, { staggerChildren: 0.07, amount: 0.2 })}
+          >
+            {expectations.map((item) => (
+              <motion.article
+                key={item.title}
+                className="flex h-full flex-col rounded-2xl border border-ht-silver bg-ht-soft-blue/20 px-5 py-5 shadow-[0_16px_34px_-30px_rgba(5,42,74,0.45)]"
+                {...getStaggerItem(reduceMotion, { y: 16 })}
+                {...getCardHover(reduceMotion)}
+              >
+                <div className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100">
+                  <item.icon size={18} />
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-ht-navy">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ht-gray">{item.description}</p>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
       <section className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
         <AboutSectionHeader
           eyebrow="Providers"
@@ -137,7 +169,7 @@ function About() {
           {providers.map((provider) => (
             <motion.article
               key={provider.name}
-              className="overflow-hidden rounded-[1.75rem] border border-ht-silver bg-white shadow-[0_18px_42px_-34px_rgba(5,42,74,0.42)]"
+              className="flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-ht-silver bg-white shadow-[0_18px_42px_-34px_rgba(5,42,74,0.42)]"
               {...getStaggerItem(reduceMotion, { y: 20 })}
               {...getCardHover(reduceMotion)}
             >
@@ -150,32 +182,20 @@ function About() {
                 />
               </div>
 
-              <div className="p-5 sm:p-6">
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
                 <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
                   Provider
                 </p>
                 <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-ht-navy">{provider.name}</h3>
                 <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-ht-cyan-700">{provider.role}</p>
 
-                <p className="mt-4 max-w-xl text-sm leading-relaxed text-ht-gray">{provider.shortBio}</p>
+                <div className="mt-4 space-y-4 text-sm leading-relaxed text-ht-gray md:text-base">
+                  {provider.fullBio.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
 
-                <details className="group mt-4">
-                  <summary className="cursor-pointer list-none text-sm font-semibold text-ht-cyan-700 transition hover:text-ht-cyan-800">
-                    <span className="inline-flex items-center gap-2">
-                      Read full bio
-                      <span className="transition-transform group-open:rotate-180" aria-hidden="true">
-                        ▾
-                      </span>
-                    </span>
-                  </summary>
-                  <div className="mt-4 space-y-4 text-sm leading-relaxed text-ht-gray">
-                    {provider.fullBio.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
-                    ))}
-                  </div>
-                </details>
-
-                <div className="mt-5 flex flex-wrap gap-2">
+                <div className="mt-auto flex flex-wrap gap-2 pt-5">
                   {provider.tags.map((tag) => (
                     <span
                       key={tag}

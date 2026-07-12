@@ -5,11 +5,8 @@ import {
   ClipboardList,
   Dna,
   HeartPulse,
-  Scale,
-  ShieldCheck,
   Stethoscope,
   Syringe,
-  UserRound,
 } from 'lucide-react'
 import Button from '../components/Button'
 import FAQAccordion from '../components/FAQAccordion'
