@@ -30,6 +30,10 @@ const mobileNavLinks = [
 function Header({ mobileOpen, setMobileOpen }) {
   const { pathname } = useLocation()
   const reduceMotion = useReducedMotion()
+  const aboutHeaderClassName =
+    pathname === '/about'
+      ? 'sticky top-0 z-[1000] border-b border-ht-silver/90 bg-white'
+      : 'sticky top-0 z-50 border-b border-ht-silver/90 bg-white/92 backdrop-blur'
   const scrollPositionRef = useRef(0)
   const skipScrollRestoreRef = useRef(false)
   const mobileMenuRef = useRef(null)
@@ -121,7 +125,7 @@ function Header({ mobileOpen, setMobileOpen }) {
 
   return (
     <motion.header
-      className="sticky top-0 z-50 border-b border-ht-silver/90 bg-white/92 backdrop-blur"
+      className={aboutHeaderClassName}
       {...getEntranceProps(reduceMotion, { y: -14, duration: 0.45 })}
     >
       <div className="mx-auto flex h-[4.7rem] w-full max-w-7xl items-center justify-between gap-3 px-5 sm:px-6 min-[1200px]:grid min-[1200px]:grid-cols-[auto_minmax(0,1fr)_auto] min-[1200px]:px-8">

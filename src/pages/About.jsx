@@ -383,14 +383,14 @@ function GalleryCard({ item, reduceMotion, className = '' }) {
         <motion.img
           src={item.src}
           alt={item.alt}
-          className={`ht-motion-smooth h-full w-full object-cover ${item.objectPosition || 'object-center'} group-hover:scale-[1.03]`}
+          className={`ht-motion-smooth h-full w-full object-cover ${item.objectPosition || 'object-center'} filter-none opacity-100 group-hover:scale-[1.03]`}
           loading="lazy"
           initial={reduceMotion ? false : { scale: 1 }}
           animate={reduceMotion ? { scale: 1 } : { scale: 1 }}
           transition={reduceMotion ? { duration: 0 } : { duration: 0.3, ease: 'easeOut' }}
         />
       </div>
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0)_45%,rgba(2,6,23,0.18)_60%,rgba(2,6,23,0.8)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(8,29,58,0.78)_0%,rgba(8,29,58,0.32)_35%,rgba(8,29,58,0)_65%)]" />
       <div className="clinic-gallery-label pointer-events-none">
         <small>{item.label}</small>
         <strong>{item.title}</strong>
@@ -406,34 +406,41 @@ function AboutClinicGallery({ reduceMotion }) {
         <motion.div className="flex min-h-0 flex-col" {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}>
           <div className="clinic-header">
             <SectionEyebrow>INSIDE OUR CLINIC</SectionEyebrow>
-            <h2 className="mt-4 text-[clamp(2rem,2.8vw,3.4rem)] font-extrabold leading-[1.05] tracking-tight text-ht-navy">
-              A clinic designed around <span className="text-ht-cyan-700">your comfort</span>
+            <h2 className="mt-4 text-[clamp(1.95rem,2.55vw,3.05rem)] font-extrabold leading-[1.06] tracking-tight text-ht-navy">
+              Care that begins in a <span className="text-ht-cyan-700">calm, welcoming space</span>
             </h2>
-            <p className="mt-4 max-w-[780px] text-[clamp(1rem,1.25vw,1.25rem)] leading-[1.5] text-ht-gray">
+            <p className="mt-4 max-w-[780px] text-[clamp(0.98rem,1.1vw,1.16rem)] leading-[1.5] text-ht-gray">
               Bright, modern spaces designed to make every visit feel calm, comfortable, and welcoming.
             </p>
           </div>
 
-          <div className="clinic-gallery mt-[clamp(18px,1.8vw,26px)] hidden lg:grid">
+          <div className="clinic-gallery mt-[clamp(16px,1.5vw,22px)] hidden min-[1024px]:grid">
             <GalleryCard
               item={clinicGalleryItems[0]}
               reduceMotion={reduceMotion}
               className="clinic-gallery-main"
             />
-            <div className="clinic-gallery-side">
-              <GalleryCard item={clinicGalleryItems[1]} reduceMotion={reduceMotion} className="clinic-gallery-item" />
-              <GalleryCard item={clinicGalleryItems[2]} reduceMotion={reduceMotion} className="clinic-gallery-item" />
-              <GalleryCard item={clinicGalleryItems[3]} reduceMotion={reduceMotion} className="clinic-gallery-item" />
+            <div className="clinic-gallery-right">
+              <GalleryCard item={clinicGalleryItems[1]} reduceMotion={reduceMotion} className="clinic-gallery-item clinic-gallery-right-top" />
+              <GalleryCard item={clinicGalleryItems[2]} reduceMotion={reduceMotion} className="clinic-gallery-item clinic-gallery-right-top" />
+              <GalleryCard item={clinicGalleryItems[3]} reduceMotion={reduceMotion} className="clinic-gallery-item clinic-gallery-right-bottom" />
             </div>
           </div>
 
-          <div className="clinic-gallery-mobile mt-[clamp(18px,1.8vw,26px)] grid gap-3 lg:hidden" aria-label="Inside our clinic gallery">
-            <GalleryCard item={clinicGalleryItems[0]} reduceMotion={reduceMotion} className="clinic-gallery-main-mobile" />
-            <div className="grid gap-3 sm:grid-cols-2">
-              <GalleryCard item={clinicGalleryItems[1]} reduceMotion={reduceMotion} className="clinic-gallery-item-mobile" />
-              <GalleryCard item={clinicGalleryItems[2]} reduceMotion={reduceMotion} className="clinic-gallery-item-mobile" />
-              <GalleryCard item={clinicGalleryItems[3]} reduceMotion={reduceMotion} className="clinic-gallery-item-mobile sm:col-span-2" />
+          <div className="clinic-gallery-tablet mt-[clamp(16px,1.5vw,22px)] hidden grid-cols-1 gap-3 min-[1024px]:hidden md:grid lg:hidden" aria-label="Inside our clinic gallery">
+            <GalleryCard item={clinicGalleryItems[0]} reduceMotion={reduceMotion} className="clinic-gallery-tablet-main aspect-[16/9]" />
+            <div className="clinic-gallery-tablet-grid grid grid-cols-2 gap-3">
+              <GalleryCard item={clinicGalleryItems[1]} reduceMotion={reduceMotion} className="clinic-gallery-item clinic-gallery-tablet-item" />
+              <GalleryCard item={clinicGalleryItems[2]} reduceMotion={reduceMotion} className="clinic-gallery-item clinic-gallery-tablet-item" />
+              <GalleryCard item={clinicGalleryItems[3]} reduceMotion={reduceMotion} className="clinic-gallery-item clinic-gallery-tablet-hallway col-span-2" />
             </div>
+          </div>
+
+          <div className="clinic-gallery-mobile mt-[clamp(16px,1.5vw,22px)] grid grid-cols-1 gap-3 md:hidden" aria-label="Inside our clinic gallery">
+            <GalleryCard item={clinicGalleryItems[0]} reduceMotion={reduceMotion} className="clinic-gallery-main-mobile aspect-[4/3]" />
+            <GalleryCard item={clinicGalleryItems[1]} reduceMotion={reduceMotion} className="clinic-gallery-item-mobile aspect-[4/3]" />
+            <GalleryCard item={clinicGalleryItems[2]} reduceMotion={reduceMotion} className="clinic-gallery-item-mobile aspect-[4/3]" />
+            <GalleryCard item={clinicGalleryItems[3]} reduceMotion={reduceMotion} className="clinic-gallery-item-mobile aspect-[4/3]" />
           </div>
         </motion.div>
       </div>
@@ -689,8 +696,12 @@ function About() {
 
         .provider-profile--malefiya {
           display: grid;
-          grid-template-rows: 150px 1fr;
+          grid-template-columns: minmax(210px, 0.39fr) minmax(0, 0.61fr);
           overflow: hidden;
+        }
+
+        .provider-profile--malefiya .provider-description {
+          max-width: none;
         }
 
         .provider-profile--malefiya .provider-profile__content {
@@ -850,12 +861,8 @@ function About() {
             gap: 18px;
           }
 
-          .provider-profile--gashaw {
-            grid-template-columns: minmax(180px, 0.34fr) minmax(0, 0.66fr);
-          }
-
           .provider-profile--malefiya {
-            grid-template-rows: 136px 1fr;
+            grid-template-columns: minmax(180px, 0.39fr) minmax(0, 0.61fr);
           }
 
           .provider-profile__portrait {
@@ -912,34 +919,34 @@ function About() {
         .clinic-container {
           width: min(1660px, calc(100% - 9vw));
           margin: 0 auto;
-          padding: clamp(28px, 3vw, 46px) 0;
+          padding: clamp(24px, 2.5vw, 38px) 0;
         }
 
         .clinic-header {
           max-width: 1120px;
-          margin-bottom: clamp(22px, 2vw, 32px);
+          margin-bottom: clamp(18px, 1.8vw, 26px);
         }
 
         .clinic-header h2 {
-          margin: 12px 0 12px;
+          margin: 10px 0 10px;
           color: #102b50;
-          font-size: clamp(2.45rem, 3.3vw, 4rem);
-          line-height: 1.02;
-          letter-spacing: -0.045em;
+          font-size: clamp(1.95rem, 2.55vw, 3.05rem);
+          line-height: 1.06;
+          letter-spacing: -0.035em;
         }
 
         .clinic-header p {
           margin: 0;
           color: #607894;
-          font-size: clamp(1rem, 1.15vw, 1.25rem);
+          font-size: clamp(0.98rem, 1.1vw, 1.16rem);
           line-height: 1.45;
         }
 
         .clinic-gallery {
           display: grid;
           grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-          gap: 22px;
-          height: clamp(360px, 42vw, 430px);
+          gap: 18px;
+          height: clamp(340px, 38vw, 404px);
         }
 
         .clinic-gallery-main,
@@ -976,11 +983,16 @@ function About() {
           object-position: center 52%;
         }
 
-        .clinic-gallery-side {
+        .clinic-gallery-right {
           display: grid;
-          grid-template-rows: repeat(3, minmax(0, 1fr));
-          gap: 22px;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-rows: repeat(2, minmax(0, 1fr));
+          gap: 18px;
           min-height: 0;
+        }
+
+        .clinic-gallery-right-bottom {
+          grid-column: 1 / -1;
         }
 
         .clinic-gallery-label {
@@ -989,7 +1001,8 @@ function About() {
           z-index: 2;
           padding: 48px 26px 22px;
           color: white;
-          background: linear-gradient(to top, rgba(5, 22, 42, 0.82), rgba(5, 22, 42, 0));
+          background: linear-gradient(to top, rgba(8, 29, 58, 0.28) 0%, rgba(8, 29, 58, 0.1) 36%, rgba(8, 29, 58, 0) 68%);
+          text-shadow: 0 1px 2px rgba(4, 15, 29, 0.42);
         }
 
         .clinic-gallery-label small {
@@ -1037,7 +1050,7 @@ function About() {
           }
         }
 
-        @media (max-width: 980px) {
+        @media (min-width: 768px) and (max-width: 1023px) {
           .clinic-container {
             width: min(100% - 34px, 850px);
           }
@@ -1046,38 +1059,62 @@ function About() {
             display: none;
           }
 
-          .clinic-gallery-mobile {
+          .clinic-gallery-tablet {
             display: grid;
             height: auto;
             grid-template-columns: 1fr;
             gap: 14px;
           }
 
-          .clinic-gallery-main-mobile {
-            aspect-ratio: 16 / 10;
-          }
-
-          .clinic-gallery-item-mobile {
+          .clinic-gallery-tablet-main {
             aspect-ratio: 16 / 9;
           }
-        }
 
-        @media (max-width: 620px) {
-          .clinic-container {
-            width: min(100% - 24px, 580px);
-            padding-block: 34px;
+          .clinic-gallery-tablet-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
           }
 
-          .clinic-gallery-main-mobile {
+          .clinic-gallery-tablet-item {
             aspect-ratio: 4 / 3;
           }
 
-          .clinic-gallery-item-mobile {
+          .clinic-gallery-tablet-hallway {
+            grid-column: 1 / -1;
             aspect-ratio: 16 / 10;
           }
 
           .clinic-gallery-label {
             padding: 40px 18px 16px;
+          }
+        }
+
+        @media (max-width: 767px) {
+          .clinic-container {
+            width: min(100% - 24px, 580px);
+            padding-block: 30px;
+          }
+
+          .clinic-header {
+            margin-bottom: 18px;
+          }
+
+          .clinic-gallery-tablet {
+            display: none;
+          }
+
+          .clinic-gallery-mobile {
+            gap: 12px;
+          }
+
+          .clinic-gallery-main-mobile,
+          .clinic-gallery-item-mobile {
+            aspect-ratio: 4 / 3;
+          }
+
+          .clinic-gallery-label {
+            padding: 38px 18px 16px;
           }
         }
 
@@ -1126,7 +1163,7 @@ function About() {
           }
 
           .provider-profile--malefiya {
-            grid-template-columns: minmax(190px, 0.35fr) minmax(0, 0.65fr);
+            grid-template-columns: minmax(190px, 0.39fr) minmax(0, 0.61fr);
           }
         }
 
