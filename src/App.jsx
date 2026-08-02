@@ -18,17 +18,29 @@ import Contact from './pages/Contact'
 import { BOOK_APPOINTMENT_URL } from './constants/links'
 
 function ScrollToTop() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
 
   useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '')
+      const element = document.getElementById(id)
+
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        return
+      }
+    }
+
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-  }, [pathname])
+  }, [pathname, hash])
 
   return null
 }
 
 function AppLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { pathname } = useLocation()
+  const hideMobileQuickActions = pathname === '/about'
 
   return (
     <div className="min-h-screen bg-ht-light text-ht-navy antialiased">
@@ -40,31 +52,33 @@ function AppLayout() {
       </main>
       <Footer />
 
-      <div
-        className={`fixed inset-x-0 bottom-4 z-40 px-4 md:hidden ${mobileMenuOpen ? 'hidden' : ''}`}
-        aria-label="Mobile quick actions"
-      >
-        <div className="mx-auto flex max-w-md items-center gap-3 rounded-full border border-ht-silver bg-white/95 p-2 shadow-xl backdrop-blur-sm">
-          <Button
-            href={BOOK_APPOINTMENT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full text-sm"
-            ariaLabel="Book appointment"
-          >
-            Book Appointment
-          </Button>
-          <Button
-            href="tel:+14105550199"
-            variant="secondary"
-            className="w-full text-sm"
-            ariaLabel="Call Healtopia"
-          >
-            <Phone size={16} />
-            Call
-          </Button>
+      {!hideMobileQuickActions ? (
+        <div
+          className={`fixed inset-x-0 bottom-4 z-40 px-4 md:hidden ${mobileMenuOpen ? 'hidden' : ''}`}
+          aria-label="Mobile quick actions"
+        >
+          <div className="mx-auto flex max-w-md items-center gap-3 rounded-full border border-ht-silver bg-white/95 p-2 shadow-xl backdrop-blur-sm">
+            <Button
+              href={BOOK_APPOINTMENT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full text-sm"
+              ariaLabel="Book appointment"
+            >
+              Book Appointment
+            </Button>
+            <Button
+              href="tel:+14105550199"
+              variant="secondary"
+              className="w-full text-sm"
+              ariaLabel="Call Healtopia"
+            >
+              <Phone size={16} />
+              Call
+            </Button>
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   )
 }

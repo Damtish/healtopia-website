@@ -7,6 +7,14 @@ function Insurance() {
 
   return (
     <div>
+      <style>{`
+        @media (max-width: 360px) {
+          .insurance-logo-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem;
+          }
+        }
+      `}</style>
       <section className="border-b border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50">
         <div className="mx-auto w-full max-w-7xl px-4 pb-16 pt-24 sm:px-6 lg:px-8 lg:pb-20 lg:pt-28">
           <motion.p
@@ -41,7 +49,7 @@ function Insurance() {
           </p>
 
           <motion.div
-            className="mx-auto mt-7 grid max-w-4xl grid-cols-2 items-center justify-items-center gap-x-7 gap-y-6 md:grid-cols-3 lg:grid-cols-3"
+            className="insurance-logo-grid mx-auto mt-7 grid max-w-4xl grid-cols-2 items-center justify-items-center gap-x-7 gap-y-6 md:grid-cols-3 lg:grid-cols-3"
             {...getStaggerContainer(reduceMotion, { staggerChildren: 0.03, amount: 0.12 })}
           >
             {insuranceLogos.map((plan) => (

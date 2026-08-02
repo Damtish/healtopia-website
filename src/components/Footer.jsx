@@ -61,7 +61,7 @@ function Footer() {
                   410-774-6678
                 </a>
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex rounded-full bg-cyan-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-ht-navy-700">
+                  <span className="ht-eyebrow rounded-full bg-cyan-100 px-2 py-0.5 text-ht-navy-700">
                     Fax
                   </span>
                   <a href="tel:+14108477890" className="block transition hover:text-ht-navy">

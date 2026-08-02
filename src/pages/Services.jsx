@@ -18,7 +18,7 @@ function Services() {
           <motion.h1 className="mt-4 max-w-3xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl" {...getEntranceProps(reduceMotion, { y: 20, delay: 0.1 })}>
             Comprehensive care designed for your full health <span className="text-ht-cyan-700">journey</span>
           </motion.h1>
-          <motion.p className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg" {...getEntranceProps(reduceMotion, { y: 20, delay: 0.2 })}>
+          <motion.p className="ht-body ht-text-width-hero mt-5 text-ht-gray" {...getEntranceProps(reduceMotion, { y: 20, delay: 0.2 })}>
             Explore our core services for preventive care, chronic condition support, telehealth, and medically guided
             weight management.
           </motion.p>
@@ -54,8 +54,8 @@ function Services() {
         >
           <div className="overflow-hidden rounded-2xl">
             <img
-              src="/images/clinic/exam-room-wide.jpg"
-              alt="Healtopia exam room"
+              src="/images/clinic/examination-room.png"
+              alt="Healtopia examination room"
               className="h-56 w-full object-cover object-center sm:h-64 lg:h-72"
               loading="lazy"
             />

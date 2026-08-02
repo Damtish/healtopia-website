@@ -6,14 +6,14 @@ function SectionHeader({ eyebrow, title, description, align = 'left' }) {
   const alignment = align === 'center' ? 'text-center mx-auto' : 'text-left'
 
   return (
-    <motion.div className={`max-w-2xl ${alignment}`} {...getRevealProps(reduceMotion, { y: 22, amount: 0.2 })}>
+    <motion.div className={`max-w-[48rem] ${alignment}`} {...getRevealProps(reduceMotion, { y: 22, amount: 0.2 })}>
       {eyebrow ? (
-        <p className="mb-3 inline-flex rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-ht-navy-700">
+        <p className="ht-eyebrow mb-3 bg-cyan-100 text-ht-navy-700">
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">{title}</h2>
-      {description ? <p className="mt-4 text-base leading-relaxed text-ht-gray md:text-lg">{description}</p> : null}
+      <h2 className="ht-heading-2">{title}</h2>
+      {description ? <p className="ht-body ht-text-width-section mt-4 text-ht-gray">{description}</p> : null}
     </motion.div>
   )
 }

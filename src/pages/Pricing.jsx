@@ -1,265 +1,508 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { Check, CircleDollarSign, CreditCard, Scale, ShieldCheck, Stethoscope, Users, Wallet } from 'lucide-react'
+import {
+  ArrowRight,
+  Check,
+  CircleDollarSign,
+  Scale,
+  ShieldCheck,
+  Stethoscope,
+  Wallet,
+} from 'lucide-react'
+import { Link } from 'react-router-dom'
+import Button from '../components/Button'
 import AppointmentCTA from '../components/AppointmentCTA'
+import { BOOK_APPOINTMENT_URL } from '../constants/links'
+import {
+  PAGE_BADGE,
+  PAGE_CONTAINER,
+  PAGE_HERO,
+  PAGE_ICON_CIRCLE,
+  PAGE_PANEL_GRADIENT,
+  PAGE_SECTION,
+  PAGE_SECTION_SOFT,
+} from '../lib/pageStyles'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
-const conciergeItems = [
-  { label: 'Annual membership:', amount: '$2000' },
-  { label: 'Six-month membership:', amount: '$1100' },
-  { label: 'Three-month membership:', amount: '$550' },
-  { label: 'Monthly membership:', amount: '$200' },
-]
-
-const weightLossItems = [
-  { label: 'Initial evaluation and consultation:', amount: '$300' },
-  { label: 'Follow-up visit every 4 weeks:', amount: '$75' },
-]
-
-const dpcRows = [
+const dpcPlans = [
   {
-    planType: 'Individual',
+    name: 'Individual',
     monthlyFee: '$75',
     enrollmentFee: '$100',
-    notes: 'Adults age 18-64',
+    notes: 'Adults age 18–64',
     badge: 'Popular',
   },
   {
-    planType: 'Individual + Spouse',
+    name: 'Individual + Spouse',
     monthlyFee: '$130',
     enrollmentFee: '$150',
     notes: 'Up to age 64',
     badge: 'Family option',
   },
-  { planType: 'Child Add-on', monthlyFee: '$50', enrollmentFee: 'N/A', notes: 'With enrolled parent(s)' },
-  { planType: 'Individual (65+)', monthlyFee: '$130', enrollmentFee: '$100', notes: 'Adults age 65 and above' },
+  {
+    name: 'Child Add-on',
+    monthlyFee: '$50',
+    enrollmentFee: 'N/A',
+    notes: 'With enrolled parent(s)',
+  },
+  {
+    name: 'Individual (65+)',
+    monthlyFee: '$130',
+    enrollmentFee: '$100',
+    notes: 'Adults age 65 and above',
+  },
 ]
 
-const pricingOverviewCards = [
+const conciergePricing = [
+  { label: 'Annual membership', amount: '$2000' },
+  { label: 'Six-month membership', amount: '$1100' },
+  { label: 'Three-month membership', amount: '$550' },
+  { label: 'Monthly membership', amount: '$200' },
+]
+
+const weightLossPricing = [
+  { label: 'Initial evaluation and consultation', amount: '$300' },
+  { label: 'Follow-up visit every 4 weeks', amount: '$75' },
+]
+
+const heroRows = [
   {
-    title: 'Transparent pricing',
-    description: 'Clear pricing helps patients understand their care options before they book.',
-    icon: Wallet,
+    icon: CircleDollarSign,
+    title: 'Membership care',
+    text: 'Transparent monthly options for patients who want direct primary care.',
   },
   {
-    title: 'Flexible care options',
-    description:
-      'Choose from membership-based care, insurance-based primary care, concierge medicine, and medical weight loss services.',
-    icon: Users,
+    icon: ShieldCheck,
+    title: 'Insurance-based care',
+    text: 'Traditional primary care visits through Medicare, Medicaid, most commercial plans, and self-pay.',
   },
   {
-    title: 'Insurance accepted',
-    description: 'Healtopia accepts many major insurance plans and also offers self-pay options.',
-    icon: CreditCard,
+    icon: Scale,
+    title: 'Medical weight loss',
+    text: 'Physician-guided support with clear pricing for visits and follow-up care.',
   },
 ]
+
+const trustIndicators = [
+  {
+    icon: Check,
+    label: 'Clear monthly fees',
+  },
+  {
+    icon: Check,
+    label: 'Multiple care options',
+  },
+  {
+    icon: Check,
+    label: 'Insurance and self-pay available',
+  },
+]
+
+const comparisonPlans = [
+  {
+    title: 'Direct Primary Care',
+    paymentModel: 'Monthly membership',
+    bestFor: 'Patients who want simpler primary care and easier access',
+    appointmentStyle: 'Unrushed, relationship-based primary care',
+    insuranceUse: 'Membership services are not billed to insurance',
+    mainBenefit: 'Predictable access with transparent pricing',
+    accent: 'Membership-based',
+  },
+  {
+    title: 'Concierge Medicine',
+    paymentModel: 'Membership / retainer',
+    bestFor: 'Patients seeking premium access and longer visits',
+    appointmentStyle: 'Personalized visits and priority scheduling when available',
+    insuranceUse: 'Membership fees are generally separate from insurance',
+    mainBenefit: 'Enhanced access and personalized support',
+    accent: 'Premium access',
+  },
+  {
+    title: 'Medical Weight Loss',
+    paymentModel: 'Visit-based program',
+    bestFor: 'Patients wanting physician-guided weight management',
+    appointmentStyle: 'Evaluation and follow-up visits with progress monitoring',
+    insuranceUse: 'Coverage varies by service, plan, and medical need',
+    mainBenefit: 'Structured treatment with clinical monitoring',
+    accent: 'Weight management',
+  },
+  {
+    title: 'Insurance-Based Care',
+    paymentModel: 'Insurance + self-pay',
+    bestFor: 'Patients who want traditional primary care visits',
+    appointmentStyle: 'Routine and problem-focused primary care visits',
+    insuranceUse: 'Accepts Medicare, Medicaid, and most commercial plans',
+    mainBenefit: 'Familiar coverage with flexible self-pay options',
+    accent: 'Traditional care',
+  },
+]
+
+function SectionEyebrow({ children }) {
+  return (
+    <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
+      {children}
+    </p>
+  )
+}
+
+function PricingPlanCard({ plan, index }) {
+  const reduceMotion = useReducedMotion()
+
+  return (
+    <motion.article
+      className="group flex h-full flex-col rounded-[2rem] border border-ht-silver bg-white p-5 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)] sm:p-6"
+      {...getStaggerItem(reduceMotion, { y: 20 })}
+      {...getCardHover(reduceMotion)}
+    >
+      <div className="border-t-2 border-cyan-300 pt-4">
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-gray">Plan {index + 1}</p>
+            <h3 className="mt-2 text-xl font-bold leading-tight text-ht-navy">{plan.name}</h3>
+          </div>
+          <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700 ring-1 ring-cyan-100 transition-transform duration-300 group-hover:scale-105">
+            <CircleDollarSign size={18} />
+          </div>
+        </div>
+
+        {plan.badge ? <span className={`${PAGE_BADGE} mt-4`}>{plan.badge}</span> : null}
+      </div>
+
+      <div className="mt-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ht-gray">Monthly fee</p>
+        <p className="mt-1 text-4xl font-extrabold leading-none text-ht-navy">{plan.monthlyFee}</p>
+      </div>
+
+      <div className="mt-6 space-y-2">
+        <p className="text-sm text-ht-gray">
+          <span className="font-semibold text-ht-navy">Enrollment fee: </span>
+          {plan.enrollmentFee}
+        </p>
+        <p className="rounded-2xl bg-ht-soft-blue/35 px-3 py-2 text-sm leading-relaxed text-ht-navy">{plan.notes}</p>
+      </div>
+
+      <Link
+        to="/direct-primary-care"
+        className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ht-navy-700 transition-transform duration-300 group-hover:gap-2"
+      >
+        Choose plan
+        <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+      </Link>
+    </motion.article>
+  )
+}
+
+function PricingComparisonCard({ plan }) {
+  const reduceMotion = useReducedMotion()
+
+  return (
+    <motion.article
+      className="group flex h-full flex-col rounded-[2rem] border border-ht-silver bg-white p-5 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)] sm:p-6"
+      {...getStaggerItem(reduceMotion, { y: 18 })}
+      {...getCardHover(reduceMotion)}
+    >
+      <div className="border-t-2 border-cyan-300 pt-4">
+        <span className={PAGE_BADGE}>{plan.accent}</span>
+        <h3 className="mt-3 text-xl font-bold text-ht-navy">{plan.title}</h3>
+      </div>
+
+      <dl className="mt-6 space-y-4">
+        {[
+          ['Payment model', plan.paymentModel],
+          ['Best for', plan.bestFor],
+          ['Appointment style', plan.appointmentStyle],
+          ['Insurance use', plan.insuranceUse],
+          ['Main benefit', plan.mainBenefit],
+        ].map(([label, value]) => (
+          <div key={label} className="rounded-2xl bg-ht-soft-blue/25 px-4 py-3">
+            <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-gray">{label}</dt>
+            <dd className="mt-1 text-sm leading-relaxed text-ht-navy">{value}</dd>
+          </div>
+        ))}
+      </dl>
+    </motion.article>
+  )
+}
 
 function Pricing() {
   const reduceMotion = useReducedMotion()
 
   return (
     <div>
-      <section className="border-b border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50">
-        <div className="mx-auto w-full max-w-[88rem] px-4 pb-14 pt-24 sm:px-6 lg:px-8 lg:pb-16 lg:pt-28">
-          <motion.p
-            className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-ht-navy-700"
-            {...getEntranceProps(reduceMotion, { y: 16, duration: 0.45, delay: 0.03 })}
+      <section className={PAGE_HERO}>
+        <div className={`${PAGE_CONTAINER} grid gap-8 py-14 sm:py-16 lg:grid-cols-[1.04fr_0.96fr] lg:py-18`}>
+          <motion.div {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}>
+            <SectionEyebrow>PRICING</SectionEyebrow>
+
+            <h1 className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl lg:text-[clamp(3.2rem,4.4vw,4.8rem)] lg:leading-[0.98]">
+              Simple, transparent pricing for <span className="text-ht-cyan-700">every care option</span>
+            </h1>
+
+            <p className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg">
+              Compare Direct Primary Care, Concierge Medicine, Medical Weight Loss, and insurance-based primary care
+              in one place. We keep the details clear so patients can choose the care option that fits their needs.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap">
+                Book Appointment
+              </Button>
+              <Button href="#dpc-pricing" variant="secondary" className="whitespace-nowrap">
+                Explore Plans
+              </Button>
+            </div>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              {trustIndicators.map((item) => (
+                <motion.div
+                  key={item.label}
+                  className="group flex items-center gap-3 rounded-2xl border border-ht-silver bg-white/85 px-4 py-3 shadow-[0_14px_30px_-28px_rgba(5,42,74,0.4)]"
+                  {...getStaggerItem(reduceMotion, { y: 12 })}
+                >
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700 ring-1 ring-cyan-100 transition-transform duration-300 group-hover:scale-105">
+                    <item.icon size={16} />
+                  </span>
+                  <p className="text-sm font-medium text-ht-navy">{item.label}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.aside
+            className={`${PAGE_PANEL_GRADIENT} relative self-center overflow-hidden p-3`}
+            {...getEntranceProps(reduceMotion, { y: 20, delay: 0.08, duration: 0.55, fromScale: 0.98 })}
           >
-            Pricing
-          </motion.p>
-          <motion.h1
-            className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl lg:text-[3.5rem]"
-            {...getEntranceProps(reduceMotion, { y: 20, delay: 0.1 })}
-          >
-            Pricing & <span className="text-ht-cyan-700">Membership</span>
-          </motion.h1>
-          <motion.p
-            className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg"
-            {...getEntranceProps(reduceMotion, { y: 20, delay: 0.2 })}
-          >
-            Transparent care options designed to support your health, access, and long-term wellness.
-          </motion.p>
+            <div className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-[radial-gradient(circle_at_30%_20%,rgba(12,174,200,0.18),transparent_60%)] blur-2xl" />
+            <div className="relative overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white p-5 shadow-inner sm:p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ht-navy-700">Plan overview</p>
+              <div className="mt-5 space-y-3">
+                {heroRows.map((row) => (
+                  <motion.div
+                    key={row.title}
+                    className="group flex items-start gap-3 rounded-2xl border border-ht-silver bg-ht-soft-blue/25 px-4 py-4 shadow-[0_14px_30px_-28px_rgba(5,42,74,0.4)]"
+                    {...getCardHover(reduceMotion)}
+                  >
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-ht-cyan-700 ring-1 ring-cyan-100 transition-transform duration-300 group-hover:scale-105">
+                      <row.icon size={18} />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-sm font-bold text-ht-navy">{row.title}</p>
+                      <p className="mt-1 text-sm leading-relaxed text-ht-gray">{row.text}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.aside>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[88rem] px-4 py-12 sm:px-6 lg:px-8 lg:py-14">
-        <motion.div
-          className="grid gap-5 md:grid-cols-3"
-          {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08, amount: 0.18 })}
-        >
-          {pricingOverviewCards.map((card) => (
-            <motion.article
-              key={card.title}
-              className="rounded-3xl border border-ht-silver bg-white p-5 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)] transition-all duration-300 md:p-6"
-              {...getStaggerItem(reduceMotion, { y: 18 })}
-              {...getCardHover(reduceMotion)}
-            >
-              <div className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-cyan-100 text-ht-cyan-700">
-                <card.icon size={18} />
-              </div>
-              <h2 className="mt-4 text-lg font-bold text-ht-navy">{card.title}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-ht-gray">{card.description}</p>
-            </motion.article>
-          ))}
-        </motion.div>
-      </section>
-
-      <section id="dpc-pricing" className="border-y border-ht-silver bg-ht-soft-blue/35">
-        <div className="mx-auto w-full max-w-[88rem] px-4 pb-12 pt-16 sm:px-6 lg:px-8 lg:pb-14 lg:pt-20">
-          <h2 className="text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">
-            DPC Memberships <span className="text-ht-cyan-700">Pricing</span>
-          </h2>
-          <p className="mt-4 max-w-4xl text-base leading-relaxed text-ht-gray md:text-lg">
-            Direct Primary Care offers simple monthly membership options for patients who want easier access,
-            transparent pricing, and a stronger relationship with their care team.
-          </p>
+      <section id="dpc-pricing" className={`${PAGE_SECTION_SOFT} scroll-mt-28`}>
+        <div className={PAGE_CONTAINER}>
+          <div className="max-w-4xl">
+            <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">
+              DPC Memberships <span className="text-ht-cyan-700">Pricing</span>
+            </h2>
+            <p className="mt-4 max-w-4xl text-base leading-relaxed text-ht-gray md:text-lg">
+              Direct Primary Care offers simple monthly membership options for patients who want easier access,
+              transparent pricing, and a stronger relationship with their care team.
+            </p>
+          </div>
 
           <motion.div
-            className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4"
-            {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08, amount: 0.15 })}
+            className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4"
+            {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08, amount: 0.18 })}
           >
-            {dpcRows.map((row) => (
-              <motion.article
-                key={row.planType}
-                className="group flex h-full flex-col rounded-3xl border border-ht-silver bg-white p-5 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)] transition-all duration-300 hover:-translate-y-1 hover:border-cyan-200 hover:shadow-md md:p-6"
-                {...getStaggerItem(reduceMotion, { y: 22 })}
-                {...getCardHover(reduceMotion)}
-              >
-                <div className="border-t-2 border-cyan-200 pt-3.5">
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-cyan-50 text-ht-cyan-700">
-                      <CircleDollarSign size={18} />
-                    </span>
-                    <h3 className="text-xl font-bold text-ht-navy">{row.planType}</h3>
-                  </div>
-                  {row.badge ? (
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      <span className="inline-flex rounded-full bg-cyan-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ht-cyan-700">
-                        {row.badge}
-                      </span>
-                    </div>
-                  ) : null}
-                </div>
-
-                <div className="mt-5">
-                  <p className="text-sm font-semibold uppercase tracking-wide text-ht-gray">Monthly Fee</p>
-                  <p className="mt-1 text-4xl font-extrabold leading-none text-ht-navy">{row.monthlyFee}</p>
-                </div>
-
-                <div className="mt-5 flex-1">
-                  <p className="text-sm text-ht-gray">
-                    <span className="font-semibold text-ht-navy">Enrollment Fee: </span>
-                    {row.enrollmentFee}
-                  </p>
-                </div>
-
-                <div className="mt-5 inline-flex rounded-full bg-cyan-50 px-3 py-1 text-sm font-medium text-ht-navy-700">
-                  {row.notes}
-                </div>
-              </motion.article>
+            {dpcPlans.map((plan, index) => (
+              <PricingPlanCard key={plan.name} plan={plan} index={index} />
             ))}
           </motion.div>
 
           <motion.div
-            className="mt-7 inline-flex items-center rounded-full border border-cyan-200 bg-cyan-50 px-4 py-1.5 text-sm font-semibold text-ht-cyan-700"
-            {...getRevealProps(reduceMotion, { y: 14, amount: 0.2 })}
+            className="mt-6 rounded-[1.5rem] border border-cyan-100 bg-white/85 px-4 py-4 shadow-[0_16px_34px_-30px_rgba(5,42,74,0.45)] sm:px-5"
+            {...getRevealProps(reduceMotion, { y: 16, amount: 0.2 })}
           >
-            Small business packages available
+            <div className="flex items-start gap-3">
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700 ring-1 ring-cyan-100">
+                <Wallet size={18} />
+              </span>
+              <p className="text-sm leading-relaxed text-ht-gray md:text-base">
+                Small business packages available.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[88rem] px-4 py-12 sm:px-6 lg:px-8 lg:py-14">
-        <motion.div
-          className="grid gap-5 lg:grid-cols-3 lg:gap-6"
-          {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08, amount: 0.15 })}
-        >
-          <motion.article
-            id="concierge-pricing"
-            className="flex h-full flex-col rounded-3xl border border-ht-silver bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-7"
-            {...getStaggerItem(reduceMotion, { y: 22 })}
-            {...getCardHover(reduceMotion)}
+      <section id="concierge-pricing" className={`${PAGE_SECTION} scroll-mt-28`}>
+        <div className={PAGE_CONTAINER}>
+          <div className="max-w-4xl">
+            <SectionEyebrow>CONCIERGE MEDICINE</SectionEyebrow>
+            <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">
+              Concierge Medicine <span className="text-ht-cyan-700">Services</span>
+            </h2>
+            <p className="mt-4 max-w-4xl text-base leading-relaxed text-ht-gray md:text-lg">
+              Membership-based concierge care for patients who want enhanced access, longer visits, and a more
+              personalized experience.
+            </p>
+          </div>
+
+          <motion.div
+            className="mt-10 grid gap-5 lg:grid-cols-3"
+            {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08, amount: 0.15 })}
           >
-            <div className="mb-5 flex items-center gap-3 border-t-2 border-cyan-200 pt-4">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-cyan-100 text-ht-cyan-700">
-                <Stethoscope size={18} />
-              </span>
-              <h2 className="text-[1.7rem] font-bold leading-tight text-ht-navy">Concierge Medicine Services</h2>
-            </div>
-            <ul className="space-y-3 text-base text-ht-gray">
-              {conciergeItems.map((item) => (
-                <li key={item.label} className="flex items-start gap-2">
-                  <Check size={16} className="mt-0.5 shrink-0 text-ht-cyan-700" />
-                  <span>
-                    {item.label} <span className="font-semibold text-ht-navy">{item.amount}</span>
+            <motion.article
+              className="group flex h-full flex-col rounded-[2rem] border border-ht-silver bg-white p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)]"
+              {...getCardHover(reduceMotion)}
+              {...getStaggerItem(reduceMotion, { y: 22 })}
+            >
+              <div className="border-t-2 border-cyan-300 pt-4">
+                <div className="flex items-center gap-3">
+                  <span className={PAGE_ICON_CIRCLE}>
+                    <Stethoscope size={18} />
                   </span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-5 rounded-xl bg-cyan-50 px-3 py-2 text-sm leading-relaxed text-ht-navy-700 md:text-base">
-              25% discount for immediate family members (spouse and/or children)
-            </p>
-          </motion.article>
+                  <h3 className="text-[1.7rem] font-bold leading-tight text-ht-navy">Membership pricing</h3>
+                </div>
+              </div>
+              <ul className="mt-5 space-y-3 text-sm leading-relaxed text-ht-gray md:text-base">
+                {conciergePricing.map((item) => (
+                  <li key={item.label} className="flex items-start gap-2">
+                    <Check size={16} className="mt-0.5 shrink-0 text-ht-cyan-700" />
+                    <span>
+                      {item.label}: <span className="font-semibold text-ht-navy">{item.amount}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 rounded-2xl bg-ht-soft-blue/35 px-3 py-2 text-sm leading-relaxed text-ht-navy">
+                25% discount for immediate family members (spouse and/or children)
+              </p>
+              <Link
+                to="/concierge-care"
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ht-navy-700 transition-transform duration-300 group-hover:gap-2"
+              >
+                View concierge care
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+              </Link>
+            </motion.article>
 
-          <motion.article
-            className="flex h-full flex-col rounded-3xl border border-ht-silver bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-7"
-            {...getStaggerItem(reduceMotion, { y: 22 })}
-            {...getCardHover(reduceMotion)}
-          >
-            <div className="mb-5 flex items-center gap-3 border-t-2 border-cyan-200 pt-4">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-cyan-100 text-ht-cyan-700">
-                <Scale size={18} />
-              </span>
-              <h2 className="text-[1.7rem] font-bold leading-tight text-ht-navy">Medical Weight Loss Services</h2>
-            </div>
-            <ul className="space-y-3 text-base text-ht-gray">
-              {weightLossItems.map((item) => (
-                <li key={item.label} className="flex items-start gap-2">
-                  <Check size={16} className="mt-0.5 shrink-0 text-ht-cyan-700" />
-                  <span>
-                    {item.label} <span className="font-semibold text-ht-navy">{item.amount}</span>
+            <motion.article
+              id="medical-weight-loss-pricing"
+              className="group flex h-full flex-col rounded-[2rem] border border-ht-silver bg-white p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)]"
+              {...getCardHover(reduceMotion)}
+              {...getStaggerItem(reduceMotion, { y: 22 })}
+            >
+              <div className="border-t-2 border-cyan-300 pt-4">
+                <div className="flex items-center gap-3">
+                  <span className={PAGE_ICON_CIRCLE}>
+                    <Scale size={18} />
                   </span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-5 rounded-xl bg-cyan-50 px-3 py-2 text-sm leading-relaxed text-ht-gray md:text-base">
-              Patients are responsible for the cost of medications, additional tests, and lab work if these are not covered by their insurance.
-            </p>
-          </motion.article>
+                  <h3 className="text-[1.7rem] font-bold leading-tight text-ht-navy">Medical Weight Loss Services</h3>
+                </div>
+              </div>
+              <ul className="mt-5 space-y-3 text-sm leading-relaxed text-ht-gray md:text-base">
+                {weightLossPricing.map((item) => (
+                  <li key={item.label} className="flex items-start gap-2">
+                    <Check size={16} className="mt-0.5 shrink-0 text-ht-cyan-700" />
+                    <span>
+                      {item.label}: <span className="font-semibold text-ht-navy">{item.amount}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 rounded-2xl bg-ht-soft-blue/35 px-3 py-2 text-sm leading-relaxed text-ht-gray md:text-base">
+                Patients are responsible for medications, additional tests, and lab work if not covered by insurance.
+              </p>
+              <Link
+                to="/medical-weight-loss"
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ht-navy-700 transition-transform duration-300 group-hover:gap-2"
+              >
+                View weight loss details
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+              </Link>
+            </motion.article>
 
-          <motion.article
-            className="flex h-full flex-col rounded-3xl border border-ht-silver bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-7"
-            {...getStaggerItem(reduceMotion, { y: 22 })}
-            {...getCardHover(reduceMotion)}
-          >
-            <div className="mb-5 flex items-center gap-3 border-t-2 border-cyan-200 pt-4">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-cyan-100 text-ht-cyan-700">
-                <ShieldCheck size={18} />
-              </span>
-              <h2 className="text-[1.7rem] font-bold leading-tight text-ht-navy">Primary care services</h2>
-            </div>
-            <div className="mb-4 inline-flex rounded-full bg-cyan-50 px-3 py-1 text-sm font-semibold text-ht-navy-700">
-              Insurance-based care
-            </div>
-            <p className="text-sm leading-relaxed text-ht-gray md:text-base">
-              For traditional fee-for-service primary care, we accept Medicare, Medicaid, and most commercial
-              insurance plans. Affordable self-pay options are also available.
-            </p>
-            <p className="mt-5 rounded-xl bg-cyan-50 px-3 py-2 text-sm leading-relaxed text-ht-gray md:text-base">
-              Affordable self-pay options are also available.
-            </p>
-          </motion.article>
-        </motion.div>
+            <motion.article
+              id="insurance-based-care-pricing"
+              className="group flex h-full flex-col rounded-[2rem] border border-ht-silver bg-white p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)]"
+              {...getCardHover(reduceMotion)}
+              {...getStaggerItem(reduceMotion, { y: 22 })}
+            >
+              <div className="border-t-2 border-cyan-300 pt-4">
+                <div className="flex items-center gap-3">
+                  <span className={PAGE_ICON_CIRCLE}>
+                    <ShieldCheck size={18} />
+                  </span>
+                  <h3 className="text-[1.7rem] font-bold leading-tight text-ht-navy">Primary Care Services</h3>
+                </div>
+              </div>
+              <div className="mt-5 inline-flex rounded-full bg-cyan-50 px-3 py-1 text-sm font-semibold text-ht-navy-700">
+                Insurance-based care
+              </div>
+              <p className="mt-4 text-sm leading-relaxed text-ht-gray md:text-base">
+                We accept Medicare, Medicaid, and most commercial insurance plans. Affordable self-pay options are
+                also available.
+              </p>
+              <Link
+                to="/insurance-based-primary-care"
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ht-navy-700 transition-transform duration-300 group-hover:gap-2"
+              >
+                View insurance-based care
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+              </Link>
+            </motion.article>
+          </motion.div>
 
-        <motion.p
-          className="mt-7 text-sm font-semibold text-ht-cyan-700"
-          {...getRevealProps(reduceMotion, { y: 16, amount: 0.2 })}
-        >
-          Subject to change without prior notice*
-        </motion.p>
+          <p className="mt-4 text-sm leading-relaxed text-ht-gray">
+            Subject to change without prior notice*
+          </p>
+        </div>
       </section>
 
-      <section className="mx-auto w-full max-w-[88rem] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <AppointmentCTA />
+      <section className={`${PAGE_SECTION_SOFT} scroll-mt-28`} id="pricing-comparison">
+        <div className={PAGE_CONTAINER}>
+          <SectionEyebrow>COMPARE OPTIONS</SectionEyebrow>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">
+            How the care options <span className="text-ht-cyan-700">differ</span>
+          </h2>
+          <p className="mt-4 max-w-4xl text-base leading-relaxed text-ht-gray md:text-lg">
+            A simple side-by-side view can help you compare payment style, visit experience, and how each option fits
+            your care goals.
+          </p>
+
+          <motion.div
+            className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4"
+            {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08, amount: 0.18 })}
+          >
+            {comparisonPlans.map((plan) => (
+              <PricingComparisonCard key={plan.title} plan={plan} />
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="bg-white py-20 sm:py-24 lg:py-28">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AppointmentCTA
+            title="Need help choosing the right care option?"
+            description="Compare your options or speak with our office before scheduling."
+            secondaryLabel="Call Our Office"
+            secondaryHref="tel:4107746678"
+            benefits={[
+              {
+                title: 'Clear pricing',
+                description: 'Straightforward options so you know what to expect.',
+              },
+              {
+                title: 'Multiple care options',
+                description: 'Membership, insurance-based, concierge, and weight loss care.',
+              },
+              {
+                title: 'Insurance and self-pay availability',
+                description: 'Flexible ways to access care based on your situation.',
+              },
+            ]}
+          />
+        </div>
       </section>
     </div>
   )

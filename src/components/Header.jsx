@@ -68,12 +68,12 @@ function Header({ mobileOpen, setMobileOpen }) {
       document.body.style.right = ''
       document.body.style.width = ''
     }
-  }, [mobileOpen])
+  }, [mobileOpen, setMobileOpen])
 
   useEffect(() => {
     skipScrollRestoreRef.current = true
     setMobileOpen(false)
-  }, [pathname])
+  }, [pathname, setMobileOpen])
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -87,7 +87,7 @@ function Header({ mobileOpen, setMobileOpen }) {
     }
 
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [mobileOpen])
+  }, [mobileOpen, setMobileOpen])
 
   useEffect(() => {
     const handlePointerDown = (event) => {
@@ -105,17 +105,17 @@ function Header({ mobileOpen, setMobileOpen }) {
     }
 
     return () => document.removeEventListener('pointerdown', handlePointerDown, true)
-  }, [mobileOpen])
+  }, [mobileOpen, setMobileOpen])
 
   const navDesktopClass = ({ isActive }) =>
-    `relative whitespace-nowrap rounded-full px-1 py-1 text-[15px] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:-bottom-0.5 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:rounded-full after:bg-cyan-300 after:transition-all after:duration-250 ${
+    `relative whitespace-nowrap rounded-full px-1 py-1 text-[clamp(0.92rem,0.85rem+0.15vw,1rem)] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:-bottom-0.5 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:rounded-full after:bg-cyan-300 after:transition-all after:duration-250 ${
       isActive
         ? 'text-ht-navy after:w-7'
         : 'text-ht-navy/90 after:w-0 hover:text-ht-cyan-700 hover:after:w-5'
     }`
 
   const navMobileClass = ({ isActive }) =>
-    `rounded-xl px-3 py-3 text-sm font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 ${
+    `rounded-xl px-3 py-3 text-[clamp(0.95rem,0.9rem+0.15vw,1rem)] font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 ${
       isActive ? 'bg-cyan-50 text-ht-navy' : 'text-ht-navy hover:bg-ht-soft-blue hover:text-ht-cyan-700'
     }`
 
@@ -132,10 +132,10 @@ function Header({ mobileOpen, setMobileOpen }) {
             className="h-11 w-auto shrink-0 object-contain sm:h-[52px]"
           />
           <div className="flex min-w-0 flex-col justify-center">
-            <p className="text-lg font-extrabold leading-tight tracking-tight text-ht-navy sm:text-[1.3rem]">
+            <p className="text-[clamp(1rem,0.96rem+0.25vw,1.2rem)] font-extrabold leading-tight tracking-tight text-ht-navy">
               Healtopia
             </p>
-            <p className="whitespace-nowrap text-[10px] font-medium leading-tight text-ht-gray sm:text-[11px]">
+            <p className="whitespace-nowrap text-[clamp(0.78rem,0.75rem+0.1vw,0.9rem)] font-medium leading-tight text-ht-gray">
               Primary Care & Medical Weight Loss
             </p>
           </div>

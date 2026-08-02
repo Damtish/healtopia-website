@@ -115,11 +115,12 @@ export function getCardHover(reduceMotion) {
 
   return {
     whileHover: {
-      y: -3,
-      boxShadow: '0 18px 30px -22px rgba(5, 42, 74, 0.5)',
+      y: -4,
+      scale: 1.008,
+      boxShadow: '0 24px 44px -28px rgba(5, 42, 74, 0.5)',
       borderColor: 'rgba(103, 232, 249, 0.9)',
     },
-    transition: { duration: 0.26, ease: EASE_OUT },
+    transition: { duration: 0.48, ease: EASE_OUT },
   }
 }
 

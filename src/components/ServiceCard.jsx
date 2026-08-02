@@ -8,7 +8,7 @@ function ServiceCard({ title, description, icon: Icon, path, delay = 0 }) {
 
   return (
     <motion.article
-      className="group flex h-full flex-col rounded-2xl border border-ht-silver bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+      className="ht-motion-smooth group flex h-full flex-col rounded-2xl border border-ht-silver bg-white p-6 shadow-sm hover:-translate-y-1 hover:shadow-xl"
       {...getRevealProps(reduceMotion, { y: 22, duration: 0.45, amount: 0.3, delay })}
       {...getCardHover(reduceMotion)}
     >
@@ -20,7 +20,7 @@ function ServiceCard({ title, description, icon: Icon, path, delay = 0 }) {
       {path ? (
         <Link
           to={path}
-          className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-ht-navy-700 transition group-hover:gap-2"
+          className="ht-motion-smooth mt-4 inline-flex items-center gap-1 text-sm font-semibold text-ht-navy-700 group-hover:gap-2"
         >
           Learn more
           <ArrowRight size={16} />

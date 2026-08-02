@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
+import { EASE_OUT } from '../lib/motion'
 
 function FAQAccordion({ items = [] }) {
   const reduceMotion = useReducedMotion()
@@ -12,18 +13,23 @@ function FAQAccordion({ items = [] }) {
         const isOpen = openId === item.id
 
         return (
-          <article key={item.id} className="overflow-hidden rounded-2xl border border-ht-silver bg-white">
+          <article
+            key={item.id}
+            className={`ht-motion-smooth overflow-hidden rounded-2xl border bg-white shadow-[0_14px_34px_-30px_rgba(5,42,74,0.42)] ${
+              isOpen ? 'border-cyan-200 bg-ht-soft-blue/30' : 'border-ht-silver'
+            }`}
+          >
             <button
               type="button"
-              className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+              className="ht-motion-smooth flex w-full items-center justify-between gap-4 px-5 py-4 text-left hover:bg-ht-soft-blue/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ht-cyan focus-visible:ring-inset"
               onClick={() => setOpenId(isOpen ? null : item.id)}
               aria-expanded={isOpen}
               aria-controls={`faq-panel-${item.id}`}
             >
-              <span className="text-sm font-semibold text-ht-navy md:text-base">{item.question}</span>
+              <span className="ht-heading-3 text-ht-navy">{item.question}</span>
               <ChevronDown
                 size={18}
-                className={`shrink-0 text-ht-navy-700 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                className={`ht-motion-smooth shrink-0 text-ht-cyan-700 ${isOpen ? 'rotate-180' : ''}`}
               />
             </button>
 
@@ -34,9 +40,12 @@ function FAQAccordion({ items = [] }) {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: reduceMotion ? 0 : 0.25, ease: 'easeOut' }}
+                  transition={{ duration: reduceMotion ? 0 : 0.28, ease: EASE_OUT }}
                 >
-                  <p className="px-5 pb-5 text-sm leading-relaxed text-ht-gray md:text-base">{item.answer}</p>
+                  <div className="relative px-5 pb-5">
+                    <div className="absolute left-0 top-0 h-full w-1 rounded-r-full bg-cyan-200/80" />
+                    <p className="ht-body pl-4 text-ht-gray">{item.answer}</p>
+                  </div>
                 </motion.div>
               ) : null}
             </AnimatePresence>

@@ -1,25 +1,61 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { CheckCircle2 } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { getCardHover, getRevealProps } from '../lib/motion'
 
-function ProviderCard({ name, title, bio, specialties = [], delay = 0 }) {
+function ProviderCard({
+  name,
+  title,
+  bio,
+  summary,
+  specialties = [],
+  delay = 0,
+  imageSrc = '',
+  imageAlt = '',
+  imageClassName = '',
+  imageFrameClassName = '',
+  placeholderText = 'Provider photo coming soon.',
+  bioHref = '',
+  className = '',
+}) {
   const reduceMotion = useReducedMotion()
+  const description = summary || bio
 
   return (
     <motion.article
-      className="rounded-3xl border border-ht-silver bg-white p-6 shadow-sm md:p-8"
+      className={`ht-motion-smooth h-full rounded-3xl border border-ht-silver bg-white p-6 shadow-sm md:p-8 ${className}`}
       {...getRevealProps(reduceMotion, { y: 24, duration: 0.5, amount: 0.2, delay })}
       {...getCardHover(reduceMotion)}
     >
-      <div className="flex flex-col gap-6 md:flex-row md:items-start">
-        <div className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-cyan-200 via-cyan-100 to-white px-3 text-center text-xs font-semibold text-ht-navy-700">
-          Provider photo coming soon.
-        </div>
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-ht-navy-700">Provider Spotlight</p>
-          <h3 className="mt-2 text-2xl font-bold text-ht-navy">{name}</h3>
+      <div className="flex h-full flex-col gap-6 md:flex-row md:items-start">
+        {imageSrc ? (
+          <div
+            className={`ht-motion-smooth h-44 w-32 shrink-0 overflow-hidden rounded-2xl border border-cyan-100 bg-white shadow-[0_12px_26px_-20px_rgba(5,42,74,0.45)] md:h-52 md:w-40 ${imageFrameClassName}`}
+          >
+            <img
+              src={imageSrc}
+              alt={imageAlt || name}
+              className={`ht-motion-smooth h-full w-full object-cover object-[center_12%] ${imageClassName}`}
+            />
+          </div>
+        ) : (
+          <div
+            className={`ht-motion-smooth flex h-44 w-32 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-cyan-100 bg-gradient-to-br from-cyan-100 via-ht-soft-blue to-white px-3 text-center shadow-[0_12px_26px_-20px_rgba(5,42,74,0.45)] md:h-52 md:w-40 ${imageFrameClassName}`}
+          >
+            <div className="space-y-2">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-white text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100">
+                <CheckCircle2 size={20} />
+              </div>
+              <p className="ht-eyebrow text-ht-navy-700">{placeholderText}</p>
+            </div>
+          </div>
+        )}
+
+        <div className="flex flex-1 flex-col justify-center">
+          <p className="ht-eyebrow bg-cyan-100 text-ht-navy-700">Provider Spotlight</p>
+          <h3 className="mt-2">{name}</h3>
           <p className="text-sm font-medium text-ht-gray">{title}</p>
-          {bio ? <p className="mt-4 text-sm leading-relaxed text-ht-gray md:text-base">{bio}</p> : null}
+          {description ? <p className="ht-body mt-4 text-ht-gray">{description}</p> : null}
           {specialties.length ? (
             <div className="mt-5 grid gap-2 sm:grid-cols-2">
               {specialties.map((item) => (
@@ -29,6 +65,14 @@ function ProviderCard({ name, title, bio, specialties = [], delay = 0 }) {
                 </div>
               ))}
             </div>
+          ) : null}
+          {bioHref ? (
+            <Link
+              to={bioHref}
+              className="ht-motion-smooth mt-4 inline-flex items-center gap-1 text-sm font-semibold text-ht-cyan-700 hover:text-ht-cyan-800"
+            >
+              View Full Bio <span aria-hidden="true">→</span>
+            </Link>
           ) : null}
         </div>
       </div>

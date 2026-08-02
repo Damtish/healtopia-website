@@ -8,18 +8,18 @@ import {
   ChevronLeft,
   ChevronRight,
   CreditCard,
+  Heart,
   ShieldCheck,
   Star,
   Stethoscope,
   Scale,
   Users,
-  Video,
 } from 'lucide-react'
 import Button from '../components/Button'
 import AppointmentCTA from '../components/AppointmentCTA'
 import ProgramHighlightSection from '../components/ProgramHighlightSection'
 import SectionHeader from '../components/SectionHeader'
-import ProviderCard from '../components/ProviderCard'
+import HomeProviderShowcase from '../components/HomeProviderShowcase'
 import PricingCard from '../components/PricingCard'
 import pricingPlans from '../data/pricing'
 import insuranceLogos from '../data/insurance'
@@ -27,14 +27,7 @@ import { testimonials } from '../data/testimonials'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
-const trustItems = [
-  'Direct Primary Care',
-  'Insurance-based Primary Care',
-  'Concierge Medicine',
-  'Medical Weight Loss',
-]
-
-const whyChoose = [
+const whyBenefits = [
   {
     title: 'Affordable healthcare option with Direct Primary Care',
     description: 'A membership-based care option built to keep primary care more approachable and transparent.',
@@ -43,12 +36,12 @@ const whyChoose = [
   {
     title: 'Personalized care with attention to detail',
     description: 'Care is tailored to your history, goals, and the details that matter most to your health.',
-    icon: CalendarClock,
+    icon: Heart,
   },
   {
     title: 'Same-week appointments when available',
     description: 'When availability allows, we aim to offer convenient access for timely primary care needs.',
-    icon: ShieldCheck,
+    icon: CalendarClock,
   },
   {
     title: 'After-hours appointments when available',
@@ -63,12 +56,12 @@ const whyChoose = [
   {
     title: 'Preventive care focus',
     description: 'Preventive care is a core part of our approach to helping patients stay ahead of problems.',
-    icon: ShieldCheck,
+    icon: BadgeCheck,
   },
   {
     title: 'Chronic disease management',
     description: 'Ongoing support for common long-term conditions with careful monitoring and follow-up.',
-    icon: CalendarClock,
+    icon: ShieldCheck,
   },
   {
     title: 'Medical weight loss services',
@@ -78,38 +71,49 @@ const whyChoose = [
   {
     title: 'Concierge medicine services',
     description: 'Enhanced access, longer visits, and a more personalized care experience for qualifying patients.',
-    icon: ShieldCheck,
+    icon: Users,
   },
 ]
 
-const careOptions = [
+const heroServiceBadges = [
+  { label: 'Direct Primary Care', to: '/direct-primary-care' },
+  { label: 'Insurance-based Primary Care', to: '/insurance-based-primary-care' },
+  { label: 'Concierge Medicine', to: '/concierge-care' },
+  { label: 'Medical Weight Loss', to: '/medical-weight-loss' },
+]
+
+const serviceOverviewCards = [
   {
     title: 'Direct Primary Care',
-    text: 'A simple membership-based primary care option with transparent monthly pricing and easier access to routine care.',
+    subtitle: 'Relationship-based primary care',
+    points: ['Longer appointments', 'Transparent membership option'],
     link: '/direct-primary-care',
-    label: 'Learn about DPC',
+    label: 'View DPC Details',
     icon: Stethoscope,
   },
   {
-    title: 'Insurance-based Primary Care',
-    text: 'Traditional primary care visits for patients using Medicare, Medicaid, or accepted commercial insurance plans.',
+    title: 'Insurance-Based Care',
+    subtitle: 'Traditional insurance visits',
+    points: ['Preventive care', 'Chronic disease management'],
     link: '/insurance-based-primary-care',
-    label: 'View insurance-based care',
+    label: 'View Insurance-Based Care',
     icon: ShieldCheck,
   },
   {
-    title: 'Concierge Medicine',
-    text: 'Personalized membership care for patients who want more access, longer visits, and proactive health support.',
-    link: '/concierge-care',
-    label: 'Explore concierge care',
-    icon: Users,
+    title: 'Medical Weight Loss',
+    subtitle: 'Physician-guided treatment',
+    points: ['Personalized plans', 'Long-term support'],
+    link: '/medical-weight-loss',
+    label: 'Explore Weight Loss',
+    icon: Scale,
   },
   {
-    title: 'Medical Weight Loss',
-    text: 'Physician-guided weight loss support with evaluation, follow-up visits, and treatment options when appropriate.',
-    link: '/medical-weight-loss',
-    label: 'Explore weight loss',
-    icon: Scale,
+    title: 'Concierge Medicine',
+    subtitle: 'Enhanced access',
+    points: ['Priority scheduling', 'Highly personalized care'],
+    link: '/concierge-care',
+    label: 'View Concierge Details',
+    icon: Users,
   },
 ]
 
@@ -187,55 +191,701 @@ const careHighlights = [
   },
 ]
 
+function HomeSectionEyebrow({ children, className = '' }) {
+  return (
+    <p className={`ht-eyebrow bg-cyan-100 text-ht-navy-700 ${className}`}>
+      {children}
+    </p>
+  )
+}
+
+function HomeClinicGallery({ reduceMotion }) {
+  const galleryItems = [
+    {
+      src: '/images/clinic/reception.jpg',
+      alt: 'Healtopia reception area',
+      label: 'Reception',
+      title: 'Welcoming arrival',
+      size: 'lg:row-span-3',
+    },
+    {
+      src: '/images/clinic/examination-room.png',
+      alt: 'Healtopia examination room',
+      label: 'Examination Room',
+      title: 'Private care space',
+    },
+    {
+      src: '/images/clinic/building-exterior.jpg',
+      alt: 'Healtopia clinic exterior',
+      label: 'Clinic Exterior',
+      title: 'Gambrills location',
+    },
+    {
+      src: '/images/clinic/hallway.jpg',
+      alt: 'Healtopia hallway',
+      label: 'Hallway',
+      title: 'Calm circulation',
+      size: 'sm:col-span-2 lg:col-span-1',
+    },
+  ]
+
+  return (
+    <div>
+      <div className="max-w-[48rem]">
+        <HomeSectionEyebrow>INSIDE OUR CLINIC</HomeSectionEyebrow>
+        <h2 className="mt-4">
+          Care that begins in a <span className="text-ht-cyan-700">calm, welcoming space</span>
+        </h2>
+        <p className="ht-body ht-text-width-hero mt-4 text-ht-gray">
+          Take a look inside the modern Gambrills clinic where patients receive personalized primary care and medical
+          weight loss support.
+        </p>
+      </div>
+
+      <div className="mt-7 hidden md:grid md:grid-cols-2 md:gap-4 lg:grid-cols-12 lg:grid-rows-2 lg:gap-[18px] lg:h-[clamp(500px,36vw,540px)]">
+        <GalleryPanel
+          item={galleryItems[0]}
+          reduceMotion={reduceMotion}
+          className="md:col-span-2 md:h-[320px] lg:col-span-7 lg:row-span-2 lg:h-full"
+        />
+        <GalleryPanel
+          item={galleryItems[1]}
+          reduceMotion={reduceMotion}
+          className="md:h-[240px] lg:col-span-3 lg:col-start-8 lg:row-start-1 lg:h-full"
+        />
+        <GalleryPanel
+          item={galleryItems[2]}
+          reduceMotion={reduceMotion}
+          className="md:h-[240px] lg:col-span-2 lg:col-start-11 lg:row-start-1 lg:h-full"
+        />
+        <GalleryPanel
+          item={galleryItems[3]}
+          reduceMotion={reduceMotion}
+          className="md:col-span-2 md:h-[240px] lg:col-span-5 lg:col-start-8 lg:row-start-2 lg:h-full"
+        />
+      </div>
+
+      <div className="mt-7 grid gap-4 md:hidden">
+        {galleryItems.map((item, index) => (
+          <GalleryPanel
+            key={item.label}
+            item={item}
+            reduceMotion={reduceMotion}
+            className="h-[clamp(230px,72vw,280px)]"
+            delay={index * 0.06}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function GalleryPanel({ item, reduceMotion, className = '', delay = 0 }) {
+  return (
+    <motion.article
+      className={`group relative overflow-hidden rounded-[1.6rem] border border-cyan-100 bg-white shadow-[0_20px_44px_-34px_rgba(5,42,74,0.5)] ${className}`}
+      {...getEntranceProps(reduceMotion, { y: 18, duration: 0.52, delay, amount: 0.16 })}
+      whileHover={
+        reduceMotion
+          ? undefined
+          : {
+              y: -4,
+              boxShadow: '0 24px 48px -30px rgba(5, 42, 74, 0.55)',
+              borderColor: 'rgba(103, 232, 249, 0.88)',
+            }
+      }
+      transition={reduceMotion ? { duration: 0 } : { duration: 0.56, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.img
+          src={item.src}
+          alt={item.alt}
+          className="h-full w-full object-cover object-center transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025]"
+          loading="lazy"
+          initial={reduceMotion ? false : { scale: 1 }}
+          animate={reduceMotion ? { scale: 1 } : { scale: 1 }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </div>
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0)_50%,rgba(2,6,23,0.12)_64%,rgba(2,6,23,0.82)_100%)] transition-opacity duration-500 group-hover:opacity-90" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4 sm:p-5 transition-transform duration-500 group-hover:-translate-y-1">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/80">{item.label}</p>
+        <p className="mt-1 text-sm font-bold leading-tight text-white sm:text-base">{item.title}</p>
+      </div>
+    </motion.article>
+  )
+}
+
 function Home() {
   const reduceMotion = useReducedMotion()
-  const [isDesktopFloat, setIsDesktopFloat] = useState(false)
-  const shouldFloatHero = isDesktopFloat && !reduceMotion
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(min-width: 1024px)')
-    const updateFloatMode = () => setIsDesktopFloat(mediaQuery.matches)
-    updateFloatMode()
+    if (typeof document === 'undefined') return undefined
 
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener('change', updateFloatMode)
-      return () => mediaQuery.removeEventListener('change', updateFloatMode)
+    const root = document.documentElement
+    const header = document.querySelector('header')
+
+    const updateHeaderHeight = () => {
+      const measuredHeight = header?.getBoundingClientRect?.().height || 75
+      root.style.setProperty('--header-height', `${Math.round(measuredHeight)}px`)
     }
 
-    mediaQuery.addListener(updateFloatMode)
-    return () => mediaQuery.removeListener(updateFloatMode)
+    updateHeaderHeight()
+    window.addEventListener('resize', updateHeaderHeight)
+    return () => {
+      window.removeEventListener('resize', updateHeaderHeight)
+      root.style.removeProperty('--header-height')
+    }
   }, [])
 
   return (
     <div>
+      <style>{`
+        .home-hero-shell {
+          --header-height: 75px;
+          min-height: calc(100vh - var(--header-height));
+        }
+
+        @supports (height: 100svh) {
+          .home-hero-shell {
+            min-height: calc(100svh - var(--header-height));
+          }
+        }
+
+        @media (max-height: 800px) and (min-width: 900px) {
+          .home-hero-shell {
+            padding-block: 48px !important;
+          }
+
+          .home-hero-shell .home-hero-grid {
+            gap: 24px !important;
+          }
+
+          .home-hero-shell .home-hero-image-wrap {
+            max-height: min(610px, calc(100svh - var(--header-height) - 100px));
+          }
+        }
+
+        @media (max-width: 767px) {
+          .home-hero-shell {
+            min-height: auto !important;
+          }
+        }
+
+        .services-section {
+          min-height: calc(100svh - var(--header-height));
+          height: calc(100svh - var(--header-height));
+          max-height: calc(100svh - var(--header-height));
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          padding: clamp(22px, 3vh, 38px) 0;
+        }
+
+        .services-container {
+          width: min(1680px, calc(100% - 8vw));
+          height: 100%;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          min-height: 0;
+        }
+
+        .services-heading {
+          flex: 0 0 auto;
+          max-width: 48rem;
+          margin-bottom: clamp(20px, 3vh, 32px);
+        }
+
+        .services-heading h2 {
+          font-size: clamp(2rem, 3vw, 3rem);
+          line-height: 1.1;
+          font-weight: 600;
+          margin: 12px 0 18px;
+        }
+
+        .services-heading p {
+          font-size: clamp(1rem, 1.2vw, 1.25rem);
+          line-height: 1.55;
+          margin: 0;
+          max-width: 48rem;
+        }
+
+        .services-grid {
+          flex: 1;
+          min-height: 0;
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: clamp(16px, 1.5vw, 26px);
+          align-items: stretch;
+        }
+
+        .service-card {
+          min-height: 0;
+          height: 100%;
+          padding: clamp(20px, 2vw, 30px);
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          border-radius: 1.75rem;
+          box-shadow: 0 14px 34px -30px rgba(5, 42, 74, 0.38);
+        }
+
+        .service-card h3 {
+          font-size: clamp(1.25rem, 1.55vw, 1.7rem);
+          line-height: 1.12;
+          margin: 18px 0 10px;
+        }
+
+        .service-card .service-subtitle {
+          font-size: clamp(0.88rem, 1vw, 1.05rem);
+          line-height: 1.35;
+          margin-bottom: 14px;
+        }
+
+        .service-card ul {
+          margin: 0 0 16px;
+          padding: 0;
+        }
+
+        .service-card li {
+          font-size: clamp(0.9rem, 1vw, 1.05rem);
+          line-height: 1.35;
+          margin-bottom: 9px;
+        }
+
+        .service-card .card-button {
+          margin-top: auto;
+          flex-shrink: 0;
+        }
+
+        .service-icon {
+          width: clamp(3.5rem, 3.8vw, 4rem);
+          height: clamp(3.5rem, 3.8vw, 4rem);
+        }
+
+        @media (max-width: 1099px) {
+          .services-section {
+            min-height: auto;
+            height: auto;
+            max-height: none;
+            overflow: visible;
+          }
+
+          .services-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+
+        @media (max-width: 699px) {
+          .services-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-height: 800px) and (min-width: 1100px) {
+          .services-section {
+            padding: clamp(18px, 2.5vh, 30px) 0;
+          }
+
+          .services-heading {
+            margin-bottom: clamp(16px, 2.4vh, 24px);
+          }
+
+          .services-grid {
+            gap: 18px;
+          }
+
+          .service-card {
+            padding: 20px;
+          }
+        }
+
+        .why-healtopia-section {
+          background:
+            radial-gradient(circle at 15% 20%, rgba(65, 205, 225, 0.06), transparent 30%),
+            linear-gradient(180deg, #ffffff 0%, #f7fcfe 100%);
+          border-top: 1px solid rgba(20, 75, 110, 0.08);
+          border-bottom: 1px solid rgba(20, 75, 110, 0.1);
+        }
+
+        .why-healtopia-container {
+          width: min(1540px, calc(100% - 8vw));
+          margin: 0 auto;
+          padding: clamp(46px, 5.8vw, 76px) 0;
+        }
+
+        .why-healtopia-heading {
+          max-width: 48rem;
+          margin-bottom: clamp(24px, 3vw, 34px);
+        }
+
+        .why-healtopia-heading h2 {
+          margin: 14px 0 12px;
+          color: #102b50;
+          font-size: clamp(2rem, 3vw, 3rem);
+          line-height: 1.1;
+          font-weight: 600;
+          letter-spacing: -0.03em;
+        }
+
+        .why-healtopia-heading p {
+          margin: 0;
+          max-width: 48rem;
+          color: #607997;
+          font-size: clamp(1rem, 1.12vw, 1.22rem);
+          line-height: 1.55;
+        }
+
+        .why-healtopia-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 20px;
+          align-items: stretch;
+        }
+
+        .why-healtopia-card {
+          display: grid;
+          grid-template-columns: 48px minmax(0, 1fr);
+          gap: 16px;
+          align-items: start;
+          min-height: 150px;
+          padding: 24px;
+          background: #ffffff;
+          border: 1px solid rgba(186, 214, 231, 0.95);
+          border-radius: 22px;
+          box-shadow: 0 14px 34px rgba(15, 48, 82, 0.06);
+          transition:
+            transform 0.25s ease,
+            border-color 0.25s ease,
+            box-shadow 0.25s ease;
+        }
+
+        .why-healtopia-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(48, 203, 226, 0.72);
+          box-shadow: 0 20px 38px rgba(33, 76, 109, 0.1);
+        }
+
+        .why-healtopia-icon {
+          width: 48px;
+          height: 48px;
+          display: grid;
+          place-items: center;
+          border-radius: 15px;
+          background: #e4f8fc;
+          color: #188ead;
+          flex: 0 0 48px;
+        }
+
+        .why-healtopia-card h3 {
+          margin: 0 0 8px;
+          color: #102b50;
+          font-size: 1.08rem;
+          line-height: 1.3;
+        }
+
+        .why-healtopia-card p {
+          margin: 0;
+          color: #607997;
+          line-height: 1.55;
+          font-size: 0.98rem;
+        }
+
+        @media (min-width: 1100px) and (max-height: 850px) {
+          .why-healtopia-container {
+            padding-block: 34px;
+          }
+
+          .why-healtopia-heading {
+            margin-bottom: 20px;
+          }
+
+          .why-healtopia-heading h2 {
+            font-size: clamp(2.05rem, 2.65vw, 3rem);
+            margin-top: 10px;
+          }
+
+          .why-healtopia-heading p {
+            font-size: 1rem;
+          }
+
+          .why-healtopia-grid {
+            gap: 16px;
+          }
+
+          .why-healtopia-card {
+            min-height: 138px;
+            padding: 20px;
+          }
+
+          .why-healtopia-card p {
+            font-size: 0.92rem;
+            line-height: 1.45;
+          }
+        }
+
+        @media (max-width: 1099px) {
+          .why-healtopia-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
+          .why-healtopia-heading h2,
+          .services-heading h2 {
+            font-size: 2.25rem;
+            line-height: 1.1;
+          }
+        }
+
+        @media (max-width: 680px) {
+          .why-healtopia-container {
+            width: min(100% - 32px, 620px);
+            padding-block: 42px;
+          }
+
+          .why-healtopia-heading h2 {
+            font-size: 1.9rem;
+            line-height: 1.15;
+          }
+
+          .why-healtopia-grid {
+            grid-template-columns: 1fr;
+            gap: 14px;
+          }
+
+          .why-healtopia-card {
+            min-height: 0;
+            padding: 20px;
+            border-radius: 20px;
+          }
+
+          .services-heading h2 {
+            font-size: 1.9rem;
+            line-height: 1.15;
+          }
+        }
+
+        .technology-section {
+          height: calc(100svh - var(--header-height));
+          min-height: calc(100svh - var(--header-height));
+          max-height: calc(100svh - var(--header-height));
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+        }
+
+        .technology-container {
+          width: min(1740px, calc(100% - 9vw));
+          height: 100%;
+          margin: 0 auto;
+          padding: clamp(18px, 2.5vh, 30px) 0;
+          display: grid;
+          grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+          gap: clamp(30px, 4vw, 64px);
+          align-items: center;
+          min-height: 0;
+        }
+
+        .technology-copy {
+          min-width: 0;
+          align-self: center;
+        }
+
+        .technology-copy .eyebrow {
+          margin-bottom: clamp(10px, 1.2vh, 14px);
+        }
+
+        .technology-copy h2 {
+          font-size: clamp(1.9rem, 2.7vw, 3rem);
+          line-height: 1.02;
+          margin: 0 0 clamp(18px, 2vh, 28px);
+          max-width: 48rem;
+        }
+
+        .technology-copy p {
+          font-size: clamp(0.95rem, 0.9rem + 0.15vw, 1.05rem);
+          line-height: 1.65;
+          margin: 0 0 clamp(18px, 2vh, 26px);
+          max-width: 48rem;
+        }
+
+        .technology-features {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: clamp(10px, 1.3vh, 16px);
+          margin-bottom: clamp(18px, 2vh, 26px);
+        }
+
+        .technology-feature {
+          min-height: 0;
+          padding: clamp(12px, 1.25vw, 18px);
+          border-radius: 18px;
+        }
+
+        .technology-feature-icon {
+          width: 42px;
+          height: 42px;
+          flex: 0 0 42px;
+        }
+
+        .technology-feature span {
+          font-size: clamp(0.9rem, 1vw, 1.1rem);
+        }
+
+        .technology-copy .primary-button {
+          margin-top: 0;
+          min-height: 48px;
+          padding: 12px 24px;
+        }
+
+        .technology-visual {
+          height: min(74vh, 690px);
+          max-height: calc(100svh - var(--header-height) - 48px);
+          min-height: 0;
+          display: flex;
+          align-items: center;
+        }
+
+        .technology-image-card {
+          width: 100%;
+          height: 100%;
+          max-height: 100%;
+          padding: clamp(14px, 1.5vw, 22px);
+          border-radius: 30px;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .technology-image-card img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: center;
+        }
+
+        @media (min-width: 1100px) and (max-height: 800px) {
+          .technology-container {
+            padding-block: 14px;
+            gap: 32px;
+          }
+
+          .technology-copy h2 {
+            font-size: clamp(2.2rem, 3.4vw, 3.5rem);
+            margin-bottom: 14px;
+          }
+
+          .technology-copy p {
+            font-size: clamp(0.95rem, 1.15vw, 1.15rem);
+            line-height: 1.4;
+            margin-bottom: 14px;
+          }
+
+          .technology-features {
+            gap: 10px;
+            margin-bottom: 14px;
+          }
+
+          .technology-feature {
+            padding: 10px 14px;
+          }
+
+          .technology-visual {
+            height: calc(100svh - var(--header-height) - 28px);
+          }
+        }
+
+        @media (max-width: 1099px) {
+          .technology-section {
+            height: auto;
+            min-height: auto;
+            max-height: none;
+            overflow: visible;
+          }
+
+          .technology-container {
+            width: min(1740px, calc(100% - 8vw));
+            height: auto;
+            padding: 20px 0;
+            grid-template-columns: 1fr;
+            gap: 24px;
+          }
+
+          .technology-copy h2 {
+            font-size: clamp(2.1rem, 5vw, 3rem);
+          }
+
+          .technology-copy p {
+            font-size: 1rem;
+          }
+
+          .technology-features {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
+          .technology-visual {
+            height: auto;
+            max-height: none;
+          }
+
+          .technology-image-card {
+            height: auto;
+            aspect-ratio: 4 / 3;
+          }
+
+          .technology-image-card img {
+            height: 100%;
+          }
+        }
+
+        @media (max-width: 699px) {
+          .technology-container {
+            width: min(1740px, calc(100% - 7vw));
+          }
+
+          .technology-features {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
       <motion.section
-        className="border-b border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50"
-        {...getRevealProps(reduceMotion, { y: 18, duration: 0.65, amount: 0.16 })}
+        className="home-hero-shell border-b border-ht-silver bg-[linear-gradient(135deg,#ffffff_0%,#eff8fd_44%,#dff3fb_100%)] flex items-center"
+        {...getRevealProps(reduceMotion, { y: 18, duration: 0.6, amount: 0.16 })}
       >
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 pb-16 pt-20 sm:px-6 sm:pb-20 sm:pt-16 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
-          <div>
+        <div className="home-hero-grid mx-auto grid w-full max-w-7xl items-center gap-6 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-[1.06fr_0.94fr] lg:gap-10 lg:px-8 lg:py-[clamp(48px,4vw,60px)]">
+          <motion.div
+            className="relative min-w-0 max-w-none text-left"
+            {...getEntranceProps(reduceMotion, { y: 18, duration: 0.55, delay: 0.02 })}
+          >
             <motion.p
-              className="mb-4 inline-flex rounded-full bg-cyan-100 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-ht-navy-700"
+              className="mb-4 inline-flex rounded-full bg-cyan-100 px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-ht-navy-700"
               {...getEntranceProps(reduceMotion, { y: 14, duration: 0.5, delay: 0.03 })}
             >
               Gambrills, Maryland
             </motion.p>
             <motion.h1
-              className="text-4xl font-extrabold leading-tight tracking-tight text-ht-navy md:text-5xl"
+              className="home-hero-title max-w-[20ch] text-[clamp(2.6rem,3.55vw,4.05rem)] font-extrabold leading-[0.98] tracking-[-0.03em] text-ht-navy"
               {...getEntranceProps(reduceMotion, { y: 18, duration: 0.6, delay: 0.1 })}
             >
-              Compassionate Primary Care & <span className="text-ht-cyan-700">Medical Weight Loss</span> in Gambrills,
-              MD
+              <span className="block">Compassionate Primary</span>
+              <span className="block">
+                Care & <span className="text-ht-cyan-700">Medical Weight</span>
+              </span>
+              <span className="block">
+                <span className="text-ht-cyan-700">Loss</span> in Gambrills, MD
+              </span>
             </motion.h1>
             <motion.p
-              className="mt-5 max-w-xl text-base leading-relaxed text-ht-gray md:text-lg"
+              className="mt-4 max-w-2xl text-[0.98rem] leading-relaxed text-ht-gray md:text-lg"
               {...getEntranceProps(reduceMotion, { y: 18, duration: 0.55, delay: 0.18 })}
             >
               Personalized, accessible care designed around your health, lifestyle, and long-term wellness.
             </motion.p>
 
             <motion.div
-              className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+              className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
               {...getEntranceProps(reduceMotion, { y: 16, duration: 0.5, delay: 0.26 })}
             >
               <Button
@@ -256,63 +906,56 @@ function Home() {
                 Contact Us
               </Button>
             </motion.div>
-          </div>
+          </motion.div>
 
           <motion.div
-            className="relative"
-            initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.98 }}
-            animate={
-              reduceMotion
-                ? { opacity: 1, y: 0, scale: 1 }
-                : shouldFloatHero
-                  ? { opacity: 1, y: [0, -5, 0], scale: 1 }
-                  : { opacity: 1, y: 0, scale: 1 }
-            }
-            transition={
-              reduceMotion
-                ? { duration: 0 }
-                : shouldFloatHero
-                  ? { duration: 7, repeat: Infinity, ease: 'easeInOut' }
-                  : { duration: 0.7, delay: 0.08, ease: 'easeOut' }
-            }
+            className="home-hero-image-wrap relative min-w-0 self-center"
+            initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.985 }}
+            animate={reduceMotion ? { opacity: 1, y: 0, scale: 1 } : { opacity: 1, y: 0, scale: 1 }}
+            transition={reduceMotion ? { duration: 0 } : { duration: 0.65, delay: 0.08, ease: 'easeOut' }}
           >
-            <motion.div
-              className="overflow-hidden rounded-[2rem] border border-cyan-200/90 bg-gradient-to-br from-cyan-100 via-ht-soft-blue to-white p-3 shadow-[0_24px_60px_-26px_rgba(12,174,200,0.5)]"
-              initial={false}
-              animate={shouldFloatHero ? { y: [0, -6, 0] } : { y: 0 }}
-              transition={shouldFloatHero ? { duration: 6.5, repeat: Infinity, ease: 'easeInOut' } : { duration: 0 }}
-            >
-              <div className="relative h-[330px] overflow-hidden rounded-[1.4rem] border border-cyan-100 bg-white sm:h-[360px] md:h-auto md:aspect-[4/3]">
+            <div className="group relative overflow-visible rounded-[2rem] border border-cyan-200/90 bg-[linear-gradient(180deg,rgba(202,244,252,0.9)_0%,rgba(255,255,255,0.98)_100%)] p-3 shadow-[0_24px_60px_-26px_rgba(12,174,200,0.42)]">
+              <div className="pointer-events-none absolute -inset-5 rounded-[2.5rem] bg-[radial-gradient(circle_at_65%_24%,rgba(12,174,200,0.2),transparent_58%)] blur-2xl" />
+              <div className="relative overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white shadow-[0_20px_42px_-30px_rgba(5,42,74,0.28)] aspect-[4/3] md:aspect-[5/4] lg:max-h-[min(610px,calc(100svh-var(--header-height)-100px))]">
                 <img
                   src="/images/clinic/reception.jpg"
-                  alt="Healtopia clinic reception area"
-                  className="h-full w-full object-cover object-center"
+                  alt="Healtopia reception area"
+                  className="h-full w-full object-cover object-center transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025]"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_22%,rgba(22,182,212,0.08),transparent_24%)]" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(7,26,49,0.18)_34%,rgba(7,26,49,0.76)_100%)]" />
+                <div className="absolute inset-x-3 bottom-3 z-10 hidden gap-2 md:grid md:grid-cols-2 lg:inset-x-4 lg:bottom-4 lg:gap-3">
+                  {heroServiceBadges.map((badge, index) => (
+                    <motion.div
+                      key={badge.label}
+                      {...getRevealProps(reduceMotion, { y: 12, duration: 0.35, delay: 0.05 + index * 0.05, amount: 0.2 })}
+                    >
+                      <Link
+                        to={badge.to}
+                        className="flex h-full items-center gap-2 rounded-xl border border-ht-silver bg-white px-3 py-2 text-xs font-semibold text-ht-navy shadow-[0_10px_22px_-16px_rgba(5,42,74,0.45)] transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-ht-soft-blue hover:text-ht-cyan-700"
+                      >
+                        <BadgeCheck size={14} className="text-ht-cyan-700" />
+                        <span>{badge.label}</span>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-            </motion.div>
-
-            <div className="mt-4 grid grid-cols-2 gap-2 md:hidden">
-              {trustItems.map((item, index) => (
-                <motion.div
-                  key={`mobile-${item}`}
-                  className="flex items-center gap-2 rounded-xl border border-cyan-100 bg-white px-3 py-2 text-xs font-semibold text-ht-navy shadow-[0_10px_22px_-16px_rgba(5,42,74,0.45)]"
-                  {...getRevealProps(reduceMotion, { y: 12, duration: 0.35, delay: 0.06 + index * 0.06, amount: 0.25 })}
-                >
-                  <BadgeCheck size={14} className="text-ht-cyan-700" />
-                  {item}
-                </motion.div>
-              ))}
             </div>
 
-            <div className="pointer-events-none absolute -bottom-3 left-3 right-3 hidden gap-2 md:grid md:grid-cols-2 lg:-bottom-4">
-              {trustItems.map((item, index) => (
+            <div className="mt-4 grid gap-2 sm:grid-cols-2 md:hidden">
+              {heroServiceBadges.map((badge, index) => (
                 <motion.div
-                  key={item}
-                  className="flex items-center gap-2 rounded-xl border border-ht-silver bg-white/95 px-3 py-2 text-xs font-semibold text-ht-navy shadow-md"
-                  {...getRevealProps(reduceMotion, { y: 12, duration: 0.35, delay: 0.08 + index * 0.06, amount: 0.2 })}
+                  key={badge.label}
+                  {...getRevealProps(reduceMotion, { y: 12, duration: 0.35, delay: 0.05 + index * 0.05, amount: 0.25 })}
                 >
-                  <BadgeCheck size={14} className="text-ht-cyan-700" />
-                  {item}
+                  <Link
+                    to={badge.to}
+                    className="flex h-full w-full min-w-0 items-center gap-2 rounded-xl border border-ht-silver bg-white px-3 py-2 text-left text-xs font-semibold leading-tight text-ht-navy shadow-[0_10px_22px_-16px_rgba(5,42,74,0.45)] transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-ht-soft-blue hover:text-ht-cyan-700"
+                  >
+                    <BadgeCheck size={14} className="text-ht-cyan-700" />
+                    <span className="min-w-0 whitespace-normal break-words">{badge.label}</span>
+                  </Link>
                 </motion.div>
               ))}
             </div>
@@ -320,91 +963,34 @@ function Home() {
         </div>
       </motion.section>
 
-      <motion.section className="border-b border-ht-silver bg-white" {...getRevealProps(reduceMotion, { y: 16, duration: 0.5, amount: 0.2 })}>
-        <div className="mx-auto grid w-full max-w-7xl gap-4 px-4 py-8 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
-          {[
-            { label: 'Compassion-first model', icon: HeartIcon },
-            { label: 'Board-certified clinicians', icon: ShieldCheck },
-            { label: 'Secure telehealth options', icon: Video },
-            { label: 'Flexible insurance support', icon: CreditCard },
-          ].map((item) => (
-            <motion.div
-              key={item.label}
-              className="flex items-center gap-3 rounded-xl border border-ht-silver bg-ht-soft-blue/40 px-4 py-3"
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.35 }}
-            >
-              <item.icon size={18} className="text-ht-cyan-700" />
-              <p className="text-sm font-semibold text-ht-navy">{item.label}</p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.section>
-
       <motion.section
-        id="care-options"
-        className="scroll-mt-28 mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
-        {...getRevealProps(reduceMotion, { y: 18, duration: 0.6, amount: 0.18 })}
+        className="why-healtopia-section border-b border-ht-silver"
+        {...getRevealProps(reduceMotion, { y: 16, duration: 0.55, amount: 0.18 })}
       >
-        <SectionHeader
-          title={
-            <>
-              Choose the care option that <span className="text-ht-cyan-700">fits you</span>
-            </>
-          }
-          description="Healtopia offers flexible primary care and wellness options designed around how patients prefer to access care."
-        />
-        <motion.div
-          className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4"
-          {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08 })}
-        >
-          {careOptions.map((option) => (
-            <motion.article
-              key={option.title}
-              className="flex h-full flex-col rounded-2xl border border-ht-silver bg-white p-6 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)]"
-              {...getStaggerItem(reduceMotion, { y: 22 })}
-              {...getCardHover(reduceMotion)}
-            >
-              <div className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700">
-                <option.icon size={18} />
-              </div>
-              <h3 className="mt-4 text-xl font-bold text-ht-navy">{option.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-ht-gray">{option.text}</p>
-              <div className="mt-6">
-                <Button to={option.link} variant="secondary" size="sm" className="whitespace-nowrap">
-                  {option.label}
-                  <ArrowRight size={14} />
-                </Button>
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
-      </motion.section>
+        <div className="why-healtopia-container">
+          <div className="why-healtopia-heading">
+            <HomeSectionEyebrow>WHY HEALTOPIA</HomeSectionEyebrow>
+            <h2>Trusted care that feels personal</h2>
+            <p>Thoughtful care, experienced clinicians, and a welcoming practice built around the patient experience.</p>
+          </div>
 
-      <motion.section
-        className="border-y border-ht-silver bg-white py-16 lg:py-20"
-        {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}
-      >
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            eyebrow="Why Healtopia"
-            title="Trusted care that feels personal"
-            description="We focus on relationship-driven care, modern convenience, and consistent communication so you always know what is next in your plan."
-          />
-          <motion.div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" {...getStaggerContainer(reduceMotion, { staggerChildren: 0.07 })}>
-            {whyChoose.map((item) => (
+          <motion.div
+            className="why-healtopia-grid"
+            {...getStaggerContainer(reduceMotion, { staggerChildren: 0.06, amount: 0.18 })}
+          >
+            {whyBenefits.map((item) => (
               <motion.article
                 key={item.title}
-                className="flex items-start gap-3 rounded-2xl border border-ht-silver bg-ht-soft-blue/20 px-4 py-4 shadow-[0_16px_34px_-30px_rgba(5,42,74,0.45)]"
-                {...getStaggerItem(reduceMotion, { y: 18 })}
+                className="why-healtopia-card group"
+                {...getStaggerItem(reduceMotion, { y: 14 })}
                 {...getCardHover(reduceMotion)}
               >
-                <item.icon size={18} className="mt-0.5 shrink-0 text-ht-cyan-700" />
-                <div>
-                  <h3 className="text-sm font-semibold text-ht-navy">{item.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-ht-gray">{item.description}</p>
+                <div className="why-healtopia-icon transition duration-300 group-hover:bg-ht-cyan-700 group-hover:text-white">
+                  <item.icon size={18} aria-hidden="true" />
+                </div>
+                <div className="min-w-0">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
                 </div>
               </motion.article>
             ))}
@@ -413,22 +999,127 @@ function Home() {
       </motion.section>
 
       <motion.section
-        className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
+        className="border-y border-ht-silver bg-gradient-to-b from-white via-ht-soft-blue/20 to-white py-14 sm:py-16 lg:py-24"
         {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}
       >
-        <SectionHeader
-          eyebrow="Meet Your Providers"
-          title="Care led by the Healtopia clinical team"
-          description="Our providers offer primary care and weight management support with a patient-first approach."
-        />
-        <div className="mt-10 grid gap-5">
-          <ProviderCard
-            name="Dr. Gashaw Adugna, MD"
-            title="Internal Medicine & Obesity Medicine"
-            specialties={['Internal Medicine', 'Obesity Medicine']}
-            delay={0.03}
-          />
-          <ProviderCard name="Malefiya Kenea, FNP-C" title="Family Nurse Practitioner" delay={0.1} />
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <HomeClinicGallery reduceMotion={reduceMotion} />
+        </div>
+      </motion.section>
+
+      <motion.section
+        id="our-services"
+        className="services-section border-y border-ht-silver bg-gradient-to-b from-white via-ht-soft-blue/20 to-white scroll-mt-28"
+        {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}
+      >
+        <div className="services-container">
+          <div className="services-heading">
+            <HomeSectionEyebrow>OUR SERVICES</HomeSectionEyebrow>
+            <h2>Healthcare services designed around your needs</h2>
+            <p>
+              Whether you're looking for ongoing primary care, physician-guided weight management, or enhanced concierge
+              access, our care is designed to fit your lifestyle.
+            </p>
+          </div>
+          <motion.div
+            className="services-grid"
+            {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08 })}
+          >
+            {serviceOverviewCards.map((option) => (
+              <motion.article
+                key={option.title}
+                className="service-card group flex h-full flex-col border border-cyan-100 bg-gradient-to-br from-white via-ht-soft-blue/25 to-cyan-50 transition duration-300"
+                {...getStaggerItem(reduceMotion, { y: 22 })}
+                {...getCardHover(reduceMotion)}
+              >
+                <div className="service-icon inline-flex items-center justify-center rounded-2xl bg-ht-soft-blue text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100 transition duration-300 group-hover:bg-ht-cyan-700 group-hover:text-white">
+                  <option.icon size={20} />
+                </div>
+                <h3>{option.title}</h3>
+                <p className="service-subtitle text-sm font-semibold uppercase tracking-wide text-ht-cyan-700">{option.subtitle}</p>
+                <ul>
+                  {option.points.map((point) => (
+                    <li key={point} className="flex items-start gap-2 text-sm leading-relaxed text-ht-gray">
+                      <span className="mt-1 inline-flex h-2.5 w-2.5 shrink-0 rounded-full bg-ht-cyan-700" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="card-button pt-5">
+                  <Button to={option.link} variant="secondary" size="sm" className="whitespace-nowrap">
+                    {option.label}
+                    <ArrowRight size={14} />
+                  </Button>
+                </div>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <HomeProviderShowcase reduceMotion={reduceMotion} />
+      <motion.section
+        className="technology-section border-y border-ht-silver bg-gradient-to-b from-white via-ht-soft-blue/20 to-white"
+        {...getRevealProps(reduceMotion, { y: 18, duration: 0.58, amount: 0.16 })}
+      >
+        <div className="technology-container">
+          <motion.div
+            className="technology-copy max-w-2xl"
+            {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.04 })}
+          >
+            <p className="ht-eyebrow eyebrow bg-cyan-100 text-ht-navy-700">
+              Technology
+            </p>
+            <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl lg:text-[2.8rem] lg:leading-tight">
+              Advanced body composition analysis for <span className="text-ht-cyan-700">better insights</span>
+            </h2>
+            <p className="ht-body ht-text-width-hero mt-4 text-ht-gray">
+              Weight is only part of the picture. Our body composition scanner helps patients understand muscle, fat,
+              and metabolic health so care plans can be more informed and personalized.
+            </p>
+
+            <div className="technology-features mt-6 grid gap-3 sm:grid-cols-2">
+              {['Body Fat Percentage', 'Muscle Mass', 'Visceral Fat', 'Metabolic Health'].map((item) => (
+                <div
+                  key={item}
+                  className="technology-feature flex items-center gap-3 rounded-2xl border border-cyan-100 bg-white px-4 py-3 text-sm font-semibold text-ht-navy shadow-[0_14px_30px_-28px_rgba(5,42,74,0.4)]"
+                >
+                  <span className="technology-feature-icon inline-flex h-8 w-8 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700">
+                    <Scale size={16} />
+                  </span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-7">
+              <Button to="/medical-weight-loss" className="primary-button whitespace-nowrap">
+                Explore Weight Loss Technology
+              </Button>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="technology-visual group relative"
+            {...getEntranceProps(reduceMotion, { y: 24, delay: 0.08, duration: 0.55 })}
+            {...getCardHover(reduceMotion)}
+          >
+            <div className="absolute inset-0 -z-10 rounded-[2.5rem] bg-[radial-gradient(circle_at_50%_40%,rgba(22,182,212,0.1),transparent_42%),radial-gradient(circle_at_60%_72%,rgba(22,182,212,0.06),transparent_28%)] blur-2xl" />
+
+            <div className="technology-image-card relative overflow-hidden rounded-[2.25rem] border border-cyan-100 bg-white p-6 shadow-[0_22px_58px_-38px_rgba(5,42,74,0.42)] transition duration-500 sm:p-7 lg:p-8">
+              <div className="relative flex h-full min-h-0 w-full items-center justify-center overflow-hidden rounded-[1.75rem] bg-white">
+                <img
+                  src="/images/clinic/seca-body-composition-clean.png"
+                  alt="SECA body composition scanner showing body composition analysis dashboard"
+                  className="technology-image h-full w-full object-contain object-center transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+              </div>
+              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.12em] text-ht-navy-700">
+                Physician-guided insight
+              </p>
+            </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -483,22 +1174,33 @@ function Home() {
           </motion.div>
 
           <motion.div
-            className="rounded-3xl border border-ht-silver bg-white p-8 shadow-lg"
+            className="rounded-[2rem] border border-cyan-100 bg-white p-6 shadow-[0_20px_48px_-34px_rgba(5,42,74,0.45)] md:p-7"
             {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.22, delay: 0.08 })}
           >
-            <h3 className="text-lg font-bold text-ht-navy">Typical program milestones</h3>
-            <div className="mt-5 space-y-4">
+            <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
+              Typical program milestones
+            </p>
+            <div className="relative mt-6 space-y-4 pl-3 before:absolute before:bottom-2 before:left-5 before:top-2 before:w-px before:bg-cyan-100 before:content-['']">
               {[
-                'Week 1: Intake, lab review, and personalized roadmap',
-                'Week 4: Progress evaluation and treatment adjustment',
-                'Week 8+: Momentum phase with sustainable routines',
-              ].map((step) => (
-                <div
-                  key={step}
-                  className="rounded-xl border border-ht-silver bg-ht-soft-blue/30 px-4 py-3 text-sm text-ht-gray"
+                { label: 'Week 1', text: 'Intake, lab review, and personalized roadmap' },
+                { label: 'Week 4', text: 'Progress evaluation and treatment adjustment' },
+                { label: 'Week 8+', text: 'Momentum phase with sustainable routines' },
+              ].map((step, index) => (
+                <motion.div
+                  key={step.label}
+                  className="group relative rounded-2xl border border-ht-silver bg-ht-soft-blue/30 px-4 py-4 text-sm text-ht-gray shadow-[0_14px_30px_-28px_rgba(5,42,74,0.4)]"
+                  {...getStaggerItem(reduceMotion, { y: 12 })}
+                  {...getCardHover(reduceMotion)}
                 >
-                  {step}
-                </div>
+                  <div className="absolute -left-[0.55rem] top-5 h-3.5 w-3.5 rounded-full border-2 border-white bg-ht-cyan-700 shadow-sm" />
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 inline-flex h-8 shrink-0 items-center rounded-full bg-white px-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100">
+                      {step.label}
+                    </span>
+                    <p className="pt-0.5 leading-relaxed text-ht-navy">{step.text}</p>
+                  </div>
+                  {index < 2 ? <div className="pointer-events-none absolute -bottom-2 left-6 h-4 w-px bg-cyan-100" /> : null}
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -519,6 +1221,9 @@ function Home() {
             <PricingCard key={plan.id} {...plan} delay={index * 0.08} />
           ))}
         </div>
+        <p className="mt-5 text-sm leading-relaxed text-ht-gray">
+          Pricing and eligibility may vary. Contact the office to confirm the best care option for your needs.
+        </p>
       </motion.section>
 
       <motion.section
@@ -586,12 +1291,30 @@ function Home() {
         </div>
       </motion.section>
 
-      <motion.section
-        className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
-        {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.18 })}
-      >
-        <AppointmentCTA />
-      </motion.section>
+      <section className="bg-white py-20 sm:py-24 lg:py-28">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <AppointmentCTA
+            title="Ready to schedule your visit?"
+            description="Schedule an appointment and take the next step toward care designed around your needs."
+            secondaryLabel="Call Our Office"
+            secondaryHref="tel:4107746678"
+            benefits={[
+              {
+                title: 'Convenient scheduling',
+                description: 'Easy booking when you are ready to be seen.',
+              },
+              {
+                title: 'Multiple care options',
+                description: 'Primary care, weight management, and concierge services.',
+              },
+              {
+                title: 'Personalized support',
+                description: 'Care guided by your goals and follow-up needs.',
+              },
+            ]}
+          />
+        </div>
+      </section>
     </div>
   )
 }
@@ -827,8 +1550,5 @@ function TestimonialCarousel({ items, reduceMotion }) {
   )
 }
 
-function HeartIcon(props) {
-  return <BadgeCheck {...props} />
-}
-
 export default Home
+
