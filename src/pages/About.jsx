@@ -471,7 +471,7 @@ function About() {
   }, [])
 
   return (
-    <div>
+    <div className="about-page">
       <style>{`
         .about-hero-shell {
           --header-height: 75px;
@@ -484,12 +484,10 @@ function About() {
           }
         }
 
-        html,
-        body,
-        #root {
+        .about-page {
           width: 100%;
           max-width: 100%;
-          overflow-x: hidden;
+          overflow-x: clip;
         }
 
         .about-hero {

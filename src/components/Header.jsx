@@ -112,7 +112,7 @@ function Header({ mobileOpen, setMobileOpen }) {
   }, [mobileOpen, setMobileOpen])
 
   const navDesktopClass = ({ isActive }) =>
-    `relative whitespace-nowrap rounded-full px-1 py-1 text-[clamp(0.92rem,0.85rem+0.15vw,1rem)] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:-bottom-0.5 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:rounded-full after:bg-cyan-300 after:transition-all after:duration-250 ${
+    `relative whitespace-nowrap rounded-full px-1 py-1 text-[clamp(0.88rem,0.82rem+0.12vw,0.96rem)] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:-bottom-0.5 after:left-1/2 after:h-0.5 after:-translate-x-1/2 after:rounded-full after:bg-cyan-300 after:transition-all after:duration-250 ${
       isActive
         ? 'text-ht-navy after:w-7'
         : 'text-ht-navy/90 after:w-0 hover:text-ht-cyan-700 hover:after:w-5'
@@ -143,7 +143,7 @@ function Header({ mobileOpen, setMobileOpen }) {
           </div>
         </NavLink>
 
-        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-[clamp(0.7rem,1vw,1.2rem)] xl:flex" aria-label="Primary navigation">
+        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-[clamp(0.85rem,1vw,1.6rem)] lg:flex" aria-label="Primary navigation">
           {desktopNavLinks.map((link) => (
             <NavLink key={link.to} to={link.to} end={link.to === '/'} className={navDesktopClass}>
               {link.label}
@@ -151,7 +151,7 @@ function Header({ mobileOpen, setMobileOpen }) {
           ))}
         </nav>
 
-        <div className="hidden shrink-0 xl:flex xl:items-center">
+        <div className="hidden shrink-0 lg:flex lg:items-center">
           <Button
             href={BOOK_APPOINTMENT_URL}
             target="_blank"
@@ -167,7 +167,7 @@ function Header({ mobileOpen, setMobileOpen }) {
         <button
           type="button"
           onClick={() => setMobileOpen((prev) => !prev)}
-          className="ml-auto inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:border-cyan-300 hover:bg-cyan-50 xl:hidden"
+          className="ml-auto inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:border-cyan-300 hover:bg-cyan-50 lg:hidden"
           aria-label={mobileOpen ? 'Close mobile menu' : 'Open mobile menu'}
           aria-expanded={mobileOpen}
           data-mobile-menu-toggle="true"
@@ -183,7 +183,7 @@ function Header({ mobileOpen, setMobileOpen }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="fixed inset-x-0 top-[4.7rem] z-[70] h-[calc(100vh-4.7rem)] xl:hidden"
+            className="fixed inset-x-0 top-[4.7rem] z-[70] h-[calc(100vh-4.7rem)] lg:hidden"
             aria-hidden={!mobileOpen}
           >
             <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-[1px]" onClick={() => setMobileOpen(false)} />
