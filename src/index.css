@@ -14,26 +14,26 @@
   --color-ht-silver: #d6e4ef;
   --color-ht-gray: #4f6b85;
 
-  --text-xs: clamp(0.7rem, 0.68rem + 0.06vw, 0.8rem);
+  --text-xs: clamp(0.68rem, 0.64rem + 0.12vw, 0.78rem);
   --text-xs--line-height: 1.5;
-  --text-sm: clamp(0.93rem, 0.88rem + 0.1vw, 1rem);
-  --text-sm--line-height: 1.65;
-  --text-base: clamp(0.93rem, 0.88rem + 0.1vw, 1rem);
+  --text-sm: clamp(0.84rem, 0.81rem + 0.08vw, 0.94rem);
+  --text-sm--line-height: 1.58;
+  --text-base: clamp(0.95rem, 0.9rem + 0.15vw, 1.05rem);
   --text-base--line-height: 1.65;
-  --text-lg: clamp(0.96rem, 0.92rem + 0.1vw, 1.05rem);
-  --text-lg--line-height: 1.58;
-  --text-xl: clamp(1rem, 0.96rem + 0.12vw, 1.1rem);
+  --text-lg: clamp(1rem, 0.94rem + 0.2vw, 1.16rem);
+  --text-lg--line-height: 1.6;
+  --text-xl: clamp(1.1rem, 1.02rem + 0.22vw, 1.25rem);
   --text-xl--line-height: 1.45;
-  --text-2xl: clamp(1rem, 1.05vw, 1.2rem);
+  --text-2xl: clamp(1.2rem, 1.12rem + 0.3vw, 1.4rem);
   --text-2xl--line-height: 1.28;
-  --text-3xl: clamp(1.45rem, 1.8vw, 2.15rem);
-  --text-3xl--line-height: 1.14;
-  --text-4xl: clamp(2.05rem, 2.8vw, 3.5rem);
-  --text-4xl--line-height: 1.05;
-  --text-5xl: clamp(2.05rem, 2.8vw, 3.5rem);
-  --text-5xl--line-height: 1.05;
-  --text-6xl: clamp(2.05rem, 2.8vw, 3.5rem);
-  --text-6xl--line-height: 1.05;
+  --text-3xl: clamp(1.65rem, 1.3rem + 1vw, 2.2rem);
+  --text-3xl--line-height: 1.12;
+  --text-4xl: clamp(2rem, 1.4rem + 2vw, 3.15rem);
+  --text-4xl--line-height: 1.06;
+  --text-5xl: clamp(2rem, 1.4rem + 2vw, 3.15rem);
+  --text-5xl--line-height: 1.06;
+  --text-6xl: clamp(2rem, 1.4rem + 2vw, 3.15rem);
+  --text-6xl--line-height: 1.06;
 }
 
 * {
@@ -73,24 +73,24 @@ small {
 
 h1,
 .ht-heading-1 {
-  font-size: clamp(2.05rem, 2.8vw, 3.5rem) !important;
-  line-height: 1.05 !important;
+  font-size: clamp(2rem, 1.4rem + 2vw, 3.15rem) !important;
+  line-height: 1.06 !important;
   font-weight: 700 !important;
-  letter-spacing: -0.026em;
+  letter-spacing: -0.035em;
 }
 
 h2,
 .ht-heading-2 {
-  font-size: clamp(1.45rem, 1.8vw, 2.15rem) !important;
-  line-height: 1.14 !important;
-  font-weight: 650 !important;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.65rem, 1.3rem + 1vw, 2.2rem) !important;
+  line-height: 1.12 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em;
 }
 
 h3,
 .ht-heading-3 {
-  font-size: clamp(1.05rem, 1.15vw, 1.3rem) !important;
-  line-height: 1.22 !important;
+  font-size: clamp(1rem, 0.94rem + 0.18vw, 1.2rem) !important;
+  line-height: 1.25 !important;
   font-weight: 650 !important;
   letter-spacing: -0.015em;
 }
@@ -109,24 +109,24 @@ h3,
   display: inline-flex;
   align-items: center;
   border-radius: 9999px;
-  padding: 0.45rem 0.85rem;
-  font-size: clamp(0.72rem, 0.7rem + 0.08vw, 0.82rem);
+  padding: 0.48rem 0.85rem;
+  font-size: clamp(0.68rem, 0.64rem + 0.12vw, 0.78rem);
   line-height: 1;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .ht-text-width-hero {
-  max-width: 36rem !important;
+  max-width: 60ch !important;
 }
 
 .ht-text-width-section {
-  max-width: 44rem !important;
+  max-width: 68ch !important;
 }
 
 .ht-text-width-card {
-  max-width: 30rem !important;
+  max-width: 45ch !important;
 }
 
 ::selection {
@@ -416,5 +416,9 @@ h3,
 
 :where(.duration-300) {
   transition-duration: 480ms;
+}
+
+.max-w-7xl {
+  max-width: 80rem;
 }
 

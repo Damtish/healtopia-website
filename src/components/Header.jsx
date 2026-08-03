@@ -124,12 +124,10 @@ function Header({ mobileOpen, setMobileOpen }) {
     }`
 
   return (
-    <motion.header
-      className={aboutHeaderClassName}
-      {...getEntranceProps(reduceMotion, { y: -14, duration: 0.45 })}
-    >
-      <div className="mx-auto flex h-[4.7rem] w-full max-w-7xl items-center justify-between gap-3 px-5 sm:px-6 min-[1200px]:grid min-[1200px]:grid-cols-[auto_minmax(0,1fr)_auto] min-[1200px]:px-8">
-        <NavLink to="/" className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4 lg:flex-none" aria-label="Healtopia home">
+    <header className={aboutHeaderClassName}>
+      <motion.div {...getEntranceProps(reduceMotion, { y: -14, duration: 0.45 })}>
+      <div className="mx-auto flex h-[4.7rem] w-full max-w-7xl items-center justify-between gap-3 px-5 sm:px-6 xl:px-8">
+        <NavLink to="/" className="flex min-w-0 shrink-0 items-center gap-3 sm:gap-4" aria-label="Healtopia home">
           <img
             src="/images/healtopia-logo.webp"
             alt="Healtopia Primary Care and Medical Weight Loss logo"
@@ -145,7 +143,7 @@ function Header({ mobileOpen, setMobileOpen }) {
           </div>
         </NavLink>
 
-        <nav className="hidden items-center justify-center gap-2.5 min-[1200px]:flex min-[1200px]:gap-3" aria-label="Primary navigation">
+        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-[clamp(0.7rem,1vw,1.2rem)] xl:flex" aria-label="Primary navigation">
           {desktopNavLinks.map((link) => (
             <NavLink key={link.to} to={link.to} end={link.to === '/'} className={navDesktopClass}>
               {link.label}
@@ -153,7 +151,7 @@ function Header({ mobileOpen, setMobileOpen }) {
           ))}
         </nav>
 
-        <div className="hidden min-[1200px]:flex min-[1200px]:items-center min-[1200px]:justify-self-end">
+        <div className="hidden shrink-0 xl:flex xl:items-center">
           <Button
             href={BOOK_APPOINTMENT_URL}
             target="_blank"
@@ -169,7 +167,7 @@ function Header({ mobileOpen, setMobileOpen }) {
         <button
           type="button"
           onClick={() => setMobileOpen((prev) => !prev)}
-          className="ml-auto inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:border-cyan-300 hover:bg-cyan-50 min-[1200px]:hidden"
+          className="ml-auto inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:border-cyan-300 hover:bg-cyan-50 xl:hidden"
           aria-label={mobileOpen ? 'Close mobile menu' : 'Open mobile menu'}
           aria-expanded={mobileOpen}
           data-mobile-menu-toggle="true"
@@ -185,7 +183,7 @@ function Header({ mobileOpen, setMobileOpen }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="fixed inset-x-0 top-[4.7rem] z-[70] h-[calc(100vh-4.7rem)] min-[1200px]:hidden"
+            className="fixed inset-x-0 top-[4.7rem] z-[70] h-[calc(100vh-4.7rem)] xl:hidden"
             aria-hidden={!mobileOpen}
           >
             <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-[1px]" onClick={() => setMobileOpen(false)} />
@@ -251,7 +249,8 @@ function Header({ mobileOpen, setMobileOpen }) {
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </motion.header>
+      </motion.div>
+    </header>
   )
 }
 

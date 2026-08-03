@@ -32,7 +32,7 @@ function AppointmentCTA({
 
   return (
     <motion.div
-      className={`group/cta relative mx-auto w-full max-w-6xl overflow-hidden rounded-[2.25rem] border border-white/10 bg-[linear-gradient(135deg,#0b2545_0%,#0d3558_52%,#09203b_100%)] px-5 py-7 text-white shadow-[0_34px_84px_-50px_rgba(5,42,74,0.92)] sm:px-6 sm:py-8 md:px-8 md:py-9 lg:px-10 lg:py-10 ${className}`}
+      className={`group/cta relative mx-auto w-full max-w-6xl overflow-hidden rounded-[2.25rem] border border-white/10 bg-[linear-gradient(135deg,#0b2545_0%,#0d3558_52%,#09203b_100%)] px-4 py-6 text-white shadow-[0_34px_84px_-50px_rgba(5,42,74,0.92)] sm:px-5 sm:py-7 md:px-7 md:py-8 lg:px-8 lg:py-9 ${className}`}
       {...getRevealProps(reduceMotion, { y: 20, duration: 0.5, amount: 0.18 })}
       whileHover={
         reduceMotion
@@ -92,24 +92,24 @@ function AppointmentCTA({
         </div>
 
         <motion.div
-          className="rounded-[1.75rem] border border-white/10 bg-white/[0.06] p-4 shadow-[0_22px_54px_-38px_rgba(5,42,74,0.58)] md:p-5 lg:p-6"
+          className="rounded-[1.75rem] border border-white/10 bg-white/[0.06] p-3.5 shadow-[0_22px_54px_-38px_rgba(5,42,74,0.58)] md:p-4 lg:p-5"
           {...getStaggerContainer(reduceMotion, { staggerChildren: 0.06, amount: 0.18 })}
         >
           <div className="space-y-3">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={benefit.title}
-                className="group/benefit flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.08] px-4 py-3.5 shadow-[0_14px_28px_-24px_rgba(5,42,74,0.7)] transition-[transform,background-color,border-color,box-shadow] duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/cta:translate-x-[3px] group-hover/cta:bg-white/[0.11] group-hover/cta:shadow-[0_18px_34px_-26px_rgba(5,42,74,0.75)]"
+                className="group/benefit flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.08] px-3.5 py-3 shadow-[0_14px_28px_-24px_rgba(5,42,74,0.7)] transition-[transform,background-color,border-color,box-shadow] duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/cta:translate-x-[3px] group-hover/cta:bg-white/[0.11] group-hover/cta:shadow-[0_18px_34px_-26px_rgba(5,42,74,0.75)]"
                 style={{ transitionDelay: `${index * 70}ms` }}
                 {...getStaggerItem(reduceMotion, { y: 10 })}
               >
-                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-cyan-100 ring-1 ring-white/10 transition-[transform,background-color,color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/cta:bg-white group-hover/cta:text-ht-cyan-700">
-                  <CheckCircle2 size={18} aria-hidden="true" />
+                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-cyan-100 ring-1 ring-white/10 transition-[transform,background-color,color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/cta:bg-white group-hover/cta:text-ht-cyan-700">
+                  <CheckCircle2 size={16} aria-hidden="true" />
                 </span>
                 <div className="min-w-0">
-                  <p className="text-sm font-semibold leading-snug text-white">{benefit.title}</p>
+                  <p className="text-[0.94rem] font-semibold leading-snug text-white">{benefit.title}</p>
                   {benefit.description ? (
-                    <p className="mt-1 text-sm leading-relaxed text-cyan-100/90">{benefit.description}</p>
+                    <p className="mt-1 text-[0.92rem] leading-relaxed text-cyan-100/90">{benefit.description}</p>
                   ) : null}
                 </div>
               </motion.div>

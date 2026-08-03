@@ -261,8 +261,8 @@ function DirectPrimaryCare() {
         {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.18 })}
       >
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr]">
-            <motion.div {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}>
+          <div className="grid items-start gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:gap-8">
+            <motion.div className="self-start" {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}>
               <SectionEyebrow>SIMPLER PRIMARY CARE</SectionEyebrow>
               <h2 className="mt-4 max-w-3xl text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">
                 Simpler primary care with more time and <span className="text-ht-cyan-700">direct access</span>
@@ -311,15 +311,15 @@ function DirectPrimaryCare() {
                 ))}
               </div>
 
-              <div className="mt-8">
-                <Button to="/pricing" className="whitespace-nowrap">
+              <div className="mt-6 flex justify-start">
+                <Button to="/pricing" className="self-start whitespace-nowrap">
                   View DPC Pricing
                 </Button>
               </div>
             </motion.div>
 
             <motion.aside
-              className="rounded-[2rem] border border-cyan-100 bg-white p-3 shadow-[0_24px_60px_-34px_rgba(5,42,74,0.45)]"
+              className="self-start rounded-[2rem] border border-cyan-100 bg-white p-3 shadow-[0_24px_60px_-34px_rgba(5,42,74,0.45)]"
               {...getEntranceProps(reduceMotion, { y: 20, delay: 0.08, duration: 0.55 })}
             >
               <div className="rounded-[1.5rem] border border-ht-silver bg-ht-soft-blue/15 p-5 sm:p-6">

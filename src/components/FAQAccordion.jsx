@@ -21,7 +21,7 @@ function FAQAccordion({ items = [] }) {
           >
             <button
               type="button"
-              className="ht-motion-smooth flex w-full items-center justify-between gap-4 px-5 py-4 text-left hover:bg-ht-soft-blue/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ht-cyan focus-visible:ring-inset"
+              className="ht-motion-smooth flex w-full items-center justify-between gap-4 px-4 py-3.5 text-left hover:bg-ht-soft-blue/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ht-cyan focus-visible:ring-inset"
               onClick={() => setOpenId(isOpen ? null : item.id)}
               aria-expanded={isOpen}
               aria-controls={`faq-panel-${item.id}`}
@@ -42,7 +42,7 @@ function FAQAccordion({ items = [] }) {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: reduceMotion ? 0 : 0.28, ease: EASE_OUT }}
                 >
-                  <div className="relative px-5 pb-5">
+                  <div className="relative px-4 pb-4">
                     <div className="absolute left-0 top-0 h-full w-1 rounded-r-full bg-cyan-200/80" />
                     <p className="ht-body pl-4 text-ht-gray">{item.answer}</p>
                   </div>

@@ -38,17 +38,17 @@ const heroTiles = [
 
 const experienceCards = [
   {
-    title: 'LONGER VISITS',
+    title: 'Longer visits',
     text: 'More time for thoughtful conversation and care planning.',
     icon: Clock3,
   },
   {
-    title: 'PRIORITY ACCESS',
+    title: 'Priority access',
     text: 'Convenient scheduling and direct communication when available.',
     icon: PhoneCall,
   },
   {
-    title: 'PROACTIVE SUPPORT',
+    title: 'Proactive support',
     text: 'Preventive wellness planning and coordinated follow-up.',
     icon: HeartPulse,
   },
@@ -329,23 +329,42 @@ function ConciergeCare() {
                 healthcare experience.
               </p>
 
-              <div className="mt-7 grid gap-3 sm:grid-cols-3">
+              <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                 {experienceCards.map((item) => (
                   <motion.article
                     key={item.title}
-                    className="group rounded-2xl border border-ht-silver bg-white px-5 py-4 shadow-[0_16px_36px_-30px_rgba(5,42,74,0.45)]"
+                    className="group relative flex min-h-[152px] items-center overflow-hidden rounded-[1.75rem] border border-cyan-100 bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(244,250,252,0.94)_100%)] px-6 py-5 shadow-[0_18px_40px_-30px_rgba(5,42,74,0.42)] backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300 md:min-h-[160px] md:col-span-2 xl:col-span-1 sm:px-7"
+                    style={{
+                      boxShadow: '0 18px 40px -30px rgba(5, 42, 74, 0.42)',
+                    }}
                     {...getStaggerItem(reduceMotion, { y: 14 })}
-                    {...getCardHover(reduceMotion)}
+                    whileHover={
+                      reduceMotion
+                        ? undefined
+                        : {
+                            y: -4,
+                            boxShadow: '0 24px 44px -28px rgba(5, 42, 74, 0.5)',
+                            borderColor: 'rgba(103, 232, 249, 0.85)',
+                          }
+                    }
+                    transition={
+                      reduceMotion
+                        ? { duration: 0 }
+                        : { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
+                    }
                   >
-                    <div className="flex items-start gap-4">
-                      <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100 transition-transform duration-300 group-hover:scale-105">
+                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(22,182,212,0.08),transparent_38%)]" />
+                    <div className="relative z-10 flex items-center gap-4 sm:gap-5">
+                      <div className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100 transition-colors duration-300 group-hover:bg-cyan-50">
                         <item.icon size={18} />
                       </div>
                       <div className="min-w-0">
-                        <h3 className="text-base font-bold text-ht-navy transition-transform duration-300 group-hover:-translate-y-0.5">
+                        <h3 className="text-[1.25rem] font-bold leading-[1.25] text-ht-navy">
                           {item.title}
                         </h3>
-                        <p className="mt-2 text-sm leading-relaxed text-ht-gray">{item.text}</p>
+                        <p className="mt-2 max-w-[30rem] text-[1rem] leading-[1.6] text-ht-gray">
+                          {item.text}
+                        </p>
                       </div>
                     </div>
                   </motion.article>

@@ -177,7 +177,7 @@ function ProviderPanel({ provider, reduceMotion, onOpenBio }) {
 
   return (
     <motion.article
-      className="provider-card provider-profile-card relative h-[31rem] overflow-hidden rounded-[1.75rem] border border-cyan-100 bg-white/96 shadow-[0_20px_46px_-34px_rgba(5,42,74,0.45)] md:h-[33rem] lg:h-[34rem]"
+      className="provider-card provider-profile-card relative h-[29.5rem] overflow-hidden rounded-[1.75rem] border border-cyan-100 bg-white/96 shadow-[0_20px_46px_-34px_rgba(5,42,74,0.45)] md:h-[31.5rem] lg:h-[32.5rem]"
       {...entranceMotion}
       whileHover={whileHover}
     >
@@ -193,7 +193,7 @@ function ProviderPanel({ provider, reduceMotion, onOpenBio }) {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(22,182,212,0.2),transparent_30%),linear-gradient(135deg,#dff7fb_0%,#f4fbfe_45%,#ffffff_100%)]">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_72%,rgba(22,182,212,0.12),transparent_24%)]" />
             <div className="flex h-full items-center justify-center p-5">
-              <div className="relative w-full max-w-[84%] overflow-hidden rounded-[1.15rem] border border-cyan-100 bg-white/35 p-5 shadow-[0_16px_32px_-24px_rgba(5,42,74,0.45)] backdrop-blur-sm">
+              <div className="relative w-full max-w-[82%] overflow-hidden rounded-[1.15rem] border border-cyan-100 bg-white/35 p-4 shadow-[0_16px_32px_-24px_rgba(5,42,74,0.45)] backdrop-blur-sm">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_32%,rgba(255,255,255,0.8),transparent_34%)]" />
                 <div className="relative flex min-h-[150px] items-center justify-center text-center">
                   <div>

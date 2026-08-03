@@ -5,7 +5,7 @@ function classNames(...classes) {
 }
 
 const baseStyles =
-  'inline-flex items-center justify-center gap-2 rounded-full font-semibold text-[clamp(0.86rem,0.83rem+0.1vw,0.96rem)] transform-gpu transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ht-cyan focus-visible:ring-offset-2 ring-offset-white disabled:pointer-events-none disabled:opacity-60'
+  'inline-flex items-center justify-center gap-2 rounded-full font-semibold text-[clamp(0.84rem,0.81rem+0.1vw,0.94rem)] transform-gpu transition-[transform,box-shadow,border-color,background-color,color,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ht-cyan focus-visible:ring-offset-2 ring-offset-white disabled:pointer-events-none disabled:opacity-60'
 
 const variantStyles = {
   primary:
@@ -16,9 +16,9 @@ const variantStyles = {
 }
 
 const sizeStyles = {
-  sm: 'px-4 py-[0.68rem]',
-  md: 'px-5 py-[0.75rem]',
-  lg: 'px-6 py-[0.8rem]',
+  sm: 'px-[1rem] py-[0.64rem]',
+  md: 'px-[1.15rem] py-[0.7rem]',
+  lg: 'px-[1.35rem] py-[0.76rem]',
 }
 
 function Button({

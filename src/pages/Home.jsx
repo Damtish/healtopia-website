@@ -1142,7 +1142,7 @@ function Home() {
         className="border-y border-ht-silver bg-gradient-to-br from-cyan-50 via-white to-ht-soft-blue py-16 lg:py-20"
         {...getRevealProps(reduceMotion, { y: 18, duration: 0.58, amount: 0.16 })}
       >
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div className="mx-auto grid w-full max-w-7xl items-start gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <motion.div {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.22 })}>
             <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ht-navy-700">
               Medical Weight Loss
@@ -1168,7 +1168,7 @@ function Home() {
                 Clear, supportive coaching for realistic lifestyle change
               </li>
             </ul>
-            <Button to="/medical-weight-loss" className="mt-6">
+            <Button to="/medical-weight-loss" className="mt-6 self-start">
               View Program Details
             </Button>
           </motion.div>
