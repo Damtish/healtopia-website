@@ -32,7 +32,7 @@ function AppointmentCTA({
 
   return (
     <motion.div
-      className={`group/cta relative mx-auto w-full max-w-6xl overflow-hidden rounded-[2.25rem] border border-white/10 bg-[linear-gradient(135deg,#0b2545_0%,#0d3558_52%,#09203b_100%)] px-4 py-6 text-white shadow-[0_34px_84px_-50px_rgba(5,42,74,0.92)] sm:px-5 sm:py-7 md:px-7 md:py-8 lg:px-8 lg:py-9 ${className}`}
+      className={`group/cta relative mx-auto w-full max-w-6xl overflow-hidden rounded-[2.25rem] border border-white/10 bg-[linear-gradient(135deg,#0b2545_0%,#0d3558_52%,#09203b_100%)] px-4 pt-9 pb-6 text-white shadow-[0_34px_84px_-50px_rgba(5,42,74,0.92)] sm:px-5 sm:py-7 md:px-7 md:py-8 lg:px-8 lg:py-9 ${className}`}
       {...getRevealProps(reduceMotion, { y: 20, duration: 0.5, amount: 0.18 })}
       whileHover={
         reduceMotion
@@ -50,7 +50,7 @@ function AppointmentCTA({
 
       <div className="relative grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-stretch lg:gap-10">
         <div className="min-w-0">
-          <p className="ht-eyebrow border border-cyan-100/30 bg-white/10 text-cyan-100">
+          <p className="ht-eyebrow border border-cyan-100/24 bg-white/10 text-cyan-100">
             {eyebrow}
           </p>
           <h2 className="ht-heading-2 mt-4 max-w-[48rem] text-white">
@@ -63,7 +63,7 @@ function AppointmentCTA({
               href={primaryHref}
               target={primaryTarget}
               rel={primaryRel}
-              className="group w-full min-h-12 justify-center whitespace-nowrap sm:w-auto"
+              className="group w-full min-h-[2.62rem] justify-center whitespace-nowrap sm:w-auto sm:min-h-12"
             >
               {primaryLabel}
               <CTAButtonArrow />
@@ -73,7 +73,7 @@ function AppointmentCTA({
               <Button
                 to={secondaryTo}
                 variant="secondary"
-                className="w-full min-h-12 justify-center whitespace-nowrap sm:w-auto"
+                className="w-full min-h-[2.62rem] justify-center whitespace-nowrap sm:w-auto sm:min-h-12"
               >
                 {secondaryLabel}
               </Button>
@@ -83,7 +83,7 @@ function AppointmentCTA({
                 target={secondaryTarget}
                 rel={secondaryRel}
                 variant="secondary"
-                className="w-full min-h-12 justify-center whitespace-nowrap sm:w-auto"
+                className="w-full min-h-[2.62rem] justify-center whitespace-nowrap sm:w-auto sm:min-h-12"
               >
                 {secondaryLabel}
               </Button>
@@ -92,14 +92,14 @@ function AppointmentCTA({
         </div>
 
         <motion.div
-          className="rounded-[1.75rem] border border-white/10 bg-white/[0.06] p-3.5 shadow-[0_22px_54px_-38px_rgba(5,42,74,0.58)] md:p-4 lg:p-5"
+          className="rounded-[1.75rem] border border-white/8 bg-white/[0.06] p-3.5 shadow-[0_20px_48px_-40px_rgba(5,42,74,0.54)] md:p-4 lg:p-5"
           {...getStaggerContainer(reduceMotion, { staggerChildren: 0.06, amount: 0.18 })}
         >
           <div className="space-y-3">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={benefit.title}
-                className="group/benefit flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.08] px-3.5 py-3 shadow-[0_14px_28px_-24px_rgba(5,42,74,0.7)] transition-[transform,background-color,border-color,box-shadow] duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/cta:translate-x-[3px] group-hover/cta:bg-white/[0.11] group-hover/cta:shadow-[0_18px_34px_-26px_rgba(5,42,74,0.75)]"
+                className="group/benefit flex items-start gap-3 rounded-2xl border border-white/8 bg-white/[0.08] px-3.5 py-3 shadow-[0_12px_24px_-22px_rgba(5,42,74,0.62)] transition-[transform,background-color,border-color,box-shadow] duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/cta:translate-x-[3px] group-hover/cta:bg-white/[0.11] group-hover/cta:shadow-[0_16px_30px_-24px_rgba(5,42,74,0.68)]"
                 style={{ transitionDelay: `${index * 70}ms` }}
                 {...getStaggerItem(reduceMotion, { y: 10 })}
               >
@@ -122,3 +122,4 @@ function AppointmentCTA({
 }
 
 export default AppointmentCTA
+

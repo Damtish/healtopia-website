@@ -19,6 +19,7 @@ import AppointmentCTA from '../components/AppointmentCTA'
 import FAQAccordion from '../components/FAQAccordion'
 import SectionHeader from '../components/SectionHeader'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
+import insuranceLogos from '../data/insurance'
 import {
   PAGE_CARD,
   PAGE_CARD_SOFT,
@@ -31,6 +32,24 @@ import {
   PAGE_SECTION_SOFT,
 } from '../lib/pageStyles'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
+
+const acceptedInsurancePlanNames = [
+  'Humana',
+  'Medicare',
+  'Care Improvement Plus',
+  'APWU',
+  'Sierra Health and Life',
+  'GEHA',
+]
+
+const acceptedInsurancePlanSizing = {
+  Humana: 'max-h-[2.15rem] max-w-[7.8rem] sm:max-h-[2.25rem] sm:max-w-[8.2rem]',
+  Medicare: 'max-h-[2.35rem] max-w-[8.3rem] sm:max-h-[2.5rem] sm:max-w-[8.8rem]',
+  'Care Improvement Plus': 'max-h-[2.1rem] max-w-[8.4rem] sm:max-h-[2.2rem] sm:max-w-[8.8rem]',
+  APWU: 'max-h-[1.95rem] max-w-[7.3rem] sm:max-h-[2.05rem] sm:max-w-[7.8rem]',
+  'Sierra Health and Life': 'max-h-[2.2rem] max-w-[8.5rem] sm:max-h-[2.3rem] sm:max-w-[9rem]',
+  GEHA: 'max-h-[2.3rem] max-w-[7.6rem] sm:max-h-[2.45rem] sm:max-w-[8rem]',
+}
 
 const heroTiles = [
   { label: 'ACCEPTED PLANS', value: 'Most major plans', icon: ShieldCheck },
@@ -266,10 +285,58 @@ function SectionEyebrow({ children }) {
 
 function InsuranceBasedPrimaryCare() {
   const reduceMotion = useReducedMotion()
+  const acceptedInsurancePlans = acceptedInsurancePlanNames
+    .map((name) => insuranceLogos.find((plan) => plan.name === name))
+    .filter(Boolean)
 
   return (
     <div className="bg-ht-light">
-      <section className={PAGE_HERO}>
+      <style>{`
+        .insurance-based-care-hero {
+          padding-bottom: 1.75rem;
+        }
+
+        @media (min-width: 640px) {
+          .insurance-based-care-hero {
+            padding-bottom: 2rem;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .insurance-based-care-hero {
+            padding-bottom: 2.25rem;
+          }
+        }
+
+        .insurance-plans-section {
+          scroll-margin-top: calc(var(--header-height, 76px) + 1.5rem);
+          padding-top: 1.5rem;
+          padding-bottom: 2.25rem;
+        }
+
+        @media (min-width: 640px) {
+          .insurance-plans-section {
+            padding-top: 1.75rem;
+            padding-bottom: 2.5rem;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .insurance-plans-section {
+            padding-top: 2rem;
+            padding-bottom: 2.75rem;
+          }
+        }
+
+        .insurance-plans-header {
+          max-width: 42.5rem;
+        }
+
+        .insurance-plans-header p {
+          max-width: 42.5rem;
+        }
+      `}</style>
+      <section className={`${PAGE_HERO} insurance-based-care-hero`}>
         <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:py-16">
           <motion.div {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}>
             <SectionEyebrow>INSURANCE-BASED PRIMARY CARE</SectionEyebrow>
@@ -285,8 +352,8 @@ function InsuranceBasedPrimaryCare() {
                 Book Appointment
                 <ArrowRight size={16} />
               </Button>
-              <Button to="/insurance" variant="secondary" className="whitespace-nowrap">
-                View Accepted Insurance
+              <Button href="#accepted-insurance-plans" variant="secondary" className="whitespace-nowrap">
+                View Accepted Plans
               </Button>
             </div>
           </motion.div>
@@ -332,6 +399,68 @@ function InsuranceBasedPrimaryCare() {
                 </motion.div>
               ))}
             </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section id="accepted-insurance-plans" className={`${PAGE_SECTION_SOFT} insurance-plans-section`}>
+        <div className={PAGE_CONTAINER}>
+          <div className="insurance-plans-header mx-auto">
+            <SectionHeader
+              align="center"
+              eyebrow="INSURANCE PARTNERS"
+              title={
+                <>
+                  Accepted <span className="text-ht-cyan-700">Insurance Plans</span>
+                </>
+              }
+              description="We work with many major insurance providers. Please contact our office to verify your specific plan, benefits, and coverage before your visit."
+            />
+          </div>
+
+          <motion.div
+            className="mt-6 grid grid-cols-1 gap-3 min-[375px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4"
+            {...getStaggerContainer(reduceMotion, { staggerChildren: 0.04, amount: 0.14 })}
+          >
+            {acceptedInsurancePlans.map((plan) => (
+              <motion.article
+                key={plan.name}
+                className={`${PAGE_CARD} flex h-[clamp(4.9rem,7vw,6.75rem)] items-center justify-center px-4 py-4 transition-[transform,box-shadow,border-color] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]`}
+                aria-label={plan.name}
+                {...getStaggerItem(reduceMotion, { y: 14 })}
+                whileHover={
+                  reduceMotion
+                    ? undefined
+                    : {
+                        y: -2.5,
+                        scale: 1,
+                        boxShadow: '0 20px 38px -30px rgba(5, 42, 74, 0.5)',
+                        borderColor: 'rgba(103, 232, 249, 0.75)',
+                      }
+                }
+                transition={reduceMotion ? { duration: 0 } : { duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <img
+                  src={plan.src}
+                  alt={plan.alt}
+                  className={`h-full w-full object-contain ${acceptedInsurancePlanSizing[plan.name] ?? 'max-h-[2.2rem] max-w-[8rem] sm:max-h-[2.35rem] sm:max-w-[8.5rem]'}`}
+                  loading="lazy"
+                />
+              </motion.article>
+            ))}
+          </motion.div>
+
+          <motion.div
+            className="mt-7 flex flex-col items-center gap-4 text-center"
+            {...getEntranceProps(reduceMotion, { y: 14, duration: 0.45, delay: 0.16 })}
+          >
+            <Button to="/insurance" variant="secondary" className="group whitespace-nowrap">
+              View Full Insurance List
+              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+            </Button>
+            <p className="mx-auto max-w-[42.5rem] text-sm leading-relaxed text-ht-gray">
+              UnitedHealthcare Community Plan is currently not accepted.
+            </p>
           </motion.div>
         </div>
       </section>

@@ -437,10 +437,26 @@ function AboutClinicGallery({ reduceMotion }) {
           </div>
 
           <div className="clinic-gallery-mobile mt-[clamp(16px,1.5vw,22px)] grid grid-cols-1 gap-3 md:hidden" aria-label="Inside our clinic gallery">
-            <GalleryCard item={clinicGalleryItems[0]} reduceMotion={reduceMotion} className="clinic-gallery-main-mobile aspect-[4/3]" />
-            <GalleryCard item={clinicGalleryItems[1]} reduceMotion={reduceMotion} className="clinic-gallery-item-mobile aspect-[4/3]" />
-            <GalleryCard item={clinicGalleryItems[2]} reduceMotion={reduceMotion} className="clinic-gallery-item-mobile aspect-[4/3]" />
-            <GalleryCard item={clinicGalleryItems[3]} reduceMotion={reduceMotion} className="clinic-gallery-item-mobile aspect-[4/3]" />
+            <GalleryCard
+              item={clinicGalleryItems[0]}
+              reduceMotion={reduceMotion}
+              className="clinic-gallery-main-mobile clinic-gallery-main-mobile--reception aspect-[16/10]"
+            />
+            <GalleryCard
+              item={clinicGalleryItems[1]}
+              reduceMotion={reduceMotion}
+              className="clinic-gallery-item-mobile clinic-gallery-item-mobile--exam aspect-[16/10]"
+            />
+            <GalleryCard
+              item={clinicGalleryItems[2]}
+              reduceMotion={reduceMotion}
+              className="clinic-gallery-item-mobile clinic-gallery-item-mobile--exterior aspect-[16/10]"
+            />
+            <GalleryCard
+              item={clinicGalleryItems[3]}
+              reduceMotion={reduceMotion}
+              className="clinic-gallery-item-mobile clinic-gallery-item-mobile--hallway aspect-[16/10]"
+            />
           </div>
         </motion.div>
       </div>
@@ -1103,16 +1119,53 @@ function About() {
           }
 
           .clinic-gallery-mobile {
-            gap: 12px;
+            display: grid !important;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 16px;
+            width: 100%;
+            min-width: 0;
+            align-items: start;
+            justify-items: stretch;
           }
 
           .clinic-gallery-main-mobile,
           .clinic-gallery-item-mobile {
-            aspect-ratio: 4 / 3;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            min-height: 0;
+            height: auto !important;
+            aspect-ratio: 16 / 10;
+          }
+
+          .clinic-gallery-main-mobile .ht-motion-smooth,
+          .clinic-gallery-item-mobile .ht-motion-smooth {
+            height: 100% !important;
+          }
+
+          .clinic-gallery-main-mobile img,
+          .clinic-gallery-item-mobile img {
+            object-position: center;
+          }
+
+          .clinic-gallery-main-mobile--reception img {
+            object-position: center 56%;
+          }
+
+          .clinic-gallery-item-mobile--hallway img {
+            object-position: center 44%;
           }
 
           .clinic-gallery-label {
-            padding: 38px 18px 16px;
+            padding: 34px 16px 14px;
+          }
+
+          .clinic-gallery-label small {
+            font-size: 0.68rem;
+          }
+
+          .clinic-gallery-label strong {
+            font-size: clamp(0.94rem, 4.2vw, 1.08rem);
           }
         }
 
