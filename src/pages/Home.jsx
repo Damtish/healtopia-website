@@ -25,6 +25,7 @@ import pricingPlans from '../data/pricing'
 import insuranceLogos from '../data/insurance'
 import { testimonials } from '../data/testimonials'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
+import { PAGE_SECTION, PAGE_SECTION_CTA } from '../lib/pageStyles'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
 const whyBenefits = [
@@ -999,7 +1000,7 @@ function Home() {
       </motion.section>
 
       <motion.section
-        className="border-y border-ht-silver bg-gradient-to-b from-white via-ht-soft-blue/20 to-white py-14 sm:py-16 lg:py-24"
+        className="border-y border-ht-silver bg-gradient-to-b from-white via-ht-soft-blue/20 to-white py-12 sm:py-14 lg:py-16"
         {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}
       >
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -1139,7 +1140,7 @@ function Home() {
       ))}
 
       <motion.section
-        className="border-y border-ht-silver bg-gradient-to-br from-cyan-50 via-white to-ht-soft-blue py-16 lg:py-20"
+        className="border-y border-ht-silver bg-gradient-to-br from-cyan-50 via-white to-ht-soft-blue py-12 lg:py-16"
         {...getRevealProps(reduceMotion, { y: 18, duration: 0.58, amount: 0.16 })}
       >
         <div className="mx-auto grid w-full max-w-7xl items-start gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
@@ -1227,7 +1228,7 @@ function Home() {
       </motion.section>
 
       <motion.section
-        className="border-y border-ht-silver bg-white py-16 lg:py-20"
+        className={PAGE_SECTION}
         {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}
       >
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -1236,7 +1237,7 @@ function Home() {
       </motion.section>
 
       <motion.section
-        className="overflow-hidden border-y border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue/55 to-cyan-50 py-14 lg:py-16"
+        className="overflow-hidden border-y border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue/55 to-cyan-50 py-12 sm:py-14 lg:py-16"
         {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}
       >
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -1291,7 +1292,7 @@ function Home() {
         </div>
       </motion.section>
 
-      <section className="bg-white py-20 sm:py-24 lg:py-28">
+      <section className={PAGE_SECTION_CTA}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <AppointmentCTA
             title="Ready to schedule your visit?"
@@ -1551,4 +1552,3 @@ function TestimonialCarousel({ items, reduceMotion }) {
 }
 
 export default Home
-

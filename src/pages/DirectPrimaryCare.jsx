@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion'
+﻿import { motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
   BriefcaseMedical,
@@ -19,6 +19,11 @@ import AppointmentCTA from '../components/AppointmentCTA'
 import FAQAccordion from '../components/FAQAccordion'
 import SectionHeader from '../components/SectionHeader'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
+import {
+  PAGE_SECTION,
+  PAGE_SECTION_CTA,
+  PAGE_SECTION_SOFT,
+} from '../lib/pageStyles'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
 const heroTiles = [
@@ -354,7 +359,7 @@ function DirectPrimaryCare() {
         </div>
       </motion.section>
 
-      <section className="border-b border-ht-silver bg-ht-soft-blue/20 py-16 lg:py-20">
+      <section className={PAGE_SECTION_SOFT}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Membership"
@@ -392,7 +397,7 @@ function DirectPrimaryCare() {
         </div>
       </section>
 
-      <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
+      <section className={PAGE_SECTION}>
         <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <motion.div {...getEntranceProps(reduceMotion, { y: 18, duration: 0.48 })}>
             <SectionHeader
@@ -440,7 +445,7 @@ function DirectPrimaryCare() {
         </div>
       </section>
 
-      <section className="border-b border-ht-silver bg-ht-soft-blue/20 py-16 lg:py-20">
+      <section className={PAGE_SECTION_SOFT}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Benefits"
@@ -567,7 +572,7 @@ function DirectPrimaryCare() {
         </div>
       </section>
 
-      <section className="border-b border-ht-silver bg-white py-16 lg:py-20">
+      <section className={PAGE_SECTION}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="FAQ"
@@ -580,7 +585,7 @@ function DirectPrimaryCare() {
         </div>
       </section>
 
-      <section className="bg-white py-20 sm:py-24 lg:py-28">
+      <section className={PAGE_SECTION_CTA}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <AppointmentCTA
             title="Experience a better healthcare relationship"

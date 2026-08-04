@@ -1,8 +1,9 @@
-import { motion, useReducedMotion } from 'framer-motion'
+﻿import { motion, useReducedMotion } from 'framer-motion'
 import SectionHeader from '../components/SectionHeader'
 import ServiceCard from '../components/ServiceCard'
 import AppointmentCTA from '../components/AppointmentCTA'
 import services, { serviceIconMap } from '../data/services'
+import { PAGE_SECTION } from '../lib/pageStyles'
 import { getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
 function Services() {
@@ -70,7 +71,7 @@ function Services() {
         </motion.div>
       </section>
 
-      <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
+      <section className={PAGE_SECTION}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="What To Expect"

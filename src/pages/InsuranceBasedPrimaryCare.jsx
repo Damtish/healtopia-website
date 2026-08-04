@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion'
+﻿import { motion, useReducedMotion } from 'framer-motion'
 import {
   Activity,
   ArrowRight,
@@ -29,6 +29,7 @@ import {
   PAGE_IMAGE_FRAME_SOFT,
   PAGE_PANEL_GRADIENT,
   PAGE_SECTION,
+  PAGE_SECTION_CTA_SOFT,
   PAGE_SECTION_SOFT,
 } from '../lib/pageStyles'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
@@ -687,7 +688,7 @@ function InsuranceBasedPrimaryCare() {
         </div>
       </section>
 
-      <section className="border-b border-ht-silver bg-ht-soft-blue/20 py-16 lg:py-20">
+      <section className={PAGE_SECTION_SOFT}>
         <div className={PAGE_CONTAINER}>
           <div className="grid gap-6 lg:grid-cols-2">
             <motion.article
@@ -816,7 +817,7 @@ function InsuranceBasedPrimaryCare() {
         </div>
       </section>
 
-      <section className="border-y border-ht-silver bg-white py-16 lg:py-20">
+      <section className={PAGE_SECTION}>
         <div className={PAGE_CONTAINER}>
           <SectionHeader
             eyebrow="FAQ"
@@ -829,7 +830,7 @@ function InsuranceBasedPrimaryCare() {
         </div>
       </section>
 
-      <section className="bg-ht-soft-blue/20 py-20 sm:py-24 lg:py-28">
+      <section className={PAGE_SECTION_CTA_SOFT}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <AppointmentCTA
             title="Schedule an insurance-based primary care visit"

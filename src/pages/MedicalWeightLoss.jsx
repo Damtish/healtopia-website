@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion'
+﻿import { motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
   BarChart3,
@@ -24,6 +24,7 @@ import {
   PAGE_HERO,
   PAGE_ICON_CIRCLE,
   PAGE_PANEL_GRADIENT,
+  PAGE_SECTION_CTA_SOFT,
   PAGE_SECTION,
   PAGE_SECTION_SOFT,
 } from '../lib/pageStyles'
@@ -726,7 +727,7 @@ function MedicalWeightLoss() {
         </div>
       </section>
 
-      <section className="bg-ht-soft-blue/20 py-20 sm:py-24 lg:py-28">
+      <section className={PAGE_SECTION_CTA_SOFT}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <AppointmentCTA
             title="Ready to begin your weight loss journey?"

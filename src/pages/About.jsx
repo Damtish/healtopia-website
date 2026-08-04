@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
@@ -20,6 +20,7 @@ import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer } from '../lib/motion'
 import {
   PAGE_CONTAINER,
+  PAGE_SECTION_CTA_SOFT,
   PAGE_SECTION,
   PAGE_SECTION_SOFT,
 } from '../lib/pageStyles'
@@ -414,7 +415,7 @@ function AboutClinicGallery({ reduceMotion }) {
             </p>
           </div>
 
-          <div className="clinic-gallery mt-[clamp(16px,1.5vw,22px)] hidden min-[1024px]:grid">
+          <div className="clinic-gallery-desktop mt-[clamp(16px,1.5vw,22px)]">
             <GalleryCard
               item={clinicGalleryItems[0]}
               reduceMotion={reduceMotion}
@@ -956,8 +957,8 @@ function About() {
           line-height: 1.45;
         }
 
-        .clinic-gallery {
-          display: grid;
+        .clinic-gallery-desktop {
+          display: none;
           grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
           gap: 18px;
           height: clamp(340px, 38vw, 404px);
@@ -1038,6 +1039,12 @@ function About() {
           display: none;
         }
 
+        @media (min-width: 1024px) {
+          .clinic-gallery-desktop {
+            display: grid;
+          }
+        }
+
         @media (min-width: 1100px) and (max-height: 900px) {
           .clinic-container {
             padding-block: 24px 30px;
@@ -1055,7 +1062,7 @@ function About() {
             font-size: 1.05rem;
           }
 
-          .clinic-gallery {
+          .clinic-gallery-desktop {
             height: 365px;
           }
 
@@ -1069,7 +1076,7 @@ function About() {
             width: min(100% - 34px, 850px);
           }
 
-          .clinic-gallery {
+          .clinic-gallery-desktop {
             display: none;
           }
 
@@ -1412,7 +1419,7 @@ function About() {
       </section>
 
       <motion.section
-        className="border-b border-ht-silver bg-white py-16 lg:py-20"
+        className={PAGE_SECTION}
         {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.18 })}
       >
         <div className={PAGE_CONTAINER}>
@@ -1551,7 +1558,7 @@ function About() {
         </div>
       </section>
 
-      <section className="bg-ht-soft-blue/20 py-20 sm:py-24 lg:py-28">
+      <section className={PAGE_SECTION_CTA_SOFT}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <AppointmentCTA
             title="Ready to experience personalized primary care?"
