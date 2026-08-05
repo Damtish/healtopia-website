@@ -314,14 +314,14 @@ function MedicalWeightLoss() {
             </p>
 
             <motion.div
-              className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+              className="mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap"
               {...getEntranceProps(reduceMotion, { y: 18, duration: 0.45, delay: 0.32 })}
             >
-              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap">
+              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="w-full whitespace-nowrap md:w-auto">
                 Book Appointment
                 <ArrowRight size={16} />
               </Button>
-              <Button to="/pricing" variant="secondary" className="whitespace-nowrap">
+              <Button to="/pricing" variant="secondary" className="w-full whitespace-nowrap md:w-auto">
                 View Pricing
               </Button>
             </motion.div>
@@ -338,7 +338,7 @@ function MedicalWeightLoss() {
                 <motion.img
                   src="/images/clinic/seca-body-composition-clean.png"
                   alt="Healtopia body composition scanner and dashboard"
-                  className="ht-motion-smooth relative z-10 h-[clamp(18rem,28vw,24.5rem)] w-full object-contain object-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
+                  className="ht-motion-smooth relative z-10 h-[clamp(18rem,28vw,24.5rem)] w-full object-contain object-center md:h-[clamp(21rem,30vw,28rem)] lg:h-[clamp(18rem,28vw,24.5rem)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
                   initial={reduceMotion ? false : { opacity: 0, scale: 0.985 }}
                   animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
                   transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.05 }}

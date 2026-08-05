@@ -58,12 +58,12 @@ function AppointmentCTA({
           </h2>
           <p className="ht-body ht-text-width-section mt-4 text-cyan-100">{description}</p>
 
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className="mt-7 flex flex-col gap-3 md:flex-row md:flex-wrap">
             <Button
               href={primaryHref}
               target={primaryTarget}
               rel={primaryRel}
-              className="group w-full min-h-[2.62rem] justify-center whitespace-nowrap sm:w-auto sm:min-h-12"
+              className="group w-full min-h-[2.62rem] justify-center whitespace-nowrap md:w-auto md:min-h-12"
             >
               {primaryLabel}
               <CTAButtonArrow />
@@ -73,7 +73,7 @@ function AppointmentCTA({
               <Button
                 to={secondaryTo}
                 variant="secondary"
-                className="w-full min-h-[2.62rem] justify-center whitespace-nowrap sm:w-auto sm:min-h-12"
+                className="w-full min-h-[2.62rem] justify-center whitespace-nowrap md:w-auto md:min-h-12"
               >
                 {secondaryLabel}
               </Button>
@@ -83,7 +83,7 @@ function AppointmentCTA({
                 target={secondaryTarget}
                 rel={secondaryRel}
                 variant="secondary"
-                className="w-full min-h-[2.62rem] justify-center whitespace-nowrap sm:w-auto sm:min-h-12"
+                className="w-full min-h-[2.62rem] justify-center whitespace-nowrap md:w-auto md:min-h-12"
               >
                 {secondaryLabel}
               </Button>

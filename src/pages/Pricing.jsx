@@ -243,11 +243,11 @@ function Pricing() {
               in one place. We keep the details clear so patients can choose the care option that fits their needs.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap">
+            <div className="mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap">
+              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="w-full whitespace-nowrap md:w-auto">
                 Book Appointment
               </Button>
-              <Button href="#dpc-pricing" variant="secondary" className="whitespace-nowrap">
+              <Button href="#dpc-pricing" variant="secondary" className="w-full whitespace-nowrap md:w-auto">
                 Explore Plans
               </Button>
             </div>

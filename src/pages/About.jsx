@@ -415,7 +415,7 @@ function AboutClinicGallery({ reduceMotion }) {
             </p>
           </div>
 
-          <div className="clinic-gallery-desktop mt-[clamp(16px,1.5vw,22px)]">
+          <div className="clinic-gallery-desktop hidden mt-[clamp(16px,1.5vw,22px)] lg:grid">
             <GalleryCard
               item={clinicGalleryItems[0]}
               reduceMotion={reduceMotion}

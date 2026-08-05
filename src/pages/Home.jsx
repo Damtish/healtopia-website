@@ -886,7 +886,7 @@ function Home() {
             </motion.p>
 
             <motion.div
-              className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+              className="mt-7 flex flex-col gap-3 md:flex-row md:flex-wrap"
               {...getEntranceProps(reduceMotion, { y: 16, duration: 0.5, delay: 0.26 })}
             >
               <Button
@@ -894,7 +894,7 @@ function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 size="md"
-                className="w-full sm:h-12 sm:w-auto sm:px-6"
+                className="w-full md:h-12 md:w-auto md:px-6"
               >
                 Book Appointment
               </Button>
@@ -902,7 +902,7 @@ function Home() {
                 to="/contact"
                 variant="secondary"
                 size="md"
-                className="w-full sm:h-12 sm:w-auto sm:px-6"
+                className="w-full md:h-12 md:w-auto md:px-6"
               >
                 Contact Us
               </Button>
@@ -925,7 +925,7 @@ function Home() {
                 />
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_22%,rgba(22,182,212,0.08),transparent_24%)]" />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(7,26,49,0.18)_34%,rgba(7,26,49,0.76)_100%)]" />
-                <div className="absolute inset-x-3 bottom-3 z-10 hidden gap-2 md:grid md:grid-cols-2 lg:inset-x-4 lg:bottom-4 lg:gap-3">
+                <div className="absolute inset-x-3 bottom-3 z-10 hidden gap-2 xl:grid xl:grid-cols-2 lg:inset-x-4 lg:bottom-4 lg:gap-3">
                   {heroServiceBadges.map((badge, index) => (
                     <motion.div
                       key={badge.label}
@@ -944,7 +944,7 @@ function Home() {
               </div>
             </div>
 
-            <div className="mt-4 grid gap-2 sm:grid-cols-2 md:hidden">
+            <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:hidden">
               {heroServiceBadges.map((badge, index) => (
                 <motion.div
                   key={badge.label}

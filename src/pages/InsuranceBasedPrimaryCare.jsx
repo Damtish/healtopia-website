@@ -348,12 +348,12 @@ function InsuranceBasedPrimaryCare() {
               Receive preventive care, chronic disease management, annual wellness visits, and treatment for everyday
               non-emergency medical concerns using an accepted insurance plan.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap">
+            <div className="mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap">
+              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="w-full whitespace-nowrap md:w-auto">
                 Book Appointment
                 <ArrowRight size={16} />
               </Button>
-              <Button href="#accepted-insurance-plans" variant="secondary" className="whitespace-nowrap">
+              <Button href="#accepted-insurance-plans" variant="secondary" className="w-full whitespace-nowrap md:w-auto">
                 View Accepted Plans
               </Button>
             </div>
@@ -368,7 +368,7 @@ function InsuranceBasedPrimaryCare() {
                 <motion.img
                   src="/images/clinic/examination-room.png"
                   alt="Healtopia examination room"
-                  className="h-[clamp(18rem,29vw,25rem)] w-full object-cover object-[center_60%] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025]"
+                  className="h-[clamp(18rem,29vw,25rem)] w-full object-cover object-[center_60%] md:h-[clamp(21rem,30vw,28rem)] lg:h-[clamp(18rem,29vw,25rem)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025]"
                   initial={reduceMotion ? false : { scale: 0.985, opacity: 0 }}
                   animate={reduceMotion ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }}
                   transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.05 }}
