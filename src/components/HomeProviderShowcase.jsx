@@ -13,9 +13,13 @@ const providers = [
     description:
       'Dual board-certified in Internal Medicine and Obesity Medicine, Dr. Adugna provides compassionate, evidence-based care with a focus on prevention, weight management, and long-term wellness.',
     badges: ['Internal Medicine', 'Obesity Medicine', 'Preventive Care'],
-    imageSrc: '/images/clinic/dr-gashaw-adugna-white-coat.png',
-    imageAlt: 'Gashaw Adugna, MD in a white coat portrait',
-    imageClassName: 'object-[center_12%]',
+    imageSrc: '/images/clinic/dr-gashaw-adugna-home-blue-suit.png',
+    imageAlt: 'Gashaw Adugna, MD in a blue suit portrait',
+    imageStyle: {
+      objectFit: 'contain',
+      objectPosition: 'center top',
+      backgroundColor: '#8d8d8d',
+    },
     compactHint: 'Hover to learn more',
     modalBio: [
       'Gashaw Adugna, MD, is a dual board-certified physician in Internal Medicine and Obesity Medicine, known not just for his clinical excellence but for the deep compassion and personal connection he brings to every patient encounter.',
@@ -186,7 +190,8 @@ function ProviderPanel({ provider, reduceMotion, onOpenBio }) {
           <img
             src={provider.imageSrc}
             alt={provider.imageAlt}
-            className={`provider-profile-card__image absolute inset-0 h-full w-full object-cover object-top ${provider.imageClassName || ''}`}
+            className="provider-profile-card__image absolute inset-0 h-full w-full object-cover object-top"
+            style={provider.imageStyle}
             loading="lazy"
           />
         ) : (

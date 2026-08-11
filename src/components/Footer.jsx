@@ -39,7 +39,7 @@ function Footer() {
           <ul className="mt-3 space-y-2 text-sm text-ht-gray">
             {quickLinks.map((link) => (
               <li key={link.to}>
-                <Link to={link.to} className="transition hover:text-ht-cyan-700">
+                <Link to={link.to} className="footer-link">
                   {link.label}
                 </Link>
               </li>
@@ -85,7 +85,7 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit Healtopia on Facebook"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 hover:text-ht-cyan-700 hover:shadow-md"
+                className="footer-social-link footer-social-facebook inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm"
               >
                 <FaFacebookF size={15} aria-hidden="true" />
               </a>
@@ -94,7 +94,7 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit Healtopia on Instagram"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 hover:text-ht-cyan-700 hover:shadow-md"
+                className="footer-social-link footer-social-instagram inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm"
               >
                 <FaInstagram size={16} aria-hidden="true" />
               </a>

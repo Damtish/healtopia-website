@@ -15,13 +15,12 @@ import {
   Wallet,
 } from 'lucide-react'
 import Button from '../components/Button'
-import AppointmentCTA from '../components/AppointmentCTA'
 import FAQAccordion from '../components/FAQAccordion'
+import NextStepSection from '../components/NextStepSection'
 import SectionHeader from '../components/SectionHeader'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import {
   PAGE_SECTION,
-  PAGE_SECTION_CTA,
   PAGE_SECTION_SOFT,
 } from '../lib/pageStyles'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
@@ -526,52 +525,6 @@ function DirectPrimaryCare() {
         </div>
       </section>
 
-      <section className="border-b border-ht-silver bg-gradient-to-br from-ht-navy via-[#0b2d4a] to-ht-navy py-16 text-white lg:py-20">
-        <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.12fr_0.88fr] lg:px-8">
-          <motion.div {...getEntranceProps(reduceMotion, { y: 18, duration: 0.48 })}>
-            <p className="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white">
-              Take the next step
-            </p>
-            <h2 className="mt-4 text-3xl font-extrabold tracking-tight md:text-4xl">
-              Experience a better healthcare relationship
-            </h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/80 md:text-lg">
-              Whether you need ongoing primary care, preventive services, or support managing chronic conditions, our
-              Direct Primary Care model provides a more connected and patient-focused approach to healthcare.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap">
-              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="w-full whitespace-nowrap md:w-auto">
-                Book Appointment
-                <ArrowRight size={16} />
-              </Button>
-              <Button
-                to="/pricing"
-                variant="secondary"
-                className="w-full whitespace-nowrap border-white/15 bg-white/95 text-ht-navy hover:border-cyan-300 hover:bg-white md:w-auto"
-              >
-                View Pricing
-              </Button>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="self-center rounded-[2rem] border border-white/10 bg-white/[0.06] p-4 shadow-[0_24px_52px_-36px_rgba(5,42,74,0.5)] backdrop-blur-sm"
-            {...getEntranceProps(reduceMotion, { y: 20, duration: 0.48, delay: 0.04 })}
-          >
-            <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-              {['Transparent monthly pricing', 'Longer, unrushed visits', 'Support beyond the appointment'].map((item) => (
-                <div key={item} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.08] px-4 py-3">
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.12] text-white">
-                    <CheckCircle2 size={16} />
-                  </span>
-                  <span className="text-sm font-medium text-white/90">{item}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       <section className={PAGE_SECTION}>
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -585,30 +538,27 @@ function DirectPrimaryCare() {
         </div>
       </section>
 
-      <section className={PAGE_SECTION_CTA}>
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AppointmentCTA
-            title="Experience a better healthcare relationship"
-            description="Get more time, direct access, and transparent membership-based primary care."
-            secondaryLabel="View Pricing"
-            secondaryTo="/pricing"
-            benefits={[
-              {
-                title: 'Transparent monthly pricing',
-                description: 'Clear membership costs that are easy to understand.',
-              },
-              {
-                title: 'Longer, unrushed visits',
-                description: 'Appointments with more time for conversation and planning.',
-              },
-              {
-                title: 'Support beyond the appointment',
-                description: 'Direct communication and follow-up when you need it.',
-              },
-            ]}
-          />
-        </div>
-      </section>
+      <NextStepSection
+        eyebrow="TAKE THE NEXT STEP"
+        title="Experience a better healthcare relationship"
+        description="Get more time, direct access, and transparent membership-based primary care."
+        secondaryLabel="View Pricing"
+        secondaryTo="/pricing"
+        benefits={[
+          {
+            title: 'Transparent monthly pricing',
+            description: 'Clear membership costs that are easy to understand.',
+          },
+          {
+            title: 'Longer, unrushed visits',
+            description: 'Appointments with more time for conversation and planning.',
+          },
+          {
+            title: 'Support beyond the appointment',
+            description: 'Direct communication and follow-up when you need it.',
+          },
+        ]}
+      />
     </div>
   )
 }

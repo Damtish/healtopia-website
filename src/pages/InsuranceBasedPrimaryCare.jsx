@@ -2,21 +2,18 @@
 import {
   Activity,
   ArrowRight,
-  BriefcaseMedical,
   CalendarClock,
   CheckCircle2,
   Clock3,
   HeartPulse,
-  Laptop,
   ShieldCheck,
   Thermometer,
-  UserRound,
   Users,
   SearchCheck,
 } from 'lucide-react'
 import Button from '../components/Button'
-import AppointmentCTA from '../components/AppointmentCTA'
 import FAQAccordion from '../components/FAQAccordion'
+import NextStepSection from '../components/NextStepSection'
 import SectionHeader from '../components/SectionHeader'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import insuranceLogos from '../data/insurance'
@@ -29,7 +26,6 @@ import {
   PAGE_IMAGE_FRAME_SOFT,
   PAGE_PANEL_GRADIENT,
   PAGE_SECTION,
-  PAGE_SECTION_CTA_SOFT,
   PAGE_SECTION_SOFT,
 } from '../lib/pageStyles'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
@@ -185,56 +181,6 @@ const followUpItems = [
   'Medication reconciliation and adjustments',
   'Monitoring recovery progress',
   'Coordinating additional care or specialist referrals if needed',
-]
-
-const whoBenefitsCards = [
-  {
-    title: 'Individuals with accepted insurance',
-    icon: ShieldCheck,
-  },
-  {
-    title: 'Families seeking ongoing primary care',
-    icon: HeartPulse,
-  },
-  {
-    title: 'Patients with chronic conditions',
-    icon: Users,
-  },
-  {
-    title: 'Patients who need preventive care',
-    icon: CheckCircle2,
-  },
-  {
-    title: 'Working professionals',
-    icon: Laptop,
-  },
-  {
-    title: 'Patients who may need specialist referrals',
-    icon: BriefcaseMedical,
-  },
-]
-
-const whyChooseCards = [
-  {
-    title: 'Accepted Insurance',
-    description: 'Healtopia accepts many major insurance plans and offers self-pay options.',
-    icon: ShieldCheck,
-  },
-  {
-    title: 'Experienced Providers',
-    description: 'Evidence-based care delivered with attention to each patient’s history and goals.',
-    icon: Users,
-  },
-  {
-    title: 'Convenient Scheduling',
-    description: 'Timely appointment options when availability allows.',
-    icon: CalendarClock,
-  },
-  {
-    title: 'Whole-Person Care',
-    description: 'Preventive care, chronic care, and follow-up designed around long-term wellness.',
-    icon: HeartPulse,
-  },
 ]
 
 const faqItems = [
@@ -746,80 +692,6 @@ function InsuranceBasedPrimaryCare() {
       <section className={PAGE_SECTION}>
         <div className={PAGE_CONTAINER}>
           <SectionHeader
-            eyebrow="WHO BENEFITS"
-            title="Who benefits from insurance-based primary care?"
-            description="Insurance-based primary care may be a good fit for patients who want comprehensive primary care through an accepted insurance plan."
-          />
-
-          <div className="mt-10 grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
-            <motion.div
-              className={`${PAGE_CARD} p-6 md:p-7`}
-              {...getRevealProps(reduceMotion, { y: 18, amount: 0.18 })}
-              {...getCardHover(reduceMotion)}
-            >
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100">
-                <UserRound size={20} />
-              </div>
-              <p className="mt-4 text-sm leading-relaxed text-ht-gray md:text-base">
-                Insurance-based care can be a strong fit for patients who want preventive care, treatment for everyday
-                medical needs, ongoing condition management, and help coordinating the next steps in their care.
-              </p>
-            </motion.div>
-
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {whoBenefitsCards.map((item, index) => (
-                <motion.article
-                  key={item.title}
-                  className={`${PAGE_CARD} group p-5`}
-                  {...getEntranceProps(reduceMotion, { y: 16, duration: 0.42, delay: index * 0.03 })}
-                  {...getCardHover(reduceMotion)}
-                >
-                  <div className="flex items-start gap-3">
-                    <div className={PAGE_ICON_CIRCLE}>
-                      <item.icon size={18} />
-                    </div>
-                    <p className="text-sm leading-relaxed text-ht-navy transition-transform duration-300 group-hover:-translate-y-0.5">
-                      {item.title}
-                    </p>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className={PAGE_SECTION_SOFT}>
-        <div className={PAGE_CONTAINER}>
-          <SectionHeader
-            eyebrow="WHY HEALTOPIA"
-            title="Trusted care that feels personal"
-            description="We focus on relationship-driven care, modern convenience, and consistent communication so patients understand what comes next in their care plan."
-          />
-
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {whyChooseCards.map((item, index) => (
-              <motion.article
-                key={item.title}
-                className={`${PAGE_CARD} group flex h-full flex-col p-6`}
-                {...getEntranceProps(reduceMotion, { y: 18, duration: 0.45, delay: index * 0.04 })}
-                {...getCardHover(reduceMotion)}
-              >
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-ht-cyan-700 via-cyan-300 to-transparent opacity-80" />
-                <div className={PAGE_ICON_CIRCLE}>
-                  <item.icon size={18} />
-                </div>
-                <h3 className="mt-4 text-xl font-bold text-ht-navy">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ht-gray">{item.description}</p>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className={PAGE_SECTION}>
-        <div className={PAGE_CONTAINER}>
-          <SectionHeader
             eyebrow="FAQ"
             title="Insurance-Based Care FAQs"
             description="Common questions about accepted insurance plans, benefits, and how insurance-based care compares with membership care."
@@ -830,30 +702,32 @@ function InsuranceBasedPrimaryCare() {
         </div>
       </section>
 
-      <section className={PAGE_SECTION_CTA_SOFT}>
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AppointmentCTA
-            title="Schedule an insurance-based primary care visit"
-            description="Choose a convenient appointment for routine, preventive, or ongoing care."
-            secondaryLabel="View Accepted Insurance"
-            secondaryTo="/insurance"
-            benefits={[
-              {
-                title: 'Most major plans accepted',
-                description: 'We work with Medicare, Medicaid, and many commercial plans.',
-              },
-              {
-                title: 'Preventive and routine care',
-                description: 'Wellness visits, screenings, and common primary care needs.',
-              },
-              {
-                title: 'Chronic care follow-up',
-                description: 'Ongoing support for stable, coordinated primary care.',
-              },
-            ]}
-          />
-        </div>
-      </section>
+      <NextStepSection
+        eyebrow="TAKE THE NEXT STEP"
+        title={
+          <>
+            Schedule an insurance-based <br className="hidden sm:block" />
+            primary care visit
+          </>
+        }
+        description="Choose a convenient appointment for routine, preventive, or ongoing care."
+        secondaryLabel="View Accepted Insurance"
+        secondaryTo="/insurance"
+        benefits={[
+          {
+            title: 'Most major plans accepted',
+            description: 'We work with Medicare, Medicaid, and many commercial plans.',
+          },
+          {
+            title: 'Preventive and routine care',
+            description: 'Wellness visits, screenings, and common primary care needs.',
+          },
+          {
+            title: 'Chronic care follow-up',
+            description: 'Ongoing support for stable, coordinated primary care.',
+          },
+        ]}
+      />
     </div>
   )
 }

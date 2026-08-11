@@ -389,11 +389,74 @@ h3,
   .provider-profile-card,
   .provider-profile-card__image,
   .provider-profile-card__details,
-  .provider-profile-card__details-extra {
+  .provider-profile-card__details-extra,
+  .footer-link,
+  .footer-social-link {
     transition: none !important;
     transform: none !important;
     will-change: auto !important;
   }
+}
+
+:where(.footer-link) {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+  padding-block: 0.25rem;
+  transition:
+    color 200ms ease,
+    transform 200ms ease,
+    text-shadow 200ms ease;
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  color: var(--color-ht-cyan-700);
+  transform: translateX(2px);
+  text-shadow: 0 0 10px rgba(30, 183, 210, 0.12);
+}
+
+.footer-link:focus-visible {
+  outline: none;
+}
+
+:where(.footer-social-link) {
+  transition:
+    transform 200ms ease,
+    color 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.footer-social-link:hover,
+.footer-social-link:focus-visible {
+  transform: translateY(-2px);
+}
+
+.footer-social-link:focus-visible {
+  outline: none;
+}
+
+.footer-social-facebook:hover,
+.footer-social-facebook:focus-visible {
+  color: #1877f2;
+  border-color: rgba(24, 119, 242, 0.38);
+  background: rgba(24, 119, 242, 0.08);
+  box-shadow: 0 6px 18px rgba(24, 119, 242, 0.14);
+}
+
+.footer-social-instagram:hover,
+.footer-social-instagram:focus-visible {
+  color: #ffffff;
+  border-color: transparent;
+  background: linear-gradient(135deg, #833ab4, #e1306c, #fcaf45);
+  box-shadow: 0 6px 18px rgba(225, 48, 108, 0.16);
+}
+
+.footer-social-instagram:hover svg,
+.footer-social-instagram:focus-visible svg {
+  color: #ffffff;
 }
 
 :where(.transition, .transition-all, .transition-colors, .transition-opacity, .transition-shadow, .transition-transform, [class*='transition-']) {

@@ -2,12 +2,7 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
-  BadgeCheck,
   Clock3,
-  Heart,
-  MapPin,
-  MessageSquareHeart,
-  Scale,
   ShieldCheck,
   Users,
   Activity,
@@ -15,14 +10,13 @@ import {
   X,
 } from 'lucide-react'
 import Button from '../components/Button'
-import AppointmentCTA from '../components/AppointmentCTA'
+import NextStepSection from '../components/NextStepSection'
+import WhyHealtopiaSection from '../components/WhyHealtopiaSection'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer } from '../lib/motion'
 import {
   PAGE_CONTAINER,
-  PAGE_SECTION_CTA_SOFT,
   PAGE_SECTION,
-  PAGE_SECTION_SOFT,
 } from '../lib/pageStyles'
 import aboutGashawPortrait from "../assets/Dr. Gashaw's.PNG"
 
@@ -46,66 +40,6 @@ const storyExpectations = [
     title: 'Support beyond the visit',
     description: 'Our team focuses on follow-up, care coordination, and helping patients feel informed every step of the way.',
     icon: Users,
-  },
-]
-
-const clinicGalleryItems = [
-  {
-    key: 'reception',
-    label: 'Reception',
-    title: 'Welcoming arrival',
-    src: '/images/clinic/reception.jpg',
-    alt: 'Healtopia reception area',
-    objectPosition: 'object-center',
-  },
-  {
-    key: 'examination-room',
-    label: 'Examination Room',
-    title: 'Private care space',
-    src: '/images/clinic/examination-room.png',
-    alt: 'Healtopia examination room',
-    objectPosition: 'object-center',
-  },
-  {
-    key: 'clinic-exterior',
-    label: 'Clinic Exterior',
-    title: 'Gambrills location',
-    src: '/images/clinic/building-exterior.jpg',
-    alt: 'Healtopia clinic exterior',
-    objectPosition: 'object-center',
-  },
-  {
-    key: 'hallway',
-    label: 'Hallway',
-    title: 'Calm circulation',
-    src: '/images/clinic/hallway.jpg',
-    alt: 'Healtopia hallway',
-    objectPosition: 'object-center',
-  },
-]
-
-const technologyMetrics = [
-  { label: 'Body Fat Percentage', icon: Scale },
-  { label: 'Muscle Mass', icon: Heart },
-  { label: 'Visceral Fat', icon: ShieldCheck },
-  { label: 'Metabolic Health', icon: MessageSquareHeart },
-]
-
-const trustCards = [
-  {
-    title: 'More time and attention',
-    text: 'We focus on thoughtful conversations, practical answers, and a pace that feels less rushed.',
-    icon: Clock3,
-  },
-  {
-    title: 'Coordinated long-term support',
-    text: 'Our team helps patients stay connected to follow-up care, prevention, and the next step in their plan.',
-    icon: Users,
-  },
-  {
-    title: 'Preventive, personalized care',
-    text: 'Every visit is shaped around your history, your goals, and the details that matter most to your health.',
-    icon: BadgeCheck,
   },
 ]
 
@@ -374,97 +308,6 @@ function AboutProvidersSection({ reduceMotion }) {
   )
 }
 
-function GalleryCard({ item, reduceMotion, className = '' }) {
-  return (
-    <motion.article
-      className={`group relative h-full min-h-0 overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white shadow-[0_18px_40px_-32px_rgba(5,42,74,0.42)] ${item.className || ''} ${className}`}
-      {...getCardHover(reduceMotion)}
-    >
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.img
-          src={item.src}
-          alt={item.alt}
-          className={`ht-motion-smooth h-full w-full object-cover ${item.objectPosition || 'object-center'} filter-none opacity-100 group-hover:scale-[1.03]`}
-          loading="lazy"
-          initial={reduceMotion ? false : { scale: 1 }}
-          animate={reduceMotion ? { scale: 1 } : { scale: 1 }}
-          transition={reduceMotion ? { duration: 0 } : { duration: 0.3, ease: 'easeOut' }}
-        />
-      </div>
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(8,29,58,0.78)_0%,rgba(8,29,58,0.32)_35%,rgba(8,29,58,0)_65%)]" />
-      <div className="clinic-gallery-label pointer-events-none">
-        <small>{item.label}</small>
-        <strong>{item.title}</strong>
-      </div>
-    </motion.article>
-  )
-}
-
-function AboutClinicGallery({ reduceMotion }) {
-  return (
-    <section className="clinic-section border-y border-ht-silver">
-      <div className="clinic-container">
-        <motion.div className="flex min-h-0 flex-col" {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}>
-          <div className="clinic-header">
-            <SectionEyebrow>INSIDE OUR CLINIC</SectionEyebrow>
-            <h2 className="mt-4 text-[clamp(1.95rem,2.55vw,3.05rem)] font-extrabold leading-[1.06] tracking-tight text-ht-navy">
-              Care that begins in a <span className="text-ht-cyan-700">calm, welcoming space</span>
-            </h2>
-            <p className="mt-4 max-w-[780px] text-[clamp(0.98rem,1.1vw,1.16rem)] leading-[1.5] text-ht-gray">
-              Bright, modern spaces designed to make every visit feel calm, comfortable, and welcoming.
-            </p>
-          </div>
-
-          <div className="clinic-gallery-desktop hidden mt-[clamp(16px,1.5vw,22px)] lg:grid">
-            <GalleryCard
-              item={clinicGalleryItems[0]}
-              reduceMotion={reduceMotion}
-              className="clinic-gallery-main"
-            />
-            <div className="clinic-gallery-right">
-              <GalleryCard item={clinicGalleryItems[1]} reduceMotion={reduceMotion} className="clinic-gallery-item clinic-gallery-right-top" />
-              <GalleryCard item={clinicGalleryItems[2]} reduceMotion={reduceMotion} className="clinic-gallery-item clinic-gallery-right-top" />
-              <GalleryCard item={clinicGalleryItems[3]} reduceMotion={reduceMotion} className="clinic-gallery-item clinic-gallery-right-bottom" />
-            </div>
-          </div>
-
-          <div className="clinic-gallery-tablet mt-[clamp(16px,1.5vw,22px)] hidden grid-cols-1 gap-3 min-[1024px]:hidden md:grid lg:hidden" aria-label="Inside our clinic gallery">
-            <GalleryCard item={clinicGalleryItems[0]} reduceMotion={reduceMotion} className="clinic-gallery-tablet-main aspect-[16/9]" />
-            <div className="clinic-gallery-tablet-grid grid grid-cols-2 gap-3">
-              <GalleryCard item={clinicGalleryItems[1]} reduceMotion={reduceMotion} className="clinic-gallery-item clinic-gallery-tablet-item" />
-              <GalleryCard item={clinicGalleryItems[2]} reduceMotion={reduceMotion} className="clinic-gallery-item clinic-gallery-tablet-item" />
-              <GalleryCard item={clinicGalleryItems[3]} reduceMotion={reduceMotion} className="clinic-gallery-item clinic-gallery-tablet-hallway col-span-2" />
-            </div>
-          </div>
-
-          <div className="clinic-gallery-mobile mt-[clamp(16px,1.5vw,22px)] grid grid-cols-1 gap-3 md:hidden" aria-label="Inside our clinic gallery">
-            <GalleryCard
-              item={clinicGalleryItems[0]}
-              reduceMotion={reduceMotion}
-              className="clinic-gallery-main-mobile clinic-gallery-main-mobile--reception aspect-[16/10]"
-            />
-            <GalleryCard
-              item={clinicGalleryItems[1]}
-              reduceMotion={reduceMotion}
-              className="clinic-gallery-item-mobile clinic-gallery-item-mobile--exam aspect-[16/10]"
-            />
-            <GalleryCard
-              item={clinicGalleryItems[2]}
-              reduceMotion={reduceMotion}
-              className="clinic-gallery-item-mobile clinic-gallery-item-mobile--exterior aspect-[16/10]"
-            />
-            <GalleryCard
-              item={clinicGalleryItems[3]}
-              reduceMotion={reduceMotion}
-              className="clinic-gallery-item-mobile clinic-gallery-item-mobile--hallway aspect-[16/10]"
-            />
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
 function About() {
   const reduceMotion = useReducedMotion()
 
@@ -492,13 +335,8 @@ function About() {
       <style>{`
         .about-hero-shell {
           --header-height: 75px;
-          --hero-height: calc(100vh - var(--header-height) - 2px);
-        }
-
-        @supports (height: 100svh) {
-          .about-hero-shell {
-            --hero-height: calc(100svh - var(--header-height) - 2px);
-          }
+          min-height: auto;
+          padding-block: clamp(28px, 4vw, 48px);
         }
 
         .about-page {
@@ -511,133 +349,122 @@ function About() {
           width: 100%;
         }
 
-        .about-hero-inner {
-          min-width: 0;
+        .about-hero-shell .about-hero-bg {
+          position: absolute;
+          inset: 0;
         }
 
-        .about-hero-copy,
-        .about-hero-media {
-          min-width: 0;
-        }
-
-        .about-hero-media img {
+        .about-hero-shell .about-hero-bg img {
           display: block;
           width: 100%;
-          max-width: 100%;
-          height: auto;
+          height: 100%;
           object-fit: cover;
+          object-position: center;
+        }
+
+        .about-hero-shell .about-hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            90deg,
+            rgba(10, 43, 75, 0.96) 0%,
+            rgba(10, 43, 75, 0.86) 36%,
+            rgba(10, 43, 75, 0.48) 64%,
+            rgba(10, 43, 75, 0.16) 100%
+          );
+        }
+
+        .about-hero-shell .about-hero-content {
+          width: clamp(620px, 45vw, 760px);
+          max-width: 760px;
+          min-width: 0;
+        }
+
+        .about-hero-shell .about-hero-panel {
+          width: 100%;
+          min-width: 0;
+        }
+
+        .about-hero-shell .about-hero-title {
+          max-width: 660px;
+        }
+
+        .about-hero-shell .about-hero-actions {
+          align-items: flex-start;
+        }
+
+        .about-hero-shell .about-hero-inner {
+          min-height: inherit;
+          align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+          .about-hero-shell {
+            min-height: clamp(560px, 70vh, 600px);
+          }
         }
 
         @media (max-height: 800px) and (min-width: 900px) {
           .about-hero-shell {
-            padding-block: 18px !important;
-          }
-
-          .about-hero-shell .about-hero-panel {
-            padding: 24px !important;
+            min-height: clamp(560px, 62vh, 590px);
+            padding-block: 22px !important;
           }
 
           .about-hero-shell .about-hero-title {
             font-size: clamp(2.35rem, 3.3vw, 3.85rem) !important;
           }
-
-          .about-hero-shell .about-hero-image {
-            height: min(62vh, 580px) !important;
-          }
         }
 
         @media (max-width: 767px) {
           .about-hero-shell {
-            padding: 2rem 0 2.5rem;
+            min-height: auto;
+            padding: 3rem 0 3.5rem;
             min-height: auto;
             height: auto;
-            overflow: visible;
-          }
-
-          .about-hero-inner {
-            width: min(100% - 32px, 520px);
-            margin-inline: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            align-items: stretch;
-          }
-
-          .about-hero-copy {
-            order: 1;
-            width: 100%;
-            max-width: none;
-            min-width: 0;
-            padding: 1.5rem;
-            border-radius: 1.5rem;
-          }
-
-          .about-hero-media {
-            order: 2;
-            position: relative !important;
-            inset: auto !important;
-            transform: none !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            aspect-ratio: 4 / 3;
             overflow: hidden;
-            border-radius: 1.5rem;
           }
 
-          .about-hero-media img {
-            position: static !important;
-            inset: auto !important;
-            transform: none !important;
-            width: 100% !important;
-            height: 100% !important;
-            max-width: 100% !important;
-            object-fit: cover;
-            object-position: center;
-            border-radius: inherit;
+          .about-hero-shell .about-hero-inner {
+            min-height: auto;
+          }
+
+          .about-hero-shell .about-hero-overlay {
+            background: linear-gradient(
+              90deg,
+              rgba(10, 43, 75, 0.96) 0%,
+              rgba(10, 43, 75, 0.84) 36%,
+              rgba(10, 43, 75, 0.58) 60%,
+              rgba(10, 43, 75, 0.28) 80%,
+              rgba(10, 43, 75, 0.12) 100%
+            );
+          }
+
+          .about-hero-shell .about-hero-content {
+            width: min(100%, 520px);
+            max-width: none;
           }
 
           .about-hero-shell .about-hero-panel {
-            padding: 1.5rem !important;
             width: 100%;
             max-width: none;
             min-width: 0;
           }
 
-          .about-hero-shell .about-hero-title {
-            font-size: clamp(2.25rem, 11vw, 3.25rem);
-            line-height: 0.98;
-            letter-spacing: -0.045em;
-            overflow-wrap: normal;
-            word-break: normal;
-            max-width: 100%;
-          }
-
           .about-hero-shell .about-hero-panel > p {
-            font-size: 1rem;
-            line-height: 1.6;
             max-width: 100%;
           }
 
-          .about-hero-actions {
-            display: grid;
-            grid-template-columns: 1fr;
+          .about-hero-shell .about-hero-actions {
+            display: flex;
+            flex-direction: column;
             gap: 12px;
-            width: 100%;
           }
 
-          .about-hero-actions a,
-          .about-hero-actions button {
+          .about-hero-shell .about-hero-actions a,
+          .about-hero-shell .about-hero-actions button {
             width: 100%;
             min-height: 54px;
             justify-content: center;
-          }
-
-          .about-hero-trust {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            width: 100%;
           }
         }
 
@@ -1307,32 +1134,38 @@ function About() {
         }
       `}</style>
 
-      <section className="about-hero-shell relative isolate overflow-visible border-b border-ht-silver bg-[radial-gradient(circle_at_18%_20%,rgba(22,182,212,0.14),transparent_28%),radial-gradient(circle_at_84%_24%,rgba(22,182,212,0.08),transparent_24%),linear-gradient(180deg,#f7fcff_0%,#eef8fd_100%)] md:flex md:h-[var(--hero-height)] md:min-h-[var(--hero-height)] md:items-center md:overflow-hidden">
-        <div className="absolute inset-0 hidden md:block">
-          <div className="absolute inset-y-0 right-0 w-[52%] bg-[radial-gradient(circle_at_72%_20%,rgba(22,182,212,0.08),transparent_28%)]" />
+      <section className="about-hero-shell relative isolate overflow-hidden border-b border-ht-silver">
+        <div className="about-hero-bg">
+          <motion.img
+            src="/images/clinic/building-exterior.jpg"
+            alt="Healtopia clinic building exterior"
+            className="h-full w-full object-cover object-center"
+            initial={reduceMotion ? false : { scale: 1.03 }}
+            animate={reduceMotion ? { scale: 1 } : { scale: 1 }}
+            transition={reduceMotion ? { duration: 0 } : { duration: 0.9, ease: 'easeOut' }}
+          />
         </div>
+        <div className="about-hero-overlay" />
 
-        <div className="relative mx-auto flex w-full max-w-[1360px] flex-col items-stretch px-4 py-12 sm:px-6 sm:py-14 md:flex-1 md:px-8 md:py-[clamp(14px,2.5vh,28px)] lg:py-[clamp(14px,2.5vh,28px)]">
-          <div className="about-hero-inner flex w-full flex-col gap-6 md:grid md:grid-cols-[46%_54%] md:items-center lg:gap-[clamp(32px,4vw,56px)]">
-            <motion.div
-              className="about-hero-copy about-hero-panel relative rounded-[28px] border border-cyan-100/85 bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(239,248,253,0.9)_100%)] px-[clamp(22px,2.5vw,36px)] pt-[clamp(22px,2.5vw,36px)] pb-[clamp(18px,2.1vw,28px)] shadow-[0_18px_48px_-38px_rgba(5,42,74,0.34)] backdrop-blur-md"
-              {...getEntranceProps(reduceMotion, { y: 16, duration: 0.52, delay: 0.03 })}
-            >
-              <div className="pointer-events-none absolute -inset-3 -z-10 rounded-[32px] bg-[radial-gradient(circle_at_24%_20%,rgba(22,182,212,0.12),transparent_42%)] blur-2xl" />
-              <div className="absolute left-5 top-5 h-12 w-1 rounded-full bg-cyan-300/80 opacity-80" />
-              <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-ht-navy-700">
+        <div className="about-hero-inner relative mx-auto flex w-full max-w-[1360px] items-center px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="about-hero-content py-0"
+            {...getEntranceProps(reduceMotion, { y: 16, duration: 0.52, delay: 0.03 })}
+          >
+            <div className="about-hero-panel">
+              <p className="inline-flex rounded-full border border-cyan-100/25 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-cyan-50 backdrop-blur-sm">
                 ABOUT HEALTOPIA
               </p>
-              <h1 className="about-hero-title mt-3 max-w-[560px] text-[clamp(2.75rem,3.8vw,4.15rem)] font-extrabold leading-[0.99] tracking-[-0.025em] text-ht-navy">
-                Healthcare built on <span className="font-semibold tracking-[-0.01em] text-ht-cyan-700">trust and lasting</span> relationships
+              <h1 className="about-hero-title mt-4 max-w-[700px] text-[clamp(2.55rem,3.8vw,4.1rem)] font-extrabold leading-[0.98] tracking-[-0.03em] text-white">
+                Healthcare built on <span className="text-ht-cyan-300">trust and lasting</span> relationships
               </h1>
-              <p className="mt-3 max-w-[580px] text-[0.98rem] leading-[1.56] text-ht-gray md:text-[1rem]">
+              <p className="mt-4 max-w-[700px] text-[0.98rem] leading-[1.58] text-white/80 md:text-[1rem]">
                 Compassionate, personalized healthcare focused on giving every patient the time, attention, and
                 trusted support they deserve.
               </p>
 
               <motion.div
-                className="about-hero-actions mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+                className="about-hero-actions mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
                 {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08, amount: 0.2 })}
               >
                 <Button
@@ -1357,62 +1190,6 @@ function About() {
                   />
                 </Button>
               </motion.div>
-            </motion.div>
-
-            <motion.div
-              className="about-hero-media relative hidden md:block"
-              initial={reduceMotion ? false : { opacity: 0, y: 18, scale: 0.98 }}
-              animate={reduceMotion ? { opacity: 1, y: 0, scale: 1 } : { opacity: 1, y: 0, scale: 1 }}
-              transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.05 }}
-            >
-              <div className="absolute inset-0 -z-10 rounded-[3rem] bg-[radial-gradient(circle_at_50%_42%,rgba(22,182,212,0.12),transparent_38%)] blur-2xl" />
-              <div className="group relative overflow-hidden rounded-[30px] border border-cyan-100/90 bg-white shadow-[0_24px_64px_-34px_rgba(5,42,74,0.45)]">
-                <div className="pointer-events-none absolute inset-0 rounded-[30px] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.5)]" />
-                <div className="about-hero-image relative h-[min(58vh,560px)] max-h-[calc(100svh-var(--header-height)-82px)] overflow-hidden">
-                  <motion.img
-                    src="/images/clinic/building-exterior.jpg"
-                    alt="Healtopia clinic building exterior"
-                    className="h-full w-full object-cover object-center transition-transform duration-300 ease-out group-hover:scale-[1.02]"
-                    initial={reduceMotion ? false : { scale: 1 }}
-                    animate={reduceMotion ? { scale: 1 } : { scale: 1.025 }}
-                    transition={reduceMotion ? { duration: 0 } : { duration: 12, ease: 'easeOut' }}
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_22%,rgba(22,182,212,0.06),transparent_24%)]" />
-                </div>
-
-                <motion.div
-                  className="absolute bottom-6 left-6 max-w-[16rem] rounded-[1.15rem] border border-white/70 border-t-cyan-200 bg-white/78 px-3.5 py-3 shadow-[0_16px_34px_-28px_rgba(5,42,74,0.38)] backdrop-blur-lg"
-                  {...getEntranceProps(reduceMotion, { y: 12, duration: 0.45, delay: 0.18 })}
-                >
-                  <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
-                    <MapPin size={11} className="text-ht-cyan-700" aria-hidden="true" />
-                    OUR GAMBRILLS CLINIC
-                  </p>
-                  <p className="mt-1 text-sm leading-relaxed text-ht-gray">
-                    A welcoming local practice designed around personalized care.
-                  </p>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-
-          <motion.div
-            className="about-hero-media mt-2 overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white shadow-[0_18px_42px_-34px_rgba(5,42,74,0.38)] md:hidden"
-            {...getEntranceProps(reduceMotion, { y: 16, duration: 0.45, delay: 0.18 })}
-          >
-            <div className="relative aspect-[16/10] overflow-hidden bg-white sm:aspect-[4/3]">
-              <img
-                src="/images/clinic/building-exterior.jpg"
-                alt="Healtopia clinic building exterior"
-                className="h-full w-full object-cover object-center transition-transform duration-300 ease-out"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_22%,rgba(22,182,212,0.05),transparent_24%)]" />
-              <div className="pointer-events-none absolute bottom-4 left-4 max-w-[15rem] rounded-[1rem] border border-white/70 border-t-cyan-200 bg-white/78 px-3 py-2 shadow-[0_14px_28px_-24px_rgba(5,42,74,0.35)] backdrop-blur-lg">
-                <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
-                  <MapPin size={11} className="text-ht-cyan-700" aria-hidden="true" />
-                  OUR GAMBRILLS CLINIC
-                </p>
-              </div>
             </div>
           </motion.div>
         </div>
@@ -1476,112 +1253,31 @@ function About() {
         </div>
       </motion.section>
 
+      <WhyHealtopiaSection />
+
       <AboutProvidersSection reduceMotion={reduceMotion} />
 
-      <AboutClinicGallery reduceMotion={reduceMotion} />
-
-      <section className={PAGE_SECTION}>
-        <div className={PAGE_CONTAINER}>
-          <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-            <motion.div {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.04 })}>
-              <SectionEyebrow>TECHNOLOGY</SectionEyebrow>
-              <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">
-                Advanced body composition analysis for <span className="text-ht-cyan-700">better insights</span>
-              </h2>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-ht-gray md:text-lg">
-                Weight is only part of the picture. Our body composition scanner helps patients understand muscle, fat,
-                and metabolic health so care plans can be more informed and personalized.
-              </p>
-
-              <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                {technologyMetrics.map((item) => (
-                  <li
-                    key={item.label}
-                    className="flex items-center gap-3 rounded-2xl border border-ht-silver bg-white px-4 py-3 text-sm font-semibold text-ht-navy shadow-[0_14px_30px_-28px_rgba(5,42,74,0.4)]"
-                  >
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700">
-                      <item.icon size={16} />
-                    </span>
-                    {item.label}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-7">
-                <Button to="/medical-weight-loss" className="whitespace-nowrap">
-                  Explore Weight Loss Technology
-                </Button>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="relative"
-              {...getEntranceProps(reduceMotion, { y: 24, delay: 0.08, duration: 0.55 })}
-            >
-              <div className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-[radial-gradient(circle_at_50%_40%,rgba(22,182,212,0.14),transparent_42%),radial-gradient(circle_at_55%_70%,rgba(22,182,212,0.08),transparent_36%)] blur-2xl" />
-
-              <div className="relative overflow-hidden rounded-[2.25rem] border border-cyan-100 bg-white p-5 shadow-[0_22px_58px_-38px_rgba(5,42,74,0.42)] sm:p-6 lg:p-7">
-                <div className="relative overflow-hidden rounded-[1.75rem] bg-white">
-                  <img
-                    src="/images/clinic/seca-body-composition-clean.png"
-                    alt="SECA body composition scanner and dashboard"
-                    className="h-[24rem] w-full object-contain object-center sm:h-[28rem] lg:h-[34rem]"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <section className={PAGE_SECTION_SOFT}>
-        <div className={PAGE_CONTAINER}>
-          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-            {trustCards.map((item) => (
-              <motion.article
-                key={item.title}
-                className="group flex items-start gap-3 rounded-[1.5rem] border border-cyan-100 bg-white p-5 shadow-[0_18px_42px_-34px_rgba(5,42,74,0.45)]"
-                {...getRevealProps(reduceMotion, { y: 18, duration: 0.45, amount: 0.2 })}
-                {...getCardHover(reduceMotion)}
-              >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-ht-soft-blue text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100 transition-transform duration-300 group-hover:bg-ht-cyan-700 group-hover:text-white">
-                  <item.icon size={20} />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="text-base font-bold leading-snug text-ht-navy">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ht-gray">{item.text}</p>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className={PAGE_SECTION_CTA_SOFT}>
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AppointmentCTA
-            title="Ready to experience personalized primary care?"
-            description="Meet a care team focused on time, trust, and long-term support."
-            secondaryLabel="Call Our Office"
-            secondaryHref="tel:4107746678"
-            benefits={[
-              {
-                title: 'Time to listen',
-                description: 'Thoughtful conversations with room for questions.',
-              },
-              {
-                title: 'Personalized planning',
-                description: 'Care plans shaped around your history and goals.',
-              },
-              {
-                title: 'Ongoing support',
-                description: 'Follow-up that keeps your care moving forward.',
-              },
-            ]}
-          />
-        </div>
-      </section>
+      <NextStepSection
+        eyebrow="TAKE THE NEXT STEP"
+        title="Experience care built around you"
+        description="Meet a care team focused on time, trust, personalized attention, and long-term support."
+        secondaryLabel="Call Our Office"
+        secondaryHref="tel:4107746678"
+        benefits={[
+          {
+            title: 'Time to listen',
+            description: 'Thoughtful conversations with room for questions.',
+          },
+          {
+            title: 'Personalized planning',
+            description: 'Care plans shaped around your history and goals.',
+          },
+          {
+            title: 'Ongoing support',
+            description: 'Follow-up that keeps your care moving forward.',
+          },
+        ]}
+      />
     </div>
   )
 }
