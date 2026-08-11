@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
@@ -335,8 +335,10 @@ function About() {
       <style>{`
         .about-hero-shell {
           --header-height: 75px;
-          min-height: auto;
-          padding-block: clamp(28px, 4vw, 48px);
+          min-height: calc(100svh - var(--header-height));
+          position: relative;
+          overflow: hidden;
+          background: #ffffff;
         }
 
         .about-page {
@@ -352,6 +354,7 @@ function About() {
         .about-hero-shell .about-hero-bg {
           position: absolute;
           inset: 0;
+          z-index: 0;
         }
 
         .about-hero-shell .about-hero-bg img {
@@ -359,99 +362,96 @@ function About() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center;
+          object-position: center 48%;
         }
 
         .about-hero-shell .about-hero-overlay {
           position: absolute;
           inset: 0;
+          z-index: 1;
           background: linear-gradient(
             90deg,
-            rgba(10, 43, 75, 0.96) 0%,
-            rgba(10, 43, 75, 0.86) 36%,
-            rgba(10, 43, 75, 0.48) 64%,
-            rgba(10, 43, 75, 0.16) 100%
+            rgba(10, 43, 75, 0.94) 0%,
+            rgba(10, 43, 75, 0.88) 36%,
+            rgba(10, 43, 75, 0.56) 64%,
+            rgba(10, 43, 75, 0.24) 82%,
+            rgba(10, 43, 75, 0.1) 100%
           );
         }
 
-        .about-hero-shell .about-hero-content {
-          width: clamp(620px, 45vw, 760px);
-          max-width: 760px;
-          min-width: 0;
+        .about-hero-shell .about-hero-inner {
+          position: relative;
+          z-index: 2;
+          min-height: inherit;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          padding-block: clamp(32px, 5vh, 72px);
+          padding-inline: clamp(16px, 2vw, 36px);
         }
 
+        .about-hero-shell .about-hero-copy {
+          min-height: calc(100svh - var(--header-height));
+          display: flex;
+          align-items: center;
+          position: relative;
+        }
+
+        .about-hero-shell .about-hero-content,
         .about-hero-shell .about-hero-panel {
           width: 100%;
           min-width: 0;
+          max-width: 700px;
         }
 
         .about-hero-shell .about-hero-title {
-          max-width: 660px;
+          max-width: 700px;
+          color: #ffffff;
+          line-height: 0.98;
         }
 
         .about-hero-shell .about-hero-actions {
           align-items: flex-start;
         }
 
-        .about-hero-shell .about-hero-inner {
-          min-height: inherit;
-          align-items: center;
-        }
-
         @media (min-width: 1024px) {
           .about-hero-shell {
-            min-height: clamp(560px, 70vh, 600px);
+            min-height: calc(100svh - var(--header-height));
           }
         }
 
         @media (max-height: 800px) and (min-width: 900px) {
-          .about-hero-shell {
-            min-height: clamp(560px, 62vh, 590px);
-            padding-block: 22px !important;
-          }
-
           .about-hero-shell .about-hero-title {
-            font-size: clamp(2.35rem, 3.3vw, 3.85rem) !important;
+            font-size: clamp(2.45rem, 3.2vw, 3.85rem) !important;
           }
         }
 
         @media (max-width: 767px) {
           .about-hero-shell {
             min-height: auto;
-            padding: 3rem 0 3.5rem;
-            min-height: auto;
             height: auto;
-            overflow: hidden;
           }
 
           .about-hero-shell .about-hero-inner {
             min-height: auto;
+            display: flex;
+            flex-direction: column;
+            padding: 24px 16px 32px;
           }
 
-          .about-hero-shell .about-hero-overlay {
-            background: linear-gradient(
-              90deg,
-              rgba(10, 43, 75, 0.96) 0%,
-              rgba(10, 43, 75, 0.84) 36%,
-              rgba(10, 43, 75, 0.58) 60%,
-              rgba(10, 43, 75, 0.28) 80%,
-              rgba(10, 43, 75, 0.12) 100%
-            );
+          .about-hero-shell .about-hero-copy {
+            min-height: auto;
+            align-items: flex-start;
           }
 
-          .about-hero-shell .about-hero-content {
-            width: min(100%, 520px);
-            max-width: none;
-          }
-
+          .about-hero-shell .about-hero-content,
           .about-hero-shell .about-hero-panel {
             width: 100%;
             max-width: none;
-            min-width: 0;
           }
 
-          .about-hero-shell .about-hero-panel > p {
-            max-width: 100%;
+          .about-hero-shell .about-hero-title {
+            font-size: clamp(2.2rem, 11vw, 3.2rem);
           }
 
           .about-hero-shell .about-hero-actions {
@@ -1149,7 +1149,7 @@ function About() {
 
         <div className="about-hero-inner relative mx-auto flex w-full max-w-[1360px] items-center px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="about-hero-content py-0"
+            className="about-hero-copy py-0"
             {...getEntranceProps(reduceMotion, { y: 16, duration: 0.52, delay: 0.03 })}
           >
             <div className="about-hero-panel">
@@ -1157,7 +1157,7 @@ function About() {
                 ABOUT HEALTOPIA
               </p>
               <h1 className="about-hero-title mt-4 max-w-[700px] text-[clamp(2.55rem,3.8vw,4.1rem)] font-extrabold leading-[0.98] tracking-[-0.03em] text-white">
-                Healthcare built on <span className="text-ht-cyan-300">trust and lasting</span> relationships
+                Healthcare built on trust and lasting relationships
               </h1>
               <p className="mt-4 max-w-[700px] text-[0.98rem] leading-[1.58] text-white/80 md:text-[1rem]">
                 Compassionate, personalized healthcare focused on giving every patient the time, attention, and
@@ -1283,3 +1283,4 @@ function About() {
 }
 
 export default About
+

@@ -167,27 +167,41 @@ function Home() {
       <style>{`
         .home-hero-shell {
           --header-height: 75px;
-          min-height: clamp(650px, calc(100svh - var(--header-height)), 700px);
-          padding-block: clamp(72px, 6vw, 90px);
+          padding-block: clamp(32px, 5vh, 56px);
         }
 
         @supports (height: 100svh) {
-          .home-hero-shell {
-            min-height: clamp(650px, calc(100svh - var(--header-height)), 700px);
+          @media (min-width: 1024px) {
+            .home-hero-shell {
+              min-height: calc(100svh - var(--header-height));
+              height: calc(100svh - var(--header-height));
+            }
           }
         }
 
-        @media (max-height: 800px) and (min-width: 900px) {
+        @media (min-width: 1024px) {
           .home-hero-shell {
-            min-height: clamp(620px, calc(100svh - var(--header-height)), 680px);
-            padding-block: clamp(44px, 4vw, 70px) !important;
+            min-height: calc(100vh - var(--header-height));
+            height: calc(100vh - var(--header-height));
+          }
+        }
+
+        @media (max-width: 1023px) {
+          .home-hero-shell {
+            min-height: auto !important;
+            height: auto !important;
           }
         }
 
         @media (max-width: 767px) {
           .home-hero-shell {
-            min-height: auto !important;
-            padding-block: clamp(42px, 8vw, 56px);
+            padding-block: clamp(36px, 7vw, 52px);
+          }
+        }
+
+        @media (min-width: 1024px) and (max-height: 800px) {
+          .home-hero-shell {
+            padding-block: clamp(24px, 3.5vh, 44px);
           }
         }
 
@@ -426,7 +440,7 @@ function Home() {
               </motion.div>
             </motion.div>
 
-            <div aria-hidden="true" className="hidden min-h-[620px] lg:block" />
+            <div aria-hidden="true" className="hidden lg:block" />
           </div>
         </div>
       </motion.section>
