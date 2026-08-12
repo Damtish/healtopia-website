@@ -41,11 +41,12 @@ function AppLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { pathname } = useLocation()
   const hideMobileQuickActions = pathname === '/about'
+  const insuranceMobileSafe = pathname === '/insurance-based-primary-care'
 
   return (
     <div className="min-h-screen bg-ht-light text-ht-navy antialiased">
       <Header mobileOpen={mobileMenuOpen} setMobileOpen={setMobileMenuOpen} />
-      <main className="pb-24 md:pb-0">
+      <main className={`pb-24 md:pb-0 ${insuranceMobileSafe ? 'insurance-mobile-cta-safe' : ''}`}>
         <PageTransition>
           <Outlet />
         </PageTransition>
@@ -54,7 +55,12 @@ function AppLayout() {
 
       {!hideMobileQuickActions ? (
         <div
-          className={`fixed inset-x-0 bottom-4 z-40 px-4 md:hidden ${mobileMenuOpen ? 'hidden' : ''}`}
+          className={`fixed z-40 md:hidden ${mobileMenuOpen ? 'hidden' : ''}`}
+          style={{
+            left: '12px',
+            right: '12px',
+            bottom: 'max(12px, env(safe-area-inset-bottom))',
+          }}
           aria-label="Mobile quick actions"
         >
           <div className="mx-auto flex max-w-md items-center gap-3 rounded-full border border-ht-silver bg-white/95 p-2 shadow-xl backdrop-blur-sm">

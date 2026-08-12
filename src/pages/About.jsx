@@ -335,6 +335,7 @@ function About() {
       <style>{`
         .about-hero-shell {
           --header-height: 75px;
+          height: calc(100svh - var(--header-height));
           min-height: calc(100svh - var(--header-height));
           position: relative;
           overflow: hidden;
@@ -386,7 +387,7 @@ function About() {
           display: flex;
           align-items: center;
           justify-content: flex-start;
-          padding-block: clamp(32px, 5vh, 72px);
+          padding-block: clamp(24px, 4vh, 56px);
           padding-inline: clamp(16px, 2vw, 36px);
         }
 
@@ -416,11 +417,16 @@ function About() {
 
         @media (min-width: 1024px) {
           .about-hero-shell {
+            height: calc(100svh - var(--header-height));
             min-height: calc(100svh - var(--header-height));
           }
         }
 
         @media (max-height: 800px) and (min-width: 900px) {
+          .about-hero-shell .about-hero-inner {
+            padding-block: clamp(18px, 3vh, 42px);
+          }
+
           .about-hero-shell .about-hero-title {
             font-size: clamp(2.45rem, 3.2vw, 3.85rem) !important;
           }
@@ -428,8 +434,8 @@ function About() {
 
         @media (max-width: 767px) {
           .about-hero-shell {
-            min-height: auto;
             height: auto;
+            min-height: auto;
           }
 
           .about-hero-shell .about-hero-inner {
@@ -477,9 +483,9 @@ function About() {
         }
 
         .about-providers__container {
-          width: min(1600px, calc(100% - 8vw));
+          width: min(1380px, calc(100% - 64px));
           margin: 0 auto;
-          padding: clamp(42px, 5.5vh, 70px) 0;
+          padding: clamp(42px, 5.5vh, 70px) 32px;
           display: flex;
           flex-direction: column;
           min-height: 0;
@@ -515,8 +521,8 @@ function About() {
           flex: 1;
           min-height: 0;
           display: grid;
-          grid-template-columns: 1.15fr 0.9fr;
-          gap: clamp(22px, 2vw, 32px);
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: clamp(20px, 1.6vw, 24px);
           align-items: stretch;
         }
 
@@ -532,13 +538,13 @@ function About() {
 
         .provider-profile--gashaw {
           display: grid;
-          grid-template-columns: minmax(210px, 0.38fr) minmax(0, 0.62fr);
+          grid-template-columns: minmax(220px, 0.41fr) minmax(0, 0.59fr);
           overflow: hidden;
         }
 
         .provider-profile--malefiya {
           display: grid;
-          grid-template-columns: minmax(210px, 0.39fr) minmax(0, 0.61fr);
+          grid-template-columns: minmax(220px, 0.41fr) minmax(0, 0.59fr);
           overflow: hidden;
         }
 
@@ -552,7 +558,7 @@ function About() {
 
         .provider-profile__portrait {
           position: relative;
-          min-height: 320px;
+          min-height: 300px;
           background: #d9e2e8;
           overflow: hidden;
         }
@@ -603,7 +609,7 @@ function About() {
         }
 
         .provider-profile__content {
-          padding: clamp(22px, 2vw, 32px);
+          padding: clamp(20px, 1.8vw, 28px);
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -623,7 +629,7 @@ function About() {
         }
 
         .provider-profile h3 {
-          margin: 16px 0 8px;
+          margin: 14px 0 8px;
           color: #102b50;
           font-size: clamp(1.55rem, 1.9vw, 2.25rem);
           line-height: 1.05;
@@ -640,7 +646,7 @@ function About() {
         }
 
         .provider-description {
-          margin: 16px 0 0;
+          margin: 14px 0 0;
           color: #607995;
           font-size: 0.96rem;
           line-height: 1.55;
@@ -651,7 +657,7 @@ function About() {
           display: flex;
           flex-wrap: wrap;
           gap: 9px;
-          margin-top: 16px;
+          margin-top: 14px;
         }
 
         .provider-tags span {
@@ -665,7 +671,7 @@ function About() {
 
         .provider-link {
           align-self: flex-start;
-          margin-top: 16px;
+          margin-top: 14px;
           padding: 12px 18px;
           border: 1px solid rgba(30, 78, 112, 0.18);
           border-radius: 999px;
@@ -683,7 +689,8 @@ function About() {
 
         @media (min-width: 900px) and (max-width: 1100px) {
           .about-providers__container {
-            padding-block: 22px 28px;
+            width: min(1380px, calc(100% - 48px));
+            padding: 24px 24px 30px;
           }
 
           .about-providers__header {
@@ -704,7 +711,7 @@ function About() {
           }
 
           .provider-profile--malefiya {
-            grid-template-columns: minmax(180px, 0.39fr) minmax(0, 0.61fr);
+            grid-template-columns: minmax(180px, 0.41fr) minmax(0, 0.59fr);
           }
 
           .provider-profile__portrait {
@@ -1005,7 +1012,8 @@ function About() {
 
         @media (min-width: 1150px) and (max-height: 850px) {
           .about-providers__container {
-            padding-block: 22px 28px;
+            width: min(1380px, calc(100% - 56px));
+            padding: 24px 28px 30px;
           }
 
           .about-providers__header {
@@ -1048,7 +1056,7 @@ function About() {
           }
 
           .provider-profile--malefiya {
-            grid-template-columns: minmax(190px, 0.39fr) minmax(0, 0.61fr);
+            grid-template-columns: minmax(190px, 0.41fr) minmax(0, 0.59fr);
           }
         }
 

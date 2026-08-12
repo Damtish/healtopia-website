@@ -3,7 +3,6 @@ import {
   ArrowRight,
   BarChart3,
   CalendarClock,
-  CheckCircle2,
   ClipboardList,
   Dna,
   HeartPulse,
@@ -19,9 +18,7 @@ import SectionHeader from '../components/SectionHeader'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import {
   PAGE_CARD,
-  PAGE_CARD_SOFT,
   PAGE_CONTAINER,
-  PAGE_HERO,
   PAGE_ICON_CIRCLE,
   PAGE_PANEL_GRADIENT,
   PAGE_SECTION_CTA_SOFT,
@@ -29,12 +26,6 @@ import {
   PAGE_SECTION_SOFT,
 } from '../lib/pageStyles'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
-
-const heroStats = [
-  { label: 'Focus', value: 'Safe progress', icon: HeartPulse },
-  { label: 'Support', value: 'Physician-guided', icon: Stethoscope },
-  { label: 'Care plan', value: 'Personalized', icon: ClipboardList },
-]
 
 const journeyRows = [
   {
@@ -181,38 +172,6 @@ const planIncludes = [
   },
 ]
 
-const whyHealtopia = [
-  {
-    icon: Stethoscope,
-    title: 'Medical oversight',
-    text: 'Care is guided by a physician with expertise in internal medicine and obesity medicine.',
-  },
-  {
-    icon: ClipboardList,
-    title: 'Personalized planning',
-    text: 'Recommendations are based on health history, clinical needs, goals, and treatment preferences.',
-  },
-  {
-    icon: HeartPulse,
-    title: 'Whole-person care',
-    text: 'Weight management is considered alongside metabolism, chronic conditions, sleep, stress, and lifestyle.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Ongoing support',
-    text: 'Follow-up visits allow the care plan to be reviewed and adjusted over time.',
-  },
-]
-
-const benefitCards = [
-  'Patients with weight-related health concerns',
-  'Patients who have tried lifestyle changes without lasting progress',
-  'Patients interested in physician-guided treatment',
-  'Patients seeking support with metabolic health',
-  'Patients who need ongoing monitoring',
-  'Patients preparing for or continuing long-term weight maintenance',
-]
-
 const faqs = [
   {
     id: 'what-is-medical-weight-loss',
@@ -272,20 +231,17 @@ function SectionEyebrow({ children }) {
   )
 }
 
-function StatCard({ icon: Icon, label, value }) {
-  return (
-    <motion.div className={`${PAGE_CARD} bg-ht-soft-blue/30 px-4 py-3`} {...getCardHover(useReducedMotion())}>
-      <div className="flex items-center gap-3">
-        <span className={PAGE_ICON_CIRCLE}>
-          <Icon size={16} />
-        </span>
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-gray">{label}</p>
-          <p className="mt-1 text-base font-bold text-ht-navy">{value}</p>
-        </div>
-      </div>
-    </motion.div>
-  )
+function getWeightLossCardHover(reduceMotion) {
+  if (reduceMotion) return {}
+
+  return {
+    whileHover: {
+      y: -4,
+      boxShadow: '0 24px 44px -28px rgba(5, 42, 74, 0.5)',
+      borderColor: 'rgba(103, 232, 249, 0.9)',
+    },
+    transition: { duration: 0.48, ease: [0.22, 1, 0.36, 1] },
+  }
 }
 
 function MedicalWeightLoss() {
@@ -293,73 +249,72 @@ function MedicalWeightLoss() {
 
   return (
     <div>
-      <section className={PAGE_HERO}>
-        <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-16">
-          <motion.div {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}>
-            <SectionEyebrow>MEDICAL WEIGHT LOSS</SectionEyebrow>
+      <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-0 lg:max-h-none">
+        <div className="pointer-events-none absolute inset-0 hidden lg:block">
+          <motion.img
+            src="/images/clinic/weight-loss-waist-measurement.jpg"
+            alt=""
+            aria-hidden="true"
+            className="h-full w-full object-cover object-[70%_center]"
+            initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
+            animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+            transition={reduceMotion ? { duration: 0 } : { duration: 0.6, ease: 'easeOut', delay: 0.04 }}
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.95)_18%,rgba(255,255,255,0.72)_32%,rgba(255,255,255,0.2)_46%,rgba(255,255,255,0)_58%)]" />
+        </div>
+        <div className="pointer-events-none absolute -left-24 -bottom-24 hidden h-[28rem] w-[28rem] rounded-full bg-cyan-200/16 blur-[110px] lg:block" />
 
-            <h1 className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl lg:text-[clamp(3.1rem,4.35vw,4.7rem)] lg:leading-[0.98]">
-              Medically supervised weight loss for
-              <br className="hidden lg:block" />
-              <span className="text-ht-cyan-700"> safe, sustainable progress</span>
-            </h1>
-
-            <p className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg">
-              Healtopia provides physician-guided weight management focused on understanding the medical, metabolic,
-              behavioral, and lifestyle factors that can affect weight and overall health.
-            </p>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg">
-              Each care plan is personalized and may include medical evaluation, nutrition guidance, body-composition
-              analysis, ongoing monitoring, and treatment options when clinically appropriate.
-            </p>
-
+        <div className={PAGE_CONTAINER}>
+          <div className="relative flex min-h-0 items-center py-7 sm:py-8 lg:h-full lg:items-center lg:py-0">
             <motion.div
-              className="mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap"
-              {...getEntranceProps(reduceMotion, { y: 18, duration: 0.45, delay: 0.32 })}
+              className="relative z-10 mx-auto w-full max-w-[36rem] text-ht-navy lg:ml-8 lg:m-0 lg:w-[min(36rem,37vw)]"
+              {...getEntranceProps(reduceMotion, { y: 16, duration: 0.5, delay: 0.03 })}
             >
-              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="w-full whitespace-nowrap md:w-auto">
-                Book Appointment
-                <ArrowRight size={16} />
-              </Button>
-              <Button to="/pricing" variant="secondary" className="w-full whitespace-nowrap md:w-auto">
-                View Pricing
-              </Button>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            className="group relative self-center"
-            {...getEntranceProps(reduceMotion, { y: 20, delay: 0.07, duration: 0.55, fromScale: 0.98 })}
-          >
-            <div className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-[radial-gradient(circle_at_top_right,rgba(12,174,200,0.18),transparent_60%)] blur-2xl" />
-            <div className={`${PAGE_PANEL_GRADIENT} relative overflow-hidden p-3`}>
-              <div className="relative overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white p-4 shadow-inner">
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_65%_20%,rgba(12,174,200,0.08),transparent_45%)]" />
-                <motion.img
-                  src="/images/clinic/seca-body-composition-clean.png"
-                  alt="Healtopia body composition scanner and dashboard"
-                  className="ht-motion-smooth relative z-10 h-[clamp(18rem,28vw,24.5rem)] w-full object-contain object-center md:h-[clamp(21rem,30vw,28rem)] lg:h-[clamp(18rem,28vw,24.5rem)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
-                  initial={reduceMotion ? false : { opacity: 0, scale: 0.985 }}
-                  animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
-                  transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.05 }}
-                />
+              <div className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700 shadow-sm">
+                MEDICAL WEIGHT LOSS
               </div>
-            </div>
 
-            <motion.div
-              className="mt-4 grid gap-3 sm:grid-cols-3"
-              {...getStaggerContainer(reduceMotion, { staggerChildren: 0.06, amount: 0.2 })}
-            >
-              {heroStats.map((item) => (
-                <motion.div
-                  key={item.label}
-                  {...getStaggerItem(reduceMotion, { y: 12 })}
+              <h1 className="mt-3.5 max-w-[13.5ch] text-[clamp(44px,3.6vw,60px)] font-extrabold leading-[1] tracking-tight text-ht-navy">
+                Medically supervised
+                <br />
+                weight loss for
+                <br />
+                <span className="text-ht-cyan-700">safe, sustainable progress</span>
+              </h1>
+
+              <p className="mt-3 max-w-[31rem] text-[0.95rem] leading-[1.42] text-ht-gray md:text-[1rem]">
+                Healtopia provides physician-guided weight management focused on understanding the medical,
+                metabolic, behavioral, and lifestyle factors that can affect weight and overall health.
+              </p>
+              <p className="mt-1.5 max-w-[30rem] text-[0.95rem] leading-[1.42] text-ht-gray md:text-[1rem]">
+                Each care plan is personalized and may include medical evaluation, nutrition guidance,
+                body-composition analysis, ongoing monitoring, and treatment options when clinically appropriate.
+              </p>
+
+              <motion.div
+                className="mt-3.5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap"
+                {...getEntranceProps(reduceMotion, { y: 16, duration: 0.45, delay: 0.26 })}
+              >
+                <Button
+                  href={BOOK_APPOINTMENT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full whitespace-nowrap sm:w-auto"
                 >
-                  <StatCard {...item} />
-                </motion.div>
-              ))}
+                  Book Appointment
+                  <ArrowRight size={16} />
+                </Button>
+                <Button
+                  to="/pricing"
+                  variant="secondary"
+                  className="w-full whitespace-nowrap sm:w-auto"
+                >
+                  View Pricing
+                </Button>
+              </motion.div>
+
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -444,35 +399,58 @@ function MedicalWeightLoss() {
 
       <section className={PAGE_SECTION}>
         <div className={PAGE_CONTAINER}>
-          <SectionHeader
-            eyebrow="COMPREHENSIVE CARE"
-            title={
-              <>
-                Weight management that looks beyond the <span className="text-ht-cyan-700">number on the scale</span>
-              </>
-            }
-            description="Healtopia combines medical evaluation, lifestyle support, treatment options, and ongoing monitoring to help patients build a realistic path toward improved health."
-          />
-
-          <motion.div
-            className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3"
-            {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08 })}
-          >
-            {comprehensiveCare.map((card) => (
-              <motion.article
-                key={card.title}
-                className={`${PAGE_CARD} group flex h-full flex-col border-t-2 border-t-cyan-300 p-6`}
-                {...getStaggerItem(reduceMotion, { y: 22 })}
-                {...getCardHover(reduceMotion)}
-              >
-                <div className={PAGE_ICON_CIRCLE}>
-                  <card.icon size={18} />
+          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <motion.div
+              className="group relative order-2 lg:order-1"
+              {...getEntranceProps(reduceMotion, { y: 24, delay: 0.08, duration: 0.55, fromScale: 0.98 })}
+            >
+              <div className={`${PAGE_PANEL_GRADIENT} relative overflow-hidden p-3`}>
+                <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle_at_58%_28%,rgba(12,174,200,0.14),transparent_52%)]" />
+                <div className="relative overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white p-4 shadow-inner">
+                  <img
+                    src="/images/clinic/weight-loss-scale-measuring-tape.jpg"
+                    alt="Weight scale and measuring tape"
+                    className="ht-motion-smooth h-[clamp(19rem,30vw,30rem)] w-full object-cover object-[center_45%] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
                 </div>
-                <h3 className="mt-4 text-xl font-bold text-ht-navy">{card.title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-ht-gray">{card.text}</p>
-              </motion.article>
-            ))}
-          </motion.div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="order-1 lg:order-2"
+              {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}
+            >
+              <SectionHeader
+                eyebrow="COMPREHENSIVE CARE"
+                title={
+                  <>
+                    Weight management that looks beyond the <span className="text-ht-cyan-700">number on the scale</span>
+                  </>
+                }
+                description="Healtopia combines medical evaluation, lifestyle support, treatment options, and ongoing monitoring to help patients build a realistic path toward improved health."
+              />
+
+              <div className="mt-7 grid gap-4 sm:grid-cols-2">
+                {comprehensiveCare.map((card) => (
+                  <motion.article
+                    key={card.title}
+                    className={`${PAGE_CARD} group flex items-start gap-3 px-4 py-4`}
+                    {...getStaggerItem(reduceMotion, { y: 14 })}
+                    {...getWeightLossCardHover(reduceMotion)}
+                  >
+                    <div className={PAGE_ICON_CIRCLE}>
+                      <card.icon size={18} />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-[1.02rem] font-bold leading-[1.28] text-ht-navy">{card.title}</h3>
+                      <p className="mt-1 text-[0.95rem] leading-[1.58] text-ht-gray">{card.text}</p>
+                    </div>
+                  </motion.article>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -512,11 +490,6 @@ function MedicalWeightLoss() {
                 </motion.article>
               ))}
 
-              <div className="sm:col-span-2">
-                <Button to="/pricing" variant="secondary" className="whitespace-nowrap">
-                  Explore Weight Loss Technology
-                </Button>
-              </div>
             </motion.div>
 
             <motion.div
@@ -561,149 +534,6 @@ function MedicalWeightLoss() {
                 </div>
                 <h3 className="mt-4 text-base font-bold text-ht-navy">{item.title}</h3>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-ht-gray">{item.text}</p>
-              </motion.article>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <section className={PAGE_SECTION_SOFT}>
-        <div className={PAGE_CONTAINER}>
-          <SectionHeader
-            eyebrow="WHY HEALTOPIA"
-            title={
-              <>
-                Why patients choose Healtopia for <span className="text-ht-cyan-700">medical weight management</span>
-              </>
-            }
-            description="A physician-guided approach can connect weight management with the broader health factors that influence progress and long-term wellness."
-          />
-
-          <motion.div
-            className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4"
-            {...getStaggerContainer(reduceMotion, { staggerChildren: 0.07, amount: 0.2 })}
-          >
-            {whyHealtopia.map((item) => (
-              <motion.article
-                key={item.title}
-                className={`${PAGE_CARD} group flex h-full flex-col p-6`}
-                {...getStaggerItem(reduceMotion, { y: 18 })}
-                {...getCardHover(reduceMotion)}
-              >
-                <div className={PAGE_ICON_CIRCLE}>
-                  <item.icon size={18} />
-                </div>
-                <h3 className="mt-4 text-lg font-bold text-ht-navy">{item.title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-ht-gray">{item.text}</p>
-              </motion.article>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <section className={PAGE_SECTION}>
-        <div className={PAGE_CONTAINER}>
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-            <motion.div
-              className={`${PAGE_CARD_SOFT} rounded-[2rem] p-6 md:p-8`}
-              {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}
-            >
-              <SectionHeader
-                eyebrow="CONNECTED CARE"
-                title={
-                  <>
-                    Weight care connected to your <span className="text-ht-cyan-700">overall health</span>
-                  </>
-                }
-                description="Weight management is not only about a number on the scale. Healtopia considers metabolism, medical history, lifestyle, chronic conditions, medications, and long-term wellness goals."
-              />
-              <div className="mt-7 grid gap-3">
-                {[
-                  'Chronic-condition support',
-                  'Preventive health planning',
-                  'Care coordination when needed',
-                ].map((item) => (
-                  <motion.div
-                    key={item}
-                    className="group flex items-center gap-3 rounded-2xl border border-ht-silver bg-white px-4 py-3 shadow-[0_14px_30px_-28px_rgba(5,42,74,0.4)]"
-                    {...getStaggerItem(reduceMotion, { y: 12 })}
-                    {...getCardHover(reduceMotion)}
-                  >
-                    <span className={PAGE_ICON_CIRCLE}>
-                      <CheckCircle2 size={16} />
-                    </span>
-                    <p className="text-sm font-medium text-ht-navy">{item}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="group relative"
-              {...getEntranceProps(reduceMotion, { y: 24, delay: 0.08, duration: 0.55, fromScale: 0.98 })}
-            >
-              <div className={`${PAGE_PANEL_GRADIENT} relative overflow-hidden p-3`}>
-                <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle_at_60%_25%,rgba(12,174,200,0.14),transparent_48%)]" />
-                <div className="relative overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white p-4 shadow-inner">
-                  <img
-                    src="/images/clinic/exam-room-wide.jpg"
-                    alt="Healtopia examination room"
-                    className="ht-motion-smooth h-[clamp(17rem,30vw,29rem)] w-full rounded-[1.25rem] object-cover object-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
-                    loading="lazy"
-                  />
-                  <div className="absolute bottom-5 left-5 max-w-[18rem] rounded-2xl border border-white/15 bg-white/85 px-4 py-3 text-sm text-ht-navy shadow-[0_16px_34px_-24px_rgba(5,42,74,0.65)] backdrop-blur-md">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
-                      Clinical setting
-                    </p>
-                    <p className="mt-1 leading-relaxed">
-                      Care plans supported through in-person evaluation and follow-up.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <section className={PAGE_SECTION_SOFT}>
-        <div className={PAGE_CONTAINER}>
-          <SectionHeader
-            eyebrow="WHO MAY BENEFIT"
-            title={
-              <>
-                Who may benefit from <span className="text-ht-cyan-700">medical weight management</span>?
-              </>
-            }
-            description="Medical weight management may be appropriate for adults who want structured, physician-guided support and a plan connected to their broader health needs."
-          />
-
-          <motion.div
-            className="mt-8 rounded-[2rem] border border-cyan-100 bg-white p-6 shadow-[0_24px_60px_-34px_rgba(5,42,74,0.45)] md:p-7"
-            {...getRevealProps(reduceMotion, { y: 20, amount: 0.18 })}
-          >
-            <p className="max-w-4xl text-base leading-relaxed text-ht-gray md:text-lg">
-              Medical weight management may be useful for patients who have struggled with weight changes, have
-              weight-related medical conditions, want structured clinical support, or need help evaluating treatment
-              options.
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-            {...getStaggerContainer(reduceMotion, { staggerChildren: 0.06, amount: 0.18 })}
-          >
-            {benefitCards.map((item) => (
-              <motion.article
-                key={item}
-                className={`${PAGE_CARD} group flex items-start gap-3 px-4 py-4`}
-                {...getStaggerItem(reduceMotion, { y: 16 })}
-                {...getCardHover(reduceMotion)}
-              >
-                <span className={PAGE_ICON_CIRCLE}>
-                  <CheckCircle2 size={16} />
-                </span>
-                <p className="text-sm leading-relaxed text-ht-navy">{item}</p>
               </motion.article>
             ))}
           </motion.div>

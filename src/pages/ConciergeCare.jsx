@@ -21,10 +21,7 @@ import {
   PAGE_CARD,
   PAGE_CARD_SOFT,
   PAGE_CONTAINER,
-  PAGE_HERO,
   PAGE_ICON_CIRCLE,
-  PAGE_IMAGE_FRAME_SOFT,
-  PAGE_PANEL_GRADIENT,
   PAGE_SECTION_CTA,
   PAGE_SECTION,
   PAGE_SECTION_SOFT,
@@ -185,11 +182,26 @@ const idealCards = [
 ]
 
 const expectSteps = [
-  'Membership Review',
-  'Health Goals Discussion',
-  'Personalized Care Planning',
-  'Ongoing Access and Follow-up',
-  'Annual Review and Care Plan Updates',
+  {
+    step: '01',
+    title: 'Membership Review',
+    text: 'Review concierge membership details and confirm the level of access that fits your care needs.',
+  },
+  {
+    step: '02',
+    title: 'Health Goals Discussion',
+    text: 'Talk through priorities, concerns, and the health goals that matter most to you.',
+  },
+  {
+    step: '03',
+    title: 'Personalized Care Planning',
+    text: 'Create a plan shaped around prevention, wellness, and coordinated care.',
+  },
+  {
+    step: '04',
+    title: 'Ongoing Access and Follow-up',
+    text: 'Stay connected with follow-up support and communication when appropriate.',
+  },
 ]
 
 const faqItems = [
@@ -245,70 +257,83 @@ function SectionEyebrow({ children }) {
   )
 }
 
+function getJourneyHover(reduceMotion) {
+  if (reduceMotion) return {}
+
+  return {
+    whileHover: {
+      y: -3,
+      boxShadow: '0 20px 40px -30px rgba(5, 42, 74, 0.42)',
+      borderColor: 'rgba(103, 232, 249, 0.86)',
+    },
+    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+  }
+}
+
 function ConciergeCare() {
   const reduceMotion = useReducedMotion()
 
   return (
     <div>
-      <section className={PAGE_HERO}>
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-16">
-          <motion.div {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}>
-            <SectionEyebrow>CONCIERGE MEDICINE</SectionEyebrow>
-            <h1 className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl lg:text-[clamp(3.1rem,4.4vw,4.7rem)] lg:leading-[1]">
+      <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#f8fbfd_0%,#eef6fb_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-[600px] lg:max-h-[700px]">
+        <div className="pointer-events-none absolute inset-0">
+          <motion.img
+            src="/images/clinic/patient-care.png"
+            alt=""
+            aria-hidden="true"
+            className="h-full w-full object-cover object-[70%_center]"
+            initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
+            animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+            transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,42,74,0.84)_0%,rgba(8,42,74,0.78)_34%,rgba(8,42,74,0.28)_67%,rgba(8,42,74,0.08)_100%)]" />
+        </div>
+        <div className="pointer-events-none absolute -left-20 bottom-[-7rem] hidden h-[26rem] w-[26rem] rounded-full bg-cyan-200/18 blur-[110px] lg:block" />
+        <div className="pointer-events-none absolute right-[10%] top-[14%] hidden h-44 w-44 rounded-full border border-cyan-100/40 bg-white/5 blur-[1px] lg:block" />
+
+        <div className="mx-auto flex h-full w-full max-w-7xl items-center px-4 py-8 sm:px-6 lg:px-8 lg:py-0">
+          <motion.div
+            className="relative z-10 max-w-[37rem] text-white lg:w-[min(37rem,39vw)]"
+            {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}
+          >
+            <div className="inline-flex rounded-full border border-cyan-100/35 bg-cyan-100/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-100 shadow-sm backdrop-blur-[2px]">
+              CONCIERGE MEDICINE
+            </div>
+            <h1 className="mt-3.5 max-w-[13ch] text-[clamp(48px,4.1vw,68px)] font-extrabold tracking-tight text-white leading-[1]">
               A more <span className="text-ht-cyan-700">personalized</span> healthcare experience
             </h1>
-            <p className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg">
+            <p className="mt-3.5 max-w-[41rem] text-[1rem] leading-[1.46] text-slate-100/90 md:text-[1.05rem]">
               Concierge Medicine is designed for patients who want enhanced physician access, longer visits,
               preventive wellness planning, and coordinated follow-up in a more connected care experience.
             </p>
-            <div className="mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap">
-              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="w-full whitespace-nowrap md:w-auto">
+
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="w-full whitespace-nowrap sm:w-auto">
                 Book Appointment
                 <ArrowRight size={16} />
               </Button>
-              <Button to="/pricing" variant="secondary" className="w-full whitespace-nowrap md:w-auto">
+              <Button to="/pricing" variant="secondary" className="w-full whitespace-nowrap !border-white/35 !bg-white/8 !text-white hover:!border-cyan-200 hover:!bg-white/14 hover:!text-white sm:w-auto">
                 View Concierge Pricing
               </Button>
             </div>
-          </motion.div>
-
-          <motion.div
-            className="self-center"
-            {...getEntranceProps(reduceMotion, { y: 20, delay: 0.07, duration: 0.55, fromScale: 0.98 })}
-          >
-            <div className="group overflow-hidden rounded-[2rem] border border-cyan-100 bg-white p-3 shadow-[0_24px_60px_-34px_rgba(5,42,74,0.45)] transition-shadow duration-300">
-              <div className="overflow-hidden rounded-[1.5rem] border border-ht-silver bg-ht-soft-blue/20">
-                <motion.img
-                  src="/images/clinic/dr-gashaw-adugna-white-coat.png"
-                  alt="Dr. Gashaw Adugna in a white coat"
-                  className="ht-motion-smooth h-[clamp(18rem,28vw,24rem)] w-full object-cover object-[center_12%] md:h-[clamp(21rem,30vw,28rem)] lg:h-[clamp(18rem,28vw,24rem)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025]"
-                  initial={reduceMotion ? false : { scale: 0.985, opacity: 0 }}
-                  animate={reduceMotion ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }}
-                  transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.05 }}
-                  loading="lazy"
-                />
-              </div>
-            </div>
 
             <motion.div
-              className="mt-4 grid gap-3 sm:grid-cols-3"
-              {...getStaggerContainer(reduceMotion, { staggerChildren: 0.06, amount: 0.2 })}
+              className="mt-4 grid gap-2 sm:grid-cols-3"
+              {...getStaggerContainer(reduceMotion, { staggerChildren: 0.06, amount: 0.18 })}
             >
               {heroTiles.map((item) => (
                 <motion.div
                   key={item.label}
-                  className="group rounded-2xl border border-ht-silver bg-ht-soft-blue/30 px-4 py-3 shadow-[0_14px_32px_-28px_rgba(5,42,74,0.4)] transition-colors duration-300"
-                  {...getStaggerItem(reduceMotion, { y: 12 })}
+                  className="group flex min-h-[52px] items-center gap-2 rounded-[0.95rem] border border-cyan-100/22 bg-white/10 px-3 py-2 shadow-[0_14px_34px_-30px_rgba(5,42,74,0.38)] backdrop-blur-[2px]"
+                  {...getStaggerItem(reduceMotion, { y: 10 })}
                   {...getCardHover(reduceMotion)}
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100 transition-transform duration-300 group-hover:scale-105">
-                      <item.icon size={16} />
-                    </span>
-                    <div>
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-gray">{item.label}</p>
-                      <p className="mt-1 text-base font-bold text-ht-navy">{item.value}</p>
-                    </div>
+                  <span className="inline-flex h-5.5 w-5.5 shrink-0 items-center justify-center rounded-full bg-cyan-100/15 text-cyan-100 shadow-sm ring-1 ring-cyan-100/20">
+                    <item.icon size={16} />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-50/80">{item.label}</p>
+                    <p className="mt-0.5 text-[0.9rem] font-bold text-white">{item.value}</p>
                   </div>
                 </motion.div>
               ))}
@@ -319,7 +344,7 @@ function ConciergeCare() {
 
       <section className={PAGE_SECTION}>
         <div className={PAGE_CONTAINER}>
-          <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr]">
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <motion.div {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}>
               <SectionEyebrow>CONCIERGE EXPERIENCE</SectionEyebrow>
               <h2 className="mt-4 max-w-3xl text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl lg:text-[2.65rem] lg:leading-tight">
@@ -330,11 +355,11 @@ function ConciergeCare() {
                 healthcare experience.
               </p>
 
-              <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              <div className="mt-7 flex flex-col gap-4">
                 {experienceCards.map((item) => (
                   <motion.article
                     key={item.title}
-                    className="group relative flex min-h-[152px] items-center overflow-hidden rounded-[1.75rem] border border-cyan-100 bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(244,250,252,0.94)_100%)] px-6 py-5 shadow-[0_18px_40px_-30px_rgba(5,42,74,0.42)] backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300 md:min-h-[160px] md:col-span-2 xl:col-span-1 sm:px-7"
+                    className="group relative flex min-h-[112px] items-start overflow-hidden rounded-[1.75rem] border border-cyan-100 bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(244,250,252,0.94)_100%)] px-6 py-5 shadow-[0_18px_40px_-30px_rgba(5,42,74,0.42)] backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300 sm:min-h-[120px] sm:px-7"
                     style={{
                       boxShadow: '0 18px 40px -30px rgba(5, 42, 74, 0.42)',
                     }}
@@ -355,15 +380,15 @@ function ConciergeCare() {
                     }
                   >
                     <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(22,182,212,0.08),transparent_38%)]" />
-                    <div className="relative z-10 flex items-center gap-4 sm:gap-5">
+                    <div className="relative z-10 flex w-full items-start gap-4 sm:gap-5">
                       <div className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100 transition-colors duration-300 group-hover:bg-cyan-50">
                         <item.icon size={18} />
                       </div>
-                      <div className="min-w-0">
-                        <h3 className="text-[1.25rem] font-bold leading-[1.25] text-ht-navy">
+                      <div className="min-w-0 flex-1">
+                        <h3 className="text-[1.1rem] font-bold leading-[1.28] text-ht-navy sm:text-[1.15rem]">
                           {item.title}
                         </h3>
-                        <p className="mt-2 max-w-[30rem] text-[1rem] leading-[1.6] text-ht-gray">
+                        <p className="mt-2 max-w-[34rem] text-[0.98rem] leading-[1.58] text-ht-gray sm:text-[1rem]">
                           {item.text}
                         </p>
                       </div>
@@ -524,70 +549,63 @@ function ConciergeCare() {
 
       <section className={PAGE_SECTION}>
         <div className={PAGE_CONTAINER}>
-          <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr]">
-            <motion.div {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}>
-              <SectionHeader
-                eyebrow="WHAT TO EXPECT"
-                title={
-                  <>
-                    A more connected <span className="text-ht-cyan-700">care experience</span>
-                  </>
-                }
-                description="Concierge Medicine is designed to give patients more time, closer communication, and coordinated support throughout their care journey."
-              />
+          <motion.div {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}>
+            <SectionHeader
+              eyebrow="WHAT TO EXPECT"
+              title={
+                <>
+                  A more connected <span className="text-ht-cyan-700">care experience</span>
+                </>
+              }
+              description="Concierge Medicine is designed to give patients more time, closer communication, and coordinated support throughout their care journey."
+            />
+          </motion.div>
 
-              <div className="mt-6 space-y-3">
-                {expectSteps.map((step, index) => (
-                  <motion.article
-                    key={step}
-                    className="group rounded-2xl border border-ht-silver bg-white px-5 py-4 shadow-[0_16px_36px_-30px_rgba(5,42,74,0.45)]"
-                    {...getStaggerItem(reduceMotion, { y: 14 })}
-                    {...getCardHover(reduceMotion)}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100 transition-transform duration-300 group-hover:scale-105">
-                        {index + 1}
+          <div className="relative mt-8">
+            <div className="pointer-events-none absolute left-6 right-6 top-8 hidden h-px bg-cyan-100 xl:block" />
+
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              {expectSteps.map((step, index) => (
+                <motion.article
+                  key={step.step}
+                  className="group relative rounded-[1.5rem] border border-cyan-100 bg-white p-5 shadow-[0_18px_40px_-32px_rgba(5,42,74,0.42)]"
+                  {...getEntranceProps(reduceMotion, { y: 16, duration: 0.45, delay: index * 0.03 })}
+                  {...getJourneyHover(reduceMotion)}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="relative z-10">
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-ht-soft-blue text-sm font-bold text-ht-cyan-700 ring-1 ring-cyan-100">
+                        {step.step}
                       </span>
-                      <p className="text-sm font-semibold text-ht-navy">{step}</p>
                     </div>
-                  </motion.article>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              className={`${PAGE_PANEL_GRADIENT} p-3`}
-              {...getEntranceProps(reduceMotion, { y: 24, delay: 0.08, duration: 0.55 })}
-            >
-              <div className={PAGE_IMAGE_FRAME_SOFT}>
-                <motion.img
-                  src="/images/clinic/patient-care.png"
-                  alt="Patient care at Healtopia"
-                  className="ht-motion-smooth h-[clamp(18rem,28vw,24rem)] w-full object-cover object-center"
-                  loading="lazy"
-                  initial={reduceMotion ? false : { scale: 0.99, opacity: 0 }}
-                  animate={reduceMotion ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }}
-                  transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.05 }}
-                />
-              </div>
-              <div className="mt-3 grid gap-3 sm:grid-cols-3">
-                {[
-                  'Longer, more personalized visits',
-                  'Enhanced communication and access',
-                  'Preventive planning and coordinated follow-up',
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-3 rounded-2xl border border-ht-silver bg-white px-4 py-3 shadow-[0_14px_32px_-28px_rgba(5,42,74,0.4)]"
-                  >
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100">
-                      <CheckCircle2 size={16} />
-                    </span>
-                    <span className="text-sm font-medium leading-relaxed text-ht-navy">{item}</span>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-[1rem] font-bold leading-[1.25] text-ht-navy">{step.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-ht-gray">{step.text}</p>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </motion.div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8 rounded-[1.75rem] border border-cyan-100 bg-white p-4 shadow-[0_18px_40px_-34px_rgba(5,42,74,0.42)]">
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[
+                'Longer, more personalized visits',
+                'Enhanced communication and access',
+                'Preventive planning and coordinated follow-up',
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="flex items-center gap-3 rounded-2xl border border-ht-silver bg-ht-soft-blue/15 px-4 py-3"
+                >
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100">
+                    <CheckCircle2 size={16} />
+                  </span>
+                  <span className="text-sm font-medium leading-relaxed text-ht-navy">{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -239,19 +239,13 @@ function Home() {
         }
 
         .services-section {
-          min-height: calc(100svh - var(--header-height));
-          height: calc(100svh - var(--header-height));
-          max-height: calc(100svh - var(--header-height));
-          display: flex;
-          flex-direction: column;
-          overflow: hidden;
-          padding: clamp(22px, 3vh, 38px) 0;
+          padding: 56px 0 64px;
         }
 
         .services-container {
-          width: min(1680px, calc(100% - 8vw));
-          height: 100%;
+          width: min(1380px, calc(100% - 64px));
           margin: 0 auto;
+          padding-inline: 32px;
           display: flex;
           flex-direction: column;
           min-height: 0;
@@ -259,37 +253,37 @@ function Home() {
 
         .services-heading {
           flex: 0 0 auto;
-          max-width: 48rem;
-          margin-bottom: clamp(20px, 3vh, 32px);
+          max-width: 47.5rem;
+          margin-bottom: 30px;
         }
 
         .services-heading h2 {
-          font-size: clamp(2rem, 3vw, 3rem);
-          line-height: 1.1;
-          font-weight: 600;
-          margin: 12px 0 18px;
+          font-size: 28px;
+          line-height: 1.15;
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          margin: 12px 0 16px;
         }
 
         .services-heading p {
-          font-size: clamp(1rem, 1.2vw, 1.25rem);
-          line-height: 1.55;
+          font-size: 14px;
+          line-height: 1.5;
           margin: 0;
-          max-width: 48rem;
+          max-width: 47.5rem;
         }
 
         .services-grid {
-          flex: 1;
           min-height: 0;
           display: grid;
           grid-template-columns: repeat(4, minmax(0, 1fr));
-          gap: clamp(16px, 1.5vw, 26px);
+          gap: clamp(18px, 1.15vw, 22px);
           align-items: stretch;
         }
 
         .service-card {
           min-height: 0;
           height: 100%;
-          padding: clamp(20px, 2vw, 30px);
+          padding: 21px 22px;
           display: flex;
           flex-direction: column;
           overflow: hidden;
@@ -298,26 +292,30 @@ function Home() {
         }
 
         .service-card h3 {
-          font-size: clamp(1.25rem, 1.55vw, 1.7rem);
-          line-height: 1.12;
-          margin: 18px 0 10px;
+          font-size: 16px;
+          line-height: 1.25;
+          font-weight: 700;
+          margin: 16px 0 8px;
         }
 
         .service-card .service-subtitle {
-          font-size: clamp(0.88rem, 1vw, 1.05rem);
+          font-size: 12px;
           line-height: 1.35;
-          margin-bottom: 14px;
+          font-weight: 600;
+          letter-spacing: 0.03em;
+          text-transform: uppercase;
+          margin-bottom: 12px;
         }
 
         .service-card ul {
-          margin: 0 0 16px;
+          margin: 0 0 14px;
           padding: 0;
         }
 
         .service-card li {
-          font-size: clamp(0.9rem, 1vw, 1.05rem);
-          line-height: 1.35;
-          margin-bottom: 9px;
+          font-size: 15px;
+          line-height: 1.45;
+          margin-bottom: 8px;
         }
 
         .service-card .card-button {
@@ -325,17 +323,20 @@ function Home() {
           flex-shrink: 0;
         }
 
+        .service-card .card-button a,
+        .service-card .card-button button {
+          font-size: 13px;
+        }
+
         .service-icon {
-          width: clamp(3.5rem, 3.8vw, 4rem);
-          height: clamp(3.5rem, 3.8vw, 4rem);
+          width: 48px;
+          height: 48px;
         }
 
         @media (max-width: 1099px) {
           .services-section {
-            min-height: auto;
             height: auto;
-            max-height: none;
-            overflow: visible;
+            padding: 48px 0 56px;
           }
 
           .services-grid {
@@ -351,11 +352,11 @@ function Home() {
 
         @media (max-height: 800px) and (min-width: 1100px) {
           .services-section {
-            padding: clamp(18px, 2.5vh, 30px) 0;
+            padding: 48px 0 56px;
           }
 
           .services-heading {
-            margin-bottom: clamp(16px, 2.4vh, 24px);
+            margin-bottom: 24px;
           }
 
           .services-grid {
@@ -363,7 +364,8 @@ function Home() {
           }
 
           .service-card {
-            padding: 20px;
+            min-height: 0;
+            padding: 22px 24px;
           }
         }
 
@@ -452,7 +454,9 @@ function Home() {
       >
         <div className="services-container">
           <div className="services-heading">
-            <HomeSectionEyebrow>OUR SERVICES</HomeSectionEyebrow>
+            <HomeSectionEyebrow className="mb-1.5 px-[11px] py-[5px] text-[10px] font-semibold tracking-[0.14em]">
+              OUR SERVICES
+            </HomeSectionEyebrow>
             <h2>Healthcare services designed around your needs</h2>
             <p>
               Whether you're looking for ongoing primary care, physician-guided weight management, or enhanced concierge
@@ -471,20 +475,20 @@ function Home() {
                 {...getCardHover(reduceMotion)}
               >
                 <div className="service-icon inline-flex items-center justify-center rounded-2xl bg-ht-soft-blue text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100 transition duration-300 group-hover:bg-ht-cyan-700 group-hover:text-white">
-                  <option.icon size={20} />
+                  <option.icon size={21} />
                 </div>
                 <h3>{option.title}</h3>
-                <p className="service-subtitle text-sm font-semibold uppercase tracking-wide text-ht-cyan-700">{option.subtitle}</p>
+                <p className="service-subtitle text-ht-cyan-700">{option.subtitle}</p>
                 <ul>
                   {option.points.map((point) => (
-                    <li key={point} className="flex items-start gap-2 text-sm leading-relaxed text-ht-gray">
-                      <span className="mt-1 inline-flex h-2.5 w-2.5 shrink-0 rounded-full bg-ht-cyan-700" />
+                    <li key={point} className="flex items-start gap-2 text-ht-gray">
+                      <span className="mt-1 inline-flex h-[7px] w-[7px] shrink-0 rounded-full bg-ht-cyan-700" />
                       <span>{point}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="card-button pt-5">
-                  <Button to={option.link} variant="secondary" size="sm" className="whitespace-nowrap">
+                <div className="card-button pt-4">
+                  <Button to={option.link} variant="secondary" size="sm" className="whitespace-nowrap text-[14px]">
                     {option.label}
                     <ArrowRight size={14} />
                   </Button>
@@ -517,9 +521,42 @@ function Home() {
         {...getRevealProps(reduceMotion, { y: 18, duration: 0.58, amount: 0.16 })}
       >
         <div className="mx-auto grid w-full max-w-7xl items-start gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <motion.div
+            className="rounded-[2rem] border border-cyan-100 bg-white p-6 shadow-[0_20px_48px_-34px_rgba(5,42,74,0.45)] md:p-7"
+            {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.22, delay: 0.08 })}
+          >
+            <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ht-navy-700">
+              Typical Program Milestones
+            </p>
+            <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">
+              Structured, physician-guided support for <span className="text-ht-cyan-700">sustainable results</span>
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-ht-gray">
+              We combine clinical insight, behavior change, and ongoing accountability to help you lose weight safely
+              and maintain progress long term.
+            </p>
+            <ul className="mt-5 space-y-2 text-sm text-ht-gray">
+              <li className="flex items-start gap-2">
+                <span className="mt-1 h-[7px] w-[7px] rounded-full bg-ht-cyan" />
+                Personalized strategy based on labs and health history
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1 h-[7px] w-[7px] rounded-full bg-ht-cyan" />
+                Regular progress check-ins and plan adjustments
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1 h-[7px] w-[7px] rounded-full bg-ht-cyan" />
+                Clear, supportive coaching for realistic lifestyle change
+              </li>
+            </ul>
+            <Button to="/medical-weight-loss" className="mt-6 self-start">
+              View Program Details
+            </Button>
+          </motion.div>
+
           <motion.div {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.22 })}>
             <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
-              Typical Program Milestones
+              Medical Weight Loss
             </p>
             <div className="relative mt-6 space-y-4 pl-3 before:absolute before:bottom-2 before:left-5 before:top-2 before:w-px before:bg-cyan-100 before:content-['']">
               {[
@@ -544,39 +581,6 @@ function Home() {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
-
-          <motion.div
-            className="rounded-[2rem] border border-cyan-100 bg-white p-6 shadow-[0_20px_48px_-34px_rgba(5,42,74,0.45)] md:p-7"
-            {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.22, delay: 0.08 })}
-          >
-            <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ht-navy-700">
-              Medical Weight Loss
-            </p>
-            <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">
-              Structured, physician-guided support for <span className="text-ht-cyan-700">sustainable results</span>
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-ht-gray">
-              We combine clinical insight, behavior change, and ongoing accountability to help you lose weight safely
-              and maintain progress long term.
-            </p>
-            <ul className="mt-5 space-y-2 text-sm text-ht-gray">
-              <li className="flex items-start gap-2">
-                <span className="mt-1 h-2 w-2 rounded-full bg-ht-cyan" />
-                Personalized strategy based on labs and health history
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1 h-2 w-2 rounded-full bg-ht-cyan" />
-                Regular progress check-ins and plan adjustments
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1 h-2 w-2 rounded-full bg-ht-cyan" />
-                Clear, supportive coaching for realistic lifestyle change
-              </li>
-            </ul>
-            <Button to="/medical-weight-loss" className="mt-6 self-start">
-              View Program Details
-            </Button>
           </motion.div>
         </div>
       </motion.section>
@@ -891,7 +895,7 @@ function TestimonialCarousel({ items, reduceMotion }) {
 
       <div className="mt-7 text-center">
         <a
-          href="https://share.google/JYuTIVEeq1YttWsWv"
+          href="https://www.google.com/search?client=opera&hs=ML5&sca_esv=1b1f21a8dcd783c9&sxsrf=APpeQnt4FuHezhR_ECeiRQNQkIEhCcCrkg:1783806679927&kgmid=/g/11yckrs0wl&q=Healtopia+Primary+Care+and+Medical+Weight+Loss,+LLC&shem=dlvs1,epsd1,ltae,rimspwouoe&shndl=30&source=sh/x/loc/uni/m1/1&kgs=9a34d135c7cce0cb&utm_source=dlvs1,epsd1,ltae,rimspwouoe,sh/x/loc/uni/m1/1#"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 rounded-full border border-ht-silver bg-white px-5 py-2.5 text-sm font-semibold text-ht-navy shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-ht-soft-blue hover:text-ht-cyan-700"
@@ -905,3 +909,8 @@ function TestimonialCarousel({ items, reduceMotion }) {
 }
 
 export default Home
+
+
+
+
+

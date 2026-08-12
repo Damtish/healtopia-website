@@ -69,20 +69,20 @@ export default function WhyHealtopiaSection() {
         }
 
         .why-healtopia-container {
-          padding-block: clamp(42px, 4.8vw, 70px);
+          padding-block: clamp(36px, 4vw, 60px);
         }
 
         .why-healtopia-heading {
           max-width: 62rem;
-          margin-bottom: clamp(18px, 2vw, 28px);
+          margin-bottom: clamp(16px, 1.8vw, 24px);
         }
 
         .why-healtopia-heading h2 {
-          margin: 12px 0 10px;
+          margin: 10px 0 8px;
           color: #102b50;
-          font-size: clamp(1.75rem, 2.2vw, 2.4rem);
-          line-height: 1.16;
-          font-weight: 650;
+          font-size: 30px;
+          line-height: 1.15;
+          font-weight: 700;
           letter-spacing: -0.025em;
         }
 
@@ -90,24 +90,24 @@ export default function WhyHealtopiaSection() {
           margin: 0;
           max-width: 62rem;
           color: #607997;
-          font-size: clamp(0.95rem, 1vw, 1.1rem);
-          line-height: 1.6;
+          font-size: 15px;
+          line-height: 1.5;
         }
 
         .why-healtopia-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 22px;
+          gap: 18px;
           align-items: stretch;
         }
 
         .why-healtopia-card {
           display: grid;
-          grid-template-columns: 46px minmax(0, 1fr);
-          gap: 14px;
+          grid-template-columns: 48px minmax(0, 1fr);
+          gap: 12px;
           align-items: start;
           min-height: 0;
-          padding: 22px;
+          padding: 21px;
           background: #ffffff;
           border: 1px solid rgba(186, 214, 231, 0.95);
           border-radius: 22px;
@@ -125,51 +125,51 @@ export default function WhyHealtopiaSection() {
         }
 
         .why-healtopia-icon {
-          width: 46px;
-          height: 46px;
+          width: 48px;
+          height: 48px;
           display: grid;
           place-items: center;
           border-radius: 14px;
           background: #e4f8fc;
           color: #188ead;
-          flex: 0 0 46px;
+          flex: 0 0 48px;
         }
 
         .why-healtopia-card h3 {
           margin: 0 0 7px;
           color: #102b50;
-          font-size: clamp(1rem, 1.05vw, 1.18rem);
-          line-height: 1.3;
-          font-weight: 650;
+          font-size: 16px;
+          line-height: 1.25;
+          font-weight: 700;
         }
 
         .why-healtopia-card p {
           margin: 0;
           color: #607997;
-          line-height: 1.55;
-          font-size: clamp(0.9rem, 0.9vw, 1rem);
+          line-height: 1.45;
+          font-size: 14px;
         }
 
         @media (min-width: 1100px) and (max-height: 850px) {
           .why-healtopia-container {
-            padding-block: 32px;
+            padding-block: 30px;
           }
 
           .why-healtopia-heading {
-            margin-bottom: 18px;
+            margin-bottom: 16px;
           }
 
           .why-healtopia-heading h2 {
-            font-size: clamp(1.8rem, 2.05vw, 2.3rem);
-            margin-top: 10px;
+            font-size: 28px;
+            margin-top: 8px;
           }
 
           .why-healtopia-heading p {
-            font-size: 0.98rem;
+            font-size: 14px;
           }
 
           .why-healtopia-grid {
-            gap: 18px;
+            gap: 16px;
           }
 
           .why-healtopia-card {
@@ -177,8 +177,8 @@ export default function WhyHealtopiaSection() {
           }
 
           .why-healtopia-card p {
-            font-size: 0.92rem;
-            line-height: 1.5;
+            font-size: 13.5px;
+            line-height: 1.45;
           }
         }
 
@@ -188,8 +188,8 @@ export default function WhyHealtopiaSection() {
           }
 
           .why-healtopia-heading h2 {
-            font-size: 2rem;
-            line-height: 1.14;
+            font-size: 28px;
+            line-height: 1.15;
           }
         }
 
@@ -199,8 +199,8 @@ export default function WhyHealtopiaSection() {
           }
 
           .why-healtopia-heading h2 {
-            font-size: clamp(1.7rem, 7.8vw, 1.95rem);
-            line-height: 1.14;
+            font-size: clamp(1.55rem, 7vw, 1.8rem);
+            line-height: 1.15;
           }
 
           .why-healtopia-grid {
@@ -218,7 +218,7 @@ export default function WhyHealtopiaSection() {
 
       <div className={`${PAGE_CONTAINER} why-healtopia-container`}>
         <div className="why-healtopia-heading">
-          <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-ht-navy-700">
+          <p className="inline-flex rounded-full bg-cyan-100 px-3 py-[6px] text-[11px] font-semibold uppercase tracking-[0.14em] text-ht-navy-700">
             WHY HEALTOPIA
           </p>
           <h2>Trusted care that feels personal</h2>

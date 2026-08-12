@@ -192,66 +192,67 @@ function DirectPrimaryCare() {
 
   return (
     <div>
-      <section className="border-b border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue/70 to-cyan-50">
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:py-16">
-          <motion.div {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}>
+      <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-[620px] lg:max-h-[720px]">
+        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block">
+          <motion.img
+            src="/images/clinic/direct-primary-care-patient-consultation.jpeg"
+            alt="Physician and patient consultation at Healtopia"
+            className="h-full w-full object-cover object-[center_38%]"
+            initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
+            animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+            transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(270deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.1)_24%,rgba(255,255,255,0.48)_58%,rgba(255,255,255,0.92)_100%)]" />
+        </div>
+        <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[44%] bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.96)_62%,rgba(255,255,255,0)_100%)] lg:block" />
+        <div className="pointer-events-none absolute -left-8 top-10 hidden h-44 w-44 rounded-full bg-cyan-200/22 blur-3xl lg:block" />
+
+        <div className="mx-auto flex min-h-[620px] w-full max-w-7xl items-center px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-0">
+          <motion.div
+            className="relative z-20 max-w-[38rem] lg:w-[min(38rem,39vw)]"
+            {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}
+          >
             <SectionEyebrow>DIRECT PRIMARY CARE</SectionEyebrow>
-            <h1 className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl lg:text-[clamp(3.1rem,4.4vw,4.7rem)] lg:leading-[1]">
+            <h1 className="mt-4 max-w-[13ch] text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl lg:text-[clamp(44px,4vw,68px)] lg:leading-[1]">
               Healthcare designed <span className="text-ht-cyan-700">around you</span>
             </h1>
-            <p className="ht-body ht-text-width-hero mt-5 text-ht-gray">
+            <p className="ht-body ht-text-width-hero mt-5 max-w-[31rem] text-ht-gray">
               At Healtopia, we believe healthcare should be simple, personal, and accessible. Our Direct Primary Care
               membership model gives patients direct access to their physician for a simple monthly fee, without the
               stress of copays, surprise bills, or rushed appointments.
             </p>
-            <p className="ht-body ht-text-width-hero mt-4 text-ht-gray">
+            <p className="ht-body ht-text-width-hero mt-4 max-w-[29rem] text-ht-gray">
               We focus on building real relationships with our patients so they can receive the time, attention, and
               personalized care they deserve.
             </p>
-            <div className="mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap">
-              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="w-full whitespace-nowrap md:w-auto">
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="w-full whitespace-nowrap sm:w-auto">
                 Book Appointment
                 <ArrowRight size={16} />
               </Button>
-              <Button to="/pricing" variant="secondary" className="w-full whitespace-nowrap md:w-auto">
+              <Button to="/pricing" variant="secondary" className="w-full whitespace-nowrap sm:w-auto">
                 View Pricing
               </Button>
             </div>
-          </motion.div>
 
-          <motion.div
-            className="self-center"
-            {...getEntranceProps(reduceMotion, { y: 20, delay: 0.07, duration: 0.55, fromScale: 0.98 })}
-          >
-            <div className="group overflow-hidden rounded-[2rem] border border-cyan-100 bg-white p-3 shadow-[0_24px_60px_-34px_rgba(5,42,74,0.45)] transition-shadow duration-300">
-              <div className="overflow-hidden rounded-[1.5rem] border border-ht-silver bg-ht-soft-blue/20">
-                <motion.img
-                  src="/images/clinic/patient-care.png"
-                  alt="Patient care at Healtopia"
-                  className="h-[clamp(18rem,28vw,24rem)] w-full object-cover object-center md:h-[clamp(21rem,30vw,28rem)] lg:h-[clamp(18rem,28vw,24rem)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025]"
-                  initial={reduceMotion ? false : { scale: 0.985, opacity: 0 }}
-                  animate={reduceMotion ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }}
-                  transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.05 }}
-                />
-              </div>
-            </div>
-
-            <motion.div className="mt-4 grid gap-3 sm:grid-cols-3 min-[1280px]:grid-cols-1" {...getStaggerContainer(reduceMotion, { staggerChildren: 0.06, amount: 0.2 })}>
+            <motion.div
+              className="mt-5 grid gap-2.5 sm:grid-cols-3"
+              {...getStaggerContainer(reduceMotion, { staggerChildren: 0.06, amount: 0.2 })}
+            >
               {heroTiles.map((item) => (
                 <motion.div
                   key={item.label}
-                  className="group rounded-2xl border border-ht-silver bg-ht-soft-blue/30 px-4 py-3 shadow-[0_14px_32px_-28px_rgba(5,42,74,0.4)] transition-colors duration-300"
+                  className="group flex min-h-[60px] items-center gap-2.5 rounded-[1.15rem] border border-ht-silver bg-white/88 px-3 py-2 shadow-[0_14px_32px_-28px_rgba(5,42,74,0.42)] backdrop-blur-[2px] transition-colors duration-300"
                   {...getStaggerItem(reduceMotion, { y: 12 })}
                   {...getCardHover(reduceMotion)}
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100 transition-transform duration-300 group-hover:scale-105">
-                      <item.icon size={16} />
-                    </span>
-                    <div>
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-gray">{item.label}</p>
-                      <p className="mt-1 text-base font-bold text-ht-navy">{item.value}</p>
-                    </div>
+                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100 transition-transform duration-300 group-hover:scale-105">
+                    <item.icon size={16} />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-gray">{item.label}</p>
+                    <p className="mt-1 text-[0.92rem] font-bold text-ht-navy">{item.value}</p>
                   </div>
                 </motion.div>
               ))}
