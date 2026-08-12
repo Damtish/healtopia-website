@@ -44,13 +44,14 @@ const providers = [
   },
 ]
 
-function ProviderBioModal({ provider, onClose, reduceMotion, closeButtonRef }) {
+function ProviderBioModal({ provider, onClose, reduceMotion, closeButtonRef, returnFocusRef }) {
   useEffect(() => {
     if (typeof document === 'undefined') return undefined
 
     const previousOverflow = document.body.style.overflow
     const previousPaddingRight = document.body.style.paddingRight
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+    const triggerElement = returnFocusRef.current
 
     document.body.style.overflow = 'hidden'
     if (scrollbarWidth > 0) {
@@ -64,8 +65,9 @@ function ProviderBioModal({ provider, onClose, reduceMotion, closeButtonRef }) {
     return () => {
       document.body.style.overflow = previousOverflow
       document.body.style.paddingRight = previousPaddingRight
+      triggerElement?.focus?.()
     }
-  }, [closeButtonRef])
+  }, [closeButtonRef, returnFocusRef])
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -277,6 +279,7 @@ function HomeProviderShowcase({
 }) {
   const [modalProviderId, setModalProviderId] = useState(null)
   const closeButtonRef = useRef(null)
+  const returnFocusRef = useRef(null)
   const modalProvider = providers.find((provider) => provider.id === modalProviderId) ?? null
 
   return (
@@ -304,7 +307,10 @@ function HomeProviderShowcase({
               key={provider.id}
               provider={provider}
               reduceMotion={reduceMotion}
-              onOpenBio={(item) => setModalProviderId(item.id)}
+              onOpenBio={(item) => {
+                returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+                setModalProviderId(item.id)
+              }}
             />
           ))}
         </div>
@@ -317,6 +323,7 @@ function HomeProviderShowcase({
             onClose={() => setModalProviderId(null)}
             reduceMotion={reduceMotion}
             closeButtonRef={closeButtonRef}
+            returnFocusRef={returnFocusRef}
           />
         ) : null}
       </AnimatePresence>

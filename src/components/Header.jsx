@@ -37,6 +37,8 @@ function Header({ mobileOpen, setMobileOpen }) {
   const scrollPositionRef = useRef(0)
   const skipScrollRestoreRef = useRef(false)
   const mobileMenuRef = useRef(null)
+  const mobileToggleRef = useRef(null)
+  const previousMobileOpenRef = useRef(mobileOpen)
 
   useEffect(() => {
     if (!mobileOpen) {
@@ -88,6 +90,9 @@ function Header({ mobileOpen, setMobileOpen }) {
 
     if (mobileOpen) {
       window.addEventListener('keydown', handleKeyDown)
+      window.requestAnimationFrame(() => {
+        mobileMenuRef.current?.querySelector('a, button, [tabindex]:not([tabindex="-1"])')?.focus?.()
+      })
     }
 
     return () => window.removeEventListener('keydown', handleKeyDown)
@@ -110,6 +115,13 @@ function Header({ mobileOpen, setMobileOpen }) {
 
     return () => document.removeEventListener('pointerdown', handlePointerDown, true)
   }, [mobileOpen, setMobileOpen])
+
+  useEffect(() => {
+    if (previousMobileOpenRef.current && !mobileOpen) {
+      mobileToggleRef.current?.focus?.()
+    }
+    previousMobileOpenRef.current = mobileOpen
+  }, [mobileOpen])
 
   const navDesktopClass = ({ isActive }) =>
     `relative inline-flex whitespace-nowrap px-1 py-1 text-[clamp(0.88rem,0.82rem+0.12vw,0.96rem)] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:bottom-0 after:left-0 after:h-px after:bg-cyan-300 after:transition-all after:duration-250 ${
@@ -165,11 +177,13 @@ function Header({ mobileOpen, setMobileOpen }) {
         </div>
 
         <button
+          ref={mobileToggleRef}
           type="button"
           onClick={() => setMobileOpen((prev) => !prev)}
           className="ml-auto inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:border-cyan-300 hover:bg-cyan-50 lg:hidden"
           aria-label={mobileOpen ? 'Close mobile menu' : 'Open mobile menu'}
           aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation-panel"
           data-mobile-menu-toggle="true"
         >
           {mobileOpen ? <X size={18} /> : <Menu size={18} />}
@@ -189,6 +203,7 @@ function Header({ mobileOpen, setMobileOpen }) {
             <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-[1px]" onClick={() => setMobileOpen(false)} />
             <motion.div
               ref={mobileMenuRef}
+              id="mobile-navigation-panel"
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}

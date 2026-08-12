@@ -5,6 +5,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Button from './components/Button'
 import PageTransition from './components/PageTransition'
+import SeoManager from './components/SeoManager'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
@@ -16,6 +17,7 @@ import Pricing from './pages/Pricing'
 import Insurance from './pages/Insurance'
 import Contact from './pages/Contact'
 import { BOOK_APPOINTMENT_URL } from './constants/links'
+import { SITE_PHONE_TEL } from './constants/site'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -45,8 +47,19 @@ function AppLayout() {
 
   return (
     <div className="min-h-screen bg-ht-light text-ht-navy antialiased">
+      <SeoManager />
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[1100] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-ht-navy focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-ht-cyan"
+      >
+        Skip to main content
+      </a>
       <Header mobileOpen={mobileMenuOpen} setMobileOpen={setMobileMenuOpen} />
-      <main className={`pb-24 md:pb-0 ${insuranceMobileSafe ? 'insurance-mobile-cta-safe' : ''}`}>
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className={`pb-24 md:pb-0 ${insuranceMobileSafe ? 'insurance-mobile-cta-safe' : ''}`}
+      >
         <PageTransition>
           <Outlet />
         </PageTransition>
@@ -74,7 +87,7 @@ function AppLayout() {
               Book Appointment
             </Button>
             <Button
-              href="tel:+14105550199"
+              href={SITE_PHONE_TEL}
               variant="secondary"
               className="w-full text-sm"
               ariaLabel="Call Healtopia"

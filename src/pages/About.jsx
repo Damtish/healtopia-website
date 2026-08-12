@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
@@ -85,13 +85,14 @@ function SectionEyebrow({ children, className = '' }) {
   )
 }
 
-function ProviderBioModal({ provider, onClose, reduceMotion }) {
+function ProviderBioModal({ provider, onClose, reduceMotion, returnFocusRef }) {
   useEffect(() => {
     if (typeof document === 'undefined') return undefined
 
     const previousOverflow = document.body.style.overflow
     const previousPaddingRight = document.body.style.paddingRight
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+    const triggerElement = returnFocusRef.current
 
     document.body.style.overflow = 'hidden'
     if (scrollbarWidth > 0) {
@@ -107,9 +108,10 @@ function ProviderBioModal({ provider, onClose, reduceMotion }) {
     return () => {
       document.body.style.overflow = previousOverflow
       document.body.style.paddingRight = previousPaddingRight
+      triggerElement?.focus?.()
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [onClose])
+  }, [onClose, returnFocusRef])
 
   return (
     <motion.div
@@ -195,7 +197,7 @@ function ProviderBioModal({ provider, onClose, reduceMotion }) {
   )
 }
 
-function AboutProvidersSection({ reduceMotion }) {
+function AboutProvidersSection({ reduceMotion, returnFocusRef }) {
   const [activeProvider, setActiveProvider] = useState(null)
   const gashawProvider = providerCards[0]
   const malefiyaProvider = providerCards[1]
@@ -251,7 +253,10 @@ function AboutProvidersSection({ reduceMotion }) {
                   type="button"
                   variant="secondary"
                   size="sm"
-                  onClick={() => setActiveProvider(gashawProvider)}
+                  onClick={() => {
+                    returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+                    setActiveProvider(gashawProvider)
+                  }}
                   className="provider-link group mt-auto w-full justify-center whitespace-nowrap sm:w-auto"
                 >
                   View Full Bio
@@ -287,7 +292,10 @@ function AboutProvidersSection({ reduceMotion }) {
                   type="button"
                   variant="secondary"
                   size="sm"
-                  onClick={() => setActiveProvider(malefiyaProvider)}
+                  onClick={() => {
+                    returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+                    setActiveProvider(malefiyaProvider)
+                  }}
                   className="provider-link group mt-auto w-full justify-center whitespace-nowrap sm:w-auto"
                 >
                   View Full Bio
@@ -301,7 +309,12 @@ function AboutProvidersSection({ reduceMotion }) {
 
       <AnimatePresence>
         {activeProvider ? (
-          <ProviderBioModal provider={activeProvider} onClose={() => setActiveProvider(null)} reduceMotion={reduceMotion} />
+          <ProviderBioModal
+            provider={activeProvider}
+            onClose={() => setActiveProvider(null)}
+            reduceMotion={reduceMotion}
+            returnFocusRef={returnFocusRef}
+          />
         ) : null}
       </AnimatePresence>
     </>
@@ -310,6 +323,7 @@ function AboutProvidersSection({ reduceMotion }) {
 
 function About() {
   const reduceMotion = useReducedMotion()
+  const returnFocusRef = useRef(null)
 
   useEffect(() => {
     if (typeof document === 'undefined') return undefined
@@ -1263,14 +1277,14 @@ function About() {
 
       <WhyHealtopiaSection />
 
-      <AboutProvidersSection reduceMotion={reduceMotion} />
+          <AboutProvidersSection reduceMotion={reduceMotion} returnFocusRef={returnFocusRef} />
 
       <NextStepSection
         eyebrow="TAKE THE NEXT STEP"
         title="Experience care built around you"
         description="Meet a care team focused on time, trust, personalized attention, and long-term support."
         secondaryLabel="Call Our Office"
-        secondaryHref="tel:4107746678"
+        secondaryHref="tel:+14107746678"
         benefits={[
           {
             title: 'Time to listen',

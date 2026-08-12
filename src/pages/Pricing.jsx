@@ -397,7 +397,7 @@ function Pricing() {
             title="Need help choosing the right care option?"
             description="Compare your options or speak with our office before scheduling."
             secondaryLabel="Call Our Office"
-            secondaryHref="tel:4107746678"
+            secondaryHref="tel:+14107746678"
             benefits={[
               {
                 title: 'Clear pricing',

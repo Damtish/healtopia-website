@@ -549,9 +549,6 @@ function Home() {
                 Clear, supportive coaching for realistic lifestyle change
               </li>
             </ul>
-            <Button to="/medical-weight-loss" className="mt-6 self-start">
-              View Program Details
-            </Button>
           </motion.div>
 
           <motion.div {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.22 })}>
@@ -581,6 +578,9 @@ function Home() {
                 </motion.div>
               ))}
             </div>
+            <Button to="/medical-weight-loss" className="mt-6 self-start">
+              View Program Details
+            </Button>
           </motion.div>
         </div>
       </motion.section>

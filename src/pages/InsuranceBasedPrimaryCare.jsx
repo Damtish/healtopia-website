@@ -263,6 +263,31 @@ function InsuranceBasedPrimaryCare() {
           padding-bottom: 2.5rem;
         }
 
+        .insurance-preventive-cta,
+        .insurance-preventive-cta::before,
+        .insurance-preventive-cta::after {
+          background: #0b2d4d !important;
+          background-color: #0b2d4d !important;
+          background-image: none !important;
+          background-repeat: no-repeat !important;
+          background-position: center !important;
+          background-size: 100% 100% !important;
+          background-blend-mode: normal !important;
+          mask: none !important;
+          -webkit-mask: none !important;
+          mix-blend-mode: normal !important;
+          opacity: 1 !important;
+          filter: none !important;
+          backdrop-filter: none !important;
+          -webkit-backdrop-filter: none !important;
+          box-shadow: none !important;
+        }
+
+        .insurance-preventive-cta::before,
+        .insurance-preventive-cta::after {
+          content: none !important;
+        }
+
         @media (min-width: 640px) {
           .insurance-how-it-works-section {
             padding-top: 2.75rem;
@@ -293,30 +318,16 @@ function InsuranceBasedPrimaryCare() {
           }
         }
       `}</style>
-      <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-[620px] lg:max-h-[720px]">
-        <div className="pointer-events-none absolute inset-0">
-          <motion.img
-            src="/images/clinic/examination-room.png"
-            alt=""
-            aria-hidden="true"
-            className="h-full w-full object-cover object-[55%_center]"
-            initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
-            animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
-            transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.94)_18%,rgba(255,255,255,0.72)_32%,rgba(255,255,255,0.28)_44%,rgba(255,255,255,0)_56%)]" />
-        </div>
-        <div className="pointer-events-none absolute -left-20 bottom-[-7rem] hidden h-[26rem] w-[26rem] rounded-full bg-cyan-200/12 blur-[110px] lg:block" />
-
-        <div className="mx-auto flex min-h-[620px] w-full max-w-7xl items-center px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-0">
+      <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-0 lg:max-h-none">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-8 sm:px-6 sm:py-10 lg:h-full lg:flex-row lg:items-center lg:gap-8 lg:px-8 lg:py-0">
           <motion.div
-            className="relative z-20 max-w-[38rem] text-ht-navy lg:w-[min(38rem,39vw)]"
+            className="relative z-20 max-w-[38rem] text-ht-navy lg:w-[min(35rem,47vw)]"
             {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}
           >
             <div className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700 shadow-sm">
               INSURANCE-BASED PRIMARY CARE
             </div>
-            <h1 className="mt-4 max-w-[13.5ch] text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl lg:text-[clamp(44px,4vw,66px)] lg:leading-[1]">
+            <h1 className="mt-4 max-w-[13.5ch] text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl lg:text-[clamp(40px,3.75vw,61px)] lg:leading-[1]">
               Primary care that
               <br />
               works with your
@@ -339,7 +350,24 @@ function InsuranceBasedPrimaryCare() {
             </div>
           </motion.div>
 
-          <div className="hidden lg:block" />
+          <motion.aside
+            className="relative lg:w-[min(50rem,53vw)]"
+            {...getEntranceProps(reduceMotion, { y: 18, duration: 0.55, delay: 0.06 })}
+          >
+            <div className="relative overflow-hidden rounded-[2rem] border border-cyan-100 bg-white p-3 shadow-[0_24px_60px_-34px_rgba(5,42,74,0.45)]">
+              <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[16%] bg-[linear-gradient(90deg,rgba(255,255,255,0.96)_0%,rgba(255,255,255,0.55)_42%,rgba(255,255,255,0.12)_74%,rgba(255,255,255,0)_100%)] lg:block" />
+              <div className="overflow-hidden rounded-[1.5rem]">
+                <motion.img
+                  src="/images/clinic/examination-room.png"
+                  alt="Examination room with chairs"
+                  className="h-[clamp(18rem,42vw,40rem)] w-full object-cover object-[58%_center]"
+                  initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
+                  animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+                  transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}
+                />
+              </div>
+            </div>
+          </motion.aside>
         </div>
       </section>
 
@@ -524,14 +552,14 @@ function InsuranceBasedPrimaryCare() {
       </section>
 
       <section className={`${PAGE_SECTION_SOFT} insurance-preventive-section relative isolate overflow-hidden`}>
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_86%_18%,rgba(103,232,249,0.14),transparent_28%),radial-gradient(circle_at_14%_84%,rgba(224,242,254,0.92),transparent_24%)]" />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_86%_18%,rgba(103,232,249,0.14),transparent_28%),radial-gradient(circle_at_14%_84%,rgba(224,242,254,0.92),transparent_24%)]" />
         <HeartPulse
           aria-hidden="true"
-          className="pointer-events-none absolute right-[-4rem] top-[18%] hidden h-[20rem] w-[20rem] rotate-[-8deg] text-cyan-200/15 lg:block"
+          className="pointer-events-none absolute right-[-4rem] top-[18%] z-0 hidden h-[20rem] w-[20rem] rotate-[-8deg] text-cyan-200/15 lg:block"
           strokeWidth={1.1}
         />
-        <div className="mx-auto w-full max-w-[1380px] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-          <div className="mx-auto max-w-[850px]">
+        <div className="relative z-10 mx-auto w-full max-w-[1380px] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+          <div className="relative z-10 mx-auto max-w-[850px]">
             <motion.div {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}>
               <SectionEyebrow>PREVENTIVE CARE</SectionEyebrow>
               <div className="mt-4 h-px w-16 bg-cyan-300" />
@@ -548,7 +576,7 @@ function InsuranceBasedPrimaryCare() {
               {preventiveItems.map((item, index) => (
                 <motion.article
                   key={item}
-                  className={`group flex min-h-[118px] items-start gap-4 rounded-[1.35rem] border px-5 py-5 shadow-[0_14px_34px_-30px_rgba(5,42,74,0.32)] transition-[transform,box-shadow,border-color] duration-300 ${index % 2 === 0 ? 'border-cyan-100 bg-white' : 'border-cyan-100/80 bg-ht-soft-blue/28'} ${index === preventiveItems.length - 1 ? 'lg:col-span-2' : ''}`}
+                  className={`group flex min-h-[118px] items-start gap-4 rounded-[1.35rem] border border-cyan-100/80 bg-ht-soft-blue/28 px-5 py-5 shadow-[0_14px_34px_-30px_rgba(5,42,74,0.32)] transition-[transform,box-shadow,border-color] duration-300 ${index === preventiveItems.length - 1 ? 'lg:col-span-2' : ''}`}
                   {...getEntranceProps(reduceMotion, { y: 14, duration: 0.45, delay: index * 0.03 })}
                   {...getCardHover(reduceMotion)}
                 >
@@ -566,7 +594,7 @@ function InsuranceBasedPrimaryCare() {
             </div>
 
             <motion.div
-              className="mt-5 flex w-full items-center justify-between gap-4 rounded-[1.25rem] border border-cyan-100 bg-[#082A4A] px-5 py-4 text-white shadow-[0_18px_42px_-32px_rgba(5,42,74,0.5)]"
+              className="insurance-preventive-cta mt-5 flex w-full items-center justify-between gap-4 rounded-[1.25rem] border border-[#0B2D4D] bg-[#0B2D4D] px-5 py-4 text-white shadow-none"
               {...getEntranceProps(reduceMotion, { y: 14, duration: 0.45, delay: 0.14 })}
             >
               <div>
@@ -581,62 +609,44 @@ function InsuranceBasedPrimaryCare() {
         </div>
       </section>
 
-      <section className={`${PAGE_SECTION_SOFT} insurance-chronic-section`}>
+      <section className={`${PAGE_SECTION_SOFT} insurance-chronic-section relative isolate overflow-hidden`}>
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_92%_24%,rgba(103,232,249,0.12),transparent_26%),radial-gradient(circle_at_86%_76%,rgba(224,242,254,0.7),transparent_24%)]" />
         <div className={PAGE_CONTAINER}>
-          <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr]">
-            <motion.div {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}>
-              <SectionEyebrow>CHRONIC CARE</SectionEyebrow>
-              <h2 className="mt-4 max-w-3xl text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl lg:text-[2.65rem] lg:leading-tight">
-                Chronic <span className="text-ht-cyan-700">Disease Management</span>
-              </h2>
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-ht-gray md:text-lg">
-                Managing chronic health conditions requires ongoing care, monitoring, and personalized treatment.
-              </p>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-ht-gray md:text-lg">
-                Our healthcare team works closely with patients to support long-term health, reduce complications, and
-                improve quality of life.
-              </p>
+          <motion.div {...getRevealProps(reduceMotion, { y: 24, amount: 0.2 })}>
+            <SectionEyebrow>CHRONIC CARE</SectionEyebrow>
+            <h2 className="mt-4 max-w-3xl text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl lg:text-[2.65rem] lg:leading-tight">
+              Chronic <span className="text-ht-cyan-700">Disease Management</span>
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-ht-gray md:text-lg">
+              Managing chronic health conditions requires ongoing care, monitoring, and personalized treatment.
+            </p>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-ht-gray md:text-lg">
+              Our healthcare team works closely with patients to support long-term health, reduce complications, and
+              improve quality of life.
+            </p>
+          </motion.div>
 
-              <div className="mt-6 grid gap-4 sm:grid-cols-3">
-                {chronicGroups.map((group) => (
-                  <motion.article
-                    key={group.title}
-                    className={`${PAGE_CARD_SOFT} p-5`}
-                    {...getEntranceProps(reduceMotion, { y: 16, duration: 0.45 })}
-                    {...getCardHover(reduceMotion)}
-                  >
-                    <div className="inline-flex rounded-full bg-cyan-100 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
-                      {group.title}
-                    </div>
-                    <ul className="mt-4 space-y-2">
-                      {group.items.map((item) => (
-                        <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-ht-navy">
-                          <span className="mt-1 h-2 w-2 rounded-full bg-ht-cyan-700" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.article>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="self-stretch rounded-[2rem] border border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50 p-3 shadow-[0_22px_52px_-34px_rgba(5,42,74,0.45)]"
-              {...getEntranceProps(reduceMotion, { y: 24, delay: 0.08, duration: 0.55 })}
-            >
-              <div className="overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white">
-                <motion.img
-                  src="/images/clinic/building-exterior.jpg"
-                  alt="Healtopia clinic building exterior"
-                  className="ht-motion-smooth h-[clamp(18rem,30vw,25rem)] w-full object-cover object-center"
-                  loading="lazy"
-                  initial={reduceMotion ? false : { scale: 0.99, opacity: 0 }}
-                  animate={reduceMotion ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }}
-                  transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.05 }}
-                />
-              </div>
-            </motion.div>
+          <div className="mt-7 grid gap-4 lg:grid-cols-3 lg:gap-5">
+            {chronicGroups.map((group) => (
+              <motion.article
+                key={group.title}
+                className={`${PAGE_CARD_SOFT} flex h-full flex-col p-5`}
+                {...getEntranceProps(reduceMotion, { y: 16, duration: 0.45 })}
+                {...getCardHover(reduceMotion)}
+              >
+                <div className="inline-flex rounded-full bg-cyan-100 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
+                  {group.title}
+                </div>
+                <ul className="mt-4 space-y-2">
+                  {group.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-ht-navy">
+                      <span className="mt-1 h-2 w-2 rounded-full bg-ht-cyan-700" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.article>
+            ))}
           </div>
         </div>
       </section>
