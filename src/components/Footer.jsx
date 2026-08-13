@@ -23,7 +23,7 @@ function Footer() {
           <img
             src="/images/healtopia-logo.webp"
             alt="Healtopia Primary Care and Medical Weight Loss logo"
-            className="h-16 w-auto max-w-[220px] object-contain"
+            className="h-auto w-[96px] max-w-none object-contain sm:w-[108px] lg:w-[124px]"
           />
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-ht-gray">
             Compassionate primary care and medical weight loss designed around your health, lifestyle,

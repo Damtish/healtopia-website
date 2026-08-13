@@ -246,7 +246,7 @@ function MedicalWeightLoss() {
 
   return (
     <div>
-      <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-0 lg:max-h-none">
+      <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:min-h-[calc(100vh-var(--header-height,76px))] lg:h-auto">
         <div className="pointer-events-none absolute inset-0 hidden lg:block">
           <motion.img
             src="/images/clinic/weight-loss-waist-measurement-optimized.jpg"
@@ -262,7 +262,7 @@ function MedicalWeightLoss() {
         <div className="pointer-events-none absolute -left-24 -bottom-24 hidden h-[28rem] w-[28rem] rounded-full bg-cyan-200/16 blur-[110px] lg:block" />
 
         <div className={PAGE_CONTAINER}>
-          <div className="relative flex min-h-0 items-center py-7 sm:py-8 lg:h-full lg:items-center lg:py-0">
+          <div className="relative flex min-h-0 items-center py-7 sm:py-8 lg:h-full lg:items-center lg:py-10">
             <motion.div
               className="relative z-10 mx-auto w-full max-w-[36rem] text-ht-navy lg:ml-8 lg:m-0 lg:w-[min(36rem,37vw)]"
               {...getEntranceProps(reduceMotion, { y: 16, duration: 0.5, delay: 0.03 })}
@@ -310,6 +310,63 @@ function MedicalWeightLoss() {
                 </Button>
               </motion.div>
 
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className={PAGE_SECTION}>
+        <div className={PAGE_CONTAINER}>
+          <div className="grid gap-8 lg:grid-cols-[0.37fr_0.63fr] lg:grid-rows-[auto_auto] lg:items-center lg:gap-x-14 lg:gap-y-8">
+            <motion.div
+              className="group order-2 lg:order-1 lg:row-span-2 lg:self-center lg:max-w-[26rem] xl:max-w-[28rem]"
+              {...getEntranceProps(reduceMotion, { y: 24, delay: 0.08, duration: 0.55, fromScale: 0.98 })}
+            >
+              <img
+                src="/images/clinic/weight-loss-scale-measuring-tape-optimized.jpg"
+                alt="Weight scale and measuring tape"
+                className="ht-motion-smooth h-[clamp(16rem,58vw,20rem)] w-full rounded-[1.25rem] object-cover object-[center_45%] shadow-[0_12px_26px_-24px_rgba(5,42,74,0.38)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:h-[clamp(20rem,30vw,25rem)] lg:rounded-[1.4rem] lg:group-hover:scale-[1.015]"
+                loading="lazy"
+              />
+            </motion.div>
+
+            <motion.div
+              className="order-1 lg:order-2 lg:col-start-2 lg:row-start-1"
+              {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}
+            >
+              <SectionHeader
+                eyebrow="COMPREHENSIVE CARE"
+                title={
+                  <>
+                    Weight management that looks beyond the <span className="text-ht-cyan-700">number on the scale</span>
+                  </>
+                }
+                description="Healtopia combines medical evaluation, lifestyle support, treatment options, and ongoing monitoring to help patients build a realistic path toward improved health."
+              />
+            </motion.div>
+
+            <motion.div
+              className="order-3 lg:order-3 lg:col-start-2 lg:row-start-2 lg:mt-1"
+              {...getStaggerContainer(reduceMotion, { staggerChildren: 0.07, amount: 0.18 })}
+            >
+              <div className="grid gap-4 sm:grid-cols-2">
+                {comprehensiveCare.map((card) => (
+                  <motion.article
+                    key={card.title}
+                    className={`${PAGE_CARD} group flex h-full items-start gap-3 px-4 py-4`}
+                    {...getStaggerItem(reduceMotion, { y: 14 })}
+                    {...getWeightLossCardHover(reduceMotion)}
+                  >
+                    <div className={PAGE_ICON_CIRCLE}>
+                      <card.icon size={18} />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-[1.02rem] font-bold leading-[1.28] text-ht-navy">{card.title}</h3>
+                      <p className="mt-1 text-[0.95rem] leading-[1.58] text-ht-gray">{card.text}</p>
+                    </div>
+                  </motion.article>
+                ))}
+              </div>
             </motion.div>
           </div>
         </div>
@@ -393,63 +450,6 @@ function MedicalWeightLoss() {
           </div>
         </div>
       </motion.section>
-
-      <section className={PAGE_SECTION}>
-        <div className={PAGE_CONTAINER}>
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-            <motion.div
-              className="group relative order-2 lg:order-1"
-              {...getEntranceProps(reduceMotion, { y: 24, delay: 0.08, duration: 0.55, fromScale: 0.98 })}
-            >
-              <div className={`${PAGE_PANEL_GRADIENT} relative overflow-hidden p-3`}>
-                <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle_at_58%_28%,rgba(12,174,200,0.14),transparent_52%)]" />
-                <div className="relative overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white p-4 shadow-inner">
-                  <img
-                    src="/images/clinic/weight-loss-scale-measuring-tape-optimized.jpg"
-                    alt="Weight scale and measuring tape"
-                    className="ht-motion-smooth h-[clamp(19rem,30vw,30rem)] w-full object-cover object-[center_45%] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="order-1 lg:order-2"
-              {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}
-            >
-              <SectionHeader
-                eyebrow="COMPREHENSIVE CARE"
-                title={
-                  <>
-                    Weight management that looks beyond the <span className="text-ht-cyan-700">number on the scale</span>
-                  </>
-                }
-                description="Healtopia combines medical evaluation, lifestyle support, treatment options, and ongoing monitoring to help patients build a realistic path toward improved health."
-              />
-
-              <div className="mt-7 grid gap-4 sm:grid-cols-2">
-                {comprehensiveCare.map((card) => (
-                  <motion.article
-                    key={card.title}
-                    className={`${PAGE_CARD} group flex items-start gap-3 px-4 py-4`}
-                    {...getStaggerItem(reduceMotion, { y: 14 })}
-                    {...getWeightLossCardHover(reduceMotion)}
-                  >
-                    <div className={PAGE_ICON_CIRCLE}>
-                      <card.icon size={18} />
-                    </div>
-                    <div className="min-w-0">
-                      <h3 className="text-[1.02rem] font-bold leading-[1.28] text-ht-navy">{card.title}</h3>
-                      <p className="mt-1 text-[0.95rem] leading-[1.58] text-ht-gray">{card.text}</p>
-                    </div>
-                  </motion.article>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       <section className={PAGE_SECTION_SOFT}>
         <div className={PAGE_CONTAINER}>

@@ -1168,7 +1168,7 @@ function About() {
             {...getEntranceProps(reduceMotion, { y: 16, duration: 0.52, delay: 0.03 })}
           >
             <div className="about-hero-panel">
-              <SectionBadge className="border border-cyan-100/25 bg-white/10 text-cyan-50 backdrop-blur-sm">
+              <SectionBadge className="border border-cyan-100/25 bg-white/10 text-white drop-shadow-[0_1px_2px_rgba(2,6,23,0.45)] backdrop-blur-sm">
                 ABOUT HEALTOPIA
               </SectionBadge>
               <h1 className="about-hero-title mt-4 max-w-[700px] text-[clamp(2.55rem,3.8vw,4.1rem)] font-extrabold leading-[0.98] tracking-[-0.03em] text-white">
