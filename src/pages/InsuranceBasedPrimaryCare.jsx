@@ -358,7 +358,7 @@ function InsuranceBasedPrimaryCare() {
               <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[16%] bg-[linear-gradient(90deg,rgba(255,255,255,0.96)_0%,rgba(255,255,255,0.55)_42%,rgba(255,255,255,0.12)_74%,rgba(255,255,255,0)_100%)] lg:block" />
               <div className="overflow-hidden rounded-[1.5rem]">
                 <motion.img
-                  src="/images/clinic/examination-room.png"
+                  src="/images/clinic/examination-room-optimized.jpg"
                   alt="Examination room with chairs"
                   className="h-[clamp(18rem,42vw,40rem)] w-full object-cover object-[58%_center]"
                   initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
@@ -750,3 +750,12 @@ function InsuranceBasedPrimaryCare() {
 }
 
 export default InsuranceBasedPrimaryCare
+
+
+
+
+
+
+
+
+

@@ -278,7 +278,7 @@ function ConciergeCare() {
       <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#f8fbfd_0%,#eef6fb_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-[600px] lg:max-h-[700px]">
         <div className="pointer-events-none absolute inset-0">
           <motion.img
-            src="/images/clinic/patient-care.png"
+            src="/images/clinic/patient-care-optimized.jpg"
             alt=""
             aria-hidden="true"
             className="h-full w-full object-cover object-[70%_center]"
@@ -653,3 +653,13 @@ function ConciergeCare() {
 }
 
 export default ConciergeCare
+
+
+
+
+
+
+
+
+
+

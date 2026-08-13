@@ -15,6 +15,7 @@ import {
   Wallet,
 } from 'lucide-react'
 import Button from '../components/Button'
+import SectionBadge from '../components/SectionBadge'
 import FAQAccordion from '../components/FAQAccordion'
 import NextStepSection from '../components/NextStepSection'
 import SectionHeader from '../components/SectionHeader'
@@ -24,6 +25,10 @@ import {
   PAGE_SECTION_SOFT,
 } from '../lib/pageStyles'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
+
+function SectionEyebrow({ children }) {
+  return <SectionBadge>{children}</SectionBadge>
+}
 
 const heroTiles = [
   { label: 'Monthly membership', value: 'Simple', icon: CircleDollarSign },
@@ -179,14 +184,6 @@ const faqs = [
   },
 ]
 
-function SectionEyebrow({ children }) {
-  return (
-    <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
-      {children}
-    </p>
-  )
-}
-
 function DirectPrimaryCare() {
   const reduceMotion = useReducedMotion()
 
@@ -195,7 +192,7 @@ function DirectPrimaryCare() {
       <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-[620px] lg:max-h-[720px]">
         <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block">
           <motion.img
-            src="/images/clinic/direct-primary-care-patient-consultation.jpeg"
+            src="/images/clinic/direct-primary-care-patient-consultation-optimized.jpg"
             alt="Physician and patient consultation at Healtopia"
             className="h-full w-full object-cover object-[center_38%]"
             initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
@@ -212,7 +209,7 @@ function DirectPrimaryCare() {
             className="relative z-20 max-w-[38rem] lg:w-[min(38rem,39vw)]"
             {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}
           >
-            <SectionEyebrow>DIRECT PRIMARY CARE</SectionEyebrow>
+            <SectionBadge>DIRECT PRIMARY CARE</SectionBadge>
             <h1 className="mt-4 max-w-[13ch] text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl lg:text-[clamp(44px,4vw,68px)] lg:leading-[1]">
               Healthcare designed <span className="text-ht-cyan-700">around you</span>
             </h1>
@@ -435,7 +432,7 @@ function DirectPrimaryCare() {
           >
             <div className="overflow-hidden rounded-[1.5rem] border border-ht-silver bg-white">
               <img
-                src="/images/clinic/examination-room.png"
+                  src="/images/clinic/examination-room-optimized.jpg"
                 alt="Healtopia examination room"
                 className="h-[clamp(17rem,24vw,22rem)] w-full object-cover object-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025]"
                 loading="lazy"

@@ -1,4 +1,5 @@
 ﻿import { motion, useReducedMotion } from 'framer-motion'
+import SectionBadge from '../components/SectionBadge'
 import {
   ArrowRight,
   Check,
@@ -24,6 +25,10 @@ import {
   PAGE_SECTION_SOFT,
 } from '../lib/pageStyles'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
+
+function SectionEyebrow({ children }) {
+  return <SectionBadge>{children}</SectionBadge>
+}
 
 const dpcPlans = [
   {
@@ -98,14 +103,6 @@ const trustIndicators = [
     label: 'Insurance and self-pay available',
   },
 ]
-
-function SectionEyebrow({ children }) {
-  return (
-    <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
-      {children}
-    </p>
-  )
-}
 
 function PricingPlanCard({ plan, index }) {
   const reduceMotion = useReducedMotion()
@@ -420,3 +417,12 @@ function Pricing() {
 }
 
 export default Pricing
+
+
+
+
+
+
+
+
+

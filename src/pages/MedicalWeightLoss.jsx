@@ -12,6 +12,7 @@ import {
   Users,
 } from 'lucide-react'
 import Button from '../components/Button'
+import SectionBadge from '../components/SectionBadge'
 import AppointmentCTA from '../components/AppointmentCTA'
 import FAQAccordion from '../components/FAQAccordion'
 import SectionHeader from '../components/SectionHeader'
@@ -26,6 +27,10 @@ import {
   PAGE_SECTION_SOFT,
 } from '../lib/pageStyles'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
+
+function SectionEyebrow({ children }) {
+  return <SectionBadge>{children}</SectionBadge>
+}
 
 const journeyRows = [
   {
@@ -223,14 +228,6 @@ const faqs = [
   },
 ]
 
-function SectionEyebrow({ children }) {
-  return (
-    <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
-      {children}
-    </p>
-  )
-}
-
 function getWeightLossCardHover(reduceMotion) {
   if (reduceMotion) return {}
 
@@ -252,7 +249,7 @@ function MedicalWeightLoss() {
       <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-0 lg:max-h-none">
         <div className="pointer-events-none absolute inset-0 hidden lg:block">
           <motion.img
-            src="/images/clinic/weight-loss-waist-measurement.jpg"
+            src="/images/clinic/weight-loss-waist-measurement-optimized.jpg"
             alt=""
             aria-hidden="true"
             className="h-full w-full object-cover object-[70%_center]"
@@ -408,7 +405,7 @@ function MedicalWeightLoss() {
                 <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle_at_58%_28%,rgba(12,174,200,0.14),transparent_52%)]" />
                 <div className="relative overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white p-4 shadow-inner">
                   <img
-                    src="/images/clinic/weight-loss-scale-measuring-tape.jpg"
+                    src="/images/clinic/weight-loss-scale-measuring-tape-optimized.jpg"
                     alt="Weight scale and measuring tape"
                     className="ht-motion-smooth h-[clamp(19rem,30vw,30rem)] w-full object-cover object-[center_45%] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
                     loading="lazy"
@@ -499,7 +496,7 @@ function MedicalWeightLoss() {
               <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle_at_58%_28%,rgba(12,174,200,0.14),transparent_52%)]" />
               <div className="relative overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white p-4 shadow-inner">
                 <img
-                  src="/images/clinic/seca-body-composition-clean.png"
+                  src="/images/clinic/seca-body-composition-clean-optimized.jpg"
                   alt="Healtopia body composition scanner and dashboard"
                   className="ht-motion-smooth h-[clamp(20rem,32vw,31rem)] w-full object-contain object-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
                   loading="lazy"
@@ -587,3 +584,13 @@ function MedicalWeightLoss() {
 }
 
 export default MedicalWeightLoss
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+﻿import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
@@ -10,6 +10,7 @@ import {
   X,
 } from 'lucide-react'
 import Button from '../components/Button'
+import SectionBadge from '../components/SectionBadge'
 import NextStepSection from '../components/NextStepSection'
 import WhyHealtopiaSection from '../components/WhyHealtopiaSection'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
@@ -18,7 +19,7 @@ import {
   PAGE_CONTAINER,
   PAGE_SECTION,
 } from '../lib/pageStyles'
-import aboutGashawPortrait from "../assets/Dr. Gashaw's.PNG"
+import aboutGashawPortrait from '../assets/dr-gashaw-adugna-about-optimized.jpg'
 
 const storyExpectations = [
   {
@@ -76,14 +77,6 @@ const providerCards = [
     ],
   },
 ]
-
-function SectionEyebrow({ children, className = '' }) {
-  return (
-    <p className={`ht-eyebrow bg-cyan-100 text-ht-navy-700 ${className}`}>
-      {children}
-    </p>
-  )
-}
 
 function ProviderBioModal({ provider, onClose, reduceMotion, returnFocusRef }) {
   useEffect(() => {
@@ -211,7 +204,7 @@ function AboutProvidersSection({ reduceMotion, returnFocusRef }) {
             {...getRevealProps(reduceMotion, { y: 18, duration: 0.5, amount: 0.18 })}
           >
             <div className="max-w-4xl">
-              <SectionEyebrow className="eyebrow">PROVIDERS</SectionEyebrow>
+              <SectionBadge className="eyebrow">PROVIDERS</SectionBadge>
               <h2>Meet Our Providers</h2>
               <p>
                 Experienced, compassionate clinicians focused on building lasting relationships and supporting your
@@ -1159,7 +1152,7 @@ function About() {
       <section className="about-hero-shell relative isolate overflow-hidden border-b border-ht-silver">
         <div className="about-hero-bg">
           <motion.img
-            src="/images/clinic/building-exterior.jpg"
+            src="/images/clinic/building-exterior-optimized.jpg"
             alt="Healtopia clinic building exterior"
             className="h-full w-full object-cover object-center"
             initial={reduceMotion ? false : { scale: 1.03 }}
@@ -1175,9 +1168,9 @@ function About() {
             {...getEntranceProps(reduceMotion, { y: 16, duration: 0.52, delay: 0.03 })}
           >
             <div className="about-hero-panel">
-              <p className="inline-flex rounded-full border border-cyan-100/25 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-cyan-50 backdrop-blur-sm">
+              <SectionBadge className="border border-cyan-100/25 bg-white/10 text-cyan-50 backdrop-blur-sm">
                 ABOUT HEALTOPIA
-              </p>
+              </SectionBadge>
               <h1 className="about-hero-title mt-4 max-w-[700px] text-[clamp(2.55rem,3.8vw,4.1rem)] font-extrabold leading-[0.98] tracking-[-0.03em] text-white">
                 Healthcare built on trust and lasting relationships
               </h1>
@@ -1227,9 +1220,7 @@ function About() {
               className="rounded-[2rem] border border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue/35 to-cyan-50 p-6 shadow-[0_20px_46px_-34px_rgba(5,42,74,0.45)] md:p-8"
               {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.03 })}
             >
-              <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
-                Our Story
-              </p>
+              <SectionBadge>Our Story</SectionBadge>
               <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">
                 Care built on <span className="text-ht-cyan-700">time and trust</span>
               </h2>
@@ -1252,9 +1243,7 @@ function About() {
               className="rounded-[2rem] border border-ht-silver bg-ht-soft-blue/20 p-6 shadow-[0_20px_46px_-34px_rgba(5,42,74,0.45)] md:p-8"
               {...getEntranceProps(reduceMotion, { y: 18, duration: 0.5, delay: 0.08 })}
             >
-              <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
-                What patients can expect
-              </p>
+              <SectionBadge>What patients can expect</SectionBadge>
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 {storyExpectations.map((item) => (
                   <motion.article
@@ -1305,4 +1294,8 @@ function About() {
 }
 
 export default About
+
+
+
+
 

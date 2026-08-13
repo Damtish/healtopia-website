@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { BadgeCheck, CalendarClock, CreditCard, Heart, Scale, ShieldCheck, Stethoscope, Users } from 'lucide-react'
+import SectionBadge from './SectionBadge'
 import { PAGE_CONTAINER } from '../lib/pageStyles'
 import { getCardHover, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
@@ -218,9 +219,9 @@ export default function WhyHealtopiaSection() {
 
       <div className={`${PAGE_CONTAINER} why-healtopia-container`}>
         <div className="why-healtopia-heading">
-          <p className="inline-flex rounded-full bg-cyan-100 px-3 py-[6px] text-[11px] font-semibold uppercase tracking-[0.14em] text-ht-navy-700">
+          <SectionBadge>
             WHY HEALTOPIA
-          </p>
+          </SectionBadge>
           <h2>Trusted care that feels personal</h2>
           <p>Thoughtful care, experienced clinicians, and a welcoming practice built around the patient experience.</p>
         </div>

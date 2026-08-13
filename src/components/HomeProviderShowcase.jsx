@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowRight, Users, X } from 'lucide-react'
 import Button from './Button'
+import SectionBadge from './SectionBadge'
 import { getCardHover, getEntranceProps, getRevealProps } from '../lib/motion'
 
 const providers = [
@@ -13,7 +14,7 @@ const providers = [
     description:
       'Dual board-certified in Internal Medicine and Obesity Medicine, Dr. Adugna provides compassionate, evidence-based care with a focus on prevention, weight management, and long-term wellness.',
     badges: ['Internal Medicine', 'Obesity Medicine', 'Preventive Care'],
-    imageSrc: '/images/clinic/dr-gashaw-adugna-home-blue-suit.png',
+    imageSrc: '/images/clinic/dr-gashaw-adugna-home-blue-suit-optimized.jpg',
     imageAlt: 'Gashaw Adugna, MD in a blue suit portrait',
     imageStyle: {
       objectFit: 'contain',
@@ -99,9 +100,7 @@ function ProviderBioModal({ provider, onClose, reduceMotion, closeButtonRef, ret
       >
         <div className="flex items-start justify-between gap-4 border-b border-ht-silver px-5 py-4 sm:px-6">
           <div>
-            <p className="ht-eyebrow bg-cyan-100 text-ht-navy-700">
-              Provider Bio
-            </p>
+            <SectionBadge>Provider Bio</SectionBadge>
             <h3 id={`provider-bio-${provider.id}`} className="mt-3">
               {provider.name}
             </h3>
@@ -223,9 +222,7 @@ function ProviderPanel({ provider, reduceMotion, onOpenBio }) {
       <div className="provider-card__content provider-profile-card__details">
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
-            <p className="ht-eyebrow bg-cyan-100 text-ht-navy-700">
-              {provider.eyebrow}
-            </p>
+            <SectionBadge>{provider.eyebrow}</SectionBadge>
             <h3 className="mt-3">
               {provider.name}
             </h3>
@@ -290,9 +287,7 @@ function HomeProviderShowcase({
         {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}
       >
         <div className="max-w-[48rem]">
-          <p className="ht-eyebrow bg-cyan-100 text-ht-navy-700">
-            {eyebrow}
-          </p>
+          <SectionBadge>{eyebrow}</SectionBadge>
           <h2 className="ht-heading-2 mt-4">
             {title}
           </h2>

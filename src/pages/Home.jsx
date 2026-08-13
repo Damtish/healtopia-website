@@ -15,6 +15,7 @@ import Button from '../components/Button'
 import CompareOptionsSection from '../components/CompareOptionsSection'
 import ProgramHighlightSection from '../components/ProgramHighlightSection'
 import SectionHeader from '../components/SectionHeader'
+import SectionBadge from '../components/SectionBadge'
 import HomeProviderShowcase from '../components/HomeProviderShowcase'
 import NextStepSection from '../components/NextStepSection'
 import insuranceLogos from '../data/insurance'
@@ -131,14 +132,6 @@ const careHighlights = [
     reverse: false,
   },
 ]
-
-function HomeSectionEyebrow({ children, className = '' }) {
-  return (
-    <p className={`ht-eyebrow bg-cyan-100 text-ht-navy-700 ${className}`}>
-      {children}
-    </p>
-  )
-}
 
 function Home() {
   const reduceMotion = useReducedMotion()
@@ -384,23 +377,20 @@ function Home() {
           <div className="home-hero-overlay absolute inset-0" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(255,255,255,0.56),transparent_28%),radial-gradient(circle_at_78%_18%,rgba(12,174,200,0.08),transparent_24%)]" />
         </div>
-        <div className="relative mx-auto flex w-full max-w-[1680px] flex-1 items-center px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto flex w-full max-w-[1680px] flex-1 items-center px-5 sm:px-6 lg:px-12 xl:px-16">
           <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-[clamp(48px,5vw,90px)]">
             <motion.div
-              className="home-hero-copy relative z-10 min-w-0 justify-self-start text-left lg:py-1"
+              className="home-hero-copy relative z-10 min-w-0 justify-self-start text-left lg:py-1 lg:pl-1 xl:pl-2"
               {...getEntranceProps(reduceMotion, { y: 18, duration: 0.55, delay: 0.02 })}
             >
-              <motion.p
-                className="mb-5 inline-flex rounded-full border border-cyan-200/70 bg-cyan-100/80 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700 shadow-[0_8px_20px_-16px_rgba(5,42,74,0.3)] backdrop-blur-sm"
-                {...getEntranceProps(reduceMotion, { y: 14, duration: 0.5, delay: 0.03 })}
-              >
-                Gambrills, Maryland
-              </motion.p>
+              <motion.div {...getEntranceProps(reduceMotion, { y: 14, duration: 0.5, delay: 0.03 })}>
+                <SectionBadge className="mb-5">Gambrills, Maryland</SectionBadge>
+              </motion.div>
               <motion.h1
                 className="max-w-[12ch] text-[clamp(2.6rem,4.2vw,4.45rem)] font-extrabold leading-[0.96] tracking-[-0.04em] text-ht-navy sm:max-w-[13ch] lg:max-w-[12ch]"
                 {...getEntranceProps(reduceMotion, { y: 18, duration: 0.6, delay: 0.08 })}
               >
-                <span className="block">Primary care that</span>
+                <span className="block">Primary care that </span>
                 <span className="block text-ht-cyan-700">puts you first.</span>
               </motion.h1>
               <motion.p
@@ -454,9 +444,7 @@ function Home() {
       >
         <div className="services-container">
           <div className="services-heading">
-            <HomeSectionEyebrow className="mb-1.5 px-[11px] py-[5px] text-[10px] font-semibold tracking-[0.14em]">
-              OUR SERVICES
-            </HomeSectionEyebrow>
+            <SectionBadge className="mb-1.5">OUR SERVICES</SectionBadge>
             <h2>Healthcare services designed around your needs</h2>
             <p>
               Whether you're looking for ongoing primary care, physician-guided weight management, or enhanced concierge
@@ -525,9 +513,7 @@ function Home() {
             className="rounded-[2rem] border border-cyan-100 bg-white p-6 shadow-[0_20px_48px_-34px_rgba(5,42,74,0.45)] md:p-7"
             {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.22, delay: 0.08 })}
           >
-            <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ht-navy-700">
-              Typical Program Milestones
-            </p>
+            <SectionBadge>Typical Program Milestones</SectionBadge>
             <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">
               Structured, physician-guided support for <span className="text-ht-cyan-700">sustainable results</span>
             </h2>
@@ -552,9 +538,7 @@ function Home() {
           </motion.div>
 
           <motion.div {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.22 })}>
-            <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
-              Medical Weight Loss
-            </p>
+            <SectionBadge>Medical Weight Loss</SectionBadge>
             <div className="relative mt-6 space-y-4 pl-3 before:absolute before:bottom-2 before:left-5 before:top-2 before:w-px before:bg-cyan-100 before:content-['']">
               {[
                 { label: 'Week 1', text: 'Intake, lab review, and personalized roadmap' },
@@ -737,9 +721,7 @@ function TestimonialCarousel({ items, reduceMotion }) {
     >
       <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-2xl">
-          <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
-            Testimonials
-          </p>
+          <SectionBadge>Testimonials</SectionBadge>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">Patient Testimonials</h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-ht-gray md:text-lg">
             Hear what patients are saying about their experience with Healtopia.

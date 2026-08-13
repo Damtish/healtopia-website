@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion'
+﻿import { motion, useReducedMotion } from 'framer-motion'
+import SectionBadge from './SectionBadge'
 import { PAGE_BADGE, PAGE_CONTAINER, PAGE_SECTION_SOFT } from '../lib/pageStyles'
 import { getCardHover, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
@@ -40,14 +41,6 @@ const comparisonPlans = [
     accent: 'Traditional care',
   },
 ]
-
-function SectionEyebrow({ children }) {
-  return (
-    <p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ht-navy-700">
-      {children}
-    </p>
-  )
-}
 
 function PricingComparisonCard({ plan }) {
   const reduceMotion = useReducedMotion()
@@ -91,7 +84,7 @@ export default function CompareOptionsSection() {
       {...getStaggerContainer(reduceMotion, { staggerChildren: 0.08, amount: 0.18 })}
     >
       <div className={PAGE_CONTAINER}>
-        <SectionEyebrow>CARE OPTIONS</SectionEyebrow>
+        <SectionBadge>CARE OPTIONS</SectionBadge>
         <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-ht-navy md:text-4xl">
           How the care options <span className="text-ht-cyan-700">differ</span>
         </h2>
@@ -112,3 +105,14 @@ export default function CompareOptionsSection() {
     </motion.section>
   )
 }
+
+
+
+
+
+
+
+
+
+
+

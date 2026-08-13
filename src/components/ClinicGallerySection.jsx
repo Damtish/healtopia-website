@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+﻿import { motion } from 'framer-motion'
+import SectionBadge from './SectionBadge'
 import { getCardHover, getStaggerItem } from '../lib/motion'
 
 function ClinicGalleryTile({ item, reduceMotion = false, className = '' }) {
@@ -43,9 +44,7 @@ export default function ClinicGallerySection({
   return (
     <div>
       <div className="max-w-[48rem]">
-        <p className="ht-eyebrow bg-cyan-100 text-ht-navy-700">
-          {eyebrow}
-        </p>
+        <SectionBadge>{eyebrow}</SectionBadge>
         <h2 className="ht-heading-2 mt-4">
           {title}
         </h2>
@@ -76,3 +75,12 @@ export default function ClinicGallerySection({
     </div>
   )
 }
+
+
+
+
+
+
+
+
+

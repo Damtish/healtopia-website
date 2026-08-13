@@ -1,4 +1,5 @@
 ﻿import { motion, useReducedMotion } from 'framer-motion'
+import SectionBadge from '../components/SectionBadge'
 import SectionHeader from '../components/SectionHeader'
 import ServiceCard from '../components/ServiceCard'
 import AppointmentCTA from '../components/AppointmentCTA'
@@ -13,9 +14,9 @@ function Services() {
     <div>
       <section className="border-b border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50">
         <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <motion.p className="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-ht-navy-700" {...getEntranceProps(reduceMotion, { y: 16, duration: 0.45, delay: 0.03 })}>
-            Services
-          </motion.p>
+          <motion.div {...getEntranceProps(reduceMotion, { y: 16, duration: 0.45, delay: 0.03 })}>
+            <SectionBadge>Services</SectionBadge>
+          </motion.div>
           <motion.h1 className="mt-4 max-w-3xl text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl" {...getEntranceProps(reduceMotion, { y: 20, delay: 0.1 })}>
             Comprehensive care designed for your full health <span className="text-ht-cyan-700">journey</span>
           </motion.h1>
@@ -55,7 +56,7 @@ function Services() {
         >
           <div className="overflow-hidden rounded-2xl">
             <img
-              src="/images/clinic/examination-room.png"
+              src="/images/clinic/examination-room-optimized.jpg"
               alt="Healtopia examination room"
               className="h-56 w-full object-cover object-center sm:h-64 lg:h-72"
               loading="lazy"
@@ -108,3 +109,5 @@ function Services() {
 }
 
 export default Services
+
+

@@ -137,11 +137,11 @@ function SeoManager() {
     setMetaProperty('og:title', meta.title)
     setMetaProperty('og:description', meta.description)
     setMetaProperty('og:url', canonical)
-    setMetaProperty('og:image', `${SITE_ORIGIN}/images/clinic/building-exterior.jpg`)
+    setMetaProperty('og:image', `${SITE_ORIGIN}/images/clinic/building-exterior-optimized.jpg`)
     setMetaName('twitter:card', 'summary_large_image')
     setMetaName('twitter:title', meta.title)
     setMetaName('twitter:description', meta.description)
-    setMetaName('twitter:image', `${SITE_ORIGIN}/images/clinic/building-exterior.jpg`)
+    setMetaName('twitter:image', `${SITE_ORIGIN}/images/clinic/building-exterior-optimized.jpg`)
     setStructuredData(pathname)
   }, [pathname])
 

@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { CheckCircle2 } from 'lucide-react'
 import Button from './Button'
+import SectionBadge from './SectionBadge'
 import { getCardHover, getEntranceProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
 function ProgramHighlightSection({
@@ -23,9 +24,9 @@ function ProgramHighlightSection({
           className={`grid items-start gap-6 lg:grid-cols-[1.04fr_0.96fr] lg:gap-8 ${reverse ? 'lg:[&>div:first-child]:order-2 lg:[&>div:last-child]:order-1' : ''}`}
         >
           <motion.div className="self-start" {...getEntranceProps(reduceMotion, { y: 24, delay: 0.05 })}>
-            <p className="ht-eyebrow bg-cyan-100 text-ht-navy-700">
+            <SectionBadge>
               {eyebrow}
-            </p>
+            </SectionBadge>
 
             <h2 className="ht-heading-2 mt-4 max-w-[48rem]">
               {title}
@@ -68,7 +69,7 @@ function ProgramHighlightSection({
             {...getEntranceProps(reduceMotion, { y: 24, delay: 0.1, duration: 0.55 })}
           >
             <div className="rounded-[1.5rem] border border-ht-silver bg-ht-soft-blue/15 p-5 sm:p-6">
-              <p className="ht-eyebrow bg-cyan-100 text-ht-navy-700">{rightTitle}</p>
+              <SectionBadge>{rightTitle}</SectionBadge>
               <motion.div className="mt-5 space-y-3" {...getStaggerContainer(reduceMotion, { staggerChildren: 0.07, amount: 0.2 })}>
                 {rightItems.map((item, index) => (
                   <motion.div

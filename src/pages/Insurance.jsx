@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion'
+﻿import { motion, useReducedMotion } from 'framer-motion'
 import { getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 import insuranceLogos from '../data/insurance'
 
@@ -82,4 +82,12 @@ function Insurance() {
 }
 
 export default Insurance
+
+
+
+
+
+
+
+
 
