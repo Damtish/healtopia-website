@@ -190,14 +190,14 @@ function ProviderBioModal({ provider, onClose, reduceMotion, returnFocusRef }) {
   )
 }
 
-function AboutProvidersSection({ reduceMotion, returnFocusRef }) {
+function AboutProvidersSection({ reduceMotion, returnFocusRef, providersRef }) {
   const [activeProvider, setActiveProvider] = useState(null)
   const gashawProvider = providerCards[0]
   const malefiyaProvider = providerCards[1]
 
   return (
     <>
-      <section className="about-providers-section scroll-mt-28 border-b border-ht-silver">
+      <section ref={providersRef} id="providers" className="about-providers-section scroll-mt-24 border-b border-ht-silver">
         <div className="about-providers__container">
           <motion.header
             className="about-providers__header"
@@ -317,6 +317,16 @@ function AboutProvidersSection({ reduceMotion, returnFocusRef }) {
 function About() {
   const reduceMotion = useReducedMotion()
   const returnFocusRef = useRef(null)
+  const providersRef = useRef(null)
+
+  const scrollToProviders = () => {
+    window.requestAnimationFrame(() => {
+      providersRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    })
+  }
 
   useEffect(() => {
     if (typeof document === 'undefined') return undefined
@@ -1196,7 +1206,12 @@ function About() {
                     aria-hidden="true"
                   />
                 </Button>
-                <Button href="#providers" variant="secondary" className="group min-h-12 w-full whitespace-nowrap sm:w-auto">
+                <Button
+                  type="button"
+                  onClick={scrollToProviders}
+                  variant="secondary"
+                  className="group min-h-12 w-full whitespace-nowrap sm:w-auto"
+                >
                   Meet Our Providers
                   <ArrowRight
                     size={14}
@@ -1266,7 +1281,11 @@ function About() {
 
       <WhyHealtopiaSection />
 
-          <AboutProvidersSection reduceMotion={reduceMotion} returnFocusRef={returnFocusRef} />
+          <AboutProvidersSection
+            reduceMotion={reduceMotion}
+            returnFocusRef={returnFocusRef}
+            providersRef={providersRef}
+          />
 
       <NextStepSection
         eyebrow="TAKE THE NEXT STEP"

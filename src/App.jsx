@@ -24,12 +24,28 @@ function ScrollToTop() {
 
   useEffect(() => {
     if (hash) {
-      const id = hash.replace('#', '')
-      const element = document.getElementById(id)
+      const id = decodeURIComponent(hash.replace('#', ''))
+      let attempts = 0
+      let frameId = 0
 
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        return
+      const scrollToHash = () => {
+        const element = document.getElementById(id)
+
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          return
+        }
+
+        attempts += 1
+        if (attempts < 12) {
+          frameId = window.requestAnimationFrame(scrollToHash)
+        }
+      }
+
+      frameId = window.requestAnimationFrame(scrollToHash)
+
+      return () => {
+        window.cancelAnimationFrame(frameId)
       }
     }
 
