@@ -247,17 +247,17 @@ function MedicalWeightLoss() {
   return (
     <div>
       <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:min-h-[calc(100vh-var(--header-height,76px))] lg:h-auto">
-        <div className="pointer-events-none absolute inset-0 hidden lg:block">
+        <div className="pointer-events-none absolute inset-0">
           <motion.img
             src="/images/clinic/weight-loss-waist-measurement-optimized.jpg"
             alt=""
             aria-hidden="true"
-            className="h-full w-full object-cover object-[70%_center]"
+            className="h-full w-full object-cover object-[68%_center] sm:object-[68%_center] md:object-[69%_center] lg:object-[70%_center]"
             initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
             animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
             transition={reduceMotion ? { duration: 0 } : { duration: 0.6, ease: 'easeOut', delay: 0.04 }}
           />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.95)_18%,rgba(255,255,255,0.72)_32%,rgba(255,255,255,0.2)_46%,rgba(255,255,255,0)_58%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.99)_0%,rgba(255,255,255,0.97)_28%,rgba(255,255,255,0.9)_48%,rgba(255,255,255,0.68)_72%,rgba(255,255,255,0.3)_100%)] lg:bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.95)_18%,rgba(255,255,255,0.72)_32%,rgba(255,255,255,0.2)_46%,rgba(255,255,255,0)_58%)]" />
         </div>
         <div className="pointer-events-none absolute -left-24 -bottom-24 hidden h-[28rem] w-[28rem] rounded-full bg-cyan-200/16 blur-[110px] lg:block" />
 

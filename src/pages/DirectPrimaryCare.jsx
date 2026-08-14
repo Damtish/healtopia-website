@@ -190,6 +190,18 @@ function DirectPrimaryCare() {
   return (
     <div>
       <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-[620px] lg:max-h-[720px]">
+        <div className="pointer-events-none absolute inset-0 lg:hidden">
+          <motion.img
+            src="/images/clinic/direct-primary-care-patient-consultation-optimized.jpg"
+            alt=""
+            aria-hidden="true"
+            className="h-full w-full object-cover object-[72%_center] sm:object-[70%_center] md:object-[69%_center] lg:object-[70%_center]"
+            initial={reduceMotion ? false : { opacity: 1, scale: 1 }}
+            animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+            transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.95)_30%,rgba(255,255,255,0.82)_52%,rgba(255,255,255,0.48)_74%,rgba(255,255,255,0.12)_100%)] md:bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.94)_32%,rgba(255,255,255,0.76)_56%,rgba(255,255,255,0.35)_82%,rgba(255,255,255,0.1)_100%)]" />
+        </div>
         <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block">
           <motion.img
             src="/images/clinic/direct-primary-care-patient-consultation-optimized.jpg"
