@@ -247,7 +247,7 @@ function MedicalWeightLoss() {
   return (
     <div>
       <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:min-h-[calc(100vh-var(--header-height,76px))] lg:h-auto">
-        <div className="pointer-events-none absolute inset-0">
+        <div className="pointer-events-none absolute inset-0 hidden sm:block">
           <motion.img
             src="/images/clinic/weight-loss-waist-measurement-optimized.jpg"
             alt=""
@@ -288,8 +288,17 @@ function MedicalWeightLoss() {
                 body-composition analysis, ongoing monitoring, and treatment options when clinically appropriate.
               </p>
 
+              <div className="mt-6 sm:hidden">
+                <img
+                  src="/images/clinic/weight-loss-waist-measurement-optimized.jpg"
+                  alt="Weight loss waist measurement"
+                  className="h-[clamp(15rem,72vw,18.75rem)] w-full rounded-[1.2rem] object-cover object-[68%_center] shadow-[0_14px_28px_-24px_rgba(5,42,74,0.38)]"
+                  loading="lazy"
+                />
+              </div>
+
               <motion.div
-                className="mt-3.5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap"
+                className="mt-6 flex flex-col gap-2.5 sm:mt-3.5 sm:flex-row sm:flex-wrap"
                 {...getEntranceProps(reduceMotion, { y: 16, duration: 0.45, delay: 0.26 })}
               >
                 <Button

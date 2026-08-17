@@ -190,18 +190,6 @@ function DirectPrimaryCare() {
   return (
     <div>
       <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-[620px] lg:max-h-[720px]">
-        <div className="pointer-events-none absolute inset-0 lg:hidden">
-          <motion.img
-            src="/images/clinic/direct-primary-care-patient-consultation-optimized.jpg"
-            alt=""
-            aria-hidden="true"
-            className="h-full w-full object-cover object-[72%_center] sm:object-[70%_center] md:object-[69%_center] lg:object-[70%_center]"
-            initial={reduceMotion ? false : { opacity: 1, scale: 1 }}
-            animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
-            transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.95)_30%,rgba(255,255,255,0.82)_52%,rgba(255,255,255,0.48)_74%,rgba(255,255,255,0.12)_100%)] md:bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.94)_32%,rgba(255,255,255,0.76)_56%,rgba(255,255,255,0.35)_82%,rgba(255,255,255,0.1)_100%)]" />
-        </div>
         <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block">
           <motion.img
             src="/images/clinic/direct-primary-care-patient-consultation-optimized.jpg"
@@ -234,6 +222,17 @@ function DirectPrimaryCare() {
               We focus on building real relationships with our patients so they can receive the time, attention, and
               personalized care they deserve.
             </p>
+
+            <div className="mt-6 lg:hidden">
+              <motion.img
+                src="/images/clinic/direct-primary-care-patient-consultation-optimized.jpg"
+                alt="Physician and patient consultation at Healtopia"
+                className="h-[clamp(15rem,60vw,18.5rem)] w-full rounded-[1.2rem] object-cover object-[68%_center] shadow-[0_18px_38px_-30px_rgba(5,42,74,0.42)]"
+                initial={reduceMotion ? false : { opacity: 0.98, scale: 1 }}
+                animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+                transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}
+              />
+            </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer" className="w-full whitespace-nowrap sm:w-auto">
@@ -439,17 +438,15 @@ function DirectPrimaryCare() {
           </motion.div>
 
           <motion.div
-            className="group overflow-hidden rounded-[2rem] border border-cyan-100 bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50 p-3 shadow-[0_22px_52px_-34px_rgba(5,42,74,0.45)]"
+            className="group overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white shadow-[0_18px_42px_-32px_rgba(5,42,74,0.42)] lg:self-center"
             {...getEntranceProps(reduceMotion, { y: 20, delay: 0.07, duration: 0.55, fromScale: 0.985 })}
           >
-            <div className="overflow-hidden rounded-[1.5rem] border border-ht-silver bg-white">
-              <img
-                  src="/images/clinic/examination-room-optimized.jpg"
-                alt="Healtopia examination room"
-                className="h-[clamp(17rem,24vw,22rem)] w-full object-cover object-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025]"
-                loading="lazy"
-              />
-            </div>
+            <img
+              src="/images/clinic/hallway.jpg"
+              alt="Healtopia clinic hallway"
+              className="h-[clamp(16rem,58vw,20rem)] w-full object-cover object-[center_56%] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.015] sm:h-[clamp(18rem,42vw,24rem)] lg:h-[clamp(31rem,34vw,35rem)]"
+              loading="lazy"
+            />
           </motion.div>
         </div>
       </section>
