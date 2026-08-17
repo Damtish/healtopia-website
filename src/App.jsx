@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
+import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import { Phone } from 'lucide-react'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -16,6 +16,7 @@ import ConciergeCare from './pages/ConciergeCare'
 import Pricing from './pages/Pricing'
 import Insurance from './pages/Insurance'
 import Contact from './pages/Contact'
+import NotFound from './pages/NotFound'
 import { BOOK_APPOINTMENT_URL } from './constants/links'
 import { SITE_PHONE_TEL } from './constants/site'
 
@@ -135,7 +136,7 @@ function App() {
           <Route path="/insurance" element={<Insurance />} />
           <Route path="/contact" element={<Contact />} />
         </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   )

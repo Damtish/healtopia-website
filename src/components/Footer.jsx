@@ -6,6 +6,7 @@ import { FACEBOOK_URL, INSTAGRAM_URL } from '../constants/links'
 const quickLinks = [
   { label: 'Home', to: '/' },
   { label: 'About Us', to: '/about' },
+  { label: 'Services', to: '/services' },
   { label: 'Direct Primary Care', to: '/direct-primary-care' },
   { label: 'Insurance-Based Care', to: '/insurance-based-primary-care' },
   { label: 'Concierge Medicine', to: '/concierge-care' },
