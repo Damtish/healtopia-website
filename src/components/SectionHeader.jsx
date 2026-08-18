@@ -7,7 +7,10 @@ function SectionHeader({ eyebrow, title, description, align = 'left' }) {
   const alignment = align === 'center' ? 'text-center mx-auto' : 'text-left'
 
   return (
-    <motion.div className={`max-w-[48rem] ${alignment}`} {...getRevealProps(reduceMotion, { y: 22, amount: 0.2 })}>
+    <motion.div
+      className={`max-w-[48rem] min-[1440px]:max-w-[56rem] ${alignment}`}
+      {...getRevealProps(reduceMotion, { y: 22, amount: 0.2 })}
+    >
       {eyebrow ? (
         <SectionBadge className="mb-3">
           {eyebrow}

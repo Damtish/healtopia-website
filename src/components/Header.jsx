@@ -125,7 +125,7 @@ function Header({ mobileOpen, setMobileOpen }) {
   }, [mobileOpen])
 
   const navDesktopClass = ({ isActive }) =>
-    `relative inline-flex whitespace-nowrap px-1 py-1 text-[clamp(0.88rem,0.82rem+0.12vw,0.96rem)] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:bottom-0 after:left-0 after:h-px after:bg-cyan-300 after:transition-all after:duration-250 ${
+    `relative inline-flex whitespace-nowrap px-1 py-1 text-[clamp(0.88rem,0.82rem+0.12vw,0.96rem)] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:bottom-0 after:left-0 after:h-px after:bg-cyan-300 after:transition-all after:duration-250 min-[1440px]:text-[0.99rem] ${
       isActive
         ? 'text-ht-navy after:w-full'
         : 'text-ht-navy/90 after:w-0 hover:text-ht-cyan-700 hover:after:w-full'
@@ -145,27 +145,27 @@ function Header({ mobileOpen, setMobileOpen }) {
   return (
     <header className={aboutHeaderClassName}>
       <motion.div {...getEntranceProps(reduceMotion, { y: -14, duration: 0.45 })}>
-      <div className="mx-auto flex h-[4.7rem] w-full max-w-7xl items-center justify-between gap-3 px-5 sm:px-6 xl:px-8">
+      <div className="mx-auto flex h-[4.7rem] w-full max-w-7xl items-center justify-between gap-3 px-5 sm:px-6 xl:px-8 min-[1440px]:h-[5.15rem] min-[1440px]:px-10">
         <NavLink to="/" className="flex min-w-0 shrink-0 items-center gap-3 sm:gap-4" aria-label="Healtopia home">
           <img
             src="/images/healtopia-logo.webp"
             alt="Healtopia Primary Care and Medical Weight Loss logo"
             width="64"
             height="64"
-            className="h-11 w-auto shrink-0 object-contain sm:h-[52px]"
+            className="h-11 w-auto shrink-0 object-contain sm:h-[52px] min-[1440px]:h-[58px]"
             decoding="async"
           />
           <div className="flex min-w-0 flex-col justify-center">
-            <p className="text-[clamp(1.12rem,1.02rem+0.35vw,1.4rem)] font-extrabold leading-[1.08] tracking-tight text-ht-navy sm:text-[clamp(1.02rem,0.98rem+0.25vw,1.28rem)] lg:text-[clamp(1.22rem,1.12rem+0.25vw,1.55rem)]">
+            <p className="text-[clamp(1.12rem,1.02rem+0.35vw,1.4rem)] font-extrabold leading-[1.08] tracking-tight text-ht-navy sm:text-[clamp(1.02rem,0.98rem+0.25vw,1.28rem)] lg:text-[clamp(1.22rem,1.12rem+0.25vw,1.55rem)] min-[1440px]:text-[clamp(1.28rem,1.08rem+0.2vw,1.62rem)]">
               Healtopia
             </p>
-            <p className="whitespace-nowrap text-[clamp(0.56rem,0.54rem+0.06vw,0.72rem)] font-medium leading-[1.15] text-ht-gray sm:text-[clamp(0.58rem,0.56rem+0.07vw,0.68rem)] lg:text-[clamp(0.62rem,0.58rem+0.1vw,0.72rem)]">
+            <p className="whitespace-nowrap text-[clamp(0.56rem,0.54rem+0.06vw,0.72rem)] font-medium leading-[1.15] text-ht-gray sm:text-[clamp(0.58rem,0.56rem+0.07vw,0.68rem)] lg:text-[clamp(0.62rem,0.58rem+0.1vw,0.72rem)] min-[1440px]:text-[clamp(0.64rem,0.6rem+0.06vw,0.76rem)]">
               Primary Care & Medical Weight Loss
             </p>
           </div>
         </NavLink>
 
-        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-[clamp(0.85rem,1vw,1.6rem)] lg:flex" aria-label="Primary navigation">
+        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-[clamp(0.85rem,1vw,1.6rem)] lg:flex min-[1440px]:gap-[1.3rem]" aria-label="Primary navigation">
           {desktopNavLinks.map((link) => (
             <NavLink
               key={link.to}
@@ -185,7 +185,7 @@ function Header({ mobileOpen, setMobileOpen }) {
             target="_blank"
             rel="noopener noreferrer"
             size="sm"
-            className="whitespace-nowrap px-4"
+            className="whitespace-nowrap px-4 min-[1440px]:px-5 min-[1440px]:py-3"
             ariaLabel="Book appointment from header"
           >
             Book Appointment

@@ -43,7 +43,7 @@ export default function ClinicGallerySection({
 
   return (
     <div>
-      <div className="max-w-[48rem]">
+      <div className="max-w-[48rem] min-[1440px]:max-w-[56rem]">
         <SectionBadge>{eyebrow}</SectionBadge>
         <h2 className="ht-heading-2 mt-4">
           {title}

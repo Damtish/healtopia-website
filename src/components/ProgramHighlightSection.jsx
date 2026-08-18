@@ -28,7 +28,7 @@ function ProgramHighlightSection({
               {eyebrow}
             </SectionBadge>
 
-            <h2 className="ht-heading-2 mt-4 max-w-[48rem]">
+            <h2 className="ht-heading-2 mt-4 max-w-[48rem] min-[1440px]:max-w-[56rem]">
               {title}
             </h2>
 

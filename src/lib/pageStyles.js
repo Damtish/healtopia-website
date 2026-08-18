@@ -1,5 +1,7 @@
-﻿export const PAGE_CONTAINER = 'mx-auto w-full max-w-[79.5rem] px-4 sm:px-6 lg:px-8'
-export const PAGE_CONTAINER_SPACED = 'mx-auto w-full max-w-[79.5rem] px-4 py-12 sm:px-6 lg:px-8 lg:py-16'
+export const PAGE_CONTAINER =
+  'mx-auto w-full max-w-[79.5rem] px-4 sm:px-6 lg:px-8 min-[1440px]:max-w-[87rem] min-[1440px]:px-10'
+export const PAGE_CONTAINER_SPACED =
+  'mx-auto w-full max-w-[79.5rem] px-4 py-12 sm:px-6 lg:px-8 lg:py-16 min-[1440px]:max-w-[87rem] min-[1440px]:px-10'
 export const PAGE_HERO = 'border-b border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50'
 export const PAGE_SECTION = 'border-y border-ht-silver bg-white py-12 lg:py-16'
 export const PAGE_SECTION_SOFT = 'border-b border-ht-silver bg-ht-soft-blue/20 py-12 lg:py-16'

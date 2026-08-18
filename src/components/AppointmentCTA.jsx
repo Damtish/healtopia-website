@@ -53,7 +53,7 @@ function AppointmentCTA({
           <p className="ht-eyebrow border border-cyan-100/24 bg-white/10 text-cyan-100">
             {eyebrow}
           </p>
-          <h2 className="ht-heading-2 mt-4 max-w-[48rem] text-white">
+          <h2 className="ht-heading-2 mt-4 max-w-[48rem] min-[1440px]:max-w-[56rem] text-white">
             {title}
           </h2>
           <p className="ht-body ht-text-width-section mt-4 text-cyan-100">{description}</p>
