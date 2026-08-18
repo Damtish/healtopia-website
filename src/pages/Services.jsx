@@ -60,6 +60,9 @@ function Services() {
               alt="Healtopia examination room"
               className="h-56 w-full object-cover object-center sm:h-64 lg:h-72"
               loading="lazy"
+              decoding="async"
+              width="1600"
+              height="900"
             />
           </div>
           <div className="px-2 pb-2 pt-1 md:px-3">

@@ -22,6 +22,7 @@ const routesToPrerender = [
   '/pricing',
   '/insurance',
   '/contact',
+  '/gambrills',
 ]
 
 function escapeHtml(value) {
@@ -42,14 +43,17 @@ function buildHeadTags(seo) {
     `<meta name="description" content="${escapeHtml(seo.description)}" />`,
     `<meta name="robots" content="${escapeHtml(seo.robots)}" />`,
     `<meta property="og:type" content="${escapeHtml(seo.ogType)}" />`,
+    `<meta property="og:site_name" content="${escapeHtml(seo.ogSiteName || 'Healtopia')}" />`,
     `<meta property="og:title" content="${escapeHtml(seo.ogTitle)}" />`,
     `<meta property="og:description" content="${escapeHtml(seo.ogDescription)}" />`,
     `<meta property="og:url" content="${escapeHtml(seo.ogUrl)}" />`,
     `<meta property="og:image" content="${escapeHtml(seo.ogImage)}" />`,
+    `<meta property="og:image:alt" content="${escapeHtml(seo.ogImageAlt || seo.ogTitle)}" />`,
     `<meta name="twitter:card" content="${escapeHtml(seo.twitterCard)}" />`,
     `<meta name="twitter:title" content="${escapeHtml(seo.twitterTitle)}" />`,
     `<meta name="twitter:description" content="${escapeHtml(seo.twitterDescription)}" />`,
     `<meta name="twitter:image" content="${escapeHtml(seo.twitterImage)}" />`,
+    `<meta name="twitter:image:alt" content="${escapeHtml(seo.twitterImageAlt || seo.twitterTitle)}" />`,
     canonicalTag,
     jsonLd ? `<script id="healtopia-jsonld" type="application/ld+json">${jsonLd}</script>` : '',
   ]
@@ -57,10 +61,18 @@ function buildHeadTags(seo) {
     .join('\n    ')
 }
 
-function injectHead(template, headTags) {
+function stripFallbackSeo(template) {
   return template
     .replace(/<title>.*?<\/title>/s, '')
-    .replace('</head>', `    ${headTags}\n  </head>`)
+    .replace(/\s*<meta name="description"[^>]*>\s*/g, '')
+    .replace(/\s*<meta name="robots"[^>]*>\s*/g, '')
+    .replace(/\s*<link rel="canonical"[^>]*>\s*/g, '')
+    .replace(/\s*<meta property="og:[^"]+"[^>]*>\s*/g, '')
+    .replace(/\s*<meta name="twitter:[^"]+"[^>]*>\s*/g, '')
+}
+
+function injectHead(template, headTags) {
+  return stripFallbackSeo(template).replace('</head>', `    ${headTags}\n  </head>`)
 }
 
 function injectAppHtml(template, appHtml) {
@@ -89,7 +101,7 @@ async function main() {
   try {
     const template = await fs.readFile(path.join(distDir, 'index.html'), 'utf8')
     const { getSeoMeta } = await vite.ssrLoadModule('/src/lib/seo.js')
-    const { default: App } = await vite.ssrLoadModule('/src/App.jsx')
+    const { default: App } = await vite.ssrLoadModule('/src/App.server.jsx')
 
     for (const pathname of routesToPrerender) {
       const outputPath =

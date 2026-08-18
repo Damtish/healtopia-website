@@ -372,7 +372,11 @@ function Home() {
             src="/images/clinic/reception.jpg"
             alt=""
             aria-hidden="true"
+            width="1920"
+            height="1080"
             className="absolute inset-0 h-full w-full object-cover object-center"
+            decoding="async"
+            fetchPriority="high"
           />
           <div className="home-hero-overlay absolute inset-0" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(255,255,255,0.56),transparent_28%),radial-gradient(circle_at_78%_18%,rgba(12,174,200,0.08),transparent_24%)]" />
@@ -614,8 +618,11 @@ function Home() {
                       <img
                         src={plan.src}
                         alt={plan.alt}
+                        width="136"
+                        height="56"
                         className={`insurance-logo-image h-auto w-auto max-h-9 max-w-[136px] object-contain sm:max-h-10 sm:max-w-[150px] ${plan.sizeClass ?? ''}`}
                         loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   ))}

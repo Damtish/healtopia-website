@@ -24,14 +24,17 @@ function Footer() {
           <img
             src="/images/healtopia-logo.webp"
             alt="Healtopia Primary Care and Medical Weight Loss logo"
+            width="64"
+            height="64"
             className="h-auto w-[96px] max-w-none object-contain sm:w-[108px] lg:w-[124px]"
+            decoding="async"
           />
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-ht-gray">
             Compassionate primary care and medical weight loss designed around your health, lifestyle,
             and long-term wellness.
           </p>
           <p className="mt-4 text-sm font-semibold text-ht-navy">
-            Serving Gambrills, Odenton, Crofton, Bowie, Millersville, and Anne Arundel County.
+            Serving <Link to="/gambrills" className="transition hover:text-ht-cyan-700">Gambrills</Link>, Odenton, Crofton, Bowie, Millersville, and Anne Arundel County.
           </p>
         </div>
 

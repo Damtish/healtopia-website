@@ -194,7 +194,12 @@ function DirectPrimaryCare() {
           <motion.img
             src="/images/clinic/direct-primary-care-patient-consultation-optimized.jpg"
             alt="Physician and patient consultation at Healtopia"
+            width="1600"
+            height="1000"
             className="h-full w-full object-cover object-[center_38%]"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
             initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
             animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
             transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}
@@ -227,7 +232,11 @@ function DirectPrimaryCare() {
               <motion.img
                 src="/images/clinic/direct-primary-care-patient-consultation-optimized.jpg"
                 alt="Physician and patient consultation at Healtopia"
+                width="1600"
+                height="1000"
                 className="h-[clamp(15rem,60vw,18.5rem)] w-full rounded-[1.2rem] object-cover object-[68%_center] shadow-[0_18px_38px_-30px_rgba(5,42,74,0.42)]"
+                loading="eager"
+                decoding="async"
                 initial={reduceMotion ? false : { opacity: 0.98, scale: 1 }}
                 animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
                 transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}
@@ -444,8 +453,11 @@ function DirectPrimaryCare() {
             <img
               src="/images/clinic/hallway.jpg"
               alt="Healtopia clinic hallway"
+              width="1024"
+              height="1536"
               className="h-[clamp(16rem,58vw,20rem)] w-full object-cover object-[center_56%] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.015] sm:h-[clamp(18rem,42vw,24rem)] lg:h-[clamp(31rem,34vw,35rem)]"
               loading="lazy"
+              decoding="async"
             />
           </motion.div>
         </div>

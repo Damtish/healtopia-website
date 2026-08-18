@@ -35,7 +35,10 @@ function ProviderCard({
             <img
               src={imageSrc}
               alt={imageAlt || name}
+              width="400"
+              height="500"
               className={`ht-motion-smooth h-full w-full object-cover object-[center_12%] ${imageClassName}`}
+              decoding="async"
             />
           </div>
         ) : (

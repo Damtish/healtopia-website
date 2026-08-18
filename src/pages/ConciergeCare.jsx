@@ -281,7 +281,12 @@ function ConciergeCare() {
             src="/images/clinic/patient-care-optimized.jpg"
             alt=""
             aria-hidden="true"
+            width="1600"
+            height="1000"
             className="h-full w-full object-cover object-[70%_center]"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
             initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
             animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
             transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}

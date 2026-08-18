@@ -361,6 +361,9 @@ function InsuranceBasedPrimaryCare() {
                   src="/images/clinic/examination-room-optimized.jpg"
                   alt="Examination room with chairs"
                   className="h-[clamp(18rem,42vw,40rem)] w-full object-cover object-[58%_center]"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                   initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
                   animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
                   transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}
@@ -413,6 +416,7 @@ function InsuranceBasedPrimaryCare() {
                   alt={plan.alt}
                   className={`h-full w-full object-contain ${acceptedInsurancePlanSizing[plan.name] ?? 'max-h-[2.2rem] max-w-[8rem] sm:max-h-[2.35rem] sm:max-w-[8.5rem]'}`}
                   loading="lazy"
+                  decoding="async"
                 />
               </motion.article>
             ))}

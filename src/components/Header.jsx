@@ -143,7 +143,10 @@ function Header({ mobileOpen, setMobileOpen }) {
           <img
             src="/images/healtopia-logo.webp"
             alt="Healtopia Primary Care and Medical Weight Loss logo"
+            width="64"
+            height="64"
             className="h-11 w-auto shrink-0 object-contain sm:h-[52px]"
+            decoding="async"
           />
           <div className="flex min-w-0 flex-col justify-center">
             <p className="text-[clamp(1.12rem,1.02rem+0.35vw,1.4rem)] font-extrabold leading-[1.08] tracking-tight text-ht-navy sm:text-[clamp(1.02rem,0.98rem+0.25vw,1.28rem)] lg:text-[clamp(1.22rem,1.12rem+0.25vw,1.55rem)]">

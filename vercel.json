@@ -1,0 +1,44 @@
+{
+  "redirects": [
+    {
+      "source": "/about-us",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/gambrills/",
+      "destination": "/gambrills",
+      "permanent": true
+    },
+    {
+      "source": "/services/",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/pricing/",
+      "destination": "/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/insurance/",
+      "destination": "/insurance",
+      "permanent": true
+    }
+  ]
+}

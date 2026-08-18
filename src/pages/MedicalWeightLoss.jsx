@@ -253,6 +253,9 @@ function MedicalWeightLoss() {
             alt=""
             aria-hidden="true"
             className="h-full w-full object-cover object-[68%_center] sm:object-[68%_center] md:object-[69%_center] lg:object-[70%_center]"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
             initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
             animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
             transition={reduceMotion ? { duration: 0 } : { duration: 0.6, ease: 'easeOut', delay: 0.04 }}
@@ -293,7 +296,9 @@ function MedicalWeightLoss() {
                   src="/images/clinic/weight-loss-waist-measurement-optimized.jpg"
                   alt="Weight loss waist measurement"
                   className="h-[clamp(15rem,72vw,18.75rem)] w-full rounded-[1.2rem] object-cover object-[68%_center] shadow-[0_14px_28px_-24px_rgba(5,42,74,0.38)]"
-                  loading="lazy"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                 />
               </div>
 
@@ -336,6 +341,7 @@ function MedicalWeightLoss() {
                 alt="Weight scale and measuring tape"
                 className="ht-motion-smooth h-[clamp(16rem,58vw,20rem)] w-full rounded-[1.25rem] object-cover object-[center_45%] shadow-[0_12px_26px_-24px_rgba(5,42,74,0.38)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:h-[clamp(20rem,30vw,25rem)] lg:rounded-[1.4rem] lg:group-hover:scale-[1.015]"
                 loading="lazy"
+                decoding="async"
               />
             </motion.div>
 
@@ -504,12 +510,13 @@ function MedicalWeightLoss() {
             >
               <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle_at_58%_28%,rgba(12,174,200,0.14),transparent_52%)]" />
               <div className="relative overflow-hidden rounded-[1.5rem] border border-cyan-100 bg-white p-4 shadow-inner">
-                <img
-                  src="/images/clinic/seca-body-composition-clean-optimized.jpg"
-                  alt="Healtopia body composition scanner and dashboard"
-                  className="ht-motion-smooth h-[clamp(20rem,32vw,31rem)] w-full object-contain object-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
-                  loading="lazy"
-                />
+              <img
+                src="/images/clinic/seca-body-composition-clean-optimized.jpg"
+                alt="Healtopia body composition scanner and dashboard"
+                className="ht-motion-smooth h-[clamp(20rem,32vw,31rem)] w-full object-contain object-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
+                loading="lazy"
+                decoding="async"
+              />
               </div>
             </motion.div>
           </div>

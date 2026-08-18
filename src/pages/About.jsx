@@ -156,6 +156,9 @@ function ProviderBioModal({ provider, onClose, reduceMotion, returnFocusRef }) {
                     alt={provider.imageAlt}
                     className={`h-full w-full object-cover object-top ${provider.imageClassName || ''}`}
                     loading="lazy"
+                    decoding="async"
+                    width="540"
+                    height="675"
                   />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-ht-navy/30 to-transparent" />
                 </div>
@@ -218,6 +221,7 @@ function AboutProvidersSection({ reduceMotion, returnFocusRef, providersRef }) {
             {...getRevealProps(reduceMotion, { y: 18, duration: 0.52, amount: 0.15 })}
           >
             <motion.article
+              id="gashaw-adugna"
               className="provider-profile provider-profile--gashaw"
               {...getEntranceProps(reduceMotion, { y: 16, duration: 0.5, delay: 0.04 })}
             >
@@ -227,6 +231,9 @@ function AboutProvidersSection({ reduceMotion, returnFocusRef, providersRef }) {
                   alt={gashawProvider.imageAlt}
                   className={`provider-profile__portrait-image ${gashawProvider.imageClassName || ''}`}
                   loading="lazy"
+                  decoding="async"
+                  width="540"
+                  height="675"
                 />
               </div>
 
@@ -259,6 +266,7 @@ function AboutProvidersSection({ reduceMotion, returnFocusRef, providersRef }) {
             </motion.article>
 
             <motion.article
+              id="malefiya-kenea"
               className="provider-profile provider-profile--malefiya"
               {...getEntranceProps(reduceMotion, { y: 16, duration: 0.5, delay: 0.1 })}
             >

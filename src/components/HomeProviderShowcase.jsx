@@ -126,8 +126,11 @@ function ProviderBioModal({ provider, onClose, reduceMotion, closeButtonRef, ret
                   <img
                     src={provider.imageSrc}
                     alt={provider.imageAlt}
+                    width="400"
+                    height="500"
                     className={`h-full w-full object-cover object-top ${provider.imageClassName || ''}`}
                     loading="lazy"
+                    decoding="async"
                   />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-ht-navy/30 to-transparent" />
                 </div>
@@ -191,9 +194,12 @@ function ProviderPanel({ provider, reduceMotion, onOpenBio }) {
           <img
             src={provider.imageSrc}
             alt={provider.imageAlt}
+            width="400"
+            height="500"
             className="provider-profile-card__image absolute inset-0 h-full w-full object-cover object-top"
             style={provider.imageStyle}
             loading="lazy"
+            decoding="async"
           />
         ) : (
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(22,182,212,0.2),transparent_30%),linear-gradient(135deg,#dff7fb_0%,#f4fbfe_45%,#ffffff_100%)]">

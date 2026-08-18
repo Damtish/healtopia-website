@@ -64,6 +64,7 @@ function Insurance() {
                   alt={plan.alt}
                   className={`h-auto w-auto max-h-[42px] max-w-[170px] object-contain ${plan.sizeClass ?? ''}`}
                   loading="lazy"
+                  decoding="async"
                 />
               </motion.article>
             ))}
