@@ -6,6 +6,7 @@ import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 import Button from './Button'
 import { BOOK_APPOINTMENT_URL, FACEBOOK_URL, INSTAGRAM_URL } from '../constants/links'
 import { getEntranceProps } from '../lib/motion'
+import { prefetchRoute } from '../lib/routePrefetch'
 
 const desktopNavLinks = [
   { label: 'Home', to: '/' },
@@ -130,6 +131,12 @@ function Header({ mobileOpen, setMobileOpen }) {
         : 'text-ht-navy/90 after:w-0 hover:text-ht-cyan-700 hover:after:w-full'
     }`
 
+  const handlePrefetch = (to) => ({
+    onMouseEnter: () => prefetchRoute(to),
+    onFocus: () => prefetchRoute(to),
+    onTouchStart: () => prefetchRoute(to),
+  })
+
   const navMobileClass = ({ isActive }) =>
     `rounded-xl px-3 py-3 text-[clamp(0.95rem,0.9rem+0.15vw,1rem)] font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 ${
       isActive ? 'bg-cyan-50 text-ht-navy' : 'text-ht-navy hover:bg-ht-soft-blue hover:text-ht-cyan-700'
@@ -160,7 +167,13 @@ function Header({ mobileOpen, setMobileOpen }) {
 
         <nav className="hidden min-w-0 flex-1 items-center justify-center gap-[clamp(0.85rem,1vw,1.6rem)] lg:flex" aria-label="Primary navigation">
           {desktopNavLinks.map((link) => (
-            <NavLink key={link.to} to={link.to} end={link.to === '/'} className={navDesktopClass}>
+            <NavLink
+              key={link.to}
+              to={link.to}
+              end={link.to === '/'}
+              className={navDesktopClass}
+              {...handlePrefetch(link.to)}
+            >
               {link.label}
             </NavLink>
           ))}
@@ -220,6 +233,7 @@ function Header({ mobileOpen, setMobileOpen }) {
                     to={link.to}
                     end={link.to === '/'}
                     onClick={() => setMobileOpen(false)}
+                    {...handlePrefetch(link.to)}
                     className={navMobileClass}
                   >
                     {link.label}

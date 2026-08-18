@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useEffect, useLayoutEffect, useState } from 'react'
 import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import { Phone } from 'lucide-react'
 import Header from './components/Header'
@@ -6,13 +6,15 @@ import Footer from './components/Footer'
 import Button from './components/Button'
 import PageTransition from './components/PageTransition'
 import SeoManager from './components/SeoManager'
+import PageLoader from './components/PageLoader'
 import { BOOK_APPOINTMENT_URL } from './constants/links'
 import { SITE_PHONE_TEL } from './constants/site'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
+  const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
     if (hash) {
       const id = decodeURIComponent(hash.replace('#', ''))
       let attempts = 0
@@ -27,7 +29,7 @@ function ScrollToTop() {
         }
 
         attempts += 1
-        if (attempts < 12) {
+        if (attempts < 24) {
           frameId = window.requestAnimationFrame(scrollToHash)
         }
       }
@@ -39,14 +41,14 @@ function ScrollToTop() {
       }
     }
 
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    window.scrollTo(0, 0)
   }, [pathname, hash])
 
   return null
 }
 
 function RouteFallback() {
-  return <div className="min-h-[35vh]" aria-hidden="true" />
+  return <PageLoader />
 }
 
 function AppLayout({ fallback = <RouteFallback /> }) {

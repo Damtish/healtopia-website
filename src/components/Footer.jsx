@@ -2,6 +2,7 @@
 import { Mail, MapPin, Phone } from 'lucide-react'
 import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 import { FACEBOOK_URL, INSTAGRAM_URL } from '../constants/links'
+import { prefetchRoute } from '../lib/routePrefetch'
 
 const quickLinks = [
   { label: 'Home', to: '/' },
@@ -43,7 +44,13 @@ function Footer() {
           <ul className="mt-3 space-y-2 text-sm text-ht-gray">
             {quickLinks.map((link) => (
               <li key={link.to}>
-                <Link to={link.to} className="footer-link">
+                <Link
+                  to={link.to}
+                  className="footer-link"
+                  onMouseEnter={() => prefetchRoute(link.to)}
+                  onFocus={() => prefetchRoute(link.to)}
+                  onTouchStart={() => prefetchRoute(link.to)}
+                >
                   {link.label}
                 </Link>
               </li>
