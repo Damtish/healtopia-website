@@ -39,6 +39,16 @@
       "source": "/insurance/",
       "destination": "/insurance",
       "permanent": true
+    },
+    {
+      "source": "/make-an-appointment/",
+      "destination": "https://app.elationemr.com/book/healtopiaprimarycare?",
+      "permanent": true
+    },
+    {
+      "source": "/make-an-appointment",
+      "destination": "https://app.elationemr.com/book/healtopiaprimarycare?",
+      "permanent": true
     }
   ]
 }
