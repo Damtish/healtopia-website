@@ -123,6 +123,13 @@ function absUrl(pathname) {
   return new URL(pathname, SITE_ORIGIN).toString()
 }
 
+function normalizeSeoPathname(pathname = '/') {
+  if (!pathname || pathname === '/') return '/'
+
+  const normalized = pathname.replace(/\/+$/, '')
+  return normalized || '/'
+}
+
 export function createOrganizationEntity() {
   return {
     '@context': 'https://schema.org',
@@ -505,28 +512,30 @@ function createGambrillsEntities() {
 }
 
 export function buildStructuredData(pathname = '/') {
-  if (!ROUTE_SEO[pathname]) return null
+  const normalizedPathname = normalizeSeoPathname(pathname)
+
+  if (!ROUTE_SEO[normalizedPathname]) return null
 
   const entities = [createOrganizationEntity(), createClinicEntity()]
 
-  if (pathname === '/') {
+  if (normalizedPathname === '/') {
     entities.push(createWebsiteEntity())
   }
 
-  const breadcrumb = createBreadcrumbList(pathname)
+  const breadcrumb = createBreadcrumbList(normalizedPathname)
   if (breadcrumb) entities.push(breadcrumb)
 
-  const service = createServiceEntity(pathname)
+  const service = createServiceEntity(normalizedPathname)
   if (service) entities.push(service)
 
-  const faq = createFaqEntity(pathname)
+  const faq = createFaqEntity(normalizedPathname)
   if (faq) entities.push(faq)
 
-  if (pathname === '/about') {
+  if (normalizedPathname === '/about') {
     entities.push(...createProviderEntities())
   }
 
-  if (pathname === '/gambrills') {
+  if (normalizedPathname === '/gambrills') {
     entities.push(...createGambrillsEntities())
   }
 
@@ -534,7 +543,8 @@ export function buildStructuredData(pathname = '/') {
 }
 
 export function getSeoMeta(pathname = '/') {
-  const routeMeta = ROUTE_SEO[pathname]
+  const normalizedPathname = normalizeSeoPathname(pathname)
+  const routeMeta = ROUTE_SEO[normalizedPathname]
 
   if (!routeMeta) {
     const title = '404 | Healtopia'
@@ -549,7 +559,7 @@ export function getSeoMeta(pathname = '/') {
       ogSiteName: SITE_NAME,
       ogTitle: title,
       ogDescription: description,
-      ogUrl: `${SITE_ORIGIN}${pathname === '/' ? '' : pathname}`,
+      ogUrl: `${SITE_ORIGIN}${normalizedPathname === '/' ? '' : normalizedPathname}`,
       ogImage: SHARED_OG_IMAGE,
       ogImageAlt: `${SITE_NAME} clinic exterior in Gambrills, Maryland`,
       twitterCard: 'summary_large_image',
@@ -561,8 +571,8 @@ export function getSeoMeta(pathname = '/') {
     }
   }
 
-  const canonical = `${SITE_ORIGIN}${pathname === '/' ? '' : pathname}`
-  const socialPreview = SOCIAL_PREVIEW_IMAGES[pathname] ?? {
+  const canonical = `${SITE_ORIGIN}${normalizedPathname === '/' ? '' : normalizedPathname}`
+  const socialPreview = SOCIAL_PREVIEW_IMAGES[normalizedPathname] ?? {
     image: '/images/clinic/building-exterior-optimized.jpg',
     alt: `${SITE_NAME} in Gambrills, Maryland`,
   }
@@ -586,6 +596,6 @@ export function getSeoMeta(pathname = '/') {
     twitterDescription: routeMeta.description,
     twitterImage: ogImage,
     twitterImageAlt: imageAlt,
-    jsonLd: buildStructuredData(pathname),
+    jsonLd: buildStructuredData(normalizedPathname),
   }
 }

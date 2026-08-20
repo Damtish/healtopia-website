@@ -11,6 +11,11 @@
       "permanent": true
     },
     {
+      "source": "/about/",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
       "source": "/contact-us",
       "destination": "/contact",
       "permanent": true
@@ -21,13 +26,33 @@
       "permanent": true
     },
     {
-      "source": "/gambrills/",
-      "destination": "/gambrills",
+      "source": "/contact/",
+      "destination": "/contact",
       "permanent": true
     },
     {
       "source": "/services/",
       "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/direct-primary-care/",
+      "destination": "/direct-primary-care",
+      "permanent": true
+    },
+    {
+      "source": "/insurance-based-primary-care/",
+      "destination": "/insurance-based-primary-care",
+      "permanent": true
+    },
+    {
+      "source": "/medical-weight-loss/",
+      "destination": "/medical-weight-loss",
+      "permanent": true
+    },
+    {
+      "source": "/concierge-care/",
+      "destination": "/concierge-care",
       "permanent": true
     },
     {
@@ -38,6 +63,11 @@
     {
       "source": "/insurance/",
       "destination": "/insurance",
+      "permanent": true
+    },
+    {
+      "source": "/gambrills/",
+      "destination": "/gambrills",
       "permanent": true
     },
     {
