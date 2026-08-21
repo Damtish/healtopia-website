@@ -1,4 +1,5 @@
-﻿import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import {
   ArrowRight,
   BarChart3,
@@ -280,15 +281,33 @@ function MedicalWeightLoss() {
                 weight loss for
                 <br />
                 <span className="text-ht-cyan-700">safe, sustainable progress</span>
+                <span className="sr-only"> in Gambrills, Maryland</span>
               </h1>
 
               <p className="mt-3 max-w-[31rem] text-[0.95rem] leading-[1.42] text-ht-gray md:text-[1rem]">
-                Healtopia provides physician-guided weight management focused on understanding the medical,
-                metabolic, behavioral, and lifestyle factors that can affect weight and overall health.
+                Healtopia provides physician-guided weight management in Gambrills, Maryland focused on
+                understanding the medical, metabolic, behavioral, and lifestyle factors that can affect weight and
+                overall health.
               </p>
               <p className="mt-1.5 max-w-[30rem] text-[0.95rem] leading-[1.42] text-ht-gray md:text-[1rem]">
                 Each care plan is personalized and may include medical evaluation, nutrition guidance,
-                body-composition analysis, ongoing monitoring, and treatment options when clinically appropriate.
+                body-composition analysis, metabolic testing when appropriate, ongoing monitoring, and treatment
+                options when clinically appropriate.
+              </p>
+              <p className="mt-2 max-w-[31rem] text-[0.9rem] leading-[1.5] text-ht-gray md:text-[0.95rem]">
+                Healtopia welcomes patients from Gambrills, Crofton, Odenton, Bowie, Anne Arundel County, and nearby Maryland communities. Compare{' '}
+                <Link to="/direct-primary-care" className="font-medium text-ht-cyan-700 hover:underline">
+                  Direct Primary Care
+                </Link>
+                ,{' '}
+                <Link to="/insurance-based-primary-care" className="font-medium text-ht-cyan-700 hover:underline">
+                  Insurance-Based Primary Care
+                </Link>
+                , or{' '}
+                <Link to="/contact" className="font-medium text-ht-cyan-700 hover:underline">
+                  contact Healtopia
+                </Link>{' '}
+                to discuss the right fit.
               </p>
 
               <div className="mt-6 sm:hidden">
@@ -356,7 +375,7 @@ function MedicalWeightLoss() {
                     Weight management that looks beyond the <span className="text-ht-cyan-700">number on the scale</span>
                   </>
                 }
-                description="Healtopia combines medical evaluation, lifestyle support, treatment options, and ongoing monitoring to help patients build a realistic path toward improved health."
+                description="Healtopia combines medical evaluation, body composition analysis, metabolic testing when appropriate, nutrition and lifestyle guidance, treatment options when clinically appropriate, and ongoing monitoring to help patients build a realistic path toward improved health."
               />
             </motion.div>
 
@@ -600,6 +619,8 @@ function MedicalWeightLoss() {
 }
 
 export default MedicalWeightLoss
+
+
 
 
 

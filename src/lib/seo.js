@@ -90,7 +90,7 @@ const ROUTE_SEO = {
   '/medical-weight-loss': {
     title: 'Medical Weight Loss in Gambrills, MD | Healtopia',
     description:
-      'Healtopia offers physician-guided medical weight loss in Gambrills, Maryland focused on safe, sustainable progress and personalized support.',
+      'Physician-supervised medical weight loss in Gambrills, MD with personalized weight management, body composition analysis, metabolic testing when appropriate, and ongoing support.',
   },
   '/pricing': {
     title: 'Pricing in Gambrills, MD | Healtopia',
@@ -228,7 +228,7 @@ function createServiceEntity(pathname) {
     },
     '/medical-weight-loss': {
       name: 'Medical Weight Loss',
-      description: 'Healtopia offers physician-guided medical weight loss in Gambrills, Maryland focused on safe, sustainable progress and personalized support.',
+      description: 'Physician-supervised medical weight loss in Gambrills, MD with personalized weight management, body composition analysis, metabolic testing when appropriate, and ongoing support.',
     },
     '/concierge-care': {
       name: 'Concierge Medicine',
@@ -599,3 +599,6 @@ export function getSeoMeta(pathname = '/') {
     jsonLd: buildStructuredData(normalizedPathname),
   }
 }
+
+
+
