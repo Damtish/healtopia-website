@@ -1,4 +1,5 @@
 ﻿import { motion, useReducedMotion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import {
   ArrowRight,
   BriefcaseMedical,
@@ -217,15 +218,35 @@ function DirectPrimaryCare() {
             <SectionBadge>DIRECT PRIMARY CARE</SectionBadge>
             <h1 className="mt-4 max-w-[13ch] text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl lg:text-[clamp(44px,4vw,68px)] lg:leading-[1]">
               Healthcare designed <span className="text-ht-cyan-700">around you</span>
+              <span className="sr-only"> in Gambrills, Maryland</span>
             </h1>
             <p className="ht-body ht-text-width-hero mt-5 max-w-[31rem] text-ht-gray">
               At Healtopia, we believe healthcare should be simple, personal, and accessible. Our Direct Primary Care
-              membership model gives patients direct access to their physician for a simple monthly fee, without the
-              stress of copays, surprise bills, or rushed appointments.
+              membership model gives patients in Gambrills, Maryland direct access to their physician for a simple
+              monthly fee, without the stress of copays, surprise bills, or rushed appointments.
             </p>
             <p className="ht-body ht-text-width-hero mt-4 max-w-[29rem] text-ht-gray">
               We focus on building real relationships with our patients so they can receive the time, attention, and
               personalized care they deserve.
+            </p>
+            <p className="mt-3 max-w-[31rem] text-[0.92rem] leading-[1.55] text-ht-gray md:text-[0.95rem]">
+              Explore our{' '}
+              <Link to="/pricing" className="font-medium text-ht-cyan-700 hover:underline">
+                pricing
+              </Link>
+              ,{' '}
+              <Link to="/insurance-based-primary-care" className="font-medium text-ht-cyan-700 hover:underline">
+                insurance-based primary care
+              </Link>
+              ,{' '}
+              <Link to="/medical-weight-loss" className="font-medium text-ht-cyan-700 hover:underline">
+                medical weight loss
+              </Link>
+              , or{' '}
+              <Link to="/contact" className="font-medium text-ht-cyan-700 hover:underline">
+                contact Healtopia
+              </Link>{' '}
+              to learn what fits your needs best.
             </p>
 
             <div className="mt-6 lg:hidden">

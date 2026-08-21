@@ -1,4 +1,5 @@
-﻿import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import {
   Activity,
   ArrowRight,
@@ -333,10 +334,27 @@ function InsuranceBasedPrimaryCare() {
               works with your
               <br />
               <span className="text-ht-cyan-700">accepted insurance plan</span>
+              <span className="sr-only"> in Gambrills, Maryland</span>
             </h1>
             <p className="mt-4 max-w-[31rem] text-[1rem] leading-[1.5] text-ht-gray md:text-[1.05rem]">
               Receive preventive care, chronic disease management, annual wellness visits, and treatment for everyday
-              non-emergency medical concerns using an accepted insurance plan.
+              non-emergency medical concerns using an accepted insurance plan in Gambrills, Maryland.
+            </p>
+
+            <p className="mt-4 max-w-[31rem] text-[0.92rem] leading-[1.55] text-ht-gray md:text-[0.95rem]">
+              Compare our{' '}
+              <Link to="/direct-primary-care" className="font-medium text-ht-cyan-700 hover:underline">
+                Direct Primary Care
+              </Link>
+              ,{' '}
+              <Link to="/medical-weight-loss" className="font-medium text-ht-cyan-700 hover:underline">
+                Medical Weight Loss
+              </Link>
+              , or{' '}
+              <Link to="/contact" className="font-medium text-ht-cyan-700 hover:underline">
+                contact Healtopia
+              </Link>{' '}
+              to learn which visit type fits your needs best.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">

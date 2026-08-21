@@ -75,12 +75,12 @@ const ROUTE_SEO = {
   '/direct-primary-care': {
     title: 'Direct Primary Care in Gambrills, MD | Healtopia',
     description:
-      "Healtopia's Direct Primary Care model in Gambrills, Maryland offers more time, direct access, and transparent membership-based care.",
+      "Physician-led direct primary care in Gambrills, MD with more time, direct access, and transparent membership-based care.",
   },
   '/insurance-based-primary-care': {
     title: 'Insurance-Based Primary Care in Gambrills, MD | Healtopia',
     description:
-      "Learn about Healtopia's insurance-based primary care in Gambrills, Maryland for preventive care, chronic care, and ongoing support.",
+      "Insurance-based primary care in Gambrills, MD with preventive care, chronic disease management, annual wellness visits, and ongoing support through accepted insurance plans.",
   },
   '/concierge-care': {
     title: 'Concierge Medicine in Gambrills, MD | Healtopia',
@@ -224,7 +224,7 @@ function createServiceEntity(pathname) {
     },
     '/insurance-based-primary-care': {
       name: 'Insurance-Based Primary Care',
-      description: "Healtopia's insurance-based primary care in Gambrills, Maryland supports preventive care, chronic care, and ongoing support.",
+      description: "Insurance-based primary care in Gambrills, MD with preventive care, chronic disease management, annual wellness visits, and ongoing support through accepted insurance plans.",
     },
     '/medical-weight-loss': {
       name: 'Medical Weight Loss',
