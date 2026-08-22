@@ -1,4 +1,4 @@
-﻿import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import SectionBadge from '../components/SectionBadge'
 import SectionHeader from '../components/SectionHeader'
 import ServiceCard from '../components/ServiceCard'
@@ -45,6 +45,7 @@ function Services() {
               description={service.description}
               icon={serviceIconMap[service.icon]}
               path={service.path}
+              links={service.links}
               delay={index * 0.07}
             />
           ))}

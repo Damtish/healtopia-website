@@ -13,7 +13,10 @@ const services = [
     description:
       'Comprehensive preventive, acute, and chronic care that keeps you healthy and supported through every stage of life.',
     icon: 'Stethoscope',
-    path: '/services',
+    links: [
+      { label: 'Direct Primary Care', to: '/direct-primary-care' },
+      { label: 'Insurance-Based Care', to: '/insurance-based-primary-care' },
+    ],
   },
   {
     id: 'weight-loss',

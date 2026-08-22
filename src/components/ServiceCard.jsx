@@ -1,10 +1,21 @@
-﻿import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { getCardHover, getRevealProps } from '../lib/motion'
 
-function ServiceCard({ title, description, icon: Icon, path, delay = 0 }) {
+function ServiceCard({ title, description, icon: Icon, path, links, delay = 0 }) {
   const reduceMotion = useReducedMotion()
+
+  const renderLink = (to, label) => (
+    <Link
+      key={to}
+      to={to}
+      className="ht-motion-smooth inline-flex items-center gap-1 text-[0.92rem] font-semibold text-ht-navy-700 group-hover:gap-2"
+    >
+      {label}
+      <ArrowRight size={15} />
+    </Link>
+  )
 
   return (
     <motion.article
@@ -17,7 +28,11 @@ function ServiceCard({ title, description, icon: Icon, path, delay = 0 }) {
       </div>
       <h3 className="text-[1.15rem] font-bold text-ht-navy">{title}</h3>
       <p className="mt-3 flex-1 text-[0.92rem] leading-relaxed text-ht-gray">{description}</p>
-      {path ? (
+      {Array.isArray(links) && links.length > 0 ? (
+        <div className="mt-4 flex flex-col gap-2">
+          {links.map((link) => renderLink(link.to, link.label))}
+        </div>
+      ) : path ? (
         <Link
           to={path}
           className="ht-motion-smooth mt-4 inline-flex items-center gap-1 text-[0.92rem] font-semibold text-ht-navy-700 group-hover:gap-2"
