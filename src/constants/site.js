@@ -5,7 +5,7 @@ export const SITE_NAME = 'Healtopia'
 export const SITE_ORIGIN = import.meta.env.VITE_SITE_URL || 'https://healtopiamed.com'
 
 export const SITE_DESCRIPTION =
-  'Healtopia provides compassionate primary care, insurance-based care, concierge medicine, and medical weight loss in Gambrills, Maryland.'
+  'Healtopia provides compassionate primary care, insurance-based care, and concierge medicine in Gambrills, Maryland.'
 
 export const SITE_PHONE_DISPLAY = '410-774-6678'
 export const SITE_PHONE_TEL = 'tel:+14107746678'

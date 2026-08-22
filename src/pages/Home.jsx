@@ -46,7 +46,7 @@ const serviceOverviewCards = [
     subtitle: 'Physician-guided treatment',
     points: ['Personalized plans', 'Long-term support'],
     link: '/medical-weight-loss',
-    label: 'Explore Weight Loss',
+    label: 'Explore Medical Weight Loss',
     icon: Scale,
   },
   {

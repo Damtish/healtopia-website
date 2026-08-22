@@ -64,7 +64,7 @@ const SOCIAL_PREVIEW_IMAGES = {
 
 const ROUTE_SEO = {
   '/': {
-    title: 'Healtopia | Primary Care & Medical Weight Loss',
+    title: 'Healtopia | Primary Care in Gambrills, MD',
     description: SITE_DESCRIPTION,
   },
   '/about': {
