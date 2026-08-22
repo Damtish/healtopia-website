@@ -90,7 +90,7 @@ const ROUTE_SEO = {
   '/medical-weight-loss': {
     title: 'Medical Weight Loss in Gambrills, MD | Healtopia',
     description:
-      'Physician-supervised medical weight loss in Gambrills, MD with personalized weight management, body composition analysis, metabolic testing when appropriate, and ongoing support.',
+      'Physician-supervised medical weight loss clinic in Gambrills, MD with personalized weight management, body composition analysis, metabolic testing when appropriate, nutrition guidance, and ongoing support.',
   },
   '/pricing': {
     title: 'Pricing in Gambrills, MD | Healtopia',
@@ -228,7 +228,7 @@ function createServiceEntity(pathname) {
     },
     '/medical-weight-loss': {
       name: 'Medical Weight Loss',
-      description: 'Physician-supervised medical weight loss in Gambrills, MD with personalized weight management, body composition analysis, metabolic testing when appropriate, and ongoing support.',
+      description: 'Physician-supervised medical weight loss clinic in Gambrills, MD with personalized weight management, body composition analysis, metabolic testing when appropriate, nutrition guidance, and ongoing support.',
     },
     '/concierge-care': {
       name: 'Concierge Medicine',
@@ -370,7 +370,7 @@ function createFaqEntity(pathname) {
       {
         question: 'How is this program different from other weight-loss options?',
         answer:
-          'Healtopia’s program is medically supervised and focuses on the underlying factors that can affect weight, metabolism, and overall health. The program combines medical evaluation, lifestyle support, treatment options when appropriate, and ongoing monitoring rather than using a one-size-fits-all approach.',
+          'Healtopia\'s program is medically supervised and focuses on the underlying factors that can affect weight, metabolism, and overall health. The program combines medical evaluation, lifestyle support, treatment options when appropriate, and ongoing monitoring rather than using a one-size-fits-all approach.',
       },
       {
         question: 'What can I expect during my first appointment?',
@@ -381,6 +381,20 @@ function createFaqEntity(pathname) {
         question: 'Is support available between visits?',
         answer:
           'Support may be available between visits depending on your care plan and membership or visit type. The care team will explain communication options and follow-up expectations during your appointment.',
+      },
+      {
+        question: 'Does Healtopia offer metabolic testing?',
+        answer:
+          'Metabolic testing may be recommended when appropriate as part of your evaluation and personalized care plan.',
+      },
+      {
+        question: "Where is Healtopia's medical weight loss clinic located?",
+        answer: 'Healtopia is located at 2614 Chapel Lake Dr, Gambrills, MD 21054.',
+      },
+      {
+        question: 'Do you serve patients from Crofton and Odenton?',
+        answer:
+          'Yes. Healtopia welcomes patients from Gambrills, Crofton, Odenton, Bowie, Anne Arundel County, and nearby Maryland communities.',
       },
       {
         question: 'Is the program covered by insurance?',
@@ -490,7 +504,7 @@ function createGambrillsEntities() {
       '@id': `${GAMBRILLS_PAGE_ID}#medical-weight-loss`,
       name: 'Medical Weight Loss in Gambrills',
       description:
-        'Physician-guided weight management with evaluation, monitoring, and personalized support in Gambrills, Maryland.',
+        'Physician-guided medical weight loss with evaluation, monitoring, and personalized support in Gambrills, Maryland.',
       provider: {
         '@id': CLINIC_ID,
       },

@@ -222,6 +222,23 @@ const faqs = [
       'Support may be available between visits depending on your care plan and membership or visit type. The care team will explain communication options and follow-up expectations during your appointment.',
   },
   {
+    id: 'metabolic-testing',
+    question: 'Does Healtopia offer metabolic testing?',
+    answer:
+      'Metabolic testing may be recommended when appropriate as part of your evaluation and personalized care plan.',
+  },
+  {
+    id: 'clinic-location',
+    question: "Where is Healtopia's medical weight loss clinic located?",
+    answer: 'Healtopia is located at 2614 Chapel Lake Dr, Gambrills, MD 21054.',
+  },
+  {
+    id: 'nearby-areas',
+    question: 'Do you serve patients from Crofton and Odenton?',
+    answer:
+      'Yes. Healtopia welcomes patients from Gambrills, Crofton, Odenton, Bowie, Anne Arundel County, and nearby Maryland communities.',
+  },
+  {
     id: 'insurance-coverage',
     question: 'Is the program covered by insurance?',
     answer:
@@ -281,13 +298,12 @@ function MedicalWeightLoss() {
                 weight loss for
                 <br />
                 <span className="text-ht-cyan-700">safe, sustainable progress</span>
-                <span className="sr-only"> in Gambrills, Maryland</span>
               </h1>
 
               <p className="mt-3 max-w-[31rem] text-[0.95rem] leading-[1.42] text-ht-gray md:text-[1rem]">
-                Healtopia provides physician-guided weight management in Gambrills, Maryland focused on
-                understanding the medical, metabolic, behavioral, and lifestyle factors that can affect weight and
-                overall health.
+                Healtopia provides physician-guided medical weight loss in Gambrills, Maryland for patients from
+                Gambrills, Crofton, Odenton, Bowie, Anne Arundel County, and nearby Maryland communities who want a
+                more personalized approach to weight management.
               </p>
               <p className="mt-1.5 max-w-[30rem] text-[0.95rem] leading-[1.42] text-ht-gray md:text-[1rem]">
                 Each care plan is personalized and may include medical evaluation, nutrition guidance,
@@ -302,6 +318,10 @@ function MedicalWeightLoss() {
                 ,{' '}
                 <Link to="/insurance-based-primary-care" className="font-medium text-ht-cyan-700 hover:underline">
                   Insurance-Based Primary Care
+                </Link>
+                , review{' '}
+                <Link to="/pricing" className="font-medium text-ht-cyan-700 hover:underline">
+                  pricing
                 </Link>
                 , or{' '}
                 <Link to="/contact" className="font-medium text-ht-cyan-700 hover:underline">
