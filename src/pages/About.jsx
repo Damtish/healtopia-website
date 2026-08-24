@@ -1,4 +1,5 @@
 ﻿import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
@@ -1250,7 +1251,11 @@ function About() {
               <p className="mt-4 max-w-xl text-base leading-relaxed text-ht-gray md:text-lg">
                 After years of caring for patients in traditional healthcare settings, we envisioned a practice where
                 appointments were not rushed, prevention was prioritized, and patients could build lasting
-                relationships with their healthcare team. Healtopia was created to make that vision a reality.
+                relationships with their healthcare team. At our Gambrills, Maryland practice, Healtopia was created to make that vision a reality. Explore our
+                <Link to="/direct-primary-care" className="font-medium text-ht-cyan-700 underline underline-offset-2 hover:text-ht-navy">
+                  Direct Primary Care
+                </Link>
+                options to see how that approach works.
               </p>
               <div className="mt-6 rounded-[1.5rem] border border-cyan-100 bg-white p-5 shadow-[0_16px_34px_-30px_rgba(5,42,74,0.45)]">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-ht-navy-700">Our Philosophy</p>

@@ -1,4 +1,5 @@
 export const SITE_NAME = 'Healtopia'
+export const SITE_LEGAL_NAME = 'Healtopia Primary Care and Medical Weight Loss, LLC'
 
 // Fallback origin for metadata and sitemap generation. If a deployment-specific
 // origin is available later, it can override this via Vite env.
@@ -13,7 +14,7 @@ export const SITE_SECONDARY_PHONE_DISPLAY = '410-847-7890'
 export const SITE_SECONDARY_PHONE_TEL = 'tel:+14108477890'
 
 export const SITE_ADDRESS = {
-  streetAddress: '2614 Chapel Lake Dr',
+  streetAddress: '2614 Chapel Lake Drive',
   addressLocality: 'Gambrills',
   addressRegion: 'MD',
   postalCode: '21054',

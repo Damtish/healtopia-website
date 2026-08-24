@@ -218,7 +218,7 @@ function DirectPrimaryCare() {
             <SectionBadge>DIRECT PRIMARY CARE</SectionBadge>
             <h1 className="mt-4 max-w-[13ch] text-4xl font-extrabold tracking-tight text-ht-navy md:text-5xl lg:text-[clamp(44px,4vw,68px)] lg:leading-[1]">
               Healthcare designed <span className="text-ht-cyan-700">around you</span>
-              <span className="sr-only"> in Gambrills, Maryland</span>
+
             </h1>
             <p className="ht-body ht-text-width-hero mt-5 max-w-[31rem] text-ht-gray">
               At Healtopia, we believe healthcare should be simple, personal, and accessible. Our Direct Primary Care

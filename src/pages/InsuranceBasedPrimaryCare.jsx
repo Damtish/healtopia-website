@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion'
+﻿import { motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import {
   Activity,
@@ -334,7 +334,7 @@ function InsuranceBasedPrimaryCare() {
               works with your
               <br />
               <span className="text-ht-cyan-700">accepted insurance plan</span>
-              <span className="sr-only"> in Gambrills, Maryland</span>
+
             </h1>
             <p className="mt-4 max-w-[31rem] text-[1rem] leading-[1.5] text-ht-gray md:text-[1.05rem]">
               Receive preventive care, chronic disease management, annual wellness visits, and treatment for everyday

@@ -1,6 +1,6 @@
 import aboutGashawPortrait from '../assets/dr-gashaw-adugna-about-optimized.jpg'
 import { FACEBOOK_URL, INSTAGRAM_URL } from '../constants/links'
-import { SITE_ADDRESS, SITE_DESCRIPTION, SITE_NAME, SITE_ORIGIN } from '../constants/site'
+import { SITE_ADDRESS, SITE_DESCRIPTION, SITE_LEGAL_NAME, SITE_NAME, SITE_ORIGIN } from '../constants/site'
 
 const SITE_PHONE_NUMBER = '+14107746678'
 const SHARED_OG_IMAGE = `${SITE_ORIGIN}/images/clinic/building-exterior-optimized.jpg`
@@ -135,7 +135,7 @@ export function createOrganizationEntity() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': ORGANIZATION_ID,
-    name: SITE_NAME,
+    name: SITE_LEGAL_NAME,
     url: SITE_ORIGIN,
     logo: LOGO_URL,
     image: CLINIC_IMAGE_URL,
@@ -148,7 +148,7 @@ export function createClinicEntity() {
     '@context': 'https://schema.org',
     '@type': 'MedicalClinic',
     '@id': CLINIC_ID,
-    name: SITE_NAME,
+    name: SITE_LEGAL_NAME,
     url: SITE_ORIGIN,
     logo: LOGO_URL,
     image: CLINIC_IMAGE_URL,
@@ -389,7 +389,7 @@ function createFaqEntity(pathname) {
       },
       {
         question: "Where is Healtopia's medical weight loss clinic located?",
-        answer: 'Healtopia is located at 2614 Chapel Lake Dr, Gambrills, MD 21054.',
+        answer: 'Healtopia is located at 2614 Chapel Lake Drive, Gambrills, MD 21054.',
       },
       {
         question: 'Do you serve patients from Crofton and Odenton?',

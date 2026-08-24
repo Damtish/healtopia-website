@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import SectionBadge from '../components/SectionBadge'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import { FaFacebookF, FaInstagram } from 'react-icons/fa'
@@ -6,6 +7,7 @@ import Button from '../components/Button'
 import SectionHeader from '../components/SectionHeader'
 import AppointmentCTA from '../components/AppointmentCTA'
 import { BOOK_APPOINTMENT_URL, FACEBOOK_URL, INSTAGRAM_URL } from '../constants/links'
+import { SITE_LEGAL_NAME } from '../constants/site'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
 function Contact() {
@@ -22,8 +24,12 @@ function Contact() {
             We&apos;re here to <span className="text-ht-cyan-700">help you</span>
           </motion.h1>
           <motion.p className="mt-5 max-w-3xl text-base leading-relaxed text-ht-gray md:text-lg" {...getEntranceProps(reduceMotion, { y: 20, delay: 0.2 })}>
-            Schedule care, ask questions, or connect with our team. We are here to help with appointment scheduling,
-            insurance verification, and care program questions.
+            {SITE_LEGAL_NAME} serves patients in Gambrills, Maryland. Schedule care, ask questions, or connect with our team. We are here to help with appointment scheduling,
+            insurance verification, and care program questions. Explore our{' '}
+            <Link to="/services" className="font-medium text-ht-cyan-700 underline underline-offset-2 hover:text-ht-navy">
+              services
+            </Link>
+            .
           </motion.p>
           <motion.div className="mt-7" {...getEntranceProps(reduceMotion, { y: 18, delay: 0.3, duration: 0.45 })}>
             <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer">
@@ -63,7 +69,7 @@ function Contact() {
             },
             {
               title: 'Visit',
-              content: '2614 Chapel Lake Dr, Gambrills, MD 21054',
+              content: '2614 Chapel Lake Drive, Gambrills, MD 21054',
               icon: MapPin,
             },
           ].map((item) => (

@@ -1,4 +1,5 @@
 ﻿import { motion, useReducedMotion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import {
   ArrowRight,
   CalendarClock,
@@ -279,8 +280,7 @@ function ConciergeCare() {
         <div className="pointer-events-none absolute inset-0">
           <motion.img
             src="/images/clinic/patient-care-optimized.jpg"
-            alt=""
-            aria-hidden="true"
+            alt="Caregiver and patient sharing a conversation during a Concierge Medicine visit"
             width="1600"
             height="1000"
             className="h-full w-full object-cover object-[70%_center]"
@@ -308,8 +308,13 @@ function ConciergeCare() {
               A more <span className="text-ht-cyan-700">personalized</span> healthcare experience
             </h1>
             <p className="mt-3.5 max-w-[41rem] text-[1rem] leading-[1.46] text-slate-100/90 md:text-[1.05rem]">
-              Concierge Medicine is designed for patients who want enhanced physician access, longer visits,
-              preventive wellness planning, and coordinated follow-up in a more connected care experience.
+              At Healtopia in Gambrills, Maryland, Concierge Medicine is designed for patients who want enhanced
+              physician access, longer visits, preventive wellness planning, and coordinated follow-up in a more
+              connected care experience. If you are comparing membership options, explore{' '}
+              <Link to="/direct-primary-care" className="font-semibold text-cyan-100 underline decoration-cyan-200/70 underline-offset-2 hover:text-white">
+                Direct Primary Care
+              </Link>
+              .
             </p>
 
             <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">

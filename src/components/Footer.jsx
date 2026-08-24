@@ -24,7 +24,7 @@ function Footer() {
         <div>
           <img
             src="/images/healtopia-logo.webp"
-            alt="Healtopia Primary Care and Medical Weight Loss logo"
+            alt="Healtopia Primary Care and Medical Weight Loss, LLC logo"
             width="64"
             height="64"
             className="h-auto w-[96px] max-w-none object-contain sm:w-[108px] lg:w-[124px]"
@@ -63,7 +63,7 @@ function Footer() {
           <ul className="mt-3 space-y-3 text-sm text-ht-gray">
             <li className="flex items-start gap-2">
               <MapPin size={16} className="mt-0.5 text-ht-cyan-700" />
-              <span>2614 Chapel Lake Dr, Gambrills, MD 21054</span>
+              <span>2614 Chapel Lake Drive, Gambrills, MD 21054</span>
             </li>
             <li className="flex items-start gap-2">
               <Phone size={16} className="mt-0.5 text-ht-cyan-700" />

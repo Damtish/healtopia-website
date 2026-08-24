@@ -119,7 +119,7 @@ function Gambrills() {
                 <div>
                   <Pill>Location</Pill>
                   <p className="mt-4 text-sm font-semibold uppercase tracking-[0.12em] text-ht-navy-700">
-                    2614 Chapel Lake Dr<br />
+                    2614 Chapel Lake Drive<br />
                     Gambrills, MD 21054
                   </p>
                   <p className="mt-4 text-sm leading-relaxed text-ht-gray">

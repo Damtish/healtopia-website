@@ -230,7 +230,7 @@ const faqs = [
   {
     id: 'clinic-location',
     question: "Where is Healtopia's medical weight loss clinic located?",
-    answer: 'Healtopia is located at 2614 Chapel Lake Dr, Gambrills, MD 21054.',
+    answer: 'Healtopia is located at 2614 Chapel Lake Drive, Gambrills, MD 21054.',
   },
   {
     id: 'nearby-areas',
