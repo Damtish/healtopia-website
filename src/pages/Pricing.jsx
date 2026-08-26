@@ -1,4 +1,4 @@
-﻿import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import SectionBadge from '../components/SectionBadge'
 import {
   ArrowRight,
@@ -11,7 +11,7 @@ import {
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import Button from '../components/Button'
-import AppointmentCTA from '../components/AppointmentCTA'
+import NextStepSection from '../components/NextStepSection'
 import CompareOptionsSection from '../components/CompareOptionsSection'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import {
@@ -20,7 +20,6 @@ import {
   PAGE_HERO,
   PAGE_ICON_CIRCLE,
   PAGE_PANEL_GRADIENT,
-  PAGE_SECTION_CTA,
   PAGE_SECTION,
   PAGE_SECTION_SOFT,
 } from '../lib/pageStyles'
@@ -388,9 +387,7 @@ function Pricing() {
 
       <CompareOptionsSection />
 
-      <section className={PAGE_SECTION_CTA}>
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AppointmentCTA
+      <NextStepSection
             title="Need help choosing the right care option?"
             description="Compare your options or speak with our office before scheduling."
             secondaryLabel="Call Our Office"
@@ -410,8 +407,6 @@ function Pricing() {
               },
             ]}
           />
-        </div>
-      </section>
     </div>
   )
 }

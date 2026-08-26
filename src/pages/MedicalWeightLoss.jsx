@@ -14,7 +14,7 @@ import {
 } from 'lucide-react'
 import Button from '../components/Button'
 import SectionBadge from '../components/SectionBadge'
-import AppointmentCTA from '../components/AppointmentCTA'
+import NextStepSection from '../components/NextStepSection'
 import FAQAccordion from '../components/FAQAccordion'
 import SectionHeader from '../components/SectionHeader'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
@@ -23,7 +23,6 @@ import {
   PAGE_CONTAINER,
   PAGE_ICON_CIRCLE,
   PAGE_PANEL_GRADIENT,
-  PAGE_SECTION_CTA_SOFT,
   PAGE_SECTION,
   PAGE_SECTION_SOFT,
 } from '../lib/pageStyles'
@@ -609,9 +608,7 @@ function MedicalWeightLoss() {
         </div>
       </section>
 
-      <section className={PAGE_SECTION_CTA_SOFT}>
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AppointmentCTA
+      <NextStepSection
             title="Ready to begin your weight loss journey?"
             description="Start with physician-guided support designed around sustainable progress."
             secondaryLabel="View Weight Loss Pricing"
@@ -631,8 +628,6 @@ function MedicalWeightLoss() {
               },
             ]}
           />
-        </div>
-      </section>
 
     </div>
   )

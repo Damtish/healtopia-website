@@ -1,4 +1,4 @@
-﻿import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import {
   ArrowRight,
@@ -14,7 +14,7 @@ import {
   Laptop,
 } from 'lucide-react'
 import Button from '../components/Button'
-import AppointmentCTA from '../components/AppointmentCTA'
+import NextStepSection from '../components/NextStepSection'
 import FAQAccordion from '../components/FAQAccordion'
 import SectionHeader from '../components/SectionHeader'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
@@ -23,7 +23,6 @@ import {
   PAGE_CARD_SOFT,
   PAGE_CONTAINER,
   PAGE_ICON_CIRCLE,
-  PAGE_SECTION_CTA,
   PAGE_SECTION,
   PAGE_SECTION_SOFT,
 } from '../lib/pageStyles'
@@ -633,9 +632,7 @@ function ConciergeCare() {
         </div>
       </section>
 
-      <section className={PAGE_SECTION_CTA}>
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <AppointmentCTA
+      <NextStepSection
             title="Ready for more personalized access?"
             description="Explore enhanced physician access, longer visits, and coordinated care."
             secondaryLabel="View Concierge Pricing"
@@ -655,8 +652,6 @@ function ConciergeCare() {
               },
             ]}
           />
-        </div>
-      </section>
 
     </div>
   )
