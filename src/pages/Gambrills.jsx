@@ -53,6 +53,7 @@ const serviceCards = [
     title: 'Medical Weight Loss',
     description: 'Physician-guided weight management with personalized plans and ongoing monitoring.',
     to: '/medical-weight-loss',
+    label: 'Explore Medical Weight Loss',
     icon: Scale,
   },
   {
@@ -219,7 +220,7 @@ function Gambrills() {
                 <h3 className="mt-4 text-[1.1rem] font-bold text-ht-navy">{card.title}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-ht-gray">{card.description}</p>
                 <Button to={card.to} variant="secondary" className="mt-5 justify-center">
-                  Learn more
+                  {card.label || 'Learn more'}
                   <ArrowRight size={15} />
                 </Button>
               </motion.article>

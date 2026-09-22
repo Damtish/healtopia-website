@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { getCardHover, getRevealProps } from '../lib/motion'
 
-function ServiceCard({ title, description, icon: Icon, path, links, delay = 0 }) {
+function ServiceCard({ title, description, icon: Icon, path, linkLabel, links, delay = 0 }) {
   const reduceMotion = useReducedMotion()
 
   const renderLink = (to, label) => (
@@ -37,7 +37,7 @@ function ServiceCard({ title, description, icon: Icon, path, links, delay = 0 })
           to={path}
           className="ht-motion-smooth mt-4 inline-flex items-center gap-1 text-[0.92rem] font-semibold text-ht-navy-700 group-hover:gap-2"
         >
-          Learn more
+          {linkLabel || 'Learn more'}
           <ArrowRight size={15} />
         </Link>
       ) : null}

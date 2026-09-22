@@ -90,7 +90,7 @@ const ROUTE_SEO = {
   '/medical-weight-loss': {
     title: 'Medical Weight Loss in Gambrills, MD | Healtopia',
     description:
-      'Physician-supervised medical weight loss clinic in Gambrills, MD with personalized weight management, body composition analysis, metabolic testing when appropriate, nutrition guidance, and ongoing support.',
+      'Physician-guided medical weight loss in Gambrills, MD with personalized care, nutrition guidance, ongoing monitoring, and treatment options. Schedule with Healtopia.',
   },
   '/pricing': {
     title: 'Pricing in Gambrills, MD | Healtopia',

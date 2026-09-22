@@ -25,6 +25,7 @@ const services = [
       'Physician-guided medical weight loss in Gambrills, Maryland with nutrition strategy and regular progress reviews.',
     icon: 'Scale',
     path: '/medical-weight-loss',
+    linkLabel: 'Explore Medical Weight Loss',
   },
   {
     id: 'concierge',

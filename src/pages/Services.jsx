@@ -45,6 +45,7 @@ function Services() {
               description={service.description}
               icon={serviceIconMap[service.icon]}
               path={service.path}
+              linkLabel={service.linkLabel}
               links={service.links}
               delay={index * 0.07}
             />
