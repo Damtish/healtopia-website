@@ -194,18 +194,21 @@ function Header({ mobileOpen, setMobileOpen, theme, onToggleTheme }) {
           </Button>
         </div>
 
-        <button
-          ref={mobileToggleRef}
-          type="button"
-          onClick={() => setMobileOpen((prev) => !prev)}
-          className="ml-auto inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:border-cyan-300 hover:bg-cyan-50 lg:hidden"
-          aria-label={mobileOpen ? 'Close mobile menu' : 'Open mobile menu'}
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-navigation-panel"
-          data-mobile-menu-toggle="true"
-        >
-          {mobileOpen ? <X size={18} /> : <Menu size={18} />}
-        </button>
+        <div className="ml-auto flex items-center gap-2 lg:hidden">
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+          <button
+            ref={mobileToggleRef}
+            type="button"
+            onClick={() => setMobileOpen((prev) => !prev)}
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-100 bg-white text-ht-navy shadow-sm transition duration-200 hover:border-cyan-300 hover:bg-cyan-50"
+            aria-label={mobileOpen ? 'Close mobile menu' : 'Open mobile menu'}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation-panel"
+            data-mobile-menu-toggle="true"
+          >
+            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -252,11 +255,6 @@ function Header({ mobileOpen, setMobileOpen, theme, onToggleTheme }) {
                 >
                   Book Appointment
                 </Button>
-
-                <div className="mt-3 flex items-center justify-between border-t border-ht-silver pt-3">
-                  <span className="text-sm font-semibold text-ht-navy">Appearance</span>
-                  <ThemeToggle theme={theme} onToggle={onToggleTheme} />
-                </div>
 
                 <div className="mt-4 border-t border-ht-silver pt-4">
                   <p className="text-xs font-semibold uppercase tracking-wide text-ht-gray">Follow Healtopia</p>
