@@ -181,6 +181,55 @@ h3,
   --ht-motion-duration-soft: 380ms;
 }
 
+[data-theme='dark'] {
+  --color-ht-navy: #edf8ff;
+  --color-ht-navy-700: #b9d7e8;
+  --color-ht-cyan: #55d5e7;
+  --color-ht-cyan-700: #46bfd5;
+  --color-ht-teal: #62c9d2;
+  --color-ht-light: #0b1b2b;
+  --color-ht-soft-blue: #12344b;
+  --color-ht-silver: #2b475d;
+  --color-ht-gray: #b6cbd8;
+  color-scheme: dark;
+}
+
+[data-theme='dark'] body {
+  background: #0b1b2b;
+  color: #edf8ff;
+}
+
+[data-theme='dark'] .bg-white { background-color: #132b40 !important; }
+[data-theme='dark'] .bg-cyan-50 { background-color: #123746 !important; }
+[data-theme='dark'] .bg-cyan-100 { background-color: #1b5361 !important; }
+[data-theme='dark'] .border-cyan-100 { border-color: #28576a !important; }
+[data-theme='dark'] .border-cyan-200 { border-color: #367487 !important; }
+[data-theme='dark'] .text-ht-gray { color: #b6cbd8 !important; }
+[data-theme='dark'] .text-ht-navy { color: #edf8ff !important; }
+[data-theme='dark'] .text-ht-navy-700 { color: #b9d7e8 !important; }
+[data-theme='dark'] .text-ht-cyan-700 { color: #55d5e7 !important; }
+[data-theme='dark'] :is(.from-white, .via-white, .to-white, [class*='from-white/'], [class*='via-white/'], [class*='to-white/']) {
+  --tw-gradient-from: #132b40 !important;
+  --tw-gradient-via: #132b40 !important;
+  --tw-gradient-to: #0b1b2b !important;
+}
+[data-theme='dark'] .home-hero-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(11, 27, 43, 0.96) 0%,
+    rgba(11, 27, 43, 0.9) 28%,
+    rgba(11, 27, 43, 0.62) 52%,
+    rgba(11, 27, 43, 0.2) 76%,
+    rgba(11, 27, 43, 0.04) 100%
+  ) !important;
+}
+[data-theme='dark'] header,
+[data-theme='dark'] footer { background-color: #0f2639 !important; }
+[data-theme='dark'] input,
+[data-theme='dark'] textarea,
+[data-theme='dark'] select { background-color: #132b40; color: #edf8ff; border-color: #2b475d; }
+[data-theme='dark'] ::selection { background: #1b5361; color: #ffffff; }
+
 .ht-motion-smooth {
   transition:
     transform var(--ht-motion-duration) var(--ht-motion-ease),

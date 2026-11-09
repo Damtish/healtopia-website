@@ -13,7 +13,6 @@ import {
 } from 'lucide-react'
 import Button from '../components/Button'
 import CompareOptionsSection from '../components/CompareOptionsSection'
-import ProgramHighlightSection from '../components/ProgramHighlightSection'
 import SectionHeader from '../components/SectionHeader'
 import SectionBadge from '../components/SectionBadge'
 import HomeProviderShowcase from '../components/HomeProviderShowcase'
@@ -56,80 +55,6 @@ const serviceOverviewCards = [
     link: '/concierge-care',
     label: 'View Concierge Details',
     icon: Users,
-  },
-]
-
-const careHighlights = [
-  {
-    eyebrow: 'DIRECT PRIMARY CARE',
-    title: (
-      <>
-        Simple membership care with more time and <span className="text-ht-cyan-700">direct access</span>
-      </>
-    ),
-    description: 'Direct Primary Care is a membership-based option designed to make primary care more personal, accessible, and transparent.',
-    bullets: [
-      'Predictable monthly membership pricing',
-      'Longer visits focused on your full health story',
-      'Direct communication and easier follow-up',
-    ],
-    buttonLabel: 'View DPC Details',
-    buttonTo: '/direct-primary-care',
-    rightTitle: 'What DPC offers',
-    rightItems: [
-      { label: 'Start', text: 'Free initial consultation and membership review' },
-      { label: 'Ongoing', text: 'Preventive care, sick visits, and chronic care support' },
-      { label: 'Long term', text: 'A stronger relationship with your care team' },
-    ],
-    reverse: false,
-  },
-  {
-    eyebrow: 'INSURANCE-BASED CARE',
-    title: (
-      <>
-        Traditional primary care using your <span className="text-ht-cyan-700">accepted insurance</span>
-      </>
-    ),
-    description:
-      'Insurance-based primary care supports routine visits, preventive care, chronic disease management, and non-emergency concerns through accepted insurance plans.',
-    bullets: [
-      'Wellness visits, screenings, and preventive care',
-      'Chronic disease management and follow-up support',
-      'Acute visits for non-emergency medical concerns',
-    ],
-    buttonLabel: 'View Insurance-Based Care',
-    buttonTo: '/insurance-based-primary-care',
-    rightTitle: 'Care through insurance',
-    rightItems: [
-      { label: 'Routine care', text: 'Wellness visits and preventive screenings' },
-      { label: 'Ongoing care', text: 'Chronic condition management and follow-up' },
-      { label: 'When needed', text: 'Non-emergency sick visits and care coordination' },
-    ],
-    reverse: true,
-  },
-  {
-    eyebrow: 'CONCIERGE MEDICINE',
-    title: (
-      <>
-        Premium care with <span className="text-ht-cyan-700">personalized support</span>
-      </>
-    ),
-    description:
-      'Concierge Medicine is designed for patients who want a more connected, proactive, and personalized healthcare experience.',
-    bullets: [
-      'Longer, more personalized visits',
-      'Priority scheduling when available',
-      'Preventive wellness planning and care coordination',
-    ],
-    buttonLabel: 'View Concierge Details',
-    buttonTo: '/concierge-care',
-    rightTitle: 'Concierge care experience',
-    rightItems: [
-      { label: 'Access', text: 'Direct communication and priority scheduling when available' },
-      { label: 'Planning', text: 'Personalized wellness and prevention support' },
-      { label: 'Follow-up', text: 'Coordinated care and ongoing health guidance' },
-    ],
-    reverse: false,
   },
 ]
 
@@ -492,21 +417,6 @@ function Home() {
       </motion.section>
 
       <HomeProviderShowcase reduceMotion={reduceMotion} />
-
-      {careHighlights.map((section) => (
-        <ProgramHighlightSection
-          key={section.eyebrow}
-          eyebrow={section.eyebrow}
-          title={section.title}
-          description={section.description}
-          bullets={section.bullets}
-          buttonLabel={section.buttonLabel}
-          buttonTo={section.buttonTo}
-          rightTitle={section.rightTitle}
-          rightItems={section.rightItems}
-          reverse={section.reverse}
-        />
-      ))}
 
       <motion.section
         className="border-y border-ht-silver bg-gradient-to-br from-cyan-50 via-white to-ht-soft-blue py-12 lg:py-16"

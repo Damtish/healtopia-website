@@ -130,30 +130,6 @@ const includedCards = [
   },
 ]
 
-const whyCards = [
-  {
-    title: 'More time with your doctor',
-    description:
-      'Longer visits create more room to listen, understand concerns, and build a thoughtful care plan.',
-    icon: MessageSquareHeart,
-  },
-  {
-    title: 'Convenient access',
-    description: 'Enhanced communication and scheduling options create a smoother care experience.',
-    icon: PhoneCall,
-  },
-  {
-    title: 'Clear membership support',
-    description: 'A membership-based model with clear expectations and ongoing attention.',
-    icon: ShieldCheck,
-  },
-  {
-    title: 'Personalized wellness planning',
-    description: 'Preventive guidance, lifestyle support, and coordinated follow-up centered on long-term goals.',
-    icon: HeartPulse,
-  },
-]
-
 const idealCards = [
   {
     title: 'More time with their physician',
@@ -476,34 +452,6 @@ function ConciergeCare() {
                     <p className="mt-3 text-sm leading-relaxed text-ht-navy">{card.description}</p>
                   </div>
                 </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className={PAGE_SECTION}>
-        <div className={PAGE_CONTAINER}>
-          <SectionHeader
-            eyebrow="BENEFITS"
-            title="Why patients choose Concierge Medicine"
-            description="Concierge care is built for patients who want a highly personalized approach with proactive support and convenient access."
-          />
-
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {whyCards.map((card, index) => (
-              <motion.article
-                key={card.title}
-                className={`${PAGE_CARD} group flex h-full flex-col p-6`}
-                {...getEntranceProps(reduceMotion, { y: 18, duration: 0.45, delay: index * 0.04 })}
-                {...getCardHover(reduceMotion)}
-              >
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-ht-cyan-700 via-cyan-300 to-transparent opacity-80" />
-                <div className={PAGE_ICON_CIRCLE}>
-                  <card.icon size={18} />
-                </div>
-                <h3 className="mt-4 text-xl font-bold text-ht-navy">{card.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ht-gray">{card.description}</p>
               </motion.article>
             ))}
           </div>

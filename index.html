@@ -6,6 +6,17 @@
     <meta name="theme-color" content="#0b2545" />
     <meta name="application-name" content="Healtopia" />
     <meta name="apple-mobile-web-app-title" content="Healtopia" />
+    <script>
+      (() => {
+        try {
+          const saved = window.localStorage.getItem('healtopia-theme')
+          const preferred = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+          document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : preferred
+        } catch {
+          document.documentElement.dataset.theme = 'light'
+        }
+      })()
+    </script>
     <meta property="og:site_name" content="Healtopia" />
     <meta property="og:title" content="Healtopia | Primary Care & Medical Weight Loss" />
     <meta property="og:description" content="Healtopia provides primary care, Direct Primary Care, concierge medicine, insurance-based primary care, and medical weight loss in Gambrills, Maryland." />

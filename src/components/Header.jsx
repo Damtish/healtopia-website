@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 import Button from './Button'
+import ThemeToggle from './ThemeToggle'
 import { BOOK_APPOINTMENT_URL, FACEBOOK_URL, INSTAGRAM_URL } from '../constants/links'
 import { getEntranceProps } from '../lib/motion'
 import { prefetchRoute } from '../lib/routePrefetch'
@@ -28,7 +29,7 @@ const mobileNavLinks = [
   { label: 'Pricing', to: '/pricing' },
 ]
 
-function Header({ mobileOpen, setMobileOpen }) {
+function Header({ mobileOpen, setMobileOpen, theme, onToggleTheme }) {
   const { pathname } = useLocation()
   const reduceMotion = useReducedMotion()
   const aboutHeaderClassName =
@@ -179,7 +180,8 @@ function Header({ mobileOpen, setMobileOpen }) {
           ))}
         </nav>
 
-        <div className="hidden shrink-0 lg:flex lg:items-center">
+        <div className="hidden shrink-0 items-center gap-2 lg:flex">
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           <Button
             href={BOOK_APPOINTMENT_URL}
             target="_blank"
@@ -250,6 +252,11 @@ function Header({ mobileOpen, setMobileOpen }) {
                 >
                   Book Appointment
                 </Button>
+
+                <div className="mt-3 flex items-center justify-between border-t border-ht-silver pt-3">
+                  <span className="text-sm font-semibold text-ht-navy">Appearance</span>
+                  <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+                </div>
 
                 <div className="mt-4 border-t border-ht-silver pt-4">
                   <p className="text-xs font-semibold uppercase tracking-wide text-ht-gray">Follow Healtopia</p>

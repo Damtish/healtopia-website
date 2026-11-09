@@ -53,9 +53,24 @@ function RouteFallback() {
 
 function AppLayout({ fallback = <RouteFallback /> }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [theme, setTheme] = useState(() => {
+    if (typeof document !== 'undefined' && document.documentElement.dataset.theme) {
+      return document.documentElement.dataset.theme
+    }
+    return 'light'
+  })
   const { pathname } = useLocation()
   const hideMobileQuickActions = pathname === '/about'
   const insuranceMobileSafe = pathname === '/insurance-based-primary-care'
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    try {
+      window.localStorage.setItem('healtopia-theme', theme)
+    } catch {
+      // Storage can be unavailable in privacy-restricted browsing contexts.
+    }
+  }, [theme])
 
   return (
     <div className="min-h-screen bg-ht-light text-ht-navy antialiased">
@@ -66,7 +81,12 @@ function AppLayout({ fallback = <RouteFallback /> }) {
       >
         Skip to main content
       </a>
-      <Header mobileOpen={mobileMenuOpen} setMobileOpen={setMobileMenuOpen} />
+      <Header
+        mobileOpen={mobileMenuOpen}
+        setMobileOpen={setMobileMenuOpen}
+        theme={theme}
+        onToggleTheme={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))}
+      />
       <main
         id="main-content"
         tabIndex={-1}
