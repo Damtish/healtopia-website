@@ -319,7 +319,7 @@ function InsuranceBasedPrimaryCare() {
           }
         }
       `}</style>
-      <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-0 lg:max-h-none">
+      <section className="insurance-hero relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-0 lg:max-h-none">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-8 sm:px-6 sm:py-10 lg:h-full lg:flex-row lg:items-center lg:gap-8 lg:px-8 lg:py-0">
           <motion.div
             className="relative z-20 max-w-[38rem] text-ht-navy lg:w-[min(35rem,47vw)]"

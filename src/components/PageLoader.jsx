@@ -5,7 +5,7 @@ function PageLoader() {
 
   return (
     <div
-      className="flex min-h-[calc(100vh-var(--header-height,76px))] w-full items-center justify-center bg-white px-4"
+      className="page-loader flex min-h-[calc(100vh-var(--header-height,76px))] w-full items-center justify-center bg-white px-4"
       role="status"
       aria-label="Loading page"
     >

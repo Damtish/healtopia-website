@@ -23,7 +23,7 @@ function ProviderCard({
 
   return (
     <motion.article
-      className={`ht-motion-smooth h-full rounded-3xl border border-ht-silver bg-white p-5 shadow-sm md:p-6 ${className}`}
+      className={`provider-theme-card ht-motion-smooth h-full rounded-3xl border border-ht-silver bg-white p-5 shadow-sm md:p-6 ${className}`}
       {...getRevealProps(reduceMotion, { y: 24, duration: 0.5, amount: 0.2, delay })}
       {...getCardHover(reduceMotion)}
     >

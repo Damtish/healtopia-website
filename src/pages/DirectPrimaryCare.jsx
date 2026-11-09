@@ -190,7 +190,7 @@ function DirectPrimaryCare() {
 
   return (
     <div>
-      <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-[620px] lg:max-h-[720px]">
+      <section className="dpc-hero relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-[620px] lg:max-h-[720px]">
         <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block">
           <motion.img
             src="/images/clinic/direct-primary-care-patient-consultation-optimized.jpg"

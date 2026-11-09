@@ -263,7 +263,7 @@ function MedicalWeightLoss() {
 
   return (
     <div>
-      <section className="relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:min-h-[calc(100vh-var(--header-height,76px))] lg:h-auto">
+      <section className="weight-loss-hero relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:min-h-[calc(100vh-var(--header-height,76px))] lg:h-auto">
         <div className="pointer-events-none absolute inset-0 hidden sm:block">
           <motion.img
             src="/images/clinic/weight-loss-waist-measurement-optimized.jpg"

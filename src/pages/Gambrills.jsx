@@ -77,7 +77,7 @@ function Gambrills() {
 
   return (
     <div>
-      <section className={PAGE_HERO}>
+      <section className={`gambrills-hero ${PAGE_HERO}`}>
         <div className={`${PAGE_CONTAINER} grid gap-10 py-16 lg:grid-cols-[1.04fr_0.96fr] lg:items-center lg:py-20`}>
           <motion.div {...getEntranceProps(reduceMotion, { y: 18, duration: 0.45, delay: 0.03 })}>
             <SectionBadge>Gambrills, Maryland</SectionBadge>
