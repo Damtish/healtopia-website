@@ -344,7 +344,7 @@ function ConciergeCare() {
                 {experienceCards.map((item) => (
                   <motion.article
                     key={item.title}
-                    className="group relative flex min-h-[112px] items-start overflow-hidden rounded-[1.75rem] border border-cyan-100 bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(244,250,252,0.94)_100%)] px-6 py-5 shadow-[0_18px_40px_-30px_rgba(5,42,74,0.42)] backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300 sm:min-h-[120px] sm:px-7"
+                    className="concierge-feature-card group relative flex min-h-[112px] items-start overflow-hidden rounded-[1.75rem] border border-cyan-100 bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(244,250,252,0.94)_100%)] px-6 py-5 shadow-[0_18px_40px_-30px_rgba(5,42,74,0.42)] backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300 sm:min-h-[120px] sm:px-7"
                     style={{
                       boxShadow: '0 18px 40px -30px rgba(5, 42, 74, 0.42)',
                     }}

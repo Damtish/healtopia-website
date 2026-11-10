@@ -55,7 +55,7 @@ function Insurance() {
             {insuranceLogos.map((plan) => (
               <motion.article
                 key={plan.src}
-                className="flex w-full items-center justify-center"
+                className="insurance-logo-card flex w-full items-center justify-center"
                 {...getStaggerItem(reduceMotion, { y: 16 })}
                 aria-label={plan.name}
               >

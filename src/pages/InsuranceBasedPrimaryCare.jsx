@@ -469,7 +469,7 @@ function InsuranceBasedPrimaryCare() {
                 non-emergency medical concerns through accepted insurance plans.
               </p>
 
-              <div className="mt-4 overflow-hidden rounded-[1.5rem] border border-cyan-100/70 bg-white/82 shadow-[0_18px_40px_-36px_rgba(5,42,74,0.28)] backdrop-blur-[2px]">
+              <div className="insurance-care-card mt-4 overflow-hidden rounded-[1.5rem] border border-cyan-100/70 bg-white/82 shadow-[0_18px_40px_-36px_rgba(5,42,74,0.28)] backdrop-blur-[2px]">
                 <div className="relative px-4 py-1.5 sm:px-5">
                   <div className="pointer-events-none absolute left-[2.45rem] top-6 bottom-6 hidden w-px bg-cyan-200/80 sm:block" />
                 </div>

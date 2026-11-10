@@ -222,7 +222,7 @@ function ProviderPanel({ provider, reduceMotion, onOpenBio }) {
           </div>
         )}
 
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ht-navy/72 via-ht-navy/18 to-transparent" />
+        <div className="provider-card__image-overlay pointer-events-none absolute inset-0 bg-gradient-to-t from-ht-navy/72 via-ht-navy/18 to-transparent" />
       </div>
 
       <div className="provider-card__content provider-profile-card__details">
@@ -289,7 +289,7 @@ function HomeProviderShowcase({
     <>
       <motion.section
         id="providers"
-        className={className}
+        className={`provider-section ${className}`}
         {...getRevealProps(reduceMotion, { y: 18, duration: 0.55, amount: 0.16 })}
       >
         <div className="max-w-[48rem] min-[1440px]:max-w-[56rem]">
