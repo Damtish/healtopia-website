@@ -14,9 +14,14 @@
           const preferred = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
           document.documentElement.dataset.theme = hasManualTheme ? saved : preferred
           document.documentElement.dataset.themeMode = hasManualTheme ? 'manual' : 'system'
+          document.querySelector('meta[name="theme-color"]')?.setAttribute(
+            'content',
+            (hasManualTheme ? saved : preferred) === 'dark' ? '#0b1b2b' : '#f5fbff'
+          )
         } catch {
           document.documentElement.dataset.theme = 'light'
           document.documentElement.dataset.themeMode = 'system'
+          document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f5fbff')
         }
       })()
     </script>

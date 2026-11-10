@@ -179,6 +179,21 @@ h3,
   --ht-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ht-motion-duration: 480ms;
   --ht-motion-duration-soft: 380ms;
+  --ht-page-bg: #f5fbff;
+  --ht-surface: #ffffff;
+  --ht-surface-muted: #e5f4ff;
+  --ht-text-primary: #0b2545;
+  --ht-text-secondary: #184165;
+  --ht-text-muted: #4f6b85;
+  --ht-border: #d6e4ef;
+  --ht-border-strong: #b7d5e5;
+  --ht-accent: #16b6d4;
+  --ht-accent-soft: #e5f8fc;
+  --ht-header-bg: rgba(255, 255, 255, 0.92);
+  --ht-footer-bg: #ffffff;
+  --ht-input-bg: #ffffff;
+  --ht-shadow: 0 18px 40px -34px rgba(5, 42, 74, 0.34);
+  color-scheme: light;
 }
 
 [data-theme='dark'] {
@@ -191,12 +206,53 @@ h3,
   --color-ht-soft-blue: #12344b;
   --color-ht-silver: #2b475d;
   --color-ht-gray: #b6cbd8;
+  --ht-page-bg: #0b1b2b;
+  --ht-surface: #132b40;
+  --ht-surface-muted: #12344b;
+  --ht-text-primary: #edf8ff;
+  --ht-text-secondary: #b9d7e8;
+  --ht-text-muted: #b6cbd8;
+  --ht-border: #2b475d;
+  --ht-border-strong: #367487;
+  --ht-accent: #55d5e7;
+  --ht-accent-soft: #1b5361;
+  --ht-header-bg: #0f2639;
+  --ht-footer-bg: #0f2639;
+  --ht-input-bg: #132b40;
+  --ht-shadow: 0 18px 40px -36px rgba(0, 0, 0, 0.72);
   color-scheme: dark;
 }
 
 [data-theme='dark'] body {
-  background: #0b1b2b;
+  background: var(--ht-page-bg);
   color: #edf8ff;
+}
+
+/* Theme transitions begin only after the initial theme has been applied. */
+[data-theme-ready='true'] body,
+[data-theme-ready='true'] header,
+[data-theme-ready='true'] footer,
+[data-theme-ready='true'] button,
+[data-theme-ready='true'] input,
+[data-theme-ready='true'] textarea,
+[data-theme-ready='true'] select,
+[data-theme-ready='true'] .theme-toggle {
+  transition-property: background-color, color, border-color, box-shadow, fill, stroke;
+  transition-duration: 220ms;
+  transition-timing-function: ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme-ready='true'] body,
+  [data-theme-ready='true'] header,
+  [data-theme-ready='true'] footer,
+  [data-theme-ready='true'] button,
+  [data-theme-ready='true'] input,
+  [data-theme-ready='true'] textarea,
+  [data-theme-ready='true'] select,
+  [data-theme-ready='true'] .theme-toggle {
+    transition: none !important;
+  }
 }
 
 [data-theme='dark'] .bg-white { background-color: #132b40 !important; }
@@ -434,6 +490,53 @@ h3,
 
 [data-theme='dark'] .gambrills-hero .text-ht-gray {
   color: #b6cbd8 !important;
+}
+
+/* About page provider cards use page-scoped inline styles; keep their
+   surfaces and text legible when the surrounding page is dark. */
+[data-theme='dark'] .about-providers-section {
+  background:
+    radial-gradient(circle at 84% 16%, rgba(84, 211, 229, 0.14), transparent 28%),
+    linear-gradient(180deg, #102a40 0%, #0d2236 100%) !important;
+  border-top-color: #2b526a !important;
+  border-bottom-color: #2b526a !important;
+}
+
+[data-theme='dark'] .about-providers__header h2,
+[data-theme='dark'] .provider-profile h3 {
+  color: #edf8ff !important;
+}
+
+[data-theme='dark'] .about-providers__header p,
+[data-theme='dark'] .provider-description {
+  color: #b6cbd8 !important;
+}
+
+[data-theme='dark'] .provider-profile {
+  background: #132b40 !important;
+  border-color: #2b526a !important;
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.24) !important;
+}
+
+[data-theme='dark'] .provider-profile__placeholder {
+  border-color: #367487 !important;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(83, 211, 230, 0.2), transparent 38%),
+    linear-gradient(135deg, #17364d, #12344b) !important;
+  color: #b9d7e8 !important;
+}
+
+[data-theme='dark'] .provider-placeholder-icon {
+  background: #1b5361 !important;
+  border-color: #367487 !important;
+  color: #55d5e7 !important;
+}
+
+[data-theme='dark'] .provider-type,
+[data-theme='dark'] .provider-tags span {
+  background: #1b5361 !important;
+  border-color: #367487 !important;
+  color: #edf8ff !important;
 }
 
 .ht-motion-smooth {

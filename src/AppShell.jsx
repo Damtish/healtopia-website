@@ -84,6 +84,10 @@ function AppLayout({ fallback = <RouteFallback /> }) {
   useEffect(() => {
     document.documentElement.dataset.theme = theme
     document.documentElement.dataset.themeMode = manualTheme ? 'manual' : 'system'
+    document.documentElement.dataset.themeReady = 'true'
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', theme === 'dark' ? '#0b1b2b' : '#f5fbff')
   }, [manualTheme, theme])
 
   useEffect(() => {
