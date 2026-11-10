@@ -10,10 +10,13 @@
       (() => {
         try {
           const saved = window.localStorage.getItem('healtopia-theme')
+          const hasManualTheme = saved === 'dark' || saved === 'light'
           const preferred = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-          document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : preferred
+          document.documentElement.dataset.theme = hasManualTheme ? saved : preferred
+          document.documentElement.dataset.themeMode = hasManualTheme ? 'manual' : 'system'
         } catch {
           document.documentElement.dataset.theme = 'light'
+          document.documentElement.dataset.themeMode = 'system'
         }
       })()
     </script>

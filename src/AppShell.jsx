@@ -10,6 +10,23 @@ import PageLoader from './components/PageLoader'
 import { BOOK_APPOINTMENT_URL } from './constants/links'
 import { SITE_PHONE_TEL } from './constants/site'
 
+function getSystemTheme() {
+  return typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light'
+}
+
+function getManualTheme() {
+  if (typeof window === 'undefined') return null
+
+  try {
+    const saved = window.localStorage.getItem('healtopia-theme')
+    return saved === 'dark' || saved === 'light' ? saved : null
+  } catch {
+    return null
+  }
+}
+
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
   const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
@@ -53,11 +70,12 @@ function RouteFallback() {
 
 function AppLayout({ fallback = <RouteFallback /> }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [manualTheme, setManualTheme] = useState(getManualTheme)
   const [theme, setTheme] = useState(() => {
     if (typeof document !== 'undefined' && document.documentElement.dataset.theme) {
       return document.documentElement.dataset.theme
     }
-    return 'light'
+    return getSystemTheme()
   })
   const { pathname } = useLocation()
   const hideMobileQuickActions = pathname === '/about'
@@ -65,12 +83,36 @@ function AppLayout({ fallback = <RouteFallback /> }) {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
+    document.documentElement.dataset.themeMode = manualTheme ? 'manual' : 'system'
+  }, [manualTheme, theme])
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia?.('(prefers-color-scheme: dark)')
+    if (!mediaQuery) return undefined
+
+    const handleSystemThemeChange = (event) => {
+      if (!manualTheme) setTheme(event.matches ? 'dark' : 'light')
+    }
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleSystemThemeChange)
+      return () => mediaQuery.removeEventListener('change', handleSystemThemeChange)
+    }
+
+    mediaQuery.addListener(handleSystemThemeChange)
+    return () => mediaQuery.removeListener(handleSystemThemeChange)
+  }, [manualTheme])
+
+  const toggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark'
+    setManualTheme(nextTheme)
+    setTheme(nextTheme)
     try {
-      window.localStorage.setItem('healtopia-theme', theme)
+      window.localStorage.setItem('healtopia-theme', nextTheme)
     } catch {
       // Storage can be unavailable in privacy-restricted browsing contexts.
     }
-  }, [theme])
+  }
 
   return (
     <div className="min-h-screen bg-ht-light text-ht-navy antialiased">
@@ -85,7 +127,7 @@ function AppLayout({ fallback = <RouteFallback /> }) {
         mobileOpen={mobileMenuOpen}
         setMobileOpen={setMobileMenuOpen}
         theme={theme}
-        onToggleTheme={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))}
+        onToggleTheme={toggleTheme}
       />
       <main
         id="main-content"
