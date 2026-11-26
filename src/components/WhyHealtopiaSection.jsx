@@ -90,7 +90,7 @@ export default function WhyHealtopiaSection() {
         .why-healtopia-heading p {
           margin: 0;
           max-width: 62rem;
-          color: #607997;
+          color: var(--color-ht-gray);
           font-size: 15px;
           line-height: 1.5;
         }
@@ -146,7 +146,7 @@ export default function WhyHealtopiaSection() {
 
         .why-healtopia-card p {
           margin: 0;
-          color: #607997;
+          color: var(--color-ht-gray);
           line-height: 1.45;
           font-size: 14px;
         }

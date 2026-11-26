@@ -1,16 +1,4 @@
-const routeLoaders = {
-  '/': () => import('../pages/Home.jsx'),
-  '/about': () => import('../pages/About.jsx'),
-  '/services': () => import('../pages/Services.jsx'),
-  '/direct-primary-care': () => import('../pages/DirectPrimaryCare.jsx'),
-  '/insurance-based-primary-care': () => import('../pages/InsuranceBasedPrimaryCare.jsx'),
-  '/medical-weight-loss': () => import('../pages/MedicalWeightLoss.jsx'),
-  '/concierge-care': () => import('../pages/ConciergeCare.jsx'),
-  '/pricing': () => import('../pages/Pricing.jsx'),
-  '/insurance': () => import('../pages/Insurance.jsx'),
-  '/contact': () => import('../pages/Contact.jsx'),
-  '/gambrills': () => import('../pages/Gambrills.jsx'),
-}
+import { preloadPageFor } from '../pages/index.js'
 
 const inFlight = new Map()
 
@@ -18,15 +6,11 @@ function normalizePath(pathname) {
   return pathname === '/' ? '/' : pathname.replace(/\/+$/, '') || '/'
 }
 
+/** Warms a route's page module (on hover/focus/touch) so navigation renders without a loader. */
 export function prefetchRoute(pathname) {
   const key = normalizePath(pathname)
-  const loader = routeLoaders[key]
-  if (!loader || inFlight.has(key)) return inFlight.get(key) || null
-
-  const promise = loader().catch(() => {
-    inFlight.delete(key)
-  })
+  if (inFlight.has(key)) return inFlight.get(key)
+  const promise = preloadPageFor(key)
   inFlight.set(key, promise)
   return promise
 }
-

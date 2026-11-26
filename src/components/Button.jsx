@@ -9,7 +9,7 @@ const baseStyles =
 
 const variantStyles = {
   primary:
-    'bg-ht-cyan text-white shadow-[0_12px_28px_-16px_rgba(12,174,200,0.8)] hover:-translate-y-0.5 hover:bg-ht-cyan-700 hover:shadow-[0_16px_34px_-18px_rgba(10,146,167,0.88)] active:translate-y-0',
+    'bg-ht-cyan text-ht-on-accent shadow-[0_12px_28px_-16px_rgba(12,174,200,0.8)] hover:-translate-y-0.5 hover:brightness-[1.06] hover:shadow-[0_16px_34px_-18px_rgba(10,146,167,0.88)] active:translate-y-0',
   secondary:
     'border border-white/90 bg-white !text-ht-navy shadow-[0_10px_22px_-16px_rgba(5,42,74,0.25)] hover:-translate-y-0.5 hover:border-[#39c2df] hover:bg-[#e8fbff] hover:!text-[#0b2948] hover:shadow-[0_14px_30px_-18px_rgba(5,42,74,0.28)] active:translate-y-0 active:shadow-[0_10px_22px_-16px_rgba(5,42,74,0.22)] visited:!text-ht-navy',
   ghost: 'text-ht-navy hover:bg-ht-soft-blue',

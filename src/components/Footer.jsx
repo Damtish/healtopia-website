@@ -40,7 +40,7 @@ function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm font-bold uppercase tracking-wide text-ht-navy-700">Quick Links</h4>
+          <p className="text-sm font-bold uppercase tracking-wide text-ht-navy-700">Quick Links</p>
           <ul className="mt-3 space-y-2 text-sm text-ht-gray">
             {quickLinks.map((link) => (
               <li key={link.to}>
@@ -59,7 +59,7 @@ function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm font-bold uppercase tracking-wide text-ht-navy-700">Contact</h4>
+          <p className="text-sm font-bold uppercase tracking-wide text-ht-navy-700">Contact</p>
           <ul className="mt-3 space-y-3 text-sm text-ht-gray">
             <li className="flex items-start gap-2">
               <MapPin size={16} className="mt-0.5 text-ht-cyan-700" />

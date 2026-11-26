@@ -12,6 +12,8 @@
   --color-ht-soft-blue: #e5f4ff;
   --color-ht-silver: #d6e4ef;
   --color-ht-gray: #4f6b85;
+  /* Text on cyan (accent) surfaces, e.g. primary buttons. */
+  --color-ht-on-accent: #0b2545;
 
   --text-xs: clamp(0.68rem, 0.64rem + 0.12vw, 0.78rem);
   --text-xs--line-height: 1.5;
@@ -56,9 +58,12 @@ body {
   color: var(--color-ht-navy);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* In the base layer so Tailwind text-* utilities on links (e.g. buttons) win. */
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 #root {
@@ -206,6 +211,7 @@ h3,
   --color-ht-soft-blue: #12344b;
   --color-ht-silver: #2b475d;
   --color-ht-gray: #b6cbd8;
+  --color-ht-on-accent: #0b1b2b;
   --ht-page-bg: #0b1b2b;
   --ht-surface: #132b40;
   --ht-surface-muted: #12344b;
@@ -994,3 +1000,287 @@ h3,
 }
 
 
+
+/* ------------------------------------------------------------------
+   Scroll-driven particle sections (CareJourney, WhyTogether, HeartServices)
+   ------------------------------------------------------------------ */
+:root {
+  --ht-header-h: 4.7rem;
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --ht-header-h: 5.15rem;
+  }
+}
+
+.care-step {
+  will-change: opacity;
+}
+
+.care-step--dim {
+  opacity: 0.42;
+}
+
+.care-step--reached {
+  opacity: 1;
+}
+
+/* Why Healtopia: scattered → network → heartbeat */
+.why-together {
+  background:
+    radial-gradient(circle at 74% 50%, color-mix(in srgb, var(--ht-accent) 10%, transparent), transparent 52%),
+    var(--ht-page-bg);
+}
+
+.why-together--pinned {
+  height: 290vh;
+  height: 290svh;
+}
+
+.why-together__stage {
+  position: relative;
+  overflow: hidden;
+  min-height: 760px;
+}
+
+.why-together--pinned .why-together__stage {
+  position: sticky;
+  top: var(--ht-header-h);
+  min-height: 0;
+  height: calc(100vh - var(--ht-header-h));
+  height: calc(100svh - var(--ht-header-h));
+}
+
+.why-together__canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.why-together__stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    var(--ht-page-bg) 0%,
+    color-mix(in srgb, var(--ht-page-bg) 82%, transparent) 34%,
+    transparent 52%
+  );
+}
+
+.why-together__content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  padding-top: clamp(1.25rem, 4vh, 2.5rem);
+  pointer-events: none;
+}
+
+.why-together__copy {
+  width: 100%;
+  max-width: 32rem;
+  pointer-events: auto;
+}
+
+.why-together h2 {
+  font-size: clamp(2rem, 1.35rem + 2.6vw, 3.6rem) !important;
+  line-height: 1.04 !important;
+  letter-spacing: -0.035em;
+}
+
+.why-together__headlines {
+  display: grid;
+}
+
+.why-together__headline {
+  grid-area: 1 / 1;
+  display: block;
+  will-change: opacity, transform, filter;
+}
+
+@media (max-width: 639px) {
+  .why-together__point > span:last-child > span:last-child {
+    display: none;
+  }
+
+  .why-together__point {
+    padding: 0.7rem 0.9rem;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .why-together__stage::before {
+    background: linear-gradient(
+      90deg,
+      var(--ht-page-bg) 0%,
+      color-mix(in srgb, var(--ht-page-bg) 86%, transparent) 30%,
+      transparent 50%
+    );
+  }
+
+  .why-together__content {
+    align-items: center;
+    padding-top: 0;
+  }
+}
+
+/* Services: one clinic, every part of you */
+.heart-explorer {
+  background:
+    radial-gradient(circle at 70% 46%, color-mix(in srgb, var(--ht-accent) 11%, transparent), transparent 50%),
+    var(--ht-page-bg);
+}
+
+.heart-explorer--pinned {
+  height: 440vh;
+  height: 440svh;
+}
+
+.heart-explorer__stage {
+  position: sticky;
+  top: var(--ht-header-h);
+  height: calc(100vh - var(--ht-header-h));
+  height: calc(100svh - var(--ht-header-h));
+  overflow: hidden;
+}
+
+.heart-explorer__grid {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 0.5rem;
+  padding-block: clamp(1rem, 3vh, 2rem) clamp(1rem, 3vh, 1.75rem);
+}
+
+.heart-explorer__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ht-navy-700);
+}
+
+.heart-explorer h2 {
+  font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3.2rem) !important;
+  line-height: 1.05 !important;
+}
+
+.heart-explorer__visual {
+  position: relative;
+  min-height: 0;
+  touch-action: pan-y;
+}
+
+.heart-canvas--interactive {
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.heart-canvas--interactive.is-dragging {
+  cursor: grabbing;
+}
+
+.heart-explorer__hint {
+  position: absolute;
+  left: 50%;
+  bottom: 0.25rem;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+  border-radius: 9999px;
+  border: 1px solid var(--ht-border);
+  background: color-mix(in srgb, var(--ht-surface) 82%, transparent);
+  padding: 0.35rem 0.8rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ht-text-muted);
+  pointer-events: none;
+}
+
+.heart-explorer__card-stack {
+  display: grid;
+}
+
+.heart-explorer__card-stack > * {
+  grid-area: 1 / 1;
+}
+
+@media (max-width: 1023px) {
+  .heart-explorer__card {
+    padding: 1rem 1.1rem;
+  }
+
+  .heart-explorer__card h3 {
+    margin-top: 0.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heart-explorer__grid {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    grid-template-rows: auto auto;
+    align-content: center;
+    column-gap: clamp(2rem, 4vw, 4.5rem);
+    row-gap: 1.5rem;
+  }
+
+  .heart-explorer__intro {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .heart-explorer__cards {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .heart-explorer__visual {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    height: min(78vh, 760px);
+    align-self: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .care-step,
+  .why-together__headline {
+    transition: none !important;
+    will-change: auto;
+  }
+}
+
+/* Leave room for the fixed mobile Book / Call bar on pinned effect sections. */
+@media (max-width: 767px) {
+  .heart-explorer__grid {
+    padding-bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .why-together--pinned .why-together__canvas {
+    bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Short phone screens: keep the heart visible by compacting the service card. */
+@media (max-width: 1023px) and (max-height: 760px) {
+  .heart-explorer__card > p:nth-of-type(3),
+  .heart-explorer__hint {
+    display: none;
+  }
+
+  .heart-explorer h2 {
+    font-size: 1.6rem !important;
+  }
+}

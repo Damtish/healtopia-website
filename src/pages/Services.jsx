@@ -3,6 +3,7 @@ import SectionBadge from '../components/SectionBadge'
 import SectionHeader from '../components/SectionHeader'
 import ServiceCard from '../components/ServiceCard'
 import AppointmentCTA from '../components/AppointmentCTA'
+import HeartServicesSection from '../components/HeartServicesSection'
 import services, { serviceIconMap } from '../data/services'
 import { PAGE_SECTION } from '../lib/pageStyles'
 import { getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
@@ -27,7 +28,9 @@ function Services() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <HeartServicesSection />
+
+      <section id="service-lines" className="mx-auto w-full max-w-7xl scroll-mt-28 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <SectionHeader
           eyebrow="Service Lines"
           title={

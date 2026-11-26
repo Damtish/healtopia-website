@@ -14,6 +14,7 @@ import Button from '../components/Button'
 import SectionBadge from '../components/SectionBadge'
 import NextStepSection from '../components/NextStepSection'
 import WhyHealtopiaSection from '../components/WhyHealtopiaSection'
+import WhyTogetherSection from '../components/WhyTogetherSection'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer } from '../lib/motion'
 import {
@@ -1292,6 +1293,7 @@ function About() {
         </div>
       </motion.section>
 
+      <WhyTogetherSection />
       <WhyHealtopiaSection />
 
           <AboutProvidersSection

@@ -16,6 +16,7 @@ import CompareOptionsSection from '../components/CompareOptionsSection'
 import SectionHeader from '../components/SectionHeader'
 import SectionBadge from '../components/SectionBadge'
 import HomeProviderShowcase from '../components/HomeProviderShowcase'
+import CareJourneySection from '../components/CareJourneySection'
 import NextStepSection from '../components/NextStepSection'
 import insuranceLogos from '../data/insurance'
 import { testimonials } from '../data/testimonials'
@@ -416,6 +417,8 @@ function Home() {
         </div>
       </motion.section>
 
+      <CareJourneySection />
+
       <HomeProviderShowcase reduceMotion={reduceMotion} />
 
       <motion.section
@@ -716,7 +719,7 @@ function TestimonialCarousel({ items, reduceMotion }) {
                             {getInitials(testimonial.name)}
                           </div>
                           <div>
-                            <div className="flex items-center gap-1 text-amber-400" aria-label="5 star review">
+                            <div className="flex items-center gap-1 text-amber-400" role="img" aria-label="5 star review">
                               {Array.from({ length: 5 }).map((_, starIndex) => (
                                 <Star key={starIndex} size={14} fill="currentColor" />
                               ))}
@@ -777,18 +780,23 @@ function TestimonialCarousel({ items, reduceMotion }) {
         </button>
       </div>
 
-      <div className="mt-5 flex justify-center gap-2">
+      <div className="mt-5 flex justify-center gap-0.5">
         {Array.from({ length: pageCount }).map((_, pageIndex) => (
           <button
             key={pageIndex}
             type="button"
             onClick={() => setActivePage(pageIndex)}
-            className={`h-2.5 rounded-full transition-all duration-300 ${
-              pageIndex === safeActivePage ? 'w-7 bg-ht-cyan-700' : 'w-2.5 bg-cyan-200 hover:bg-cyan-300'
-            }`}
+            className="group inline-flex h-6 min-w-6 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ht-cyan"
             aria-label={`Go to testimonial group ${pageIndex + 1}`}
             aria-pressed={pageIndex === safeActivePage}
-          />
+          >
+            <span
+              aria-hidden="true"
+              className={`block h-2.5 rounded-full transition-all duration-300 ${
+                pageIndex === safeActivePage ? 'w-7 bg-ht-cyan-700' : 'w-2.5 bg-cyan-200 group-hover:bg-cyan-300'
+              }`}
+            />
+          </button>
         ))}
       </div>
 
