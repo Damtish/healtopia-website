@@ -135,7 +135,7 @@ function ProviderBioModal({ provider, onClose, reduceMotion, closeButtonRef, ret
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-ht-navy/30 to-transparent" />
                 </div>
               ) : (
-                <div className="relative aspect-[4/5] overflow-hidden bg-[radial-gradient(circle_at_30%_25%,rgba(22,182,212,0.22),transparent_28%),linear-gradient(135deg,#dff7fb_0%,#f2fbfe_45%,#ffffff_100%)] p-5">
+                <div className="provider-portrait-placeholder relative aspect-[4/5] overflow-hidden bg-[radial-gradient(circle_at_30%_25%,rgba(22,182,212,0.22),transparent_28%),linear-gradient(135deg,#dff7fb_0%,#f2fbfe_45%,#ffffff_100%)] p-5">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_72%,rgba(22,182,212,0.14),transparent_26%)]" />
                   <div className="relative flex h-full items-center justify-center text-center">
                     <div>
@@ -202,11 +202,11 @@ function ProviderPanel({ provider, reduceMotion, onOpenBio }) {
             decoding="async"
           />
         ) : (
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(22,182,212,0.2),transparent_30%),linear-gradient(135deg,#dff7fb_0%,#f4fbfe_45%,#ffffff_100%)]">
+          <div className="provider-portrait-placeholder absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(22,182,212,0.2),transparent_30%),linear-gradient(135deg,#dff7fb_0%,#f4fbfe_45%,#ffffff_100%)]">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_72%,rgba(22,182,212,0.12),transparent_24%)]" />
             <div className="flex h-full items-center justify-center p-5">
-              <div className="relative w-full max-w-[82%] overflow-hidden rounded-[1.15rem] border border-cyan-100 bg-white/35 p-4 shadow-[0_16px_32px_-24px_rgba(5,42,74,0.45)] backdrop-blur-sm">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_32%,rgba(255,255,255,0.8),transparent_34%)]" />
+              <div className="provider-portrait-placeholder__frame relative w-full max-w-[82%] overflow-hidden rounded-[1.15rem] border border-cyan-100 bg-white/35 p-4 shadow-[0_16px_32px_-24px_rgba(5,42,74,0.45)] backdrop-blur-sm">
+                <div className="provider-portrait-placeholder__shine absolute inset-0 bg-[radial-gradient(circle_at_50%_32%,rgba(255,255,255,0.8),transparent_34%)]" />
                 <div className="relative flex min-h-[150px] items-center justify-center text-center">
                   <div>
                     <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-ht-cyan-700 shadow-sm ring-1 ring-cyan-100">

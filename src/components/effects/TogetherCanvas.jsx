@@ -109,6 +109,7 @@ function buildLayout(count) {
     count,
     scatterX: new Float32Array(count),
     scatterY: new Float32Array(count),
+    scatterMode: new Uint8Array(count),
     netX: new Float32Array(count),
     netY: new Float32Array(count),
     finalX: new Float32Array(count),
@@ -130,8 +131,16 @@ function buildLayout(count) {
   }
 
   for (let i = 0; i < count; i += 1) {
-    data.scatterX[i] = random()
-    data.scatterY[i] = random()
+    // Most of the cloud drifts loosely around where the shape will form (stage units,
+    // -0.35..1.35); the rest spreads across the whole canvas.
+    if (random() < 0.62) {
+      data.scatterMode[i] = 1
+      data.scatterX[i] = -0.35 + random() * 1.7
+      data.scatterY[i] = -0.2 + random() * 1.4
+    } else {
+      data.scatterX[i] = random()
+      data.scatterY[i] = random()
+    }
 
     if (random() < 0.42) {
       const node = nodes[Math.floor(random() * nodes.length)]
@@ -257,8 +266,9 @@ export default function TogetherCanvas({ progress, reduced = false }) {
         const m1 = smoothstep(0.08 + d, 0.42 + d, p)
         const m2 = smoothstep(0.55 + d * 0.8, 0.88 + d * 0.8, p)
 
-        const scX = layout.scatterX[i] * width
-        const scY = layout.scatterY[i] * height
+        const local = layout.scatterMode[i] === 1
+        const scX = local ? sx + layout.scatterX[i] * size : layout.scatterX[i] * width
+        const scY = local ? sy + layout.scatterY[i] * size : layout.scatterY[i] * height
         const ntX = sx + layout.netX[i] * size
         const ntY = sy + layout.netY[i] * size
         let fx = layout.finalX[i]
@@ -279,14 +289,13 @@ export default function TogetherCanvas({ progress, reduced = false }) {
         x += Math.sin(t * 0.0006 + seed) * drift
         y += Math.cos(t * 0.0005 + seed * 1.7) * drift
 
-        let radius = 1.9 + layout.size[i] * 1.6
-        let alpha = 0.55 + 0.3 * m1 + 0.1 * m2
+        let radius = 2.2 + layout.size[i] * 1.8
+        let alpha = 0.72 + 0.2 * m1 + 0.08 * m2
         if (m2 > 0.5 && layout.isEcg[i]) {
           const near = Math.max(0, 1 - Math.abs(layout.finalX[i] - pulseX) * 9)
           radius += near * 1.6
           alpha = Math.min(1, alpha + near * 0.4)
         }
-        if (!colors.dark) alpha *= 0.9
 
         ctx.globalAlpha = alpha
         ctx.drawImage(sprites[layout.color[i]], x - radius, y - radius, radius * 2, radius * 2)

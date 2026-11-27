@@ -35,11 +35,12 @@ export default function HelixCanvas({ progress, reduced = false }) {
     let smoothProgress = progress?.get?.() ?? 0
 
     const buildSprites = () => {
+      // Light mode uses the deeper cyan-700 + navy-700 tokens so the helix reads on white.
       sprites = {
-        a: createDotSprite(colors.cyan, spriteSize),
-        b: createDotSprite(colors.teal, spriteSize),
+        a: createDotSprite(colors.dark ? colors.cyan : colors.cyan700, spriteSize),
+        b: createDotSprite(colors.dark ? colors.teal : colors.navy700, spriteSize),
         dim: createDotSprite(colors.gray, spriteSize),
-        glow: createDotSprite(colors.cyan, 64, { core: 0.12 }),
+        glow: createDotSprite(colors.dark ? colors.cyan : colors.cyan700, 64, { core: 0.12 }),
       }
     }
     buildSprites()
@@ -60,13 +61,16 @@ export default function HelixCanvas({ progress, reduced = false }) {
       ctx.globalCompositeOperation = colors.dark ? 'lighter' : 'source-over'
 
       const cx = width / 2
-      const amp = Math.min(width * 0.3, 44)
-      const wavelength = width < 90 ? 170 : 230
+      // Narrow rail on tablet/desktop; wide helix behind the cards on phones.
+      const wide = width > 200
+      const amp = wide ? Math.min(width * 0.32, 120) : Math.min(width * 0.3, 44)
+      const wavelength = wide ? 300 : 230
+      const dotScale = wide ? 1.35 : 1
       const k = (Math.PI * 2) / wavelength
       const phase = reduced ? 0.6 : time * 0.00042 + smoothProgress * 2.2
       const litY = smoothProgress * height
       const rungEvery = 3
-      const dimAlpha = colors.dark ? 0.42 : 0.4
+      const dimAlpha = colors.dark ? 0.45 : 0.5
 
       // Two passes: back half first, then the front half, for depth.
       for (let pass = 0; pass < 2; pass += 1) {
@@ -83,11 +87,11 @@ export default function HelixCanvas({ progress, reduced = false }) {
 
           const front = pass === 1
           if ((za >= 0.5) === front) {
-            const size = 2 + za * 2.2
+            const size = (2 + za * 2.2) * dotScale
             drawDot(lit > 0.5 ? sprites.a : sprites.dim, xa, y, size, (0.35 + za * 0.65) * (dimAlpha + (1 - dimAlpha) * lit))
           }
           if ((zb >= 0.5) === front) {
-            const size = 2 + zb * 2.2
+            const size = (2 + zb * 2.2) * dotScale
             drawDot(lit > 0.5 ? sprites.b : sprites.dim, xb, y, size, (0.35 + zb * 0.65) * (dimAlpha + (1 - dimAlpha) * lit))
           }
 
@@ -96,7 +100,7 @@ export default function HelixCanvas({ progress, reduced = false }) {
             const rungAlpha = (0.16 + 0.34 * lit) * Math.abs(s)
             for (let j = 1; j < 4; j += 1) {
               const t = j / 4
-              drawDot(t < 0.5 ? sprites.a : sprites.b, xa + (xb - xa) * t, y, 1.3, rungAlpha)
+              drawDot(t < 0.5 ? sprites.a : sprites.b, xa + (xb - xa) * t, y, 1.3 * dotScale, rungAlpha)
             }
           }
         }

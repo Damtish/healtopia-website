@@ -165,7 +165,7 @@ function ProviderBioModal({ provider, onClose, reduceMotion, returnFocusRef }) {
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-ht-navy/30 to-transparent" />
                 </div>
               ) : (
-                <div className="relative aspect-[4/5] overflow-hidden bg-[radial-gradient(circle_at_30%_25%,rgba(22,182,212,0.22),transparent_28%),linear-gradient(135deg,#dff7fb_0%,#f2fbfe_45%,#ffffff_100%)] p-5">
+                <div className="provider-portrait-placeholder relative aspect-[4/5] overflow-hidden bg-[radial-gradient(circle_at_30%_25%,rgba(22,182,212,0.22),transparent_28%),linear-gradient(135deg,#dff7fb_0%,#f2fbfe_45%,#ffffff_100%)] p-5">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_72%,rgba(22,182,212,0.14),transparent_26%)]" />
                   <div className="relative flex h-full items-center justify-center text-center">
                     <div>
@@ -399,11 +399,11 @@ function About() {
           z-index: 1;
           background: linear-gradient(
             90deg,
-            rgba(10, 43, 75, 0.94) 0%,
-            rgba(10, 43, 75, 0.88) 36%,
-            rgba(10, 43, 75, 0.56) 64%,
-            rgba(10, 43, 75, 0.24) 82%,
-            rgba(10, 43, 75, 0.1) 100%
+            rgba(10, 43, 75, 0.78) 0%,
+            rgba(10, 43, 75, 0.66) 34%,
+            rgba(10, 43, 75, 0.3) 60%,
+            rgba(10, 43, 75, 0.08) 82%,
+            rgba(10, 43, 75, 0) 100%
           );
         }
 
@@ -1177,7 +1177,7 @@ function About() {
             className="h-full w-full object-cover object-center"
             initial={reduceMotion ? false : { scale: 1.03 }}
             animate={reduceMotion ? { scale: 1 } : { scale: 1 }}
-            transition={reduceMotion ? { duration: 0 } : { duration: 0.9, ease: 'easeOut' }}
+            transition={reduceMotion ? { duration: 0 } : { duration: 0.4, ease: 'easeOut' }}
           />
         </div>
         <div className="about-hero-overlay" />

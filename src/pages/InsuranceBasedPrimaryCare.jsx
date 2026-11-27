@@ -384,7 +384,7 @@ function InsuranceBasedPrimaryCare() {
                   fetchPriority="high"
                   initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
                   animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
-                  transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}
+                  transition={reduceMotion ? { duration: 0 } : { duration: 0.35, ease: 'easeOut' }}
                 />
               </div>
             </div>
@@ -414,7 +414,7 @@ function InsuranceBasedPrimaryCare() {
             {acceptedInsurancePlans.map((plan) => (
               <motion.article
                 key={plan.name}
-                className={`${PAGE_CARD} flex h-[clamp(4.9rem,7vw,6.75rem)] items-center justify-center px-4 py-4 transition-[transform,box-shadow,border-color] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]`}
+                className={`${PAGE_CARD} insurance-logo-tile flex h-[clamp(4.9rem,7vw,6.75rem)] items-center justify-center px-4 py-4 transition-[transform,box-shadow,border-color] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]`}
                 aria-label={plan.name}
                 {...getStaggerItem(reduceMotion, { y: 14 })}
                 whileHover={

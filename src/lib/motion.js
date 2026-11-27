@@ -16,28 +16,12 @@ function getMotionMode(reduceMotion) {
   }
 }
 
-export function getEntranceProps(
-  reduceMotion,
-  { delay = 0, duration = 0.55, y = 20, scale = 1, fromScale = 1 } = {},
-) {
-  const motionMode = getMotionMode(reduceMotion)
-
-  if (motionMode.reduceMotion) {
-    return {
-      initial: false,
-      animate: { opacity: 1, y: 0, scale: 1 },
-      transition: { duration: 0 },
-    }
-  }
-
+// Above-the-fold (hero) content must be visible on first paint: no opacity/offset entrance.
+export function getEntranceProps() {
   return {
-    initial: {
-      opacity: 0,
-      y: motionMode.mobile ? Math.min(y, 16) : y,
-      scale: motionMode.mobile ? 1 : fromScale,
-    },
-    animate: { opacity: 1, y: 0, scale: motionMode.mobile ? 1 : scale },
-    transition: { delay, duration: motionMode.mobile ? Math.min(duration, 0.5) : duration, ease: EASE_OUT },
+    initial: false,
+    animate: { opacity: 1, y: 0, scale: 1 },
+    transition: { duration: 0 },
   }
 }
 
@@ -57,10 +41,10 @@ export function getRevealProps(
   }
 
   return {
-    initial: { opacity: 0, y: motionMode.mobile ? Math.min(y, 16) : y },
+    initial: { opacity: 0, y: Math.min(y, 12) },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once, amount: motionMode.mobile ? Math.min(amount, 0.15) : amount },
-    transition: { delay, duration: motionMode.mobile ? Math.min(duration, 0.5) : duration, ease: EASE_OUT },
+    transition: { delay: Math.min(delay, 0.1), duration: Math.min(duration, 0.4), ease: EASE_OUT },
   }
 }
 
@@ -80,8 +64,8 @@ export function getStaggerContainer(
         transition: reduceMotion
           ? { delayChildren: 0, staggerChildren: 0 }
           : {
-              delayChildren: motionMode.mobile ? Math.min(delayChildren, 0.02) : delayChildren,
-              staggerChildren: motionMode.mobile ? Math.min(staggerChildren, 0.06) : staggerChildren,
+              delayChildren: Math.min(delayChildren, 0.04),
+              staggerChildren: Math.min(staggerChildren, 0.06),
             },
       },
     },
@@ -102,8 +86,8 @@ export function getStaggerItem(reduceMotion, { y = 18 } = {}) {
 
   return {
     variants: {
-      hidden: { opacity: 0, y: motionMode.mobile ? Math.min(y, 14) : y },
-      show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE_OUT } },
+      hidden: { opacity: 0, y: Math.min(y, 12) },
+      show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: EASE_OUT } },
     },
   }
 }
@@ -120,7 +104,7 @@ export function getCardHover(reduceMotion) {
       boxShadow: '0 24px 44px -28px rgba(5, 42, 74, 0.5)',
       borderColor: 'rgba(103, 232, 249, 0.9)',
     },
-    transition: { duration: 0.48, ease: EASE_OUT },
+    transition: { duration: 0.3, ease: EASE_OUT },
   }
 }
 

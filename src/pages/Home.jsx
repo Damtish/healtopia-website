@@ -17,6 +17,7 @@ import SectionHeader from '../components/SectionHeader'
 import SectionBadge from '../components/SectionBadge'
 import HomeProviderShowcase from '../components/HomeProviderShowcase'
 import CareJourneySection from '../components/CareJourneySection'
+import WhyTogetherSection from '../components/WhyTogetherSection'
 import NextStepSection from '../components/NextStepSection'
 import insuranceLogos from '../data/insurance'
 import { testimonials } from '../data/testimonials'
@@ -291,7 +292,6 @@ function Home() {
       `}</style>
       <motion.section
         className="home-hero-shell relative isolate flex overflow-hidden border-b border-ht-silver bg-[linear-gradient(135deg,#ffffff_0%,#f7fcfe_44%,#eef8fc_100%)]"
-        {...getRevealProps(reduceMotion, { y: 18, duration: 0.6, amount: 0.16 })}
       >
         <div className="pointer-events-none absolute inset-0">
           <img
@@ -417,6 +417,8 @@ function Home() {
         </div>
       </motion.section>
 
+      <WhyTogetherSection />
+
       <CareJourneySection />
 
       <HomeProviderShowcase reduceMotion={reduceMotion} />
@@ -526,7 +528,7 @@ function Home() {
                   {insuranceLogos.map((plan) => (
                     <div
                       key={`${setIndex}-${plan.src}`}
-                      className="flex h-14 w-32 shrink-0 items-center justify-center px-2 sm:h-16 sm:w-40 sm:px-3"
+                      className="insurance-logo-tile flex h-14 w-32 shrink-0 items-center justify-center px-2 sm:h-16 sm:w-40 sm:px-3"
                     >
                       <img
                         src={plan.src}

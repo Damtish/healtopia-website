@@ -91,10 +91,10 @@ function RegionLink({ region, tabIndex }) {
 function RegionCard({ region, index, active, reduced }) {
   return (
     <motion.article
-      className="heart-explorer__card rounded-[1.6rem] border border-cyan-100 bg-white/90 p-5 shadow-[0_24px_54px_-38px_rgba(5,42,74,0.5)] backdrop-blur-sm sm:p-6"
+      className="heart-explorer__card rounded-[1.6rem] border border-cyan-100 bg-white/90 p-5 shadow-[0_24px_54px_-38px_rgba(5,42,74,0.5)] sm:p-6"
       initial={false}
-      animate={active ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 12, filter: 'blur(6px)' }}
-      transition={reduced ? { duration: 0 } : { duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+      transition={reduced ? { duration: 0 } : { duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
       aria-hidden={active ? undefined : 'true'}
       inert={!active}
     >
@@ -190,7 +190,7 @@ export default function HeartServicesSection() {
                     type="button"
                     onClick={() => goToRegion(index)}
                     aria-current={index === active ? 'step' : undefined}
-                    className={`group flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ht-cyan ${
+                    className={`group flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left text-sm font-semibold transition-colors !duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ht-cyan ${
                       index === active ? 'bg-ht-soft-blue text-ht-navy' : 'text-ht-gray hover:text-ht-navy'
                     }`}
                   >

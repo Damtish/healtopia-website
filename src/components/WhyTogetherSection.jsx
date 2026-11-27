@@ -66,18 +66,16 @@ export default function WhyTogetherSection() {
               <span className="why-together__headlines" aria-hidden="true">
                 {headlines.map((line, index) => {
                   const active = index === activeState
-                  const offset = index < activeState ? -14 : 14
+                  const offset = index < activeState ? -8 : 8
                   return (
                     <motion.span
                       key={line}
                       className={`why-together__headline ${index === 2 ? 'text-ht-cyan-700' : ''}`}
                       initial={false}
                       animate={
-                        active
-                          ? { opacity: 1, y: 0, filter: 'blur(0px)' }
-                          : { opacity: 0, y: offset, filter: 'blur(10px)' }
+                        active ? { opacity: 1, y: 0 } : { opacity: 0, y: offset }
                       }
-                      transition={reduceMotion ? { duration: 0 } : { duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                      transition={reduceMotion ? { duration: 0 } : { duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                     >
                       {line}
                     </motion.span>
@@ -101,7 +99,7 @@ export default function WhyTogetherSection() {
               {points.map((point) => (
                 <li
                   key={point.title}
-                  className="why-together__point flex gap-3 rounded-2xl border border-ht-silver bg-white/85 p-4 shadow-[0_18px_40px_-34px_rgba(5,42,74,0.45)] backdrop-blur-sm"
+                  className="why-together__point flex gap-3 rounded-2xl border border-ht-silver bg-white/85 p-4 shadow-[0_18px_40px_-34px_rgba(5,42,74,0.45)]"
                 >
                   <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ht-soft-blue text-ht-cyan-700 ring-1 ring-cyan-100">
                     <point.icon size={19} aria-hidden="true" />

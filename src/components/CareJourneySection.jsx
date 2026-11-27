@@ -120,7 +120,7 @@ export default function CareJourneySection() {
 
         <div ref={timelineRef} className="relative">
           <div
-            className="pointer-events-none absolute bottom-0 left-0 top-0 w-[56px] sm:w-[88px] lg:w-[112px]"
+            className="pointer-events-none absolute inset-0 sm:right-auto sm:w-[88px] lg:w-[112px]"
             aria-hidden="true"
           >
             {near ? (
@@ -132,7 +132,7 @@ export default function CareJourneySection() {
             )}
           </div>
 
-          <ol className="relative space-y-6 pl-[68px] sm:space-y-8 sm:pl-[104px] lg:pl-[128px]">
+          <ol className="relative space-y-10 sm:space-y-8 sm:pl-[104px] lg:pl-[128px]">
             {careSteps.map((step, index) => {
               const reached = index <= reachedIndex
               const current = index === reachedIndex
@@ -146,6 +146,7 @@ export default function CareJourneySection() {
                     reached ? 'care-step--reached' : 'care-step--dim'
                   } ${current ? 'care-step--current border-cyan-200 bg-white shadow-[0_22px_48px_-36px_rgba(5,42,74,0.5)]' : 'border-transparent'}`}
                 >
+                  <div className="care-step__body">
                   <div className="flex items-baseline gap-3">
                     <span className="text-sm font-bold tabular-nums tracking-[0.16em] text-ht-cyan-700">{step.number}</span>
                     <h3 className="text-ht-navy">{step.title}</h3>
@@ -167,6 +168,7 @@ export default function CareJourneySection() {
                       </motion.li>
                     ))}
                   </ul>
+                  </div>
                 </li>
               )
             })}

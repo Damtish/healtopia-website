@@ -203,7 +203,7 @@ function DirectPrimaryCare() {
             fetchPriority="high"
             initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
             animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
-            transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}
+            transition={reduceMotion ? { duration: 0 } : { duration: 0.35, ease: 'easeOut' }}
           />
           <div className="absolute inset-0 bg-[linear-gradient(270deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.1)_24%,rgba(255,255,255,0.48)_58%,rgba(255,255,255,0.92)_100%)]" />
         </div>
@@ -260,7 +260,7 @@ function DirectPrimaryCare() {
                 decoding="async"
                 initial={reduceMotion ? false : { opacity: 0.98, scale: 1 }}
                 animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
-                transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}
+                transition={reduceMotion ? { duration: 0 } : { duration: 0.35, ease: 'easeOut' }}
               />
             </div>
 

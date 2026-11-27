@@ -264,7 +264,7 @@ function ConciergeCare() {
             fetchPriority="high"
             initial={reduceMotion ? false : { opacity: 0.98, scale: 1.01 }}
             animate={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
-            transition={reduceMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut', delay: 0.04 }}
+            transition={reduceMotion ? { duration: 0 } : { duration: 0.35, ease: 'easeOut' }}
           />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,42,74,0.84)_0%,rgba(8,42,74,0.78)_34%,rgba(8,42,74,0.28)_67%,rgba(8,42,74,0.08)_100%)]" />
         </div>

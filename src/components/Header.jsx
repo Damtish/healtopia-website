@@ -166,7 +166,7 @@ function Header({ mobileOpen, setMobileOpen, theme, onToggleTheme }) {
           </div>
         </NavLink>
 
-        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-[clamp(0.85rem,1vw,1.6rem)] lg:flex min-[1440px]:gap-[1.3rem]" aria-label="Primary navigation">
+        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-[clamp(0.85rem,1vw,1.6rem)] whitespace-nowrap xl:flex min-[1440px]:gap-[1.3rem]" aria-label="Primary navigation">
           {desktopNavLinks.map((link) => (
             <NavLink
               key={link.to}
@@ -180,7 +180,7 @@ function Header({ mobileOpen, setMobileOpen, theme, onToggleTheme }) {
           ))}
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-2 lg:flex">
+        <div className="hidden shrink-0 items-center gap-2 xl:flex">
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           <Button
             href={BOOK_APPOINTMENT_URL}
@@ -194,7 +194,7 @@ function Header({ mobileOpen, setMobileOpen, theme, onToggleTheme }) {
           </Button>
         </div>
 
-        <div className="ml-auto flex items-center gap-2 lg:hidden">
+        <div className="ml-auto flex items-center gap-2 xl:hidden">
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           <button
             ref={mobileToggleRef}
@@ -218,7 +218,7 @@ function Header({ mobileOpen, setMobileOpen, theme, onToggleTheme }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="fixed inset-x-0 top-[4.7rem] z-[70] h-[calc(100vh-4.7rem)] lg:hidden"
+            className="fixed inset-x-0 top-[4.7rem] z-[70] h-[calc(100vh-4.7rem)] xl:hidden"
             aria-hidden={!mobileOpen}
           >
             <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-[1px]" onClick={() => setMobileOpen(false)} />
