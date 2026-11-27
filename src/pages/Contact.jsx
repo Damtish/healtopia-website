@@ -55,12 +55,11 @@ function Contact() {
           {[
             {
               title: 'Call Us',
-              content: '410-774-6678\n410-847-7890',
+              content: '410-774-6678',
               icon: Phone,
-              links: [
-                { label: '410-774-6678', href: 'tel:+14107746678' },
-                { label: '410-847-7890', href: 'tel:+14108477890' },
-              ],
+              links: [{ label: '410-774-6678', href: 'tel:+14107746678' }],
+              // Fax line: plain text, not a tel: link (tapping it would dial a fax machine).
+              fax: '410-847-7890',
             },
             {
               title: 'Email',
@@ -89,6 +88,7 @@ function Contact() {
                       {phone.label}
                     </a>
                   ))}
+                  {item.fax ? <p className="text-sm text-ht-gray">Fax: {item.fax}</p> : null}
                 </div>
               ) : (
                 <p className="mt-2 text-sm text-ht-gray">{item.content}</p>

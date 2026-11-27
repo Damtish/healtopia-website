@@ -75,9 +75,8 @@ function Footer() {
                   <span className="ht-eyebrow rounded-full bg-cyan-100 px-2 py-0.5 text-ht-navy-700">
                     Fax
                   </span>
-                  <a href="tel:+14108477890" className="block transition hover:text-ht-navy">
-                    410-847-7890
-                  </a>
+                  {/* Fax line: shown as text, not a tel: link (tapping it would dial a fax machine). */}
+                  <span className="block">410-847-7890</span>
                 </div>
               </div>
             </li>
