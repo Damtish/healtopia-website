@@ -1,4 +1,5 @@
-﻿import { motion, useReducedMotion } from 'framer-motion'
+﻿import { motion } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import { getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 import insuranceLogos from '../data/insurance'
 
@@ -7,14 +8,6 @@ function Insurance() {
 
   return (
     <div>
-      <style>{`
-        @media (max-width: 360px) {
-          .insurance-logo-grid {
-            grid-template-columns: 1fr !important;
-            gap: 1rem;
-          }
-        }
-      `}</style>
       <section className="border-b border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50">
         <div className="mx-auto w-full max-w-7xl px-4 pb-16 pt-24 sm:px-6 lg:px-8 lg:pb-20 lg:pt-28">
           <motion.p

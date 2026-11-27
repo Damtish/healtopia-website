@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import { Home, Mail } from 'lucide-react'
 import Button from '../components/Button'
 import SectionBadge from '../components/SectionBadge'

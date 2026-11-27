@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import {
   ArrowRight,
   ChevronLeft,
@@ -69,227 +70,20 @@ function Home() {
     const root = document.documentElement
     const header = document.querySelector('header')
 
-    const updateHeaderHeight = () => {
-      const measuredHeight = header?.getBoundingClientRect?.().height || 75
+    // ResizeObserver reports the size after layout, so mounting Home never forces a layout.
+    const observer = new ResizeObserver(([entry]) => {
+      const measuredHeight = entry?.borderBoxSize?.[0]?.blockSize || entry?.contentRect.height || 75
       root.style.setProperty('--header-height', `${Math.round(measuredHeight)}px`)
-    }
-
-    updateHeaderHeight()
-    window.addEventListener('resize', updateHeaderHeight)
+    })
+    if (header) observer.observe(header)
     return () => {
-      window.removeEventListener('resize', updateHeaderHeight)
+      observer.disconnect()
       root.style.removeProperty('--header-height')
     }
   }, [])
 
   return (
     <div>
-      <style>{`
-        .home-hero-shell {
-          --header-height: 75px;
-          padding-block: clamp(32px, 5vh, 56px);
-        }
-
-        @supports (height: 100svh) {
-          @media (min-width: 1024px) {
-            .home-hero-shell {
-              min-height: calc(100svh - var(--header-height));
-              height: calc(100svh - var(--header-height));
-            }
-          }
-        }
-
-        @media (min-width: 1024px) {
-          .home-hero-shell {
-            min-height: calc(100vh - var(--header-height));
-            height: calc(100vh - var(--header-height));
-          }
-        }
-
-        @media (max-width: 1023px) {
-          .home-hero-shell {
-            min-height: auto !important;
-            height: auto !important;
-          }
-        }
-
-        @media (max-width: 767px) {
-          .home-hero-shell {
-            padding-block: clamp(36px, 7vw, 52px);
-          }
-        }
-
-        @media (min-width: 1024px) and (max-height: 800px) {
-          .home-hero-shell {
-            padding-block: clamp(24px, 3.5vh, 44px);
-          }
-        }
-
-        .home-hero-overlay {
-          background: linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.95) 0%,
-            rgba(251, 253, 254, 0.93) 26%,
-            rgba(246, 250, 252, 0.7) 50%,
-            rgba(240, 247, 250, 0.34) 74%,
-            rgba(240, 247, 250, 0.14) 100%
-          );
-        }
-
-        @media (max-width: 767px) {
-          .home-hero-overlay {
-            background: linear-gradient(
-              90deg,
-              rgba(255, 255, 255, 0.98) 0%,
-              rgba(253, 254, 255, 0.96) 22%,
-              rgba(249, 252, 254, 0.84) 48%,
-              rgba(244, 249, 251, 0.54) 76%,
-              rgba(244, 249, 251, 0.28) 100%
-            );
-          }
-        }
-
-        .home-hero-copy {
-          max-width: 650px;
-        }
-
-        .home-hero-image {
-          object-fit: cover;
-          object-position: center;
-        }
-
-        .services-section {
-          padding: 56px 0 64px;
-        }
-
-        .services-container {
-          width: min(1380px, calc(100% - 64px));
-          margin: 0 auto;
-          padding-inline: 32px;
-          display: flex;
-          flex-direction: column;
-          min-height: 0;
-        }
-
-        .services-heading {
-          flex: 0 0 auto;
-          max-width: 47.5rem;
-          margin-bottom: 30px;
-        }
-
-        .services-heading h2 {
-          font-size: 28px;
-          line-height: 1.15;
-          font-weight: 700;
-          letter-spacing: -0.02em;
-          margin: 12px 0 16px;
-        }
-
-        .services-heading p {
-          font-size: 14px;
-          line-height: 1.5;
-          margin: 0;
-          max-width: 47.5rem;
-        }
-
-        .services-grid {
-          min-height: 0;
-          display: grid;
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-          gap: clamp(18px, 1.15vw, 22px);
-          align-items: stretch;
-        }
-
-        .service-card {
-          min-height: 0;
-          height: 100%;
-          padding: 21px 22px;
-          display: flex;
-          flex-direction: column;
-          overflow: hidden;
-          border-radius: 1.75rem;
-          box-shadow: 0 14px 34px -30px rgba(5, 42, 74, 0.38);
-        }
-
-        .service-card h3 {
-          font-size: 16px;
-          line-height: 1.25;
-          font-weight: 700;
-          margin: 16px 0 8px;
-        }
-
-        .service-card .service-subtitle {
-          font-size: 12px;
-          line-height: 1.35;
-          font-weight: 600;
-          letter-spacing: 0.03em;
-          text-transform: uppercase;
-          margin-bottom: 12px;
-        }
-
-        .service-card ul {
-          margin: 0 0 14px;
-          padding: 0;
-        }
-
-        .service-card li {
-          font-size: 15px;
-          line-height: 1.45;
-          margin-bottom: 8px;
-        }
-
-        .service-card .card-button {
-          margin-top: auto;
-          flex-shrink: 0;
-        }
-
-        .service-card .card-button a,
-        .service-card .card-button button {
-          font-size: 13px;
-        }
-
-        .service-icon {
-          width: 48px;
-          height: 48px;
-        }
-
-        @media (max-width: 1099px) {
-          .services-section {
-            height: auto;
-            padding: 48px 0 56px;
-          }
-
-          .services-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-          }
-        }
-
-        @media (max-width: 699px) {
-          .services-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        @media (max-height: 800px) and (min-width: 1100px) {
-          .services-section {
-            padding: 48px 0 56px;
-          }
-
-          .services-heading {
-            margin-bottom: 24px;
-          }
-
-          .services-grid {
-            gap: 18px;
-          }
-
-          .service-card {
-            min-height: 0;
-            padding: 22px 24px;
-          }
-        }
-
-      `}</style>
       <motion.section
         className="home-hero-shell relative isolate flex overflow-hidden border-b border-ht-silver bg-[linear-gradient(135deg,#ffffff_0%,#f7fcfe_44%,#eef8fc_100%)]"
       >

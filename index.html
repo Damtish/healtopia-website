@@ -35,21 +35,8 @@
     <meta name="twitter:description" content="Healtopia provides primary care, Direct Primary Care, concierge medicine, insurance-based primary care, and medical weight loss in Gambrills, Maryland." />
     <meta name="twitter:image" content="https://healtopiamed.com/images/clinic/building-exterior-optimized.jpg" />
     <meta name="twitter:image:alt" content="Healtopia clinic exterior in Gambrills, Maryland" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Load Google Fonts without blocking first paint (font-display: swap). -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
-      />
-    </noscript>
+    <!-- Self-hosted Manrope (variable, Latin): preloaded so text lays out once, with no third-party font origins. -->
+    <link rel="preload" href="/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=5" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=5" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=5" />

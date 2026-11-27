@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import { ChevronDown } from 'lucide-react'
 import { EASE_OUT } from '../lib/motion'
 

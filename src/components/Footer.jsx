@@ -113,7 +113,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-ht-silver py-4 text-center text-xs text-ht-gray">
+      <div className="border-t border-ht-silver py-4 text-center text-xs text-ht-gray" suppressHydrationWarning>
         © {new Date().getFullYear()} Healtopia. All rights reserved.
       </div>
     </footer>

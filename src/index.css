@@ -1,7 +1,26 @@
 @import "tailwindcss";
 
+/* Manrope variable font, self-hosted (SIL OFL 1.1, see /fonts/Manrope-OFL.txt). */
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("/fonts/manrope-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("/fonts/manrope-latin-ext-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 @theme {
-  --font-sans: "Manrope", "Plus Jakarta Sans", "Segoe UI", sans-serif;
+  --font-sans: "Manrope", "Segoe UI", system-ui, sans-serif;
 
   --color-ht-navy: #0b2545;
   --color-ht-navy-700: #184165;
@@ -1328,4 +1347,45 @@ h3,
     background: color-mix(in srgb, var(--ht-surface) 80%, transparent);
     border-color: var(--ht-border) !important;
   }
+}
+
+/* Particle canvases mount empty and fade in after their first frame. */
+.effect-fade {
+  opacity: 0;
+  transition: opacity 450ms ease;
+}
+
+.effect-fade.is-ready {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .effect-fade {
+    transition: none;
+  }
+}
+
+/*
+  Below-the-fold page sections skip style, layout and paint until they approach the viewport.
+  A new page used to cost ~1s of main-thread work at 4x CPU when navigating (all sections styled
+  and laid out at once); now only the first screen is. `auto` remembers each section's real
+  size after it has rendered once. The hero (first section) and the scroll-measured effect
+  sections are excluded.
+*/
+#main-content > div > div > section:not(:first-child):not(.why-together):not(.care-journey):not(.heart-explorer) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
+/* Clicked nav link shows as active immediately while the next page renders. */
+header nav a[data-nav-pending] {
+  color: var(--color-ht-navy);
+}
+
+header nav a[data-nav-pending]::after {
+  width: 100%;
+}
+
+header nav:has(a[data-nav-pending]) a[aria-current='page']:not([data-nav-pending])::after {
+  width: 0;
 }

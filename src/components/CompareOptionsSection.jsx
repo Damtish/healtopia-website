@@ -1,4 +1,5 @@
-﻿import { motion, useReducedMotion } from 'framer-motion'
+﻿import { motion } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import SectionBadge from './SectionBadge'
 import { PAGE_BADGE, PAGE_CONTAINER, PAGE_SECTION_SOFT } from '../lib/pageStyles'
 import { getCardHover, getStaggerContainer, getStaggerItem } from '../lib/motion'

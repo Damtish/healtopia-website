@@ -1,4 +1,5 @@
-﻿import { motion, useReducedMotion } from 'framer-motion'
+﻿import { motion } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import { Link } from 'react-router-dom'
 import {
   Activity,
@@ -230,95 +231,6 @@ function InsuranceBasedPrimaryCare() {
 
   return (
     <div className="bg-ht-light insurance-based-primary-care-page">
-      <style>{`
-        .insurance-plans-section {
-          scroll-margin-top: calc(var(--header-height, 76px) + 1.5rem);
-          padding-top: 1.5rem;
-          padding-bottom: 2.25rem;
-        }
-
-        @media (min-width: 640px) {
-          .insurance-plans-section {
-            padding-top: 1.75rem;
-            padding-bottom: 2.5rem;
-          }
-        }
-
-        @media (min-width: 1024px) {
-          .insurance-plans-section {
-            padding-top: 2rem;
-            padding-bottom: 2.75rem;
-          }
-        }
-
-        .insurance-plans-header {
-          max-width: 42.5rem;
-        }
-
-        .insurance-plans-header p {
-          max-width: 42.5rem;
-        }
-
-        .insurance-how-it-works-section {
-          padding-top: 2.5rem;
-          padding-bottom: 2.5rem;
-        }
-
-        .insurance-preventive-cta,
-        .insurance-preventive-cta::before,
-        .insurance-preventive-cta::after {
-          background: #0b2d4d !important;
-          background-color: #0b2d4d !important;
-          background-image: none !important;
-          background-repeat: no-repeat !important;
-          background-position: center !important;
-          background-size: 100% 100% !important;
-          background-blend-mode: normal !important;
-          mask: none !important;
-          -webkit-mask: none !important;
-          mix-blend-mode: normal !important;
-          opacity: 1 !important;
-          filter: none !important;
-          backdrop-filter: none !important;
-          -webkit-backdrop-filter: none !important;
-          box-shadow: none !important;
-        }
-
-        .insurance-preventive-cta::before,
-        .insurance-preventive-cta::after {
-          content: none !important;
-        }
-
-        @media (min-width: 640px) {
-          .insurance-how-it-works-section {
-            padding-top: 2.75rem;
-            padding-bottom: 2.75rem;
-          }
-        }
-
-        @media (min-width: 1024px) {
-          .insurance-how-it-works-section {
-            padding-top: 2.5rem;
-            padding-bottom: 2.5rem;
-          }
-        }
-
-        @media (max-width: 767px) {
-          .insurance-based-primary-care-page {
-            padding-bottom: calc(90px + env(safe-area-inset-bottom));
-          }
-
-          .insurance-preventive-section {
-            padding-top: 1.5rem;
-            padding-bottom: 1.5rem;
-          }
-
-          .insurance-chronic-section {
-            padding-top: 1.5rem;
-            padding-bottom: 2rem;
-          }
-        }
-      `}</style>
       <section className="insurance-hero relative isolate overflow-hidden border-b border-ht-silver bg-[linear-gradient(180deg,#ffffff_0%,#f7fdfe_100%)] lg:h-[calc(100vh-var(--header-height,76px))] lg:min-h-0 lg:max-h-none">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-8 sm:px-6 sm:py-10 lg:h-full lg:flex-row lg:items-center lg:gap-8 lg:px-8 lg:py-0">
           <motion.div

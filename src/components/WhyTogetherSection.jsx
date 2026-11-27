@@ -1,8 +1,10 @@
 import { Suspense, lazy, useRef, useState } from 'react'
-import { motion, useMotionValueEvent, useReducedMotion, useScroll } from 'framer-motion'
+import { motion, useMotionValueEvent } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import { HeartHandshake, ShieldCheck } from 'lucide-react'
 import SectionBadge from './SectionBadge'
 import useNearViewport from './effects/useNearViewport'
+import useSectionProgress, { pinnedProgress } from './effects/useSectionProgress'
 import EffectBoundary from './effects/EffectBoundary'
 
 const TogetherCanvas = lazy(() => import('./effects/TogetherCanvas.jsx'))
@@ -33,7 +35,7 @@ export default function WhyTogetherSection() {
   const trackRef = useRef(null)
   const near = useNearViewport(trackRef)
   const [state, setState] = useState(0)
-  const { scrollYProgress } = useScroll({ target: trackRef, offset: ['start start', 'end end'] })
+  const scrollYProgress = useSectionProgress(trackRef, pinnedProgress)
 
   useMotionValueEvent(scrollYProgress, 'change', (value) => {
     const next = stateFor(value)

@@ -8,11 +8,11 @@ export function isMobileViewport() {
   return window.matchMedia('(max-width: 767px)').matches
 }
 
+// Deterministic on server and client (no window reads during render), so hydration matches.
 function getMotionMode(reduceMotion) {
-  const mobile = isMobileViewport()
   return {
-    reduceMotion: Boolean(reduceMotion) || mobile,
-    mobile,
+    reduceMotion: Boolean(reduceMotion),
+    mobile: false,
   }
 }
 

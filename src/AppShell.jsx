@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useLayoutEffect, useState } from 'react'
+import { Suspense, useEffect, useLayoutEffect, useState, useSyncExternalStore } from 'react'
 import { Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import { Phone } from 'lucide-react'
 import Header from './components/Header'
@@ -9,12 +9,8 @@ import SeoManager from './components/SeoManager'
 import PageLoader from './components/PageLoader'
 import { BOOK_APPOINTMENT_URL } from './constants/links'
 import { SITE_PHONE_TEL } from './constants/site'
-
-function getSystemTheme() {
-  return typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light'
-}
+import usePaintFirstNavigation from './lib/usePaintFirstNavigation'
+import { getServerThemeSnapshot, getThemeSnapshot, setDocumentTheme, subscribeTheme } from './lib/themeStore'
 
 function getManualTheme() {
   if (typeof window === 'undefined') return null
@@ -58,7 +54,8 @@ function ScrollToTop() {
       }
     }
 
-    window.scrollTo(0, 0)
+    // Instant: html has scroll-behavior: smooth, which would animate every route change.
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
   }, [pathname, hash])
 
   return null
@@ -71,18 +68,14 @@ function RouteFallback() {
 function AppLayout({ fallback = <RouteFallback /> }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [manualTheme, setManualTheme] = useState(getManualTheme)
-  const [theme, setTheme] = useState(() => {
-    if (typeof document !== 'undefined' && document.documentElement.dataset.theme) {
-      return document.documentElement.dataset.theme
-    }
-    return getSystemTheme()
-  })
+  // Hydration renders with the server value ('light'), then React re-renders with the real theme.
+  const theme = useSyncExternalStore(subscribeTheme, getThemeSnapshot, getServerThemeSnapshot)
   const { pathname } = useLocation()
+  usePaintFirstNavigation()
   const hideMobileQuickActions = pathname === '/about'
   const insuranceMobileSafe = pathname === '/insurance-based-primary-care'
 
   useEffect(() => {
-    document.documentElement.dataset.theme = theme
     document.documentElement.dataset.themeMode = manualTheme ? 'manual' : 'system'
     document.documentElement.dataset.themeReady = 'true'
     document
@@ -95,7 +88,7 @@ function AppLayout({ fallback = <RouteFallback /> }) {
     if (!mediaQuery) return undefined
 
     const handleSystemThemeChange = (event) => {
-      if (!manualTheme) setTheme(event.matches ? 'dark' : 'light')
+      if (!manualTheme) setDocumentTheme(event.matches ? 'dark' : 'light')
     }
 
     if (mediaQuery.addEventListener) {
@@ -110,7 +103,7 @@ function AppLayout({ fallback = <RouteFallback /> }) {
   const toggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark'
     setManualTheme(nextTheme)
-    setTheme(nextTheme)
+    setDocumentTheme(nextTheme)
     try {
       window.localStorage.setItem('healtopia-theme', nextTheme)
     } catch {

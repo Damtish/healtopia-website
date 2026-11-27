@@ -75,8 +75,12 @@ function injectHead(template, headTags) {
   return stripFallbackSeo(template).replace('</head>', `    ${headTags}\n  </head>`)
 }
 
-function injectAppHtml(template, appHtml) {
-  return template.replace(/<div id="root"\s*><\/div>/, `<div id="root">${appHtml}</div>`)
+function injectAppHtml(template, appHtml, pathname) {
+  // data-prerendered-path lets the client hydrate only markup that was built for its URL.
+  return template.replace(
+    /<div id="root"\s*><\/div>/,
+    `<div id="root" data-prerendered-path="${escapeHtml(pathname)}">${appHtml}</div>`,
+  )
 }
 
 async function renderRoute(App, getSeoMeta, template, pathname, outputPath) {
@@ -84,7 +88,7 @@ async function renderRoute(App, getSeoMeta, template, pathname, outputPath) {
   const appHtml = renderToString(
     React.createElement(StaticRouter, { location: pathname }, React.createElement(App)),
   )
-  const htmlWithApp = injectAppHtml(template, appHtml)
+  const htmlWithApp = injectAppHtml(template, appHtml, pathname)
   const html = injectHead(htmlWithApp, buildHeadTags(seo))
   await fs.mkdir(path.dirname(outputPath), { recursive: true })
   await fs.writeFile(outputPath, html)
@@ -117,7 +121,7 @@ async function main() {
     const notFoundHtml = renderToString(
       React.createElement(StaticRouter, { location: notFoundPath }, React.createElement(App)),
     )
-    const notFoundOutput = injectHead(injectAppHtml(template, notFoundHtml), buildHeadTags(notFoundSeo))
+    const notFoundOutput = injectHead(injectAppHtml(template, notFoundHtml, notFoundPath), buildHeadTags(notFoundSeo))
     await fs.writeFile(path.join(distDir, '404.html'), notFoundOutput)
   } finally {
     await vite.close()

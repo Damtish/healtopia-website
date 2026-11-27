@@ -4,6 +4,7 @@ import {
   createDotSprite,
   createRandom,
   createRenderLoop,
+  deferSetup,
   getDeviceTier,
   observeCanvasSize,
   observeTheme,
@@ -168,6 +169,13 @@ function buildLayout(count) {
   return data
 }
 
+// Generated once per particle count and reused on later mounts (no regeneration on navigation).
+const layoutCache = new Map()
+function getLayout(count) {
+  if (!layoutCache.has(count)) layoutCache.set(count, buildLayout(count))
+  return layoutCache.get(count)
+}
+
 /**
  * Scattered dots → connected care network → heart + ECG line.
  * `progress` is a framer-motion MotionValue (0..1) for the pinned scroll range.
@@ -175,7 +183,8 @@ function buildLayout(count) {
 export default function TogetherCanvas({ progress, reduced = false }) {
   const canvasRef = useRef(null)
 
-  useEffect(() => {
+  // Setup is deferred to an idle callback so mounting never blocks a click or route change.
+  useEffect(() => deferSetup(() => {
     const canvas = canvasRef.current
     if (!canvas) return undefined
     const ctx = canvas.getContext('2d')
@@ -183,7 +192,7 @@ export default function TogetherCanvas({ progress, reduced = false }) {
 
     const tier = getDeviceTier()
     const count = tier === 'low' ? 460 : tier === 'mid' ? 760 : 1050
-    const layout = buildLayout(count)
+    const layout = getLayout(count)
 
     let width = 1
     let height = 1
@@ -305,7 +314,14 @@ export default function TogetherCanvas({ progress, reduced = false }) {
       ctx.globalCompositeOperation = 'source-over'
     }
 
-    const loop = createRenderLoop(canvas, render)
+    let shown = false
+    const loop = createRenderLoop(canvas, (time) => {
+      render(time)
+      if (!shown) {
+        shown = true
+        canvas.classList.add('is-ready')
+      }
+    })
     if (reduced) loop.setContinuous(false)
 
     const stopResize = observeCanvasSize(
@@ -333,7 +349,7 @@ export default function TogetherCanvas({ progress, reduced = false }) {
       stopTheme()
       sprites = []
     }
-  }, [progress, reduced])
+  }), [progress, reduced])
 
-  return <canvas ref={canvasRef} className="block h-full w-full" aria-hidden="true" />
+  return <canvas ref={canvasRef} className="effect-fade block h-full w-full" aria-hidden="true" />
 }

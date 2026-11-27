@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import SectionBadge from '../components/SectionBadge'
 import SectionHeader from '../components/SectionHeader'
 import ServiceCard from '../components/ServiceCard'

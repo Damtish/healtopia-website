@@ -208,3 +208,48 @@ export function createRandom(seed = 1) {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296
   }
 }
+
+/**
+ * Runs `fn` when the main thread is idle (falls back to a short timeout), so particle setup
+ * and teardown never land inside a click/navigation task. Returns a handle for cancelIdle.
+ */
+export function scheduleIdle(fn, timeout = 700) {
+  if (typeof window.requestIdleCallback === 'function') {
+    return { idle: window.requestIdleCallback(fn, { timeout }) }
+  }
+  return { timer: window.setTimeout(fn, 60) }
+}
+
+export function cancelIdle(handle) {
+  if (!handle) return
+  if (handle.idle !== undefined) window.cancelIdleCallback(handle.idle)
+  if (handle.timer !== undefined) window.clearTimeout(handle.timer)
+}
+
+/**
+ * Mount helper for the effects: defers `setup` (which returns a cleanup) to an idle callback,
+ * optionally after a separate idle `prepare` step. Unmounting before setup ran cancels it.
+ */
+export function deferSetup(setup, prepare) {
+  let cleanup = null
+  let cancelled = false
+  let handle = null
+  const run = () => {
+    if (!cancelled) cleanup = setup() || null
+  }
+  // Optional `prepare` (e.g. generating particles) gets its own idle step before setup.
+  handle = scheduleIdle(() => {
+    if (cancelled) return
+    if (prepare) {
+      prepare()
+      handle = scheduleIdle(run)
+    } else {
+      run()
+    }
+  })
+  return () => {
+    cancelled = true
+    cancelIdle(handle)
+    cleanup?.()
+  }
+}

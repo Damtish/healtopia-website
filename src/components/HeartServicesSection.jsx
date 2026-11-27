@@ -1,8 +1,10 @@
 import { Suspense, lazy, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useMotionValueEvent, useReducedMotion, useScroll } from 'framer-motion'
+import { motion, useMotionValueEvent } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import { ArrowRight, HeartPulse, MoveHorizontal } from 'lucide-react'
 import useNearViewport from './effects/useNearViewport'
+import useSectionProgress, { pinnedProgress } from './effects/useSectionProgress'
 import EffectBoundary from './effects/EffectBoundary'
 
 const ParticleHeart = lazy(() => import('./effects/ParticleHeart.jsx'))
@@ -116,7 +118,7 @@ export default function HeartServicesSection() {
   const trackRef = useRef(null)
   const near = useNearViewport(trackRef)
   const [active, setActive] = useState(0)
-  const { scrollYProgress } = useScroll({ target: trackRef, offset: ['start start', 'end end'] })
+  const scrollYProgress = useSectionProgress(trackRef, pinnedProgress)
 
   useMotionValueEvent(scrollYProgress, 'change', (value) => {
     const next = Math.min(heartRegions.length - 1, Math.max(0, Math.floor(value * heartRegions.length)))

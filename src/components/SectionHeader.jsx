@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import { getRevealProps } from '../lib/motion'
 import SectionBadge from './SectionBadge'
 

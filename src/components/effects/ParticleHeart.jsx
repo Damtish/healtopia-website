@@ -17,6 +17,8 @@ import {
   clamp01,
   createRandom,
   createRenderLoop,
+  deferSetup,
+  scheduleIdle,
   getDeviceTier,
   getPixelRatio,
   observeTheme,
@@ -223,6 +225,17 @@ function buildHeart(total) {
   return { positions, regions, randoms, regionBounds, height: maxY - minY }
 }
 
+// Generated once per particle count and reused on later mounts.
+const heartCache = new Map()
+function getHeartModel(total) {
+  if (!heartCache.has(total)) heartCache.set(total, buildHeart(total))
+  return heartCache.get(total)
+}
+
+function heartCountFor(tier) {
+  return tier === 'low' ? 4200 : tier === 'mid' ? 6800 : 9500
+}
+
 // ---------- Shaders ----------
 
 const vertexShader = /* glsl */ `
@@ -301,13 +314,15 @@ export default function ParticleHeart({ progress, reduced = false }) {
   const wrapRef = useRef(null)
   const [failed, setFailed] = useState(false)
 
-  useEffect(() => {
+  // Setup is deferred to idle callbacks so mounting never blocks a click or route change:
+  // the point cloud is generated in one idle step, the WebGL setup runs in the next.
+  useEffect(() => deferSetup(() => {
     const wrap = wrapRef.current
     if (!wrap) return undefined
 
     // A fresh canvas per mount: a context that was force-lost on unmount can't be reused.
     const canvas = document.createElement('canvas')
-    canvas.className = 'block h-full w-full'
+    canvas.className = 'effect-fade block h-full w-full'
     canvas.setAttribute('aria-hidden', 'true')
     wrap.appendChild(canvas)
 
@@ -333,7 +348,7 @@ export default function ParticleHeart({ progress, reduced = false }) {
     const camera = new PerspectiveCamera(32, 1, 0.1, 50)
     camera.position.set(0, 0, 7.4)
 
-    const model = buildHeart(tier === 'low' ? 4200 : tier === 'mid' ? 6800 : 9500)
+    const model = getHeartModel(heartCountFor(tier))
     const geometry = new BufferGeometry()
     geometry.setAttribute('position', new BufferAttribute(model.positions, 3))
     geometry.setAttribute('aRegion', new BufferAttribute(model.regions, 1))
@@ -491,7 +506,14 @@ export default function ParticleHeart({ progress, reduced = false }) {
       renderer.render(scene, camera)
     }
 
-    const loop = createRenderLoop(wrap, render)
+    let shown = false
+    const loop = createRenderLoop(wrap, (time) => {
+      render(time)
+      if (!shown) {
+        shown = true
+        canvas.classList.add('is-ready')
+      }
+    })
     if (reduced) loop.setContinuous(false)
 
     const ro = new ResizeObserver(() => {
@@ -524,13 +546,16 @@ export default function ParticleHeart({ progress, reduced = false }) {
       wrap.removeEventListener('lostpointercapture', endDrag)
       pivot.remove(points)
       scene.remove(pivot)
-      geometry.dispose()
-      material.dispose()
-      renderer.dispose()
-      renderer.forceContextLoss()
       canvas.remove()
+      // GPU cleanup is deferred so it never blocks the click that navigated away.
+      scheduleIdle(() => {
+        geometry.dispose()
+        material.dispose()
+        renderer.dispose()
+        renderer.forceContextLoss()
+      }, 1500)
     }
-  }, [progress, reduced])
+  }, () => getHeartModel(heartCountFor(getDeviceTier()))), [progress, reduced])
 
   if (failed) {
     return (

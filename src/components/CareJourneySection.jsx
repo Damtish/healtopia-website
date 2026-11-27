@@ -1,8 +1,10 @@
 import { Suspense, lazy, useEffect, useRef, useState } from 'react'
-import { motion, useMotionValueEvent, useReducedMotion, useScroll } from 'framer-motion'
+import { motion, useMotionValueEvent } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import SectionBadge from './SectionBadge'
 import { PAGE_CONTAINER } from '../lib/pageStyles'
 import useNearViewport from './effects/useNearViewport'
+import useSectionProgress from './effects/useSectionProgress'
 import EffectBoundary from './effects/EffectBoundary'
 
 const HelixCanvas = lazy(() => import('./effects/HelixCanvas.jsx'))
@@ -42,6 +44,10 @@ const careSteps = [
   },
 ]
 
+function timelineProgress(rect, viewportHeight) {
+  return (viewportHeight * 0.62 - rect.top) / (rect.height || 1)
+}
+
 function HelixFallback() {
   return (
     <div className="flex h-full w-full justify-center" aria-hidden="true">
@@ -58,7 +64,8 @@ export default function CareJourneySection() {
   const [activeIndex, setActiveIndex] = useState(-1)
   const near = useNearViewport(timelineRef)
 
-  const { scrollYProgress } = useScroll({ target: timelineRef, offset: ['start 62%', 'end 62%'] })
+  // 0 when the timeline top reaches 62% of the viewport, 1 when its bottom does.
+  const scrollYProgress = useSectionProgress(timelineRef, timelineProgress)
 
   // Measure where each step starts, as a fraction of the timeline height.
   useEffect(() => {
@@ -79,9 +86,9 @@ export default function CareJourneySection() {
       setActiveIndex((current) => (current === next ? current : next))
     }
 
+    // ResizeObserver fires once after layout, so no synchronous (forced) measurement on mount.
     const ro = new ResizeObserver(measure)
     ro.observe(timeline)
-    measure()
     return () => ro.disconnect()
   }, [scrollYProgress])
 

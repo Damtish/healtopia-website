@@ -1,5 +1,6 @@
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import Button from './Button'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
 import { getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'

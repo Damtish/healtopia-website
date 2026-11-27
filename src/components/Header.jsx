@@ -1,6 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import { Menu, X } from 'lucide-react'
 import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 import Button from './Button'
@@ -126,7 +127,7 @@ function Header({ mobileOpen, setMobileOpen, theme, onToggleTheme }) {
   }, [mobileOpen])
 
   const navDesktopClass = ({ isActive }) =>
-    `relative inline-flex whitespace-nowrap px-1 py-1 text-[clamp(0.88rem,0.82rem+0.12vw,0.96rem)] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:bottom-0 after:left-0 after:h-px after:bg-cyan-300 after:transition-all after:duration-250 min-[1440px]:text-[0.99rem] ${
+    `relative inline-flex whitespace-nowrap px-1 py-1 text-[clamp(0.88rem,0.82rem+0.12vw,0.96rem)] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 after:absolute after:bottom-0 after:left-0 after:h-px after:bg-cyan-300 after:transition-[width] after:duration-250 min-[1440px]:text-[0.99rem] ${
       isActive
         ? 'text-ht-navy after:w-full'
         : 'text-ht-navy/90 after:w-0 hover:text-ht-cyan-700 hover:after:w-full'
@@ -147,7 +148,7 @@ function Header({ mobileOpen, setMobileOpen, theme, onToggleTheme }) {
     <header className={aboutHeaderClassName}>
       <motion.div {...getEntranceProps(reduceMotion, { y: -14, duration: 0.45 })}>
       <div className="mx-auto flex h-[4.7rem] w-full max-w-7xl items-center justify-between gap-3 px-5 sm:px-6 xl:px-8 min-[1440px]:h-[5.15rem] min-[1440px]:px-10">
-        <NavLink to="/" className="flex min-w-0 shrink-0 items-center gap-3 sm:gap-4" aria-label="Healtopia home">
+        <NavLink to="/" end className="flex min-w-0 shrink-0 items-center gap-3 sm:gap-4" aria-label="Healtopia home">
           <img
             src="/images/healtopia-logo.webp"
             alt="Healtopia Primary Care and Medical Weight Loss logo"
@@ -237,8 +238,8 @@ function Header({ mobileOpen, setMobileOpen, theme, onToggleTheme }) {
                     key={link.to}
                     to={link.to}
                     end={link.to === '/'}
-                    onClick={() => setMobileOpen(false)}
                     {...handlePrefetch(link.to)}
+                    onClick={() => setMobileOpen(false)}
                     className={navMobileClass}
                   >
                     {link.label}

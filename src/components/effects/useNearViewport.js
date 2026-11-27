@@ -58,12 +58,12 @@ export default function useNearViewport(ref, rootMargin = '600px 0px') {
       interacted = true
       update()
     })
-    // Safety net: mount anyway shortly after load, even if no scroll/interaction event fires
-    // (e.g. restored scroll position or programmatic scrolling).
+    // Safety net: mount anyway once the page has settled, even if no scroll/interaction event
+    // fires (e.g. restored scroll position). Late enough to stay out of the initial load work.
     const fallback = window.setTimeout(() => {
       interacted = true
       update()
-    }, 2500)
+    }, 4500)
 
     return () => {
       observer.disconnect()

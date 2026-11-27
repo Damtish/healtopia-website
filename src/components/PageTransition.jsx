@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import { useLocation } from 'react-router-dom'
 
 function PageTransition({ children }) {

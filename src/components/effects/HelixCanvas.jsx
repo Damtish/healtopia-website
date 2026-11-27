@@ -3,6 +3,7 @@ import {
   clamp01,
   createDotSprite,
   createRenderLoop,
+  deferSetup,
   getDeviceTier,
   observeCanvasSize,
   observeTheme,
@@ -17,7 +18,8 @@ import {
 export default function HelixCanvas({ progress, reduced = false }) {
   const canvasRef = useRef(null)
 
-  useEffect(() => {
+  // Setup is deferred to an idle callback so mounting never blocks a click or route change.
+  useEffect(() => deferSetup(() => {
     const canvas = canvasRef.current
     if (!canvas) return undefined
     const ctx = canvas.getContext('2d')
@@ -116,7 +118,14 @@ export default function HelixCanvas({ progress, reduced = false }) {
       ctx.globalCompositeOperation = 'source-over'
     }
 
-    const loop = createRenderLoop(canvas, render)
+    let shown = false
+    const loop = createRenderLoop(canvas, (time) => {
+      render(time)
+      if (!shown) {
+        shown = true
+        canvas.classList.add('is-ready')
+      }
+    })
     if (reduced) loop.setContinuous(false)
 
     const stopResize = observeCanvasSize(
@@ -148,7 +157,7 @@ export default function HelixCanvas({ progress, reduced = false }) {
       unsubscribe?.()
       sprites = null
     }
-  }, [progress, reduced])
+  }), [progress, reduced])
 
-  return <canvas ref={canvasRef} className="block h-full w-full" aria-hidden="true" />
+  return <canvas ref={canvasRef} className="effect-fade block h-full w-full" aria-hidden="true" />
 }

@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+import useReducedMotion from '../lib/useReducedMotionSafe'
 import { CheckCircle2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { getCardHover, getRevealProps } from '../lib/motion'
