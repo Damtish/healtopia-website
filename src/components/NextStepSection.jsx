@@ -55,7 +55,7 @@ export default function NextStepSection({
               {primaryLabel}
               <CTAButtonArrow />
             </Button>
-            {secondaryTo ? (
+            {secondaryTo && !secondaryHref ? (
               <Button
                 to={secondaryTo}
                 variant="secondary"

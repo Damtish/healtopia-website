@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import useReducedMotion from '../lib/useReducedMotionSafe'
 import Button from './Button'
 import { BOOK_APPOINTMENT_URL } from '../constants/links'
+import { SITE_PHONE_TEL } from '../constants/site'
 import { getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
 
 function CTAButtonArrow() {
@@ -19,7 +20,7 @@ function AppointmentCTA({
   primaryRel = 'noopener noreferrer',
   secondaryLabel = 'Call Our Office',
   secondaryTo,
-  secondaryHref,
+  secondaryHref = SITE_PHONE_TEL,
   secondaryTarget,
   secondaryRel,
   benefits = [
