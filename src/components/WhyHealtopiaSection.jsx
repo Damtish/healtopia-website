@@ -27,7 +27,7 @@ const whyBenefits = [
     icon: CalendarClock,
   },
   {
-    title: 'Most insurance accepted',
+    title: 'Many major insurance plans accepted',
     description: 'Healtopia accepts many major insurance plans and also offers self-pay options.',
     icon: CreditCard,
   },

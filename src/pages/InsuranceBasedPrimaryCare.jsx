@@ -138,11 +138,26 @@ const includedBenefits = [
 ]
 
 const preventiveItems = [
-  'Annual physical exams and wellness visits',
-  'Preventive screening services',
-  "Men's health services",
-  'Vaccines and immunizations',
-  'Smoking cessation support',
+  {
+    title: 'Annual physical exams and wellness visits',
+    description: 'A yearly check-in to review your overall health, update your history, and plan preventive care.',
+  },
+  {
+    title: 'Preventive screening services',
+    description: 'Screenings matched to your age and risk factors to help catch health concerns early.',
+  },
+  {
+    title: "Men's health services",
+    description: "Checkups and screenings focused on men's health needs and long-term wellness.",
+  },
+  {
+    title: 'Vaccines and immunizations',
+    description: 'Recommended vaccines to help protect your health and keep your immunizations up to date.',
+  },
+  {
+    title: 'Smoking cessation support',
+    description: 'Guidance and support to help you quit smoking and protect your long-term health.',
+  },
 ]
 
 const chronicGroups = [
@@ -509,7 +524,7 @@ function InsuranceBasedPrimaryCare() {
             <div className="mt-7 grid gap-[18px] lg:grid-cols-2">
               {preventiveItems.map((item, index) => (
                 <motion.article
-                  key={item}
+                  key={item.title}
                   className={`group flex min-h-[118px] items-start gap-4 rounded-[1.35rem] border border-cyan-100/80 bg-ht-soft-blue/28 px-5 py-5 shadow-[0_14px_34px_-30px_rgba(5,42,74,0.32)] transition-[transform,box-shadow,border-color] duration-300 ${index === preventiveItems.length - 1 ? 'lg:col-span-2' : ''}`}
                   {...getEntranceProps(reduceMotion, { y: 14, duration: 0.45, delay: index * 0.03 })}
                   {...getCardHover(reduceMotion)}
@@ -518,10 +533,8 @@ function InsuranceBasedPrimaryCare() {
                     <CheckCircle2 size={18} />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[0.98rem] font-bold text-ht-navy">{item}</p>
-                    <p className="mt-1 text-[0.86rem] leading-relaxed text-ht-gray">
-                      Regular checkups, screenings, vaccinations, and early identification of health concerns.
-                    </p>
+                    <p className="text-[0.98rem] font-bold text-ht-navy">{item.title}</p>
+                    <p className="mt-1 text-[0.86rem] leading-relaxed text-ht-gray">{item.description}</p>
                   </div>
                 </motion.article>
               ))}

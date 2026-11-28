@@ -80,7 +80,7 @@ const heroRows = [
   {
     icon: ShieldCheck,
     title: 'Insurance-based care',
-    text: 'Traditional primary care visits through Medicare, Medicaid, most commercial plans, and self-pay.',
+    text: 'Traditional primary care visits through Medicare, Medicaid, many major commercial plans, and self-pay.',
   },
   {
     icon: Scale,
@@ -140,13 +140,17 @@ function PricingPlanCard({ plan, index }) {
         <p className="rounded-2xl bg-ht-soft-blue/35 px-3 py-2 text-sm leading-relaxed text-ht-navy">{plan.notes}</p>
       </div>
 
-      <Link
-        to="/direct-primary-care"
+      {/* Joining DPC starts with the free consultation (the same next step the DPC page offers). */}
+      <a
+        href={BOOK_APPOINTMENT_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Start with a free consultation for the ${plan.name} plan`}
         className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ht-navy-700 transition-transform duration-300 group-hover:gap-2"
       >
-        Choose plan
+        Start with a free consultation
         <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5" />
-      </Link>
+      </a>
     </motion.article>
   )
 }
@@ -367,7 +371,7 @@ function Pricing() {
                 Insurance-based care
               </div>
               <p className="mt-4 text-sm leading-relaxed text-ht-gray md:text-base">
-                We accept Medicare, Medicaid, and most commercial insurance plans. Affordable self-pay options are
+                We accept Medicare, Medicaid, and many major commercial insurance plans. Affordable self-pay options are
                 also available.
               </p>
               <Link

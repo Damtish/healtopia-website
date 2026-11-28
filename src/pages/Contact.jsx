@@ -7,9 +7,17 @@ import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 import Button from '../components/Button'
 import SectionHeader from '../components/SectionHeader'
 import AppointmentCTA from '../components/AppointmentCTA'
+import FAQAccordion from '../components/FAQAccordion'
+import generalFaqs from '../data/faqs'
 import { BOOK_APPOINTMENT_URL, FACEBOOK_URL, INSTAGRAM_URL } from '../constants/links'
-import { SITE_LEGAL_NAME } from '../constants/site'
+import { SITE_ADDRESS, SITE_LEGAL_NAME, SITE_PHONE_DISPLAY, SITE_PHONE_TEL } from '../constants/site'
 import { getCardHover, getEntranceProps, getRevealProps, getStaggerContainer, getStaggerItem } from '../lib/motion'
+
+// New patients ask "what should I bring?" most, so it leads (and opens by default).
+const firstVisitFaqs = [
+  ...generalFaqs.filter((faq) => faq.id === 'faq-5'),
+  ...generalFaqs.filter((faq) => faq.id !== 'faq-5'),
+]
 
 function Contact() {
   const reduceMotion = useReducedMotion()
@@ -17,7 +25,7 @@ function Contact() {
   return (
     <div>
       <section className="border-b border-ht-silver bg-gradient-to-br from-white via-ht-soft-blue to-cyan-50">
-        <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
           <motion.div {...getEntranceProps(reduceMotion, { y: 16, duration: 0.45, delay: 0.03 })}>
             <SectionBadge>Contact</SectionBadge>
           </motion.div>
@@ -32,6 +40,25 @@ function Contact() {
             </Link>
             .
           </motion.p>
+          {/* The essentials first: phone and address without scrolling. */}
+          <ul className="mt-6 flex flex-col gap-3 text-base sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8">
+            <li>
+              <a
+                href={SITE_PHONE_TEL}
+                className="inline-flex items-center gap-2 font-semibold text-ht-navy transition-colors hover:text-ht-cyan-700"
+              >
+                <Phone size={18} className="text-ht-cyan-700" aria-hidden="true" />
+                {SITE_PHONE_DISPLAY}
+              </a>
+            </li>
+            <li className="inline-flex items-start gap-2 text-ht-gray">
+              <MapPin size={18} className="mt-1 shrink-0 text-ht-cyan-700" aria-hidden="true" />
+              <span>
+                {SITE_ADDRESS.streetAddress}, {SITE_ADDRESS.addressLocality}, {SITE_ADDRESS.addressRegion}{' '}
+                {SITE_ADDRESS.postalCode}
+              </span>
+            </li>
+          </ul>
           <motion.div className="mt-7" {...getEntranceProps(reduceMotion, { y: 18, delay: 0.3, duration: 0.45 })}>
             <Button href={BOOK_APPOINTMENT_URL} target="_blank" rel="noopener noreferrer">
               Book Appointment
@@ -135,6 +162,21 @@ function Contact() {
             </a>
           </div>
         </motion.div>
+
+        <div className="mx-auto mt-14 max-w-3xl">
+          <SectionHeader
+            eyebrow="First Visit"
+            title={
+              <>
+                Before your <span className="text-ht-cyan-700">first visit</span>
+              </>
+            }
+            description="Quick answers to the questions new patients ask most."
+          />
+          <div className="mt-8">
+            <FAQAccordion items={firstVisitFaqs} />
+          </div>
+        </div>
 
         <motion.div {...getRevealProps(reduceMotion, { y: 22, amount: 0.2 })}>
           <AppointmentCTA

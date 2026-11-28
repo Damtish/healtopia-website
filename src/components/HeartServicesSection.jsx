@@ -19,7 +19,6 @@ const heartRegions = [
       'Comprehensive preventive, acute, and chronic care that keeps you healthy and supported through every stage of life.',
     to: '#service-lines',
     linkLabel: 'See our service lines',
-    region: 'Left ventricle',
   },
   {
     id: 'medical-weight-loss',
@@ -29,7 +28,6 @@ const heartRegions = [
       'A personalized plan built on your labs and health history, with nutrition guidance, regular progress reviews, and medication options when clinically appropriate.',
     to: '/medical-weight-loss',
     linkLabel: 'Explore medical weight loss',
-    region: 'Right ventricle',
   },
   {
     id: 'concierge-care',
@@ -39,7 +37,6 @@ const heartRegions = [
       'Direct phone and text access to your physician, longer visits, and same-day or next-day appointments when available.',
     to: '/concierge-care',
     linkLabel: 'View concierge care',
-    region: 'Aorta',
   },
   {
     id: 'insurance-based-care',
@@ -49,7 +46,6 @@ const heartRegions = [
       'Traditional primary care visits for preventive care and chronic disease management. Contact the office to verify your coverage.',
     to: '/insurance-based-primary-care',
     linkLabel: 'View insurance-based care',
-    region: 'Right atrium',
   },
   {
     id: 'direct-primary-care',
@@ -59,7 +55,6 @@ const heartRegions = [
       'A membership that covers most primary care needs with no hidden costs, plus telehealth or in-person appointments and direct communication with your doctor.',
     to: '/direct-primary-care',
     linkLabel: 'View Direct Primary Care',
-    region: 'Left atrium',
   },
 ]
 
@@ -101,9 +96,8 @@ function RegionCard({ region, index, active, reduced }) {
       inert={!active}
     >
       <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-ht-gray">
-        <span className="tabular-nums text-ht-cyan-700">{String(index + 1).padStart(2, '0')}</span>
-        <span aria-hidden="true"> · </span>
-        {region.region}
+        <span className="tabular-nums text-ht-cyan-700">{String(index + 1).padStart(2, '0')}</span> of{' '}
+        {String(heartRegions.length).padStart(2, '0')}
       </p>
       <h3 className="mt-2 text-ht-navy">{region.title}</h3>
       <p className="mt-1 font-semibold text-ht-navy-700">{region.tagline}</p>

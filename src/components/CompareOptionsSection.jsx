@@ -37,7 +37,7 @@ const comparisonPlans = [
     paymentModel: 'Insurance + self-pay',
     bestFor: 'Patients who want traditional primary care visits',
     appointmentStyle: 'Routine and problem-focused primary care visits',
-    insuranceUse: 'Accepts Medicare, Medicaid, and most commercial plans',
+    insuranceUse: 'Accepts Medicare, Medicaid, and many major commercial plans',
     mainBenefit: 'Familiar coverage with flexible self-pay options',
     accent: 'Traditional care',
   },
