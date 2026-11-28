@@ -1,6 +1,9 @@
-import aboutGashawPortrait from '../assets/dr-gashaw-adugna-about-optimized.jpg'
 import { FACEBOOK_URL, INSTAGRAM_URL } from '../constants/links'
 import { SITE_ADDRESS, SITE_DESCRIPTION, SITE_LEGAL_NAME, SITE_NAME, SITE_ORIGIN } from '../constants/site'
+
+// Served from /public so prerendered HTML and the app use the same URL (an imported asset
+// gets a dev-only /src/... path in the prerender, which 404s in production).
+const aboutGashawPortrait = '/images/clinic/dr-gashaw-adugna-about-optimized.jpg'
 
 const SITE_PHONE_NUMBER = '+14107746678'
 const SHARED_OG_IMAGE = `${SITE_ORIGIN}/images/clinic/building-exterior-optimized.jpg`

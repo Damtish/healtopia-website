@@ -22,7 +22,10 @@ import {
   PAGE_CONTAINER,
   PAGE_SECTION,
 } from '../lib/pageStyles'
-import aboutGashawPortrait from '../assets/dr-gashaw-adugna-about-optimized.jpg'
+
+// Served from /public so prerendered HTML and the app use the same URL (an imported asset
+// gets a dev-only /src/... path in the prerender, which 404s in production).
+const aboutGashawPortrait = '/images/clinic/dr-gashaw-adugna-about-optimized.jpg'
 
 const storyExpectations = [
   {
